@@ -51,8 +51,8 @@ Feel free to update this document as you found new things worth documenting.
 
     Then inside your docker container:
     ```
-    # Install all required gems, Start mysql sever, Run the migration
-    bundle install && service mysql restart && bundle exec rake db:migrate
+    # Install all required gems, Start mysql sever, Run the migration, then seed the database.
+    bundle install && service mysql restart && bundle exec rake db:migrate && bundle exec rake db:seed
 
     # Run delayed jobs
     script/delayed_job start
@@ -60,7 +60,7 @@ Feel free to update this document as you found new things worth documenting.
 6. After initialising for the first time, you may want to store your container as an image,
 so you do not need to bundle install everytime you run it. For this, do the following:
     ```
-    # You can get container ID from "docker ps".
+    # You can get container ID from `docker ps`.
     docker commit -m "Initialised" ID jaycode/chink:v0.1
     ```
 
@@ -80,16 +80,22 @@ so you do not need to bundle install everytime you run it. For this, do the foll
 7. Your server should be up and running now.
 
 
+
 ## Development Notes
 
 This part contains all the useful notes for development of Chanelink app.
 
 ### Connecting to Docker's MySQL server
-```
-host: IP
-port: 3306
-```
+
+You can connect to MySQL server in Docker container from any MySQL client app by directly
+connecting to host `IP` and port `3306` (You can get IP from running `boot2docker ip`).
+
 Username and password are the same with what you already set in Dockerfile.
+
+### Seeding the database
+
+Seeding the database is done by running `bundle exec rake db:seed`. This will run the script
+`db/seeds.rb`.
 
 ### Asset Packaging
 
@@ -113,13 +119,13 @@ docker exec ID bash -c "jammit"
 To run tests in Rails, use this command:
 
 ```
-rake test
+bundle exec rake test
 ```
 
 ### Inspecting the status of your web app
 
 ---
-_Taken from https://github.com/phusion/passenger-docker._
+*This note and everything underneath were shamelessly taken from https://github.com/phusion/passenger-docker.*
 
 ---
 
