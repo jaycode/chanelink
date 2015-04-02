@@ -1,0 +1,9 @@
+<%= page_title t('room_types.edit.label.heading', :room_type => @room_type.name) %>
+<div id="newRoomType">
+  <div class="col9">
+    <h2><%= raw t('room_types.edit.label.heading', :room_type => @room_type.name) %></h2>
+    <%= form_for @room_type, :url => {:controller => "admin/room_types", :action => "update"} do |f| %>
+      <%= render 'form_fields', :action => 'update' %>
+    <% end %>
+  </div>
+</div>

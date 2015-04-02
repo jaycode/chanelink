@@ -1,0 +1,28 @@
+<%= page_title t('admin.property_channels.new.label.heading') %>
+<div id="newProperty">
+  <div class="col9">
+    <% current_admin_property.pools.each do |pool| %>
+      <h4><%= pool.name %></h4>
+      <br/>
+      <div class="roomTypes">
+        <% pool.channels.each do |pc| %>
+          <p>
+            <strong><%= link_to pc.channel.name, edit_embed_admin_property_channel_path(pc) %></strong> -
+            <% if pc.disabled? %>
+              <span class="red"><%= t("general.disabled") %></span>&nbsp;<%= t("property_channels.index.label.awaiting_approval") if !pc.approved? %>
+            <% else %>
+              <span class="green"><%= t("general.enabled") %></span>
+            <% end %>
+            <span class="action">
+            </span>
+          </p>
+          <p>&nbsp;&nbsp;<%= t('property_channels.index.label.total_rooms_mapped', :count => RoomTypeChannelMapping.room_type_ids(current_admin_property.room_type_ids).where(:channel_id => pc.channel.id).count) %></p>
+
+        <% end %>
+      </div>
+    <% end %>
+    <br/>
+    <%= link_to 'New Channel', new_admin_property_channel_path, :class => 'btnActionGrey' %>
+    <br/>
+  </div>
+</div>

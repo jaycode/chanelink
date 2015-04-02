@@ -1,0 +1,16 @@
+<% page_title t('password.reset.label.heading') %>
+<div id="login">
+  <div class="col6">
+    <h2><%= raw t('password.reset.label.heading') %></h2>
+    <%= form_tag password_reset_submit_path do %>
+      <p>
+        <label><%=  t('password.reset.label.email') %></label>
+        <%= text_field_tag :email, params[:email] %>
+      </p>
+      <p>
+        <label>&nbsp;</label>
+        <%= submit_tag t('button.submit') %>
+      </p>
+    <% end %>
+  </div>
+</div>

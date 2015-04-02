@@ -1,0 +1,1027 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+en:
+  default_page_title: 'Hotel Channel Manager'
+
+  general:
+    access_denied: 'Access denied. You do not have permission for this operation.'
+    enabled: 'Enabled'
+    disabled: 'Disabled'
+    click_here: 'Click here'
+    pool: 'Pool:'
+    more: 'More'
+    see_all: 'See All'
+    error_not_a_number: '%{date}: not a valid number'
+    yes_label: 'Yes'
+    no_label: 'No'
+    to: 'to'
+
+  language:
+    english: 'English'
+    indonesia: 'Bahasa Indonesia'
+
+  currency:
+    idr: 'IDR '
+
+  menu:
+    dashboard: 'Dashboard'
+    inventory: 'Inventory'
+    accounts: 'Accounts'
+    new_account: '+ New Account'
+    properties: 'Hotels'
+    new_property: '+ New Hotel'
+    setup: 'Setup'
+    room_types: 'Room Types'
+    channel: 'Channels'
+    pools: 'Pools'
+    inventory_grid: 'Inventory Grid'
+    master_rates: 'Master Rates'
+    reports: 'Reports'
+    reports_checkin: 'Check-in'
+    reports_channel_yield: 'Channel Yield'
+    reports_channel_trends: 'Channel Trends'
+    room_type_inventory_links: 'Availability Link'
+    bulk_update: 'Bulk Update'
+    copy_tool: 'Copy Tool'
+    alerts: 'Alerts'
+    currency_conversion: 'Currency Conversion'
+    hotel_details: 'Hotel Details'
+    room_types: 'Room Types'
+
+  button:
+    continue: 'Continue'
+    back: '<< back'
+    save: 'Save'
+    submit: 'Submit'
+    cancel: 'Cancel'
+    create: 'Create'
+    finish: 'Finish'
+    update: 'Update'
+    copy: 'Copy'
+    delete: 'Delete'
+    approve: 'Approve'
+    reject: 'Reject'
+
+  login:
+    label:
+      title: 'Login'
+      heading: 'Login'
+      email: 'Email'
+      password: 'Password'
+      remember_me: 'Keep me logged in'
+    message:
+      fail: 'Email or Password is invalid'
+      success: 'Welcome back!'
+      locked: 'You have failed to login %{times} times. We have reset your password and send it to your email.'
+      inactivity: 'Your session has expired, please try to login again.'
+      disabled: 'Your account is disabled. Please contact your supervisor.'
+
+  logout:
+    message:
+      success: 'You are now logged out'
+
+  password:
+    reset:
+      link: 'Forgot password?'
+      label:
+        heading: 'Reset Password'
+        email: 'You email for login'
+      message:
+        email_not_given: 'Please specify your login email'
+        member_not_found: 'Email is unregistered'
+        check_email: 'Check your email for your new password information'
+
+  bulk_update:
+    tool:
+      label:
+        heading: 'Bulk Update Tool'
+        value: 'Value To Be Updated'
+        dates_days: 'Dates & Days'
+        rooms: 'Rooms'
+        pools_channels: 'Pools & Channels'
+        availability: 'Availability'
+        rates: 'Rates'
+        on_option: 'On'
+        off_option: 'Off'
+        date_from: 'From'
+        date_to: 'To'
+        select_all: 'Select All'
+        room_types: 'Room Types'
+        pools_channels: 'Pools & Channels'
+        apply_to_master_rate: 'Apply to Master Rate'
+        date_from_to: 'must be before Date To'
+        channel_must_presence: "can't be blank"
+        rates_must_be_greater_than_min_rates: 'Rates for %{room_type} can not be lower than %{min_rate}'
+      message:
+        affected_rows: 'Total %{count} rows affected.'
+        success: 'Successfully updated'
+
+  copy_tool:
+    tool:
+      label:
+        heading: 'Copy Tool'
+        select_pool: 'Select a pool'
+        what_to_copy: 'What to copy?'
+        from: 'From'
+        to: 'To'
+        channel: 'Channel'
+        room: 'Room'
+        channel_room_must_be_different: 'Nothing to copy. Channel & room destination is the same as the source'
+        no_master_rate_link: '%{room_type} in %{channel} has master rate mapping. Copy tool can not be used.'
+        all: 'All'
+    message:
+      success: 'Successfully copied'
+
+  dashboard:
+    channel:
+      heading: 'Channel Status'
+      no_channel: 'No Channel connected yet'
+      enabled: 'Enabled'
+    bookings:
+      heading: 'Reservation'
+      last_30_days: 'Total reservations in the last 30 days'
+    alerts:
+      heading: 'Alerts'
+    hotel_status:
+      heading: 'Hotel Status'
+      disabled_channels: '%{count} disabled channel connections'
+      disabled_channel_rooms: '%{count} disabled channel rooms'
+
+  inventories:
+    grid:
+      label:
+        stop_sell: 'Stop Sell'
+        min_stay: 'Min Stay'
+        cta: 'CTA'
+        ctd: 'CTD'
+        ctb: 'CTB'
+        copy_across: 'Copy Across'
+        copy_up_down: 'Copy Up/Down'
+        availability: 'Availability'
+        master_rates: 'Master Rates'
+        prices: 'Prices'
+        rate_multiplier: 'You have set a Rate Multiplier for this channel. All room rates send to this channel will be multiplied by %{rate_multiplier}.'
+    update:
+      message:
+        nothing_saved: 'There was no availability change to be saved'
+        success: 'Availability has been saved.'
+    validate:
+      error_not_a_number: 'Availability: %{room_type} %{date} - not a valid number'
+      error_negative_number: 'Availability: %{room_type} %{date} - must be a positive number'
+
+  master_rates:
+    update:
+      message:
+        nothing_saved: 'There was no rate change to be saved'
+        success: 'Your rate change has been saved'
+    validate:
+      error_not_a_number: 'Master Rates: %{room_type} %{date} - not a valid number'
+      error_negative_number: 'Master Rates: %{room_type} %{date} - must be a positive number'
+      error_less_than_minimum: 'Master Rates: %{room_type} %{date} - can not be less than %{minimum}'
+
+  channel_rates:
+    update:
+      message:
+        nothing_saved: 'There was no change to be saved for %{channel}'
+        success: 'Changes for %{channel} has been saved.'
+    validate:
+      error_not_a_number: '%{channel} Rates: %{room_type} %{date} - not a valid number'
+      error_negative_number: '%{channel} Rates: %{room_type} %{date} - must be a positive number'
+      error_less_than_minimum: '%{channel} Rates: %{room_type} %{date} - can not be less than %{minimum}'
+      error_min_stay_not_a_number: '%{channel} Min Stay: %{room_type} %{date} - not a valid number'
+      error_min_stay_negative_number: '%{channel} Min Stay: %{room_type} %{date} - must be a positive number'
+
+  reports:
+    too_big: 'Report is too big for browser viewing, please view the report data as CSV.'
+    checkin:
+      label:
+        heading: 'Check-in Report'
+        guest: 'Guest'
+        stay: 'Stay'
+        room: 'Room'
+        total_rooms: 'Total Rooms'
+        booking_date: 'Booked on'
+        channel: 'Booked via'
+        amount: 'Total Amount'
+        period: 'Show check-in for'
+        pool: 'Pool'
+        empty: 'No booking data found'
+      periods:
+        7days: 'next 7 days'
+        14days: 'next 14 days'
+        30days: 'next 30 days'
+      pools:
+        all: 'All'
+    channel_yield:
+      label:
+        heading: 'Channel Yield Report'
+        date_type: 'Date Type'
+        range: 'Range'
+        to: 'to'
+        pool: 'Pool'
+        empty: 'No booking data found'
+        channel: 'Channel'
+        reservations: 'Total Reservations'
+        lead_time: 'Avg Lead Time'
+        los: 'Avg Length of Stay'
+        avg_earnings: 'Avg Earning (%{currency})'
+        total_earnings: 'Total Earnings (%{currency})'
+        export_csv: 'Export CSV'
+        total: 'Total'
+      date_type:
+        created: 'Created'
+        checkin: 'Check-in'
+      pools:
+        all: 'All'
+      message:
+        date_type_not_exist: 'Please specify Date Type'
+        date_from_not_exist: 'Please specify Date From'
+        date_to_not_exist: 'Please specify Date To'
+        date_from_must_be_earlier: 'Date From must be an earlier date'
+    channel_trends:
+      label:
+        heading: 'Channel Trends'
+        date_type: 'Date Type'
+        range: 'Range'
+        to: 'to'
+        pool: 'Pool'
+        empty: 'No booking data found'
+        channel: 'Channel'
+        report_type: 'Report Type'
+        breakdown: 'Breakdown by'
+        total_earnings: 'Total Earnings'
+        avg_earnings: 'Average Earnings'
+        reservation_count: 'Reservation Count'
+        total_room_type: 'Total by Room Type Count'
+      date_type:
+        created: 'Created'
+        checkin: 'Check-in'
+      pools:
+        all: 'All'
+      channels:
+        all: 'All'
+      breakdown:
+        day: 'Day'
+        month: 'Month'
+      report_type:
+        placeholder: 'Select Type'
+        total_earnings: 'Total Earnings'
+        avg_earnings: 'Average Earnings per Reservation'
+        reservation_count: 'Reservation Count'
+        total_room_type: 'Total Room Type Count'
+
+      message:
+        date_type_not_exist: 'Please specify Date Type'
+        date_from_not_exist: 'Please specify Date From'
+        date_to_not_exist: 'Please specify Date To'
+        date_from_must_be_earlier: 'Date From must be an earlier date'
+        breakdown_not_exist: 'Please specify Breakdown'
+        report_type_not_exist: 'Please select Report Type'
+        
+  properties:
+    manage: 'Hotels'
+    new:
+      label:
+        link: 'Add New Hotel'
+        heading: 'New Hotel'
+    edit:
+      link: 'Edit'
+      label:
+        heading: 'Edit Hotel'
+    select:
+      link: '(switch hotel?)'
+      back_link: 'back to hotel list'
+      label:
+        select_below: 'Please select a hotel that you want to manage:'
+        no_hotel: 'No registered hotel.'
+        pending: 'waiting for approval'
+        enabled: '%{count} channel(s) enabled'
+        disabled: '%{count} channel(s) disabled'
+    update:
+      message:
+        success: 'Hotel updated successfully'
+        approved: 'Hotel approved'
+        rejected: 'Hotel rejected'
+    no_registered_property:
+      label:
+        no_hotel: 'Your account does not have any Hotel yet.'
+    validate:
+      minimum_room_rate_must_be_less_than_lowest: 'can not be greater than lowest room minimum rate %{lowest}'
+
+  pools:
+    placeholder: 'Select a pool'
+    index:
+      label:
+        heading: 'Pools'
+        blank: 'No pool created for this Hotel yet.'
+        name: 'Name'
+        no_channels: '# of Channels'
+    new:
+      label:
+        heading: 'New Pool'
+        name: 'Pool Name'
+        channels: 'Channels'
+        move_channels: 'Move channels to new created Pool'
+        details: '1. Pool Nama & Channels'
+        confirmation: '2. Confirmation'
+        done_creating: '3. Finish'
+        no_channels: 'You are about to create a new Pool with no channel'
+        about_to_move: 'You are about to create a new Pool and move the following channel(s) into the new created Pool:'
+        should_continue: 'Should you continue, please choose 1 (one) of the following actions:'
+        zero_inventory: '<u>Create Pool with 0 (zero) Availability pushed to channels</u>, <strong>which will be applied to the next 400 (four hundred) days.</strong>'
+        disable_channels: '<u>Disable channels, and then create Pool with 0 (zero) Availability</u>, <strong>Availability and Rates shown in channels will be remain the same.</strong>'
+        master_rate: 'All rates for all room type in channel(s) linked to Master Rate will have to be manually managed, since you need to define Master Rate Rooms in the new Pool.'
+        availability_confirmation: 'I understand the consequences and wish to proceed'
+        other_pools: 'Other Pools'
+        new_pool: 'New Pool'
+        current_pool: 'Current Pool'
+        channels_addition: 'New channel addition'
+    edit:
+      link: 'Edit'
+      label:
+        heading: 'Modify %{pool}'
+        name: 'Pool Name'
+        channels: 'Channels'
+        move_channels: 'Move channels to this Pool'
+        no_channels: 'No new channels assigned to this Pool'
+        inventory_push: "Are you sure want to move %{channels} to %{pool}? Should you continue, the Availability pushed to Channel(s) will be updated using Availability of %{pool}."
+        about_to_move: 'You are about to move channels to Pool <strong>%{pool}</strong>? which still has 0 (zero) Availability.'
+        are_you_sure: 'Are you sure you want to move <strong>%{channels}</strong>?'
+        should_continue: 'Should you continue, please choose 1 (one) of the following actions:'
+        zero_inventory: '<u>Move channels</u>. <strong>Availability pushed to those channel(s) will be overridden by Availability of Pool %{pool}.</strong>'
+        disable_channels: '<u>Disable and move channels.</u>'
+        master_rate: 'All rates for all room type in channel(s) linked to Master Rate will have to be manually managed, since you need to define Master Rate Rooms in the new Pool.'
+        availability_confirmation: 'I understand the consequences and wish to proceed'
+    delete:
+      link: 'Delete'
+      label:
+        are_you_sure: 'Are you sure you want to delete selected pool?'
+      message:
+        success: 'Pool Deleted'
+        last_one: 'This Pool can not be deleted'
+
+  roles:
+    type:
+      general: 'General'
+      config: 'Config'
+      super: 'Super'
+
+  panel:
+    logout: 'Logout'
+    home: 'Home'
+
+  members:
+    manage: 'Users'
+    type:
+      placeholder: 'Select a role'
+      general: 'General'
+      config: 'Config'
+      super: 'Super'
+    new:
+      link: 'New User'
+      label:
+        heading: 'New User'
+        name : 'Fullname'
+        email: 'Email'
+        password: 'Password'
+        password_confirmation: 'Confirm password'
+        role: 'Role'
+        properties: 'Allowed Hotel Access'
+        enable: 'Enable'
+    create:
+      message:
+        hotel: 'Hotel: '
+        account: 'Account: '
+        success: 'User successfully created'
+        maximum_slot_general: '%{property} already has %{maximum} general users assigned.'
+        maximum_slot_config: '%{property} already has %{maximum} config users assigned.'
+        maximum_slot_super: 'This account already has %{maximum} super users.'
+        email_exist: 'User with email %{email} already exist but deleted, %{undelete} to undelete the user.'
+    delete:
+      link: 'Delete'
+      label:
+        are_you_sure: 'Are you sure you want to delete selected user?'
+      message:
+        success: 'User deleted'
+        can_not_delete_master: 'This user can not be deleted'
+    undelete:
+      message:
+        success: 'User is now active again'
+    edit:
+      link: 'Edit'
+      label:
+        heading: 'Edit User'
+    update:
+      message:
+        success: 'User successfully updated'
+    index:
+      label:
+        heading: 'Users'
+        super_member: 'Super Users'
+        config_member: 'Config Users'
+        no_config_member: 'No Config User registered'
+        general_member: 'General Users'
+        no_general_member: 'No General User registered'
+        name: 'Name'
+        email: 'Email'
+        role: 'Role'
+        master: 'Master'
+    prompt_password:
+      label:
+        heading: 'Set Your Own Password'
+      message:
+        success: 'Password successfully changed'
+        new_password_not_given: 'Please specify your new password'
+        new_password_does_not_match_confirmation: 'New Password does not match with the confirmation'
+        failure: 'Password must be between 8 - 20 characters and must have upper and lowercase letters and numbers'
+        invalid_password: 'Password must have upper and lowercase letters and numbers'
+
+  alerts:
+    index:
+      label:
+        heading: 'Alerts'
+        subject: 'Subject'
+        date: 'Date'
+        empty: 'No Alerts to show'
+    display:
+      zero_inventory_alert: 'Room availability empty for <strong>%{pool}: %{room_type} - %{date}</strong>.'
+      property_channel_approved_alert: 'Channel %{channel} approved and is now ready for use.'
+      property_channel_disabled_alert: 'Channel %{channel} has been disabled.'
+      property_channel_enabled_alert: 'Channel %{channel} is now enabled.'
+
+  room_types:
+    index:
+      label:
+        heading: 'Room Types'
+        blank: 'No room types for this hotel yet'
+        name: 'Room Type'
+        no_channels: '# of channels'
+        channels_connected: 'connected to %{count} channels'
+    new:
+      label:
+        heading: 'New Room Type'
+        name: 'Name'
+        rack_rate: 'Rack Rate'
+        minimum_rate: 'Minimum Rate'
+        minimum_stay: 'Minimum Stay'
+        info_heading: 'Information on creating new room types'
+        info_body_1: "Once you have created new room type it will need to be mapped to each Channel on which it is required. When a room is mapped to a Channel, the room's rate and min stay values will default to the values of the Rack Rate and Min Stay entered below."
+        info_body_2: "Generally, the Rack Rate should be a value much higher than the room's normal sell rate."
+    create:
+      message:
+        success: 'Finish creating new room type'
+    edit:
+      link: 'Modify'
+      label:
+        heading: 'Modify %{room_type}'
+        channels_already_mapped: 'Already Mapped to the following channels:'
+        no_channels_mapped: 'No channels mapped yet.'
+        channels_not_mapped: 'Not Mapped to the following channels:'
+        no_more_channels: 'No more channels to be mapped'
+    show:
+      label:
+        heading: 'View Room Type'
+        back_to_index: '<< back to room types'
+    update:
+      message:
+        success: 'Room type updated'
+    delete:
+      link: 'Delete'
+      dialog:
+        title: 'Room Type Deletion Warning'
+        no_channel: 'No Channel mapping found for this room type.'
+        permanent: 'You are about to delete Room Type %{room_type} which is permanent.'
+        all_data: 'All data entered in Chanelink relating to this room type such as rates and availability will be permanently deleted. Room type %{room_type} is currently mapped to the respective channels, and these mappings will be deleted from Chanelink:'
+        does_not_delete: 'Please note that deleting this room type from Chanelink will not automatically delete the room on the Channel which it was mapped to. You will need to log on to the Channel and delete the room manually, if required.'
+        confirm_delete: 'I understand then consequences of deleting Room Type %{room_type} and wish to proceed.'
+
+    validate:
+      rack_rate_must_be_over_minimum: 'must be equal or greater than %{minimum}'
+      minimum_rate_must_be_over_minimum: 'must be equal or greater than %{minimum}'
+
+  channels:
+    placeholder: 'Select a channel'
+
+  room_type_channel_mappings:
+    new:
+      label:
+        link: 'Update Room Type Mapping'
+        link_set: 'Set Mapping'
+        heading: 'Map %{room_type} to %{channel}'
+        channel_room: '1. Select Room'
+        channel_settings: '2. Room Setting'
+        rate: '3. Rate Configuration'
+        confirm: '4. Review'
+        done_creating: 'Finish'
+        chanelink_room: 'Chanelink Room'
+        channel_room_label: '%{channel} Room'
+        agoda_single_rate_modifier: 'Single Rate Modifier'
+        agoda_double_rate_modifier: 'Double Rate Modifier'
+        agoda_full_rate_modifier: 'Full Rate Modifier'
+        agoda_single_rate_multiplier: 'Single Rate Multiplier'
+        agoda_double_rate_multiplier: 'Double Rate Multiplier'
+        agoda_full_rate_multiplier: 'Full Rate Multiplier'
+        agoda_breakfast_inclusion: 'Breakfast Inclusion'
+        agoda_release_period: 'Release Period'
+        agoda_extra_bed_rate: 'Extra Bed Rate'
+        expedia_rate_conversion_multiplier: 'Rate Conversion Multiplier'
+        bookingcom_single_rate_discount: 'Single Rate Discount'
+        rate_configuration: 'Please select Rate Configuration'
+        rate_configuration_short: 'Rate Configuration'
+        rack_rate: 'Use Rack Rate'
+        master_rate: 'Link to Master Rate'
+        new_rate: 'New Rate'
+        please_review: 'Please confirm the following information before finish'
+        enable: 'Enable upon completion'
+        status: 'Status'
+        min_rate_warning: 'Please note that rates pushed to Channel WILL NOT be lower than %{minimum}, which is the Min Rate has been set for this room type, regardless the value of Rate Multiplier.'
+        gta_travel_rate_type: 'Rate Type'
+        gta_travel_rate_gross: 'Gross'
+        gta_travel_rate_margin: 'Margin'
+        gta_travel_rate_static: 'Static'
+        gta_travel_single_rate_multiplier: 'Single Rate Multiplier'
+        gta_travel_double_rate_multiplier: 'Double Rate Multiplier'
+        gta_travel_triple_rate_multiplier: 'Triple Rate Multiplier'
+        gta_travel_quadruple_rate_multiplier: 'Quadruple Rate Multiplier'
+        gta_travel_full_period: 'Full Period'
+        gta_travel_contract_id: 'Contract ID'
+        gta_travel_rate_plan_id: 'Rate Plan ID'
+        orbitz_single_rate_multiplier: 'Single Rate Multiplier'
+        orbitz_double_rate_multiplier: 'Double Rate Multiplier'
+        orbitz_additional_guest_amount: 'Additional Guest Amount'
+        orbitz_rate_plan_id: 'Rate Plan ID'
+    edit:
+      link: 'Edit'
+      message:
+        timeout: 'Problem communicating with %{channel}. %{channel} room types can not be listed. Please retry again later.'
+    create:
+      message:
+        success: 'Channel mapping created'
+        new_rate_should_be_greater_than_minimum: 'should be greater than room type minimum %{minimum}'
+    update:
+      message:
+        success: 'Channel mapping updated'
+    delete:
+      link: 'Delete'
+      dialog:
+        title: 'Room Mapping Deletion Warning'
+        paragraph_a: 'You are about to delete %{room_type} from %{channel} which is permanent.'
+        paragraph_b: 'Are you sure you want to delete mapping of Chanelink room <strong>%{room_type}</strong> from <strong>%{channel}</strong>? All data entered in Chanelink such as rates, min stays, and stop-sells will be permanently deleted and updates for this room will no longer be sent to %{channel}.'
+        paragraph_c: 'Please note that deleting a room mapping in Chanelink will not automatically delete it form the channel.'
+        paragraph_d: 'I understand the consequences of deleting this room mapping and wish to proceed.'
+      message:
+        success: 'Channel mapping deleted'
+    index:
+      link: 'Mappings'
+      label:
+        channels_not_mapped: 'Not mapped to the following Channels yet'
+    disabled:
+      label:
+        heading: 'Disabling Room Type Mapping'
+        non_booking: 'You are about to disable this room mapping. Are you sure want to disable this room mapping? Should you wish to continue, Chanelink will no longer manage the inventory update of the room for this booking channel.'
+        bookingcom: 'Are you sure want to disable this room mapping? Should you wish to continue, Chanelink will no longer manage the inventory update of the room for this booking channel AND no reservation for the room can be made through this booking channel.'
+        confirm: 'I understand the consequence and wished to proceed'
+
+  currency_conversion:
+    submit:
+      message:
+        success: 'Base currency updated'
+    index:
+      label:
+        heading: 'Currency Conversion'
+        base_currency: 'Base Currency'
+        disable: 'Disable - Currency Conversion'
+        channel_conversion: 'Channel Currency Conversion'
+        conversion_disabled: 'Currency Conversion Disabled'
+        placeholder: 'Select a currency'
+        channel: 'Channel'
+        conversion: 'Currency Conversion'
+        empty: 'No currency conversion set yet'
+        setting: 'Setting'
+
+  property_channels:
+    index:
+      label:
+        heading: 'Channels'
+        blank: 'No channel enabled yet'
+        total_rooms_mapped: '%{count} total rooms mapped'
+        awaiting_approval: 'waiting for approval'
+    new:
+      label:
+        heading: 'New Channel Wizard'
+        intro: 'The list below displays all Channels currently supported by Chanelink. Please select the Channel you wish to be connected to'
+        important_header: 'Important Notice:'
+        important_body: 'In order to proceed with connecting to the selected Channel, you will need to have an established account with that Channel. If you already have an established account, please continue on to the next steps, otherwise please contact the Channel directly to sign up. You will need information from that Channel such as log-in credentials to complete the remaining steps in this process.'
+        channel: 'Connect to Channel'
+        rate_multiplier: 'Rate Conversion Multiplier'
+        username: 'Username'
+        password: 'Password'
+        currency: 'Currency'
+        reservation_email_address: 'Reservation Email Address'
+        modification_email_address: 'Modification Email Address'
+        cancellation_email_address: 'Cancellation Email Address'
+        hotel_key: 'Hotel Key'
+        status: 'Status'
+        pool: 'Choose Pool for New Channel'
+        conversion_heading: 'Select Currency Conversion'
+        conversion_body_1: 'By default Chanelink will send all rates to this Channel using the Base Hotel Currency of <strong>%{currency}</strong>. If you wish to have rates converted into a different currency before being sent out to the Channel, please select that currency from the list below.'
+        conversion_body_2: 'When you map rooms to this Channel you will need to review your room rates to ensure the values are in the new currency. Please carefully consider the change you intend to make as by selecting a currency you will be selling your rooms at a new price according to the currency; if you have any questions, please contact our support team for guidance or find out more from our online HELP.'
+        rate_multiplier_heading: 'Enter Rate Conversion Multiplier, if required'
+        rate_multiplier_body_1: 'Chanelink supports a Rate Conversion feature which allows for rates entered in Chanelink to be altered before being sent to the Channel. The value by which a rate is altered is called the Rate Conversion Multiplier, and this can be entered below, if required.'
+        rate_multiplier_body_2: 'For example, if you enter a Rate Conversion Multiplier of 1.1 then a rate of $100 which was entered in Chanelink will sent to the Channel as $110.'
+        rate_multiplier_body_3: 'If you do not enter a value for the Rate Conversion Multiplier, the rates are sent to the Channel exactly as entered in the Channel Manager. For most Channels this field should be left blank. Please carefully consider the change you intend to make as by setting a rate multiplication value incorrectly you will be selling your rooms at the wrong price; if you have any questions, please contact our support team for guidance or find out more from our online HELP.'
+        currency_conversion: 'Currency Conversion'
+        channel_to_connect: 'Channel to Connect'
+        confirm_heading: 'Please confirm the following information before finish.'
+        done_creating_heading: 'Add Channel Confirmation'
+        done_creating_1: 'Your channel request has been received and you will be notified of the submission of this request via your email %{email} shortly.'
+        done_creating_2: '%{channels} to go back to Channels overview.'
+        convert_to: 'Convert Channel Rate To Currency'
+        conversion_multiplier: 'Currency conversion multiplier'
+        conversion_disabled: 'Currency conversion is currently disabled for this Hotel'
+        property_id: 'Property ID'
+        contract_id: 'Contract ID'
+        chain_code: 'Chain Code'
+        hotel_code: 'Hotel Code'
+        
+      breadcrumb:
+        selection: '1. Selection'
+        setting: '2. Setting'
+        conversion: '3. Conversion'
+        rate_multiplier: '4. Rate Multiplier'
+        review: '5. Review'
+        finish: Finish
+    create:
+      message:
+        success: 'Finish creating new channel'
+
+    show:
+      link: 'View'
+
+    edit:
+      link: 'Settings'
+      label:
+        heading: '%{channel} Channel Setting'
+        rooms_mapped: 'Chanelink Rooms currently mapped:'
+        no_rooms_mapped: 'No Chanelink Rooms mapped yet'
+        rooms_not_mapped: 'Chanelink Rooms not mapped:'
+        all_rooms_mapped: 'No room types registered yet or all Chanelink Rooms already mapped'
+        channel_rooms_not_mapped: '%{channel} Rooms not mapped:'
+        all_channel_rooms_mapped: 'All %{channel} Rooms already mapped'
+        mapped_to: 'mapped to:'
+        
+    update:
+      message:
+        success: 'Channel settings updated'
+
+    delete:
+      link: 'Delete'
+      message:
+        success: 'Channel mapping deleted'
+
+    disabled:
+      label:
+        heading: 'Disabling Channel'
+        non_booking: 'You are about to disable this booking channel. Are you sure want to disable this booking channel? Should you wish to continue, Chanelink will no longer manage the inventory update for this booking channel.'
+        bookingcom: 'Are you sure want to disable this booking channel? Should you wish to continue, Chanelink will no longer manage the inventory update of the room for this booking channel AND no reservation can be made through this booking channel.'
+        confirm: 'I understand the consequence and wished to proceed'
+
+  room_type_inventory_links:
+    placeholder: 'Select a room type'
+    index:
+      label:
+        heading: 'Availability Linking Setup'
+        with_link: 'Rooms with Linked Availability'
+        with_link_empty: 'No rooms with linked availability'
+        no_link: 'Rooms with no Availability Links'
+        no_link_empty: 'No rooms without link availability'
+    new:
+      link: 'Set Link'
+      label:
+        heading: 'Set Availability Link'
+        room_type: 'Room To Link:'
+        link: 'Link To Room:'
+    delete:
+      link: 'Unlink'
+      message:
+        success: 'Availability link removed'
+
+  room_type_master_rate_mappings:
+    placeholder: 'Select a Master Rate Room'
+    index:
+      label:
+        heading: 'Master Rates'
+        mapped: 'Mapped Master Rates Room Type'
+        no_room_mapped: 'No room type mapped to Master Rate yet'
+        new_master_rate_room: 'New Master Rate Room'
+        channel: 'Channels'
+        no_markup_set: 'markup not set'
+        update_channel_mapping: 'Update'
+    new:
+      label:
+        heading: 'Add Master Rate Room'
+        no_more: 'All room types has been added'
+    delete:
+      link: 'Delete'
+      label:
+        heading: 'Delete Master Rate Room'
+        confirm: 'Are you sure you want to delete %{room_type} from Master Rate Rooms?'
+        channel_map_exist: 'To delete %{room_type} from Master Rate Rooms, please unlink all rooms linked to this room in the following channel(s):'
+      message:
+        success: 'Master Rate Room deleted'
+    create:
+      message:
+        success: 'Master Rate Rooms succesfully created'
+        already_exist: 'master rate already exist'
+    pool_selection:
+      label:
+        intro: "Please select pool's master rate you want to manage:"
+
+  pool_selection:
+    label:
+      heading: "Pool Selection"
+      inventory_grid: "Please select pool's inventory grid you want to manage:"
+      no_channel: 'No channel'
+
+  room_type_master_rate_channel_mappings:
+    edit:
+      label:
+        heading: 'Master Rate Room Configuration'
+        master_rate_room: 'Master Rate Room'
+        method: 'Link Type'
+        percentage: 'Percentage'
+        amount: 'Amount'
+        value: 'Value'
+        master_rate_room: 'Master Rate Room'
+        value_type: 'Value Type'
+        value_notes: 'The percentage or amount value will be used to mark-up or mark-down Master Rates to get the room rates. <br/><br/>Example: If you use 10% (percentage) and the Master Rates is IDR 500.000, you will get IDR 550.000 as the room rates. And if you use -50.000 (amount), you will get IDR 450.000 as the room rates.'
+    toggle:
+      label:
+        enable: 'Link'
+        disable: 'Unlink'
+      message:
+        disabled: 'Room type is now not linked to Master Rate'
+        enabled: 'Room type is now linked to Master Rate'
+
+  notifier:
+    email_member_password:
+      subject: 'Login details for Chanelink'
+    email_user_password:
+      subject: 'Login details for Chanelink Backoffice'
+    email_member_reset_password:
+      subject: 'New password'
+    email_member_lock_password:
+      subject: 'New password'
+    email_expedia_booking_book:
+      subject: 'New Booking'
+    email_expedia_booking_new:
+      subject: 'New Booking'
+    email_expedia_booking_modify:
+      subject: 'Booking Modification'
+    email_expedia_booking_cancel:
+      subject: 'Booking Cancellation'
+
+  users:
+    prompt_password:
+      message:
+        failure: 'Password must be between 8 - 20 characters and must have upper and lowercase letters and numbers'
+
+  error:
+    title: 'Sorry we could not find the page you were looking for.'
+    back_to_home: 'To go back to home please click %{home}.'
+    here: 'here'
+    not_found:
+      body: 'The URL you entered is incorrect or the page has been deleted/moved.'
+    exception:
+      body: 'We encounter problem with this page, please try again later.'
+    session_expired:
+      body: 'It seems like you left idle for too long. Your session has expired.'
+
+  activemodel:
+    errors:
+      models:
+        copy_tool:
+          attributes:
+            channel_id_from:
+              blank: "can't be blank"
+            channel_id_to:
+              blank: "can't be blank"
+            room_id_from:
+              blank: "can't be blank"
+            room_id_to:
+              blank: "can't be blank"
+
+  admin:
+    users:
+      validate:
+        maximum_reached: 'only %{maximum} super users are allowed.'
+      manage: 'Users'
+      prompt_password:
+        label:
+          heading: 'Set Your Own Password'
+        message:
+          success: 'Password successfully changed'
+          new_password_not_given: 'Please specify your new password'
+          new_password_does_not_match_confirmation: 'New Password does not match with the confirmation'
+          failure: 'Password must be between 8 - 20 characters and must have upper and lowercase letters and numbers'
+          invalid_password: 'Password must have upper and lowercase letters and numbers'
+      type:
+        placeholder: 'Select a role'
+        general: 'General'
+        super: 'Super'
+      new:
+        link: 'New User'
+        label:
+          heading: 'New User'
+          name : 'Fullname'
+          email: 'Email'
+          super: 'Super'
+          select_all: 'Select All'
+      create:
+        message:
+          hotel: 'Hotel: '
+          account: 'Account: '
+          success: 'User successfully created'
+          maximum_slot_general: '%{property} already has %{maximum} general users assigned.'
+          maximum_slot_super: 'This account already has %{maximum} super users.'
+      delete:
+        link: 'Delete'
+        label:
+          are_you_sure: 'Are you sure you want to delete selected user?'
+        message:
+          success: 'User deleted'
+      edit:
+        link: 'Edit'
+        label:
+          heading: 'Edit User'
+      update:
+        message:
+          success: 'User successfully updated'
+      index:
+        label:
+          heading: 'Users'
+          super_member: 'Super Users'
+          config_member: 'Config Users'
+          no_config_member: 'No Config User registered'
+          general_member: 'General Users'
+          no_general_member: 'No General User registered'
+          name: 'Name'
+          email: 'Email'
+          role: 'Role'
+          master: 'Master'
+
+    login:
+      label:
+        title: 'Login'
+        heading: 'Login'
+        email: 'Email'
+        password: 'Password'
+        remember_me: 'Keep me logged in'
+      message:
+        fail: 'Email or Password is invalid'
+        success: 'Welcome back!'
+
+    dashboard:
+      property_channels:
+        heading: 'Channel Request (%{count})'
+        empty: 'No pending channel request'
+      connection_request: 'Connection request to %{channel}'
+
+    logout:
+      message:
+        success: 'You are now logged out'
+
+    accounts:
+      new:
+        label:
+          heading: 'New Account'
+          name: 'Entity name'
+          address: 'Address'
+          telephone: 'Telephone'
+          created: 'Account Created'
+          created_note: 'Done creating account for <strong>%{account_name}</strong>, an email along with password has been sent to <strong>%{super_member_email}</strong>. To register a hotel for this account: %{new_property_link}.'
+          new_property: 'hotel registration'
+          agoda_api_key: 'Agoda API key'
+          contact_name: 'Contact Name'
+          contact_email: 'Contact Email'
+          enable: 'Enable'
+          disable_warning: '(Disabling an account will not allow the account users to login. All account hotels data will not be pushed)'
+        breadcrumb:
+          account_details: '1. Account Details'
+          super_member_details: '2. Super User Details'
+          done_creating: '3. Done'
+      index:
+        label:
+          heading: 'Account List'
+      edit:
+        link: 'Edit'
+        label:
+          heading: 'Edit %{account}'
+      update:
+        message:
+          success: 'Account updated'
+      delete:
+        link: 'Delete Account'
+        message:
+          success: 'Account deleted'
+        dialog:
+          title: 'Delete Account'
+          body: 'Are you sure you want to delete this Account?'
+      activate:
+        link: 'Activate'
+        message:
+          success: 'Account activated'
+          no_property: 'Activation failed: account does not have a property'
+          no_channels: 'Activation failed: account is not connected to a channel'
+          no_room_type: 'Activation failed: account does not have a room type'
+          no_room_type_channel_mapping: 'Activation failed: each room type must be mapped to each channel'
+          
+    properties:
+      new:
+        label:
+          heading: 'New Hotel'
+          name: 'Name'
+          address: 'Address'
+          city: 'City'
+          state: 'State'
+          postcode: 'Postcode'
+          account: 'Account'
+          country: 'Country'
+          minimum_room_rate: 'Minimum Room Rate'
+          account_placeholder: 'Select an account'
+          country_placeholder: 'Select a country'
+          created: 'Hotel Created'
+          created_note: 'Done creating <strong>%{property_name}</strong> for <strong>%{account_name}</strong>, To register room types for this hotel: %{new_room_type_link}.'
+          new_room_type: 'room type registration'
+          agoda_hotel_id: 'Agoda Hotel ID'
+          expedia_hotel_id: 'Expedia Hotel ID'
+          expedia_username: 'Expedia Username'
+          expedia_password: 'Expedia Password'
+          bookingcom_hotel_id: 'Booking.com Hotel ID'
+          bookingcom_username: 'Booking.com Username'
+          bookingcom_password: 'Booking.com Password'
+          currency: 'Currency'
+      approve:
+        link: 'Approve'
+        message:
+          success: 'Hotel approved'
+          no_channels: 'Approval failed: property is not connected to a channel'
+          no_room_type: 'Approval failed: property does not have a room type'
+          no_room_type_channel_mapping: 'Approval failed: each room type must be mapped to each channel'
+          no_currency: 'Approval failed: please specify base currency'
+      index:
+        label:
+          heading: 'Hotel List'
+          not_approved: 'Hotel Not Approved'
+      edit:
+        link: 'Edit'
+        label:
+          heading: 'Edit Hotel'
+      delete:
+        link: 'Delete Hotel'
+        message:
+          success: 'Hotel deleted'
+        dialog:
+          title: 'Delete Hotel'
+          body: 'Are you sure you want to delete this Hotel?'
+
+    property_channels:
+      index:
+        label:
+          heading: 'Channel List'
+          not_approved: 'Channel Not Approved'
+
+    context:
+      select_account:
+        label:
+          header: 'Select an Account that you want to manage'
+      select_property:
+        label:
+          header: 'Select an Account and a Hotel that you want to manage'
+          back_link: '<< back to select Account'
+          account: 'Account'
+          properties_list: 'Hotels of the selected Account'
+          new_property: 'Add New Property'
+          new_account: 'Create New Account'
+
+    setup:
+      link: 'Setup'
+      label:
+        account_pending: "Account(s) waiting for activation (%{count})"
+        account_activated: 'Activated Account(s) (%{count})'
+        property_pending: "Hotel(s) waiting for approval (%{count})"
+        property_rejected: 'Rejected Hotel(s) (%{count})'
+        activation_intro: 'The following must be completed in order to activate an account:'
+        activation_a: 'Create an Admin user for the Account'
+        activation_b: 'Create at least 1 (one) Hotel, and register a Channel for the Account'
+        activation_c: 'Create initial Room Types, and Set Mapping with each Channel'
+
+    configurations:
+      label:
+        heading: 'Configuration'
+        days_to_keep_cc_info: 'Days to keep Credit Card Info'
+      update:
+        message:
+          success: 'Configuration updated'
+

@@ -1,0 +1,70 @@
+FROM phusion/passenger-ruby19:0.9.15
+
+# Set correct environment variables.
+ENV HOME /root
+
+# Use baseimage-docker's init process.
+CMD ["/sbin/my_init"]
+
+# ...put your own build instructions here...
+
+# MySQL
+# ---------------------
+# Install MYSQL
+
+RUN echo "setting up MySQL..." && \
+    sudo apt-get update && \
+    sudo -E bash -c "apt-get -y --no-install-recommends install mysql-server > /dev/null" && \
+    sudo sed -i.bak 's/127.0.0.1/0.0.0.0/g' /etc/mysql/my.cnf && \
+    # sudo chmod -R 755 /var/run/mysqld/ && \
+    sudo service mysql restart && \
+    sudo mysql -uroot -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%'; FLUSH PRIVILEGES;" && \
+    echo "MySQL setup completed!"
+ 
+EXPOSE 3306
+ 
+# Create MySQL user and database, and start it
+#---------------------
+RUN sudo service mysql restart && \
+    CODENVY_MYSQL_PASSWORD=oisadj && \
+    CODENVY_MYSQL_DB=development && \
+    CODENVY_MYSQL_USER=test && \
+    echo "MySQL password: $CODENVY_MYSQL_PASSWORD" >> /home/app/.mysqlrc && \
+    echo "MySQL user    : $CODENVY_MYSQL_USER" >> /home/app/.mysqlrc && \
+    echo "MySQL Database:$CODENVY_MYSQL_DB" >> /home/app/.mysqlrc && \
+    sudo mysql -uroot -e "CREATE USER '$CODENVY_MYSQL_USER'@'%' IDENTIFIED BY '"$CODENVY_MYSQL_PASSWORD"'" && \
+    sudo mysql -uroot -e "GRANT ALL PRIVILEGES ON *.* TO '$CODENVY_MYSQL_USER'@'%' IDENTIFIED BY '"$CODENVY_MYSQL_PASSWORD"'; FLUSH PRIVILEGES;" && \
+    sudo mysql -uroot -e "CREATE DATABASE $CODENVY_MYSQL_DB;"
+#---------------------
+
+RUN rm /etc/nginx/sites-enabled/default && \
+    rm -f /etc/service/nginx/down
+COPY system/passenger/webapp.conf /etc/nginx/sites-enabled/webapp.conf
+
+# COPY . /home/app/webapp
+# VOLUME ["/home/app/webapp"]
+
+# Installing Gems with Bundler
+#---------------------
+RUN mkdir -p /home/app/webapp
+
+# WORKDiR /tmp
+
+# ADD Gemfile /tmp/Gemfile
+# ADD Gemfile.lock /tmp/Gemfile.lock
+
+# RUN sudo bundle install
+
+#---------------------
+
+# Running the app
+#---------------------
+# RUN echo "test" > /tmp/Gemfile.lock
+WORKDIR /home/app/webapp
+# ADD . /home/app/webapp
+# RUN chown -R app:app . && \
+#     cp /tmp/Gemfile.lock .
+#---------------------
+
+# Clean up APT when done.
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*

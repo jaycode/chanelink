@@ -1,0 +1,8 @@
+<nav>
+  <% if !current_member.blank? %>
+    <%= link_to t('panel.logout'), logout_path %>
+    <%= link_to t('properties.manage'), select_properties_path %>
+    <% if can? :manage, Member %><%= link_to t('members.manage'), members_path %><% end %>
+    <%= link_to t('panel.home'), root_path %>
+  <% end %>
+</nav>

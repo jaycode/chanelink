@@ -1,0 +1,33 @@
+<% channel = @room_type_channel_mapping.channel %>
+<% room_type = @room_type_channel_mapping.room_type %>
+
+<%= page_title t('room_type_channel_mappings.new.label.heading', :channel => channel.name, :room_type => room_type.name) %>
+<div id="newRoomTypeChannelMapping">
+  <div class="col10">
+    <h2><%= raw t('room_type_channel_mappings.new.label.heading', :channel => channel.name, :room_type => room_type.name) %></h2>
+
+    <%= form_for @room_type_channel_mapping, :url => {:controller => "admin/room_type_channel_mappings", :action => "update"} do |f| %>
+      <%= f.hidden_field :channel_id, :value => @room_type_channel_mapping.channel.id %>
+      <p>
+        <label><%= t('room_type_channel_mappings.new.label.status') %></label>
+        <%= f.radio_button(:disabled, false) %>&nbsp;<span class="green"><%= t("general.enabled") %></span>
+        &nbsp;&nbsp;
+        <%= f.radio_button(:disabled, true) %>&nbsp;<span class="red"><%= t("general.disabled") %></span>
+      </p>
+      <p class="readonly">
+        <label><%= t('room_type_channel_mappings.new.label.chanelink_room') %></label>
+        <%= room_type.name %>
+      </p>
+      <p>
+        <label><%= t('room_type_channel_mappings.new.label.channel_room_label', :channel => channel.name) %></label>
+        <%= render "#{channel.cname}_room_types", :f => f %>
+      </p>
+      <%= render "#{channel.cname}_room_settings", :f => f %>
+      <br/>
+      <% pc = PropertyChannel.find_by_property_id_and_channel_id(current_admin_property.id, @room_type_channel_mapping.channel.id) %>
+      <p>
+        <%= f.submit t("button.save") %><%= link_to t('button.cancel'), edit_property_channel_path(pc) %>
+      </p>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+<%= form_for @room_type, :url => {:controller => 'admin/room_types'} do |f| %>
+  <p>
+    <label><%= t('room_types.new.label.name') %><%= required %></label>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <label><%= t('room_types.new.label.rack_rate') %><%= required %></label>
+    <%= f.text_field :rack_rate, :class => 'numericOnly' %>
+  </p>
+  <p>
+    <label><%= t('room_types.new.label.minimum_rate') %></label>
+    <%= f.text_field :minimum_rate, :class => 'numericOnly' %>
+  </p>
+  <p>
+    <label><%= t('room_types.new.label.minimum_stay') %></label>
+    <%= f.text_field :minimum_stay, :class => 'numericOnly', :style => 'width: 50px;' %>
+  </p>
+  <% if !@room_type.new_record? and can? :delete, RoomType %>
+    <p class="alignRight">
+      <%= link_to t('room_types.delete.link'), '#', :class => 'btnActionGrey', :onclick => "javascript: deleteRoomTypeDialog('#{t('room_types.delete.dialog.title')}', '#{delete_room_type_dialog_body(@room_type)}', '#{delete_admin_room_type_path(@room_type)}'); return false;" %>
+    </p>
+  <% end %>
+  <br/>
+  <p>
+    <%= f.submit t("button.save") %>
+  </p>
+<% end %>

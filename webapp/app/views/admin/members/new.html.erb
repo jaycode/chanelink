@@ -1,0 +1,13 @@
+<%= page_title t('members.new.label.heading') %>
+<div id="newMember">
+  <div class="col9">
+    <h2><%= raw t('members.new.label.heading') %></h2>
+    <%= form_for @member, :url => {:controller => "admin/members"} do |f| %>
+      <%= render 'form_fields', :f => f %>
+      <p>
+        <%= f.submit t("button.save") %>
+        <%= link_to t('button.cancel'), admin_members_path %>
+      </p>
+    <% end %>
+  </div>
+</div>

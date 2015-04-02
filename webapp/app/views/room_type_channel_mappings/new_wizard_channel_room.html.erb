@@ -1,0 +1,24 @@
+<%= page_title t('room_type_channel_mappings.new.label.heading', :channel => @channel.name, :room_type => @room_type.name) %>
+<div id="newRoomTypeChannelMapping">
+  <div class="col10">
+    <h2><%= raw t('room_type_channel_mappings.new.label.heading', :channel => @channel.name, :room_type => @room_type.name) %></h2>
+    <%= render 'breadcrumb', :locals => {:step => 'channel_room'} %>
+
+    <%= form_for @room_type_channel_mapping, :url => {:controller => 'room_type_channel_mappings', :action => 'new_wizard_channel_settings'} do |f| %>
+      <%= f.hidden_field :channel_id, :value => @room_type_channel_mapping.channel.id %>
+      <p>
+        <label><%= t('room_type_channel_mappings.new.label.chanelink_room') %></label>
+        <%= @room_type_channel_mapping.room_type.name %>
+      </p>
+      <p>
+        <label><%= t('room_type_channel_mappings.new.label.channel_room_label', :channel => @channel.name) %></label>
+        <%= render "#{@channel.cname}_room_types", :f => f %>
+      </p>
+      <br/>
+      <% pc = PropertyChannel.find_by_property_id_and_channel_id(current_property.id, @room_type_channel_mapping.channel.id) %>
+      <p>
+        <%= f.submit t("button.continue") %><%= link_to t('button.cancel'), edit_property_channel_path(pc) %>
+      </p>
+    <% end %>
+  </div>
+</div>

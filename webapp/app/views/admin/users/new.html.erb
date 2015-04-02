@@ -1,0 +1,13 @@
+<%= page_title t('admin.users.new.label.heading') %>
+<div id="newMember">
+  <div class="col9">
+    <h2><%= raw t('admin.users.new.label.heading') %></h2>
+    <%= form_for @user, :url => {:controller => "admin/users"} do |f| %>
+      <%= render 'form_fields', :f => f %>
+      <p>
+        <%= f.submit t("button.create") %>
+        <%= link_to t('button.cancel'), admin_users_path %>
+      </p>
+    <% end %>
+  </div>
+</div>

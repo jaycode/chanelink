@@ -1,0 +1,10 @@
+<%= page_title t('admin.accounts.new.label.heading') %>
+<div id="newAccount">
+  <div class="col9">
+    <h2><%= raw t('admin.accounts.new.label.created') %></h2>
+    <%= render 'breadcrumb' %>
+    <p>
+      <%= raw t('admin.accounts.new.label.created_note', :account_name => @account.name, :super_member_email => @super_member.email, :new_property_link => (link_to t("admin.accounts.new.label.new_property"), new_admin_property_path(:account_id => @account.id))) %>
+    </p>
+  </div>
+</div>

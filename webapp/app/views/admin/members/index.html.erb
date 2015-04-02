@@ -1,0 +1,79 @@
+<div id="membersIndex">
+  <div class="col12">
+    <h2><%= t('members.index.label.heading') %></h2>
+    <h4><%= t('members.index.label.super_member') %></h4>
+    <div class="table">
+      <div class="tableRowHeader grey">
+        <div class="bigColumn"><%= t('members.index.label.name') %></div>
+        <div class="smallColumn"><%= t('members.index.label.email') %></div>
+        <div class="smallColumn">&nbsp;</div>
+      </div>
+      <% current_admin_property.account.super_members.each do |m| %>
+        <div class="tableRow">
+          <div class="bigColumn"><%= m.name %><em>&nbsp;<%= "(#{t('members.index.label.master')})" if m.master? %></em></div>
+          <div class="smallColumn"><%= m.email %></div>
+          <div class="smallColumn">
+            <%= link_to t('members.edit.link'), edit_admin_member_path(m) %>
+            <% unless m.master? %>
+              - <%= link_to t('members.delete.link'), delete_admin_member_path(m), :confirm => t('members.delete.label.are_you_sure') %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <br/>
+    <h4><%= t('members.index.label.config_member') %></h4>
+    <% unless current_admin_property.account.config_members.blank? %>
+      <div class="table">
+        <div class="tableRowHeader grey">
+          <div class="bigColumn"><%= t('members.index.label.name') %></div>
+          <div class="smallColumn"><%= t('members.index.label.email') %></div>
+          <div class="smallColumn">&nbsp;</div>
+        </div>
+        <% current_admin_property.account.config_members.each do |m| %>
+          <div class="tableRow">
+            <div class="bigColumn"><%= m.name %></div>
+            <div class="smallColumn"><%= m.email %></div>
+            <div class="smallColumn"><%= link_to t('members.edit.link'), edit_admin_member_path(m) %>
+              <% if can? :delete, Member %>
+                - <%= link_to t('members.delete.link'), delete_admin_member_path(m), :confirm => t('members.delete.label.are_you_sure') %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <p>
+        <em><%= t('members.index.label.no_config_member') %></em>
+      </p>
+    <% end %>
+    <br/>
+    <h4><%= t('members.index.label.general_member') %></h4>
+    <% unless current_admin_property.account.general_members.blank? %>
+      <div class="table">
+        <div class="tableRowHeader grey">
+          <div class="bigColumn"><%= t('members.index.label.name') %></div>
+          <div class="smallColumn"><%= t('members.index.label.email') %></div>
+          <div class="smallColumn">&nbsp;</div>
+        </div>
+        <% current_admin_property.account.general_members.each do |m| %>
+          <div class="tableRow">
+            <div class="bigColumn"><%= m.name %></div>
+            <div class="smallColumn"><%= m.email %></div>
+            <div class="smallColumn"><%= link_to t('members.edit.link'), edit_admin_member_path(m) %>
+              <% if can? :delete, Member %>
+                - <%= link_to t('members.delete.link'), delete_admin_member_path(m), :confirm => t('members.delete.label.are_you_sure') %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <p>
+        <em><%= t('members.index.label.no_general_member') %></em>
+      </p>
+    <% end %>
+    <br/>
+    <%= link_to t('members.new.link'), new_admin_member_path, :class => 'btnActionGrey' %>
+  </div>
+</div>

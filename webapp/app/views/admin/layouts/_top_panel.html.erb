@@ -1,0 +1,13 @@
+<nav>
+  <%= link_to t('panel.logout'), admin_logout_path %>
+  <%= link_to t('admin.setup.link'), admin_setup_path %>
+  <% if can? :index, User %>
+    <%= link_to 'Users', admin_users_path %>
+  <% end %>
+  <%= link_to 'Channels', setup_admin_property_channels_path %>
+  <%= link_to 'Booking.com', admin_bookingcom_update_path %>
+  <%= link_to 'XML Log', admin_xml_log_path %>
+  <%= link_to 'Bookings', admin_bookings_path %>
+  <%= link_to 'Broadcast Alert', admin_new_broadcast_alert_path %>
+  <%= link_to 'Configurations', edit_admin_configuration_path(Configuration.first) %>
+</nav>

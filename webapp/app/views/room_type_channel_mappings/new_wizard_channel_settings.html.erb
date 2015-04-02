@@ -1,0 +1,16 @@
+<%= page_title t('room_type_channel_mappings.new.label.heading', :channel => @channel.name, :room_type => @room_type.name) %>
+<div id="newRoomTypeChannelMapping">
+  <div class="col10">
+    <h2><%= raw t('room_type_channel_mappings.new.label.heading', :channel => @channel.name, :room_type => @room_type.name) %></h2>
+    <%= render 'breadcrumb', :locals => {:step => 'channel_settings'} %>
+
+    <%= form_for @room_type_channel_mapping, :url => {:controller => 'room_type_channel_mappings', :action => 'new_wizard_rate'} do |f| %>
+      <%= f.hidden_field :channel_id, :value => @room_type_channel_mapping.channel.id %>
+      <%= render "#{@channel.cname}_room_settings", :f => f %>
+      <br/>
+      <p>
+        <%= f.submit t("button.back"), :name => "back_button" %><%= f.submit t("button.continue") %>
+      </p>
+    <% end %>
+  </div>
+</div>

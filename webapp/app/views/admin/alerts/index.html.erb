@@ -1,0 +1,29 @@
+<%= page_title t('alerts.index.label.heading') %>
+<div id="indexAlert">
+  <div class="col9">
+    <h2><%= raw t('alerts.index.label.heading') %></h2>
+    <div class="table">
+      <div class="tableRowHeader grey">
+        <div class="bigColumn"><%= t('alerts.index.label.subject') %></div>
+        <div class="smallColumn"><%= t('alerts.index.label.date') %></div>
+      </div>
+      <% if @alerts.count > 0 %>
+        <% @alerts.each do |alert| %>
+          <div class="tableRow <%= 'new' if !alert.previous_read %>">
+            <div class="bigColumn"><%= raw alert.to_display %></div>
+            <div class="smallColumn"><%= alert.date_display %></div>
+          </div>
+        <% end %>
+      <% else %>
+        <div class="tableRow">
+          <div class="bigColumn"><%= t('alerts.index.label.empty') %></div>
+          <div class="smallColumn">&nbsp;</div>
+        </div>
+      <% end %>
+    </div>
+    <div class="pagination">
+      <%= will_paginate @alerts %>
+    </div>
+    <br/>
+  </div>
+</div>

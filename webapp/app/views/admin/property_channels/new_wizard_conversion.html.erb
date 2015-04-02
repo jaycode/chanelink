@@ -1,0 +1,51 @@
+<%= page_title t('property_channels.new.label.heading') %>
+<div id="newChannel">
+  <div class="col10">
+    <h2><%= raw t('property_channels.new.label.heading') %></h2>
+    <%= render 'breadcrumb', :locals => {:step => 'conversion'} %>
+    <% if current_admin_property.currency_conversion_disabled? %>
+      <%= form_for @property_channel, :url => {:controller => 'property_channels', :action => 'new_wizard_rate_multiplier'} do |f| %>
+        <div class="box">
+          <h4><%= raw t('property_channels.new.label.conversion_heading') %></h4>
+          <p><%= raw t('property_channels.new.label.conversion_disabled') %></p>
+        </div>
+        <p>
+          <%= f.submit t('button.back'), :name => "back_button" %>
+          <%= f.submit t("button.continue") %>
+        </p>
+      <% end %>
+    <% else %>
+      <%= form_for @property_channel, :url => {:controller => 'property_channels', :action => 'new_wizard_rate_multiplier'} do |f| %>
+        <div class="box">
+          <h4><%= raw t('property_channels.new.label.conversion_heading') %></h4>
+          <p><%= raw t('property_channels.new.label.conversion_body_1', :currency => current_admin_property.currency.name) %></p>
+          <p><%= raw t('property_channels.new.label.conversion_body_2') %></p>
+        </div>
+        <br/>
+        <p class="currency">
+          <%= to_currency_select_notify_js %>
+          <label><%= raw t('property_channels.new.label.convert_to') %></label>
+          <%= select_tag "currency_conversion[to_currency_id]", options_for_select(Currency.currency_list_with_prompt, @currency_conversion.to_currency_id) %>
+        </p>
+        <p class="currency">
+          <%= currency_multiplier_js %>
+          <label><%= raw t('property_channels.new.label.conversion_multiplier') %></label>
+          <%= text_field_tag "currency_conversion[multiplier]", @currency_conversion.multiplier %>
+        </p>
+        <p class="currency">
+          <%= update_currency_calculation_js %>
+          <label>&nbsp;</label>
+          <div class="calculation" style="<%= 'display:none;' if @currency_conversion.to_currency.blank? %>">
+            1 <span class="baseCurrency">IDR</span> = <span class="baseMultiplier"><%= @currency_conversion.multiplier.blank? ? 0 : @currency_conversion.multiplier %></span> <span class="toCurrency"><%= @currency_conversion.to_currency.code unless @currency_conversion.to_currency.blank?  %></span>
+            <br/>
+            1 <span class="toCurrency"><%= @currency_conversion.to_currency.code unless @currency_conversion.to_currency.blank? %></span> = <span class="toMultiplier"><%= @currency_conversion.multiplier.blank? ? 0 : (1.0/@currency_conversion.multiplier) %></span> <span class="baseCurrency">IDR</span>
+          </div>
+        </p>
+        <p>
+          <%= f.submit t('button.back'), :name => "back_button" %>
+          <%= f.submit t("button.continue") %>
+        </p>
+      <% end %>
+    <% end %>
+  </div>
+</div>

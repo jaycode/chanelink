@@ -1,0 +1,25 @@
+.info, .success, .warning, .error, .validation {
+  width: 500px;
+  padding: 5px 10px;
+  background-repeat: no-repeat;
+}
+.info {
+  color: #00529B;
+  background-color: #BDE5F8;
+}
+.success {
+  color: #4F8A10;
+  background-color: #DFF2BF;
+}
+.warning {
+  color: #9F6000;
+  background-color: #FEEFB3;
+}
+.error {
+  color: #D8000C;
+  background-color: #FFBABA;
+}
+
+.notification p {
+  margin-bottom: 0px;
+}

@@ -1,0 +1,44 @@
+<div id="propertySelection">
+  <div class="col12">
+    <h2><%= current_member.account.name %></h2>
+    <p><%= t('properties.select.label.select_below') %></p>
+    <div class="propertyList">
+      <% if !current_member.properties.blank? %>
+        <% current_member.properties.each do |p| %>
+          <% if !p.rejected? %>
+            <div class="property">
+              <div class="name">
+                <% if p.approved? %>
+                  <%= link_to p.name, do_select_properties_path(:property_id => p.id) %>
+                <% else %>
+                  <%= p.name %>
+                <% end %>
+              </div>
+              <% active = p.channels.active_only.count %>
+              <% disabled = p.channels.disabled.count %>
+              <div class="channel green">
+                <%= t('properties.select.label.enabled', :count => active) if active > 0 %>
+              </div>
+              <div class="channel red">
+                <%= t('properties.select.label.disabled', :count => disabled) if disabled > 0 %>
+              </div>
+              <% unless p.approved? %>
+                <div class="pending"><%= t('properties.select.label.pending') %></div>
+                <div class="action"><%= link_to t('general.more'), property_path(p) %></div>
+              <% end %>
+            </div>
+          <% end %>
+        <% end %>
+      <% else %>
+        <p>
+          <em><%= t('properties.select.label.no_hotel') %></em>
+        </p>
+      <% end %>
+    </div>
+    <br/>
+    <br/>
+    <% if can? :create, Property %>
+      <%= link_to t('properties.new.label.heading'), new_property_path, :class => 'btnActionGrey' %>
+    <% end %>
+  </div>
+</div>

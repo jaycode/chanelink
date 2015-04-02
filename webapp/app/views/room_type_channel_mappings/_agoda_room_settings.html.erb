@@ -1,0 +1,25 @@
+<p>
+  <label><%= t('room_type_channel_mappings.new.label.agoda_single_rate_multiplier') %><%= required %></label>
+  <%= f.text_field :agoda_single_rate_multiplier %>
+</p>
+<p>
+  <label><%= t('room_type_channel_mappings.new.label.agoda_double_rate_multiplier') %></label>
+  <%= f.text_field :agoda_double_rate_multiplier %>
+</p>
+<p>
+  <label><%= t('room_type_channel_mappings.new.label.agoda_full_rate_multiplier') %></label>
+  <%= f.text_field :agoda_full_rate_multiplier %>
+</p>
+<p>
+  <label><%= t('room_type_channel_mappings.new.label.agoda_breakfast_inclusion') %></label>
+  <%= f.radio_button(:agoda_breakfast_inclusion, true) %>&nbsp;Yes
+  &nbsp;&nbsp;
+  <%= f.radio_button(:agoda_breakfast_inclusion, false) %>&nbsp;No
+</p>
+<p>
+  <label><%= t('room_type_channel_mappings.new.label.agoda_extra_bed_rate') %></label>
+  <%= f.text_field :agoda_extra_bed_rate %>
+</p>
+<p>
+  <strong><%= t('room_type_channel_mappings.new.label.min_rate_warning', :minimum => @room_type.final_minimum_rate) %></strong>
+</p>

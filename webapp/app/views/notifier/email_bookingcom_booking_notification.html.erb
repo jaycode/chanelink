@@ -1,0 +1,70 @@
+<% booking_xml = Nokogiri::XML(@booking.booking_xml).xpath("/reservation") %>
+<% room_xml = Nokogiri::XML(@booking.bookingcom_room_xml).xpath("/room") %>
+We received the following booking event from <%= @booking.channel.name %>:
+<table>
+  <tr>
+    <td>Type</td>
+    <td><%= @booking.booking_status.name %></td>
+  </tr>
+  <tr>
+    <td>Guest Name</td>
+    <td><%= @booking.guest_name %></td>
+  </tr>
+  <tr>
+    <td>Channel</td>
+    <td><%= @booking.channel.name %></td>
+  </tr>
+  <tr>
+    <td>Booking ID</td>
+    <td><%= @booking.bookingcom_booking_id %></td>
+  </tr>
+  <tr>
+    <td>Stay</td>
+    <td><%= @booking.date_start.strftime('%d/%m/%y') %> - <%= @booking.date_end.strftime('%d/%m/%y') %></td>
+  </tr>
+  <tr>
+    <td>Total Rooms</td>
+    <td><%= @booking.total_rooms %></td>
+  </tr>
+  <tr>
+    <td>Booking Date</td>
+    <td><%= @booking.booking_date.strftime('%d/%m/%y') %></td>
+  </tr>
+  <tr>
+    <td>Amount</td>
+    <td><%= booking_xml.xpath('./currencycode').text() %>&nbsp;<%= @booking.amount %></td>
+  </tr>
+  <tr>
+    <td colspan="2"><strong>Additional Room Info</strong></td>
+  </tr>
+  <% leaves = room_xml.xpath('//*[not(*)]') %>
+  <% leaves.each do |node| %>
+    <tr>
+      <td><%= "#{node.name.titleize}" %></td>
+      <td><%= "#{node.text}" %></td>
+    </tr>
+  <% end %>
+  <tr>
+    <td colspan="2"><strong>Payment Info</strong></td>
+  </tr>
+  <tr>
+    <td>Credit Card Number</td>
+    <td><%= @booking.cc_number %></td>
+  </tr>
+  <tr>
+    <td>Credit Card Name</td>
+    <td><%= @booking.cc_name %></td>
+  </tr>
+  <tr>
+    <td>Credit Card Type</td>
+    <td><%= @booking.cc_type %></td>
+  </tr>
+  <tr>
+    <td>Credit Card Expiration Date</td>
+    <td><%= @booking.cc_expiration_date %></td>
+  </tr>
+  <tr>
+    <td>Credit Card CVC</td>
+    <td><%= @booking.cc_cvc %></td>
+  </tr>
+</table>

@@ -1,0 +1,11 @@
+<% page_title t('error.title') %>
+<br/>
+<br/>
+<div class="alignCenter">
+  <h2><%= t('error.title') %></h2>
+  <p><%= t('error.exception.body') %></p>
+  <p>
+    <%= raw t('error.back_to_home', :home => (link_to t('error.here'), root_path))  %>
+  </p>
+</div>
+

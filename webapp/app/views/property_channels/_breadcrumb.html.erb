@@ -1,0 +1,26 @@
+<% step = locals[:step] %>
+<div class="breadcrumb">
+  <div class="step <%= 'current' if step == 'selection' %>">
+    <%= t('property_channels.new.breadcrumb.selection') %>
+  </div>
+  <div class="separator">&gt;&gt;</div>
+  <div class="step <%= 'current' if step == 'setting' %>">
+    <%= t('property_channels.new.breadcrumb.setting') %>
+  </div>
+  <div class="separator">&gt;&gt;</div>
+  <div class="step <%= 'current' if step == 'conversion' %>">
+    <%= t('property_channels.new.breadcrumb.conversion') %>
+  </div>
+  <div class="separator">&gt;&gt;</div>
+  <div class="step <%= 'current' if step == 'rate_multiplier' %>">
+    <%= t('property_channels.new.breadcrumb.rate_multiplier') %>
+  </div>
+  <div class="separator">&gt;&gt;</div>
+  <div class="step <%= 'current' if step == 'review' %>">
+    <%= t('property_channels.new.breadcrumb.review') %>
+  </div>
+  <div class="separator">&gt;&gt;</div>
+  <div class="step <%= 'current' if step == 'done_creating' %>">
+    <%= t('property_channels.new.breadcrumb.finish') %>
+  </div>
+</div>

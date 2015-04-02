@@ -1,0 +1,33 @@
+<% start_date = DateTime.now  %>
+<% end_date = start_date + 13.days %>
+
+<div id="setPoolInventory">
+  <%= form_tag(:action => 'update', :controller => 'inventories') do %>
+    <div class="dateTable">
+      <div class="dateTableRowHeader grey">
+        <div class="bigColumn">&nbsp;</div>
+        <% loop_date = start_date %>
+        <% while loop_date <= end_date %>
+          <div class="smallColumn">
+            <div class="day"><%= loop_date.strftime('%a') %></div>
+            <div class="date"><%= loop_date.strftime('%e') %></div>
+            <div class="month"><%= loop_date.strftime('%b') %></div>
+          </div>
+          <% loop_date = loop_date + 1.day %>
+        <% end %>
+      </div>
+      <% current_property.room_types.each do |rt| %>
+        <div class="dateTableRow">
+          <div class="bigColumn"><%= rt.name %></div>
+          <% loop_date = start_date %>
+          <% while loop_date <= end_date %>
+            <div class="smallColumn">
+              <%= text_field_tag loop_date %>
+            </div>
+            <% loop_date = loop_date + 1.day %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

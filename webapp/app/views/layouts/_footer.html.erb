@@ -1,0 +1,24 @@
+<footer>
+  <div class="plc">
+    <div class="left">
+      <nav>
+      </nav>
+    </div>
+    <div class="right">
+      <nav>
+        <% if I18n.locale == :id %>
+          <a href="?locale=en">
+            <%= t('language.english') %>
+          </a>
+        <% else %>
+          <a href="?locale=id">
+            <%= t('language.indonesia') %>
+          </a>
+        <% end %>
+      </nav>
+      <span class="copyright">
+        Copyright &copy; Chanelink. All rights reserved.
+      </span>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,22 @@
+embed_assets: datauri
+
+stylesheets:
+  main:
+    - public/stylesheets/main.css
+    - public/stylesheets/notification.css
+    - public/stylesheets/jquery-ui-1.9.2.custom.css
+    - public/stylesheets/morris.css
+    - public/stylesheets/apprise-v2.css
+    - public/stylesheets/jquery.jqplot.min.css
+  login:
+    - public/stylesheets/login.css
+    - public/stylesheets/notification.css
+    - public/stylesheets/jquery-ui-1.9.2.custom.css
+  admin:
+    - public/stylesheets/admin.css
+    - public/stylesheets/notification.css
+    - public/stylesheets/jquery-ui-1.9.2.custom.css
+  admin_login:
+    - public/stylesheets/admin_login.css
+    - public/stylesheets/notification.css
+    - public/stylesheets/jquery-ui-1.9.2.custom.css

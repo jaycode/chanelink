@@ -1,0 +1,2 @@
+module RackRateHelper
+end

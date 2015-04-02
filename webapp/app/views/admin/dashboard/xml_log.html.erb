@@ -1,0 +1,32 @@
+<div class="col10" id="xmlLog">
+  <table border="1">
+    <tr>
+      <th>ID</th>
+      <th>Hotel</th>
+      <th>Channel</th>
+      <th>Type</th>
+      <th>XML</th>
+      <th>Attempt No.</th>
+      <th>Fragment Id</th>
+      <th>Success</th>
+      <th>Action</th>
+    </tr>
+    <% @log.each do |cs| %>
+      <tr>
+        <td><%= cs.id %></td>
+        <td><%= cs.change_set_channel.change_set.property.name unless cs.change_set_channel.blank? %></td>
+        <td><%= cs.change_set_channel.channel.name unless cs.change_set_channel.blank? %></td>
+        <td><%= cs.change_set_channel.change_set.type unless cs.change_set_channel.blank? %></td>
+        <td><%= link_to 'View XML', admin_xml_body_path(:id => cs.id), :target  => 'blank' %></td>
+        <td><%= cs.attempt %></td>
+        <td><%= cs.fragment_id %></td>
+        <td><%= cs.success %></td>
+        <td><%= link_to 'Rerun', admin_rerun_change_set_path(:id => cs.id) %></td>
+        <td><%= cs.created_at %></td>
+      </tr>
+    <% end %>
+  </table>
+  <div class="pagination">
+    <%= will_paginate @log %>
+  </div>
+</div>

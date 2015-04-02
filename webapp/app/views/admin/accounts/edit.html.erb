@@ -1,0 +1,11 @@
+<%= page_title t('admin.accounts.edit.label.heading', :account => @account.name) %>
+<div id="newProperty">
+  <div class="col9">
+    <h2><%= raw t('admin.accounts.edit.label.heading', :account => @account.name) %></h2>
+
+    <%= form_for @account, :url => {:controller => 'admin/accounts', :action => 'update'} do |f| %>
+      <%= render 'form_fields', :f => f %>
+      <p><%= f.submit t("button.save") %></p>
+    <% end %>
+  </div>
+</div>

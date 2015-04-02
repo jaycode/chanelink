@@ -1,0 +1,10 @@
+<%= page_title t('admin.properties.new.label.heading') %>
+<div id="newProperty">
+  <div class="col9">
+    <h2><%= raw t('admin.properties.new.label.heading') %></h2>
+    <%= form_for @property, :url => {:controller => 'admin/properties'} do |f| %>
+      <%= render 'form_fields', :f => f %>
+      <p><%= f.submit t("button.save") %></p>
+    <% end %>
+  </div>
+</div>

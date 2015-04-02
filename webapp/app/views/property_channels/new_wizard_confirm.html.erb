@@ -1,0 +1,36 @@
+<%= page_title t('property_channels.new.label.heading') %>
+<div id="newChannel">
+  <div class="col10">
+    <h2><%= raw t('property_channels.new.label.heading') %></h2>
+    <%= render 'breadcrumb', :locals => {:step => 'review'} %>
+    <%= form_for @property_channel, :url => {:controller => 'property_channels', :action => 'create'} do |f| %>
+      <h4><%= raw t('property_channels.new.label.confirm_heading') %></h4>
+      <br/>
+      <div class="box review">
+        <p>
+          <label><%= raw t('property_channels.new.label.channel_to_connect') %></label>
+          <%= @property_channel.channel.name %>
+        </p>
+        <%= render "#{@channel.cname}_confirm", :f => f  %>
+        <p>
+          <label><%= raw t('property_channels.new.label.currency_conversion') %></label>
+          <% if !current_property.currency_conversion_disabled? and @currency_conversion.valid? %>
+            <%= current_property.currency.code %> <%= t('general.to') %> <%= @currency_conversion.to_currency.code %> - <%= t('property_channels.new.label.conversion_multiplier') %>: <%= @currency_conversion.multiplier %>
+          <% else %>
+            <%= t('general.disabled') %>
+          <% end %>
+          &nbsp;
+        </p>
+        <p>
+          <label><%= raw t('property_channels.new.label.rate_multiplier') %></label>
+          <%= @property_channel.rate_conversion_multiplier %>&nbsp;
+        </p>
+      </div>
+      <br/>
+      <p>
+        <%= f.submit t('button.back'), :name => "back_button" %>
+        <%= f.submit t("button.finish") %>
+      </p>
+    <% end %>
+  </div>
+</div>

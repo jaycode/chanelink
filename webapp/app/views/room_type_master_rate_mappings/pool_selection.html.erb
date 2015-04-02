@@ -1,0 +1,15 @@
+<%= page_title t('pool_selection.label.heading') %>
+<div id="poolSelection">
+  <div class="col9">
+    <h2><%= t('pool_selection.label.heading') %></h2>
+    <p><%= raw t('room_type_master_rate_mappings.pool_selection.label.intro') %></p>
+    <% current_property.pools.each do |pool| %>
+      <p>
+        <%= link_to pool.name, room_type_master_rate_mappings_path(:pool_id => pool.id) %> (
+          <% pool.channels.each do |c| %>
+            <%= c.channel.name %>
+          <% end %>)
+      </p>
+    <% end %>
+  </div>
+</div>

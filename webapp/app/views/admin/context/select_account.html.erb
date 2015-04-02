@@ -1,0 +1,9 @@
+<div class="col12">
+  <h2><%= t('admin.context.select_account.label.header') %> </h2>
+  <br/>
+  <% Account.all.each do |acc| %>
+    <p>
+      <%= link_to acc.name, admin_select_account_set_path(:id => acc.id) %>
+    </p>
+  <% end %>
+</div>

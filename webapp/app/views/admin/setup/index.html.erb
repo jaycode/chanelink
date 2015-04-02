@@ -1,0 +1,78 @@
+<%= page_title t('admin.setup.label.heading') %>
+<div class="col10">
+  <h1><%= raw t('admin.setup.link') %></h1>
+</div>
+<div class="col6">
+  <p><%= t('admin.setup.label.activation_intro') %></p>
+  <ol>
+    <li><%= t('admin.setup.label.activation_a') %></li>
+    <li><%= t('admin.setup.label.activation_b') %></li>
+    <li><%= t('admin.setup.label.activation_c') %></li>
+  </ol>
+  <% count = 0 %>
+  <% Account.not_approved.each do |a| %>
+    <% if current_user.assigned_accounts.include?(a) or current_user.super? %>
+      <% count = count + 1 %>
+    <% end %>
+  <% end %>
+  <h4><%= raw t('admin.setup.label.account_pending', :count => count) %></h4>
+  <br/>
+  <% Account.not_approved.each do |a| %>
+    <% if current_user.assigned_accounts.include?(a) or current_user.super? %>
+      <p>
+        <%= link_to a.name, edit_admin_account_path(a) %>
+        <% if !a.approved? %>
+          - <%= link_to t('admin.accounts.activate.link'), activate_admin_account_path(a) %>
+        <% end %>
+      </p>
+    <% end %>
+  <% end %>
+  <br/>
+  <% count = 0 %>
+  <% Account.approved.each do |a| %>
+    <% if current_user.assigned_accounts.include?(a) or current_user.super? %>
+      <% count = count + 1 %>
+    <% end %>
+  <% end %>
+  <h4><%= raw t('admin.setup.label.account_activated', :count => count) %></h4>
+  <% Account.approved.each do |a| %>
+    <% if current_user.assigned_accounts.include?(a) or current_user.super? %>
+      <p><%= link_to a.name, edit_admin_account_path(a) %></p>
+    <% end %>
+  <% end %>
+</div>
+<div class="col6">
+  <% count = 0 %>
+  <% Property.not_approved.each do |p| %>
+    <% if current_user.given_properties.include?(p) or current_user.super? %>
+      <% count = count + 1 %>
+    <% end %>
+  <% end %>
+  <h4><%= raw t('admin.setup.label.property_pending', :count => count) %></h4>
+  <br/>
+  <% Property.not_approved.each do |p| %>
+    <% if current_user.given_properties.include?(p) or current_user.super? %>
+      <p><%= link_to p.name, manage_admin_property_path(p) %></p>
+    <% end %>
+  <% end %>
+  <br/>
+  <% count = 0 %>
+  <% Property.rejected.each do |p| %>
+    <% if current_user.given_properties.include?(p) or current_user.super? %>
+      <% count = count + 1 %>
+    <% end %>
+  <% end %>
+  <h4><%= raw t('admin.setup.label.property_rejected', :count => count) %></h4>
+  <br/>
+  <% Property.rejected.each do |p| %>
+    <% if current_user.given_properties.include?(p) or current_user.super? %>
+      <p><%= link_to p.name, admin_property_path(p) %></p>
+    <% end %>
+  <% end %>
+  <h4><%= raw t('admin.property_channels.index.label.not_approved') %></h4>
+  <% PropertyChannel.where(:approved => false).each do |p| %>
+    <% if p.property.active? and (current_user.super? or current_user.given_properties.include?(p.property)) %>
+      <p><%= p.property.name %> - <%= p.channel.name %> - <%= link_to t('admin.properties.edit.link'), edit_admin_property_channel_path(p) %> - <%= link_to t('admin.properties.approve.link'), approve_admin_property_channel_path(p) %></p>
+    <% end %>
+  <% end %>
+</div>

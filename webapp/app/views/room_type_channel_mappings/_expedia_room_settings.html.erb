@@ -1,0 +1,8 @@
+<p class="expediaSettings">
+  <label><%= t('room_type_channel_mappings.new.label.expedia_rate_conversion_multiplier') %></label>
+  <%= f.text_field :expedia_rate_conversion_multiplier %>
+</p>
+<p>
+  <strong><%= t('room_type_channel_mappings.new.label.min_rate_warning', :minimum => @room_type.final_minimum_rate) %></strong>
+</p>
+

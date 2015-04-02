@@ -1,0 +1,23 @@
+<%= form_for @room_type do |f| %>
+  <p>
+    <label><%= t('room_types.new.label.name') %><%= required %></label>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <label><%= t('room_types.new.label.rack_rate') %><%= required %></label>
+    <%= f.text_field :rack_rate, :class => 'numericOnly' %>
+  </p>
+  <p>
+    <label><%= t('room_types.new.label.minimum_rate') %></label>
+    <%= f.text_field :minimum_rate, :class => 'numericOnly' %>
+  </p>
+  <p>
+    <label><%= t('room_types.new.label.minimum_stay') %></label>
+    <%= f.text_field :minimum_stay, :class => 'numericOnly', :style => 'width: 50px;' %>
+  </p>
+  <br/>
+  <p>
+    <%= f.submit t("button.save") %>
+    <%= link_to t('button.cancel'), room_types_path %>
+  </p>
+<% end %>

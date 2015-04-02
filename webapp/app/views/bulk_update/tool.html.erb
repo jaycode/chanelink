@@ -1,0 +1,125 @@
+<div id="bulkUpdate">
+  <div class="col12">
+    <h2><%= t('bulk_update.tool.label.heading') %></h2>
+    <%= update_channels_list_js %>
+    <%= update_room_types_list_js %>
+    <%= form_tag bulk_update_submit_path do %>
+      <div class="col valueType">
+        <h4><%= t('bulk_update.tool.label.value') %></h4>
+        <%= toggle_value_field_js %>
+        <%= value_type_select_notify_js %>
+        <br/>
+        <p>
+          <label class="valueRadio"><%= radio_button_tag 'bu[value_type]', BulkUpdate::VALUE_AVAILABILITY, @bulk_update.value_type == BulkUpdate::VALUE_AVAILABILITY %>&nbsp;&nbsp;<%= t('bulk_update.tool.label.availability') %></label>
+          <span class="availability radioField" style="<%= 'display: none' unless @bulk_update.value_type_availability? %>">
+            <%= text_field_tag "bu[availability]", @bulk_update.availability %>
+          </span>&nbsp;
+        </p>
+        <p>
+          <label class="valueRadio"><%= radio_button_tag 'bu[value_type]', BulkUpdate::VALUE_RATES, @bulk_update.value_type == BulkUpdate::VALUE_RATES %>&nbsp;&nbsp;<%= t('bulk_update.tool.label.rates') %></label>
+          <span class="rates radioField" style="<%= 'display: none' unless @bulk_update.value_type_rates? %>">
+            <%= text_field_tag "bu[rates]", @bulk_update.availability %>
+          </span>&nbsp;
+        </p>
+        <p>
+          <label class="valueRadio"><%= radio_button_tag 'bu[value_type]', BulkUpdate::VALUE_STOP_SELL, @bulk_update.value_type == BulkUpdate::VALUE_STOP_SELL %>&nbsp;&nbsp;<%= t('inventories.grid.label.stop_sell') %></label>
+          <span class="stop_sell radioField" style="<%= 'display: none' unless @bulk_update.value_type_stop_sell? %>">
+            <%= radio_button_tag 'bu[stop_sell]', Constant::ON, @bulk_update.stop_sell == Constant::ON %>&nbsp;<%= t('bulk_update.tool.label.on_option') %>
+            <%= radio_button_tag 'bu[stop_sell]', Constant::OFF, @bulk_update.stop_sell == Constant::OFF %>&nbsp;<%= t('bulk_update.tool.label.off_option') %>
+          </span>&nbsp;
+        </p>
+        <p>
+          <label class="valueRadio"><%= radio_button_tag 'bu[value_type]', BulkUpdate::VALUE_MIN_STAY, @bulk_update.value_type == BulkUpdate::VALUE_MIN_STAY %>&nbsp;&nbsp;<%= t('inventories.grid.label.min_stay') %></label>
+          <span class="min_stay radioField" style="<%= 'display: none' unless @bulk_update.value_type_min_stay? %>"><%= text_field_tag "bu[min_stay]", @bulk_update.min_stay %></span>&nbsp;
+        </p>
+        <p>
+          <label class="valueRadio"><%= radio_button_tag 'bu[value_type]', BulkUpdate::VALUE_CTA, @bulk_update.value_type == BulkUpdate::VALUE_CTA %>&nbsp;&nbsp;<%= t('inventories.grid.label.cta') %></label>
+          <span class="cta radioField" style="<%= 'display: none' unless @bulk_update.value_type_cta? %>">
+            <%= radio_button_tag 'bu[cta]', Constant::ON, @bulk_update.cta == Constant::ON %>&nbsp;<%= t('bulk_update.tool.label.on_option') %>
+            <%= radio_button_tag 'bu[cta]', Constant::OFF, @bulk_update.cta == Constant::OFF %>&nbsp;<%= t('bulk_update.tool.label.off_option') %>
+          </span>&nbsp;
+        </p>
+        <p>
+          <label class="valueRadio"><%= radio_button_tag 'bu[value_type]', BulkUpdate::VALUE_CTD, @bulk_update.value_type == BulkUpdate::VALUE_CTD %>&nbsp;&nbsp;<%= t('inventories.grid.label.ctd') %></label>
+          <span class="ctd radioField" style="<%= 'display: none' unless @bulk_update.value_type_ctd? %>">
+            <%= radio_button_tag 'bu[ctd]', Constant::ON, @bulk_update.ctd == Constant::ON %>&nbsp;<%= t('bulk_update.tool.label.on_option') %>
+            <%= radio_button_tag 'bu[ctd]', Constant::OFF, @bulk_update.ctd == Constant::OFF %>&nbsp;<%= t('bulk_update.tool.label.off_option') %>
+          </span>&nbsp;
+        </p>
+        <p>
+          <label class="valueRadio"><%= radio_button_tag 'bu[value_type]', BulkUpdate::VALUE_CTB, @bulk_update.value_type == BulkUpdate::VALUE_CTB %>&nbsp;&nbsp;<%= t('inventories.grid.label.ctb') %></label>
+          <span class="ctb radioField" style="<%= 'display: none' unless @bulk_update.value_type_ctb? %>">
+            <%= radio_button_tag 'bu[ctb]', Constant::ON, @bulk_update.ctb == Constant::ON %>&nbsp;<%= t('bulk_update.tool.label.on_option') %>
+            <%= radio_button_tag 'bu[ctb]', Constant::OFF, @bulk_update.ctb == Constant::OFF %>&nbsp;<%= t('bulk_update.tool.label.off_option') %>
+          </span>&nbsp;
+        </p>
+      </div>
+      <div class="col datesDays">
+        <h4><%= t('bulk_update.tool.label.dates_days') %></h4>
+        <br/>
+        <p>
+          <label><%= t('bulk_update.tool.label.date_from') %></label>
+          <% date_from = @bulk_update.date_from unless @bulk_update.date_from.blank? %>
+          <% date_from_picker_field = 'bu_date_from' %>
+          <%= bulk_update_date_picker_js(date_from_picker_field) %>
+          <%= text_field_tag 'bu[date_from]', date_from, :readonly => "readonly" %>
+        </p>
+        <p>
+          <label><%= t('bulk_update.tool.label.date_to') %></label>
+          <% date_to = @bulk_update.date_to unless @bulk_update.date_to.blank? %>
+          <% date_to_picker_field = 'bu_date_to' %>
+          <%= bulk_update_date_picker_js(date_to_picker_field) %>
+          <%= text_field_tag 'bu[date_to]', date_to, :readonly => "readonly" %>
+        </p>
+        <%= days_select_all_js %>
+        <p><%= link_to t('bulk_update.tool.label.select_all'), '#', :id => 'daysSelectAll' %> </p>
+        <div class="daysCheckbox">
+          <% Date::DAYNAMES.each_with_index do |day, index| %>
+            <p>
+              <%= check_box_tag('bu[days][]', index, (@bulk_update.days.blank? ? false : @bulk_update.days.include?(index.to_s))) %>&nbsp;<%= day %>
+            </p>
+          <% end %>
+        </div>
+      </div>
+      <div class="col roomTypes">
+        <%= toggle_room_type_field_js %>
+        <h4><%= t('bulk_update.tool.label.room_types') %></h4>
+        <br/>
+        <%= room_types_select_all_js %>
+        <p><%= link_to t('bulk_update.tool.label.select_all'), '#', :id => 'roomTypesSelectAll' %> </p>
+        <div class="roomTypesCheckbox">
+          <% current_property.room_types.each do |rt| %>
+            <p>
+              <%= check_box_tag('bu[room_type_ids][]', rt.id, (@bulk_update.room_type_ids.blank? ? false : @bulk_update.room_type_ids.include?(rt.id.to_s))) %>&nbsp;<%= rt.name %>
+            </p>
+          <% end %>
+        </div>
+      </div>
+      <div class="col poolsChannels">
+        <h4><%= t('bulk_update.tool.label.pools_channels') %></h4>
+        <br/>
+        <%= pools_select_notify_js %>
+        <% if !current_property.single_pool? %>
+          <p>
+            <%= select_tag "bu[pool_id]", options_for_select(Pool.pool_list_for_bulk_update(current_property), @bulk_update.pool_id) %>
+          </p>
+        <% else %>
+          <%= hidden_field_tag 'bu[pool_id]', current_property.pools.first.id %>
+        <% end %>
+        <%= master_rate_select_notify_js %>
+        <p class="applyToMasterRate" style="<%= 'display: none' unless @bulk_update.value_type_rates? %>">
+          <%= check_box_tag('bu[apply_to_master_rate]', nil, (@bulk_update.apply_to_master_rate ? true : false)) %>&nbsp;<%= t('bulk_update.tool.label.apply_to_master_rate') %>
+        </p>
+        <div class="channelsCheckbox">
+          <% current_property.channels.each do |pc| %>
+            <p>
+              <%= check_box_tag('bu[channel_ids][]', pc.channel_id, (@bulk_update.channel_ids.blank? ? false : @bulk_update.channel_ids.include?(pc.channel_id.to_s))) %>&nbsp;<%= pc.channel.name %>
+            </p>
+          <% end %>
+        </div>
+      </div>
+      <br clear="all"/>
+      <%= submit_tag t('button.update') %>
+    <% end %>
+  </div>
+</div>

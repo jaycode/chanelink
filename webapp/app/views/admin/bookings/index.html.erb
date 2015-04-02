@@ -1,0 +1,27 @@
+<div class="col10">
+  <table border="1">
+    <tr>
+      <th>ID</th>
+      <th>Hotel</th>
+      <th>Channel</th>
+      <th>Status</th>
+      <th>Ext ID</th>
+      <th>Guest</th>
+      <th>Room Type</th>
+      <th>Action</th>
+    </tr>
+    <% BookingcomBooking.order("created_at desc").each do |bk| %>
+      <tr>
+        <td><%= bk.id %></td>
+        <td><%= bk.property.name %></td>
+        <td><%= bk.channel.name %></td>
+        <td><%= bk.status %></td>
+        <td><%= bk.agoda_booking_id %><%= bk.expedia_booking_id %><%= bk.bookingcom_booking_id %><%= "/#{bk.bookingcom_room_reservation_id}" if bk.channel == BookingcomChannel.first %></td>
+        <td><%= bk.guest_name %></td>
+        <td><%= bk.room_type.name %></td>
+        <td><%= link_to 'View', admin_show_booking_path(:id => bk.id) %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+

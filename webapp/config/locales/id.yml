@@ -1,0 +1,1018 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+id:
+  default_page_title: 'Pengelola Kanal Hotel' 
+
+  general:
+    access_denied: 'Akses ditolak. Anda tidak diijinkan untuk melakukan operasi ini.'
+    enabled: 'Aktifkan'
+    disabled: 'Non-Aktifkan'
+    click_here: 'Klik disini'
+    pool: 'Kategori:'
+    more: 'Semua'
+    see_all: 'Tampilkan semua'
+    error_not_a_number: '%{date}: bukan angka yang benar'
+    yes_label: 'Ya'
+    no_label: 'Tidak'
+    to: 'to'
+
+  language:
+    english: 'English'
+    indonesia: 'Bahasa Indonesia'
+
+  currency:
+    idr: 'IDR '
+
+  menu:
+    dashboard: 'Dashboard'
+    inventory: 'Inventory'
+    accounts: 'Akun'
+    new_account: '+ Akun Baru'
+    properties: 'Hotel'
+    new_property: '+ Hotel Baru'
+    setup: 'Pengaturan'
+    room_types: 'Tipe Kamar'
+    channel: 'Kanal'
+    pools: 'Kategori'
+    inventory_grid: 'Inventory Grid'
+    master_rates: 'Tarif Induk'
+    reports: 'Laporan'
+    reports_checkin: 'Check-in'
+    reports_channel_yield: 'Channel Yield'
+    reports_channel_trends: 'Tren Kanal'
+    room_type_inventory_links: 'Availability Link'
+    bulk_update: 'Bulk Update'
+    copy_tool: 'Alat Salin'
+    alerts: 'Pemberitahuan'
+    currency_conversion: 'Konversi Mata Uang'
+    hotel_details: 'Data Hotel'
+    room_types: 'Room Types'
+
+  button:
+    continue: 'Teruskan'
+    back: '<< kembali'
+    save: 'Simpan'
+    submit: 'Simpan'
+    cancel: 'Batal'
+    create: 'Buat'
+    finish: 'Selesai'
+    update: 'Perbarui'
+    copy: 'Salin'
+    delete: 'Hapus'
+    approve: 'Approve'
+    reject: 'Reject'
+
+  login:
+    label:
+      title: 'Login'
+      heading: 'Login'
+      email: 'Email'
+      password: 'Kata sandi'
+      remember_me: 'Biarkan saya tetap login'
+    message:
+      fail: 'Email atau Kata sandi salah'
+      success: 'Selamat datang kembali!'
+      locked: 'Anda telah gagal login sebanyak %{times} kali. Kami telah mengatur ulang kata sandi anda dan mengirimkannya ke email anda.'
+      inactivity: 'Sesi login kamu telah berakhir, kamu harus login kembali.'
+      disabled: 'Your account is disabled. Please contact your supervisor.'
+
+  logout:
+    message:
+      success: 'Anda telah logout'
+
+  password:
+    reset:
+      link: 'Lupa kata sandi?'
+      label:
+        heading: 'Pengaturan Ulang Kata Sandi'
+        email: 'Email untuk login'
+      message:
+        email_not_given: 'Silahkan tulis email untuk login anda'
+        member_not_found: 'Email tidak terdaftar'
+        check_email: 'Periksa email anda untuk mendapatkan informasi kata sandi anda yang baru'
+
+  bulk_update:
+    tool:
+      label:
+        heading: 'Pembaruan Masal'
+        value: 'Nilai yang akan diperbarui'
+        dates_days: 'Tanggal & Hari'
+        rooms: 'Kamar'
+        pools_channels: 'Kategori & Kanal'
+        availability: 'Ketersediaan'
+        rates: 'Tarif'
+        on_option: 'On'
+        off_option: 'Off'
+        date_from: 'Dari'
+        date_to: 'Ke'
+        select_all: 'Pilih semua'
+        room_types: 'Tipe Kamar'
+        pools_channels: 'Kategori & Kanal'
+        apply_to_master_rate: 'Terapkan ke Tarif Induk'
+        date_from_to: 'must be before Date To'
+        channel_must_presence: "tidak boleh kosong"
+        rates_must_be_greater_than_min_rates: 'Rates for %{room_type} can not be lower than %{min_rate}'
+      message:
+        affected_rows: 'Total %{count} rows affected.'
+        success: 'Successfully updated'
+
+  copy_tool:
+    tool:
+      label:
+        heading: 'Alat Salin'
+        select_pool: 'Pilih kategori'
+        what_to_copy: 'Ingin menyalin apa?'
+        from: 'Dari'
+        to: 'Ke'
+        channel: 'Kanal'
+        room: 'Kamar'
+        channel_room_must_be_different: 'Tidak ada yang dapat disalin. Kanal & kamar tujuan sama dengan sumber.'
+        no_master_rate_link: '%{room_type} di %{channel} memiliki pemetaan Tarif Induk. Alat Salin tidak dapat digunakan.'
+        all: 'All'
+    message:
+      success: 'Successfully copied'
+
+  dashboard:
+    channel:
+      heading: 'Status Kanal'
+      no_channel: 'Belum ada kanal yang terhubung'
+      enabled: 'Aktif'
+    bookings:
+      heading: 'Reservasi'
+      last_30_days: 'Total reservasi 30 hari terakhir' 
+    alerts:
+      heading: 'Pemberitahuan'
+    hotel_status:
+      heading: 'Status Hotel'
+      disabled_channels: '%{count} koneksi kanal sedang non-aktif'
+      disabled_channel_rooms: '%{count} kamar kanal sedang non-aktif'
+
+  inventories:
+    grid:
+      label:
+        stop_sell: 'Stop Sell'
+        min_stay: 'Min Menginap'
+        cta: 'CTA'
+        ctd: 'CTD'
+        ctb: 'CTB'
+        copy_across: 'Salin kesamping'
+        copy_up_down: 'Salin keatas/kebawah'
+        availability: 'Ketersediaan' 
+        master_rates: 'Tarif Induk'
+        prices: 'Prices'
+        rate_multiplier: 'You have set a Rate Multiplier for this channel. All room rates send to this channel will be multiplied by %{rate_multiplier}.'
+    update:
+      message:
+        nothing_saved: 'Tidak ada perubahan availability untuk disimpan'
+        success: 'Perubahan availability telah disimpan'
+    validate:
+      error_not_a_number: 'Availability: %{room_type} %{date} - bukan angka yang benar'
+      error_negative_number: 'Availability: %{room_type} %{date} - harus angka positif'
+
+  master_rates:
+    update:
+      message:
+        nothing_saved: 'Tidak ada perubahan tarif untuk disimpan'
+        success: 'Perubahan tarif telah disimpan'
+    validate:
+      error_not_a_number: 'Tarif Induk: %{room_type} %{date} - bukan angka yang benar' 
+      error_negative_number: 'Tarif Induk: %{room_type} %{date} - harus angka positif'
+      error_less_than_minimum: 'Tarif Induk: %{room_type} %{date} - tidak boleh kurang dari %{minimum}'
+
+  channel_rates:
+    update:
+      message:
+        nothing_saved: 'Tidak ada perubahan untuk %{channel}'
+        success: 'Perubahan telah tersimpan untuk %{channel}'
+    validate:
+      error_not_a_number: '%{channel} Tarif: %{room_type} %{date} - bukan angka yang valid' 
+      error_negative_number: '%{channel} Tarif: %{room_type} %{date} - harus angka positif'
+      error_less_than_minimum: '%{channel} Tarif: %{room_type} %{date} - tidak boleh kurang dari %{minimum}'
+      error_min_stay_not_a_number: '%{channel} Min Stay: %{room_type} %{date} - bukan angka yang valid' 
+      error_min_stay_negative_number: '%{channel} Min Stay: %{room_type} %{date} - harus angka positif'
+
+  reports:
+    checkin:
+      label:
+        heading: 'Laporan Check-in'
+        date: 'Menginap: %{in} - %{out}'
+        stay: 'Stay'
+        room: 'Kamar: %{room}'
+        total_rooms: 'Total Rooms'
+        booking_date: 'Dipesan pada: %{booking_date}'
+        channel: 'Dipesan melalui: %{channel}'
+        amount: 'Total reservasi: %{amount}'
+        period: 'Tampilkan check-in untuk'
+        pool: 'Kategori'
+        empty: 'Tidak ada data pemesanan'
+      periods:
+        7days: '7 hari kedepan'
+        14days: '14 hari kedepan'
+        30days: '30 hari kedepan'
+      pools:
+        all: 'Semua'
+    channel_yield:
+      label:
+        heading: 'Channel Yield Report'
+        date_type: 'Tipe Tanggal'
+        range: 'Rentang'
+        to: 'ke'
+        pool: 'Kategori'
+        empty: 'Tidak ada data pemesanan'
+        channel: 'Kanal'
+        reservations: 'Total Reservasi'
+        lead_time: 'Avg Lead Time'
+        los: 'Rata-rata Lama Menginap'
+        avg_earnings: 'Rata-rata Pendapatan (%{currency})'
+        total_earnings: 'Total Pendapatan (%{currency})'
+        export_csv: 'Export CSV'
+        total: 'Total'
+      date_type:
+        created: 'Created'
+        checkin: 'Check-in'
+      pools:
+        all: 'Semua'
+      message:
+        date_type_not_exist: 'Silahkan pilih tipe tanggal'
+        date_from_not_exist: 'Silahkan pilih Tanggal Dari' 
+        date_to_not_exist: 'Silahkan pilih tanggal Ke' 
+        date_from_must_be_earlier: 'Date From must be an earlier date'
+    channel_trends:
+      label:
+        heading: 'Tren Kanal'
+        date_type: 'Tipe Tanggal'
+        range: 'Rentang'
+        to: 'ke'
+        pool: 'Kategori'
+        empty: 'Tidak ada data pemesanan'
+        channel: 'Kanal'
+        report_type: 'Tipe Laporan'
+        breakdown: 'Breakdown by'
+        total_earnings: 'Total Pendapatan'
+        avg_earnings: 'Rata-rata Pendapatan'
+        reservation_count: 'Reservation Count'
+        total_room_type: 'Total by Room Type Count'
+      date_type:
+        created: 'Created'
+        checkin: 'Check-in'
+      pools:
+        all: 'Semua' 
+      channels:
+        all: 'Semua'
+      breakdown:
+        day: 'Hari'
+        month: 'Bulan'
+      report_type:
+        placeholder: 'Pilih Tipe'
+        total_earnings: 'Total Pendapatan'
+        avg_earnings: 'Rata-rata Pendapatan per Reservasi'
+        reservation_count: 'Reservation Count'
+        total_room_type: 'Total Room Type Count'
+
+      message:
+        date_type_not_exist: 'Silahkan tentukan tipe tanggal' 
+        date_from_not_exist: 'Silahkan tentukan Tanggal Dari'
+        date_to_not_exist: 'Silahkan tentukan Tanggal Ke'
+        date_from_must_be_earlier: 'Date From must be an earlier date'
+        breakdown_not_exist: 'Please specify Breakdown'
+        report_type_not_exist: 'Silahkan tentukan Tipe Laporan'
+        
+  properties:
+    manage: 'Hotel'
+    new:
+      label:
+        link: 'Tambahkan Hotel Baru'
+        heading: 'Hotel Baru'
+    edit:
+      link: 'Ubah'
+      label:
+        heading: 'Ubah Hotel'
+    select:
+      link: '(ganti hotel?)'
+      back_link: 'kembali ke daftar hotel'
+      label:
+        select_below: 'Silahkan pilih hotel untuk dikelola:'
+        no_hotel: 'Tidak ada hotel terdaftar.'
+        pending: 'menunggu persetujuan'
+        enabled: '%{count} channel aktif'
+        disabled: '%{count} channel tidak aktif'
+    update:
+      message:
+        success: 'Hotel telah diperbarui'
+        approved: 'Hotel approved'
+        rejected: 'Hotel rejected'
+    no_registered_property:
+      label:
+        no_hotel: 'Akun anda belum memiliki hotel.'
+    validate:
+      minimum_room_rate_must_be_less_than_lowest: 'can not be greater than lowest room minimum rate %{lowest}'
+
+  pools:
+    placeholder: 'Pilih kategori'
+    index:
+      label:
+        heading: 'Kategori'
+        blank: 'Belum ada kategori yang dibuat untuk hotel ini.'
+        name: 'Nama'
+        no_channels: '# of Channels'
+    new:
+      label:
+        heading: 'Kategori Baru' 
+        name: 'Nama Kategori' 
+        channels: 'Kanal'
+        move_channels: 'Pindahkan kanal ke kategori baru' 
+        details: '1. Nama Kategori & Kanal'
+        confirmation: '2. Konfirmasi'
+        done_creating: '3. Selesai'
+        no_channels: 'Anda akan membuat kategori baru tanpa kanal'
+        about_to_move: 'Anda akan membuat sebuah kategori baru dan memindahkan kanal-kanal berikut ini ke kategori baru:'
+        should_continue: 'Jika anda ingin meneruskan, silahkan pilih 1 (satu) dari tindakan-tindakan berikut:'
+        zero_inventory: '<u>Buat kategori dengan ketersediaan 0 (nol) yang akan diteruskan ke kanal</u>, <strong>yang akan diteruskan ke kanal dan diaplikasikan sampai 400 (empat ratus) hari kedepan.</strong>'
+        disable_channels: '<u>Non-aktifkan kanal, dan buat kategori dengan ketersediaan 0 (nol)</u>, <strong>ketersediaan dan tarif yang ditampilkan di kanal akan tetap sama walaupun reservasi tidak bisa dilakukan.</strong>'
+        master_rate: 'Semua tarif untuk semua tipe kamar di kanal-kanal yang terhubung dengan Tarif Induk akan dikelola secara manual dan Tarif Induk di Kategori perlu diatur.'
+        availability_confirmation: 'Saya mengerti konsekuensinya dan ingin melanjutkan'
+        other_pools: 'Kategori-kategori lain'
+        new_pool: 'Kategori Baru'
+        current_pool: 'Kategori yang sekarang'
+        channels_addition: 'Penambahan kanal baru'
+    edit:
+      link: 'Ubah'
+      label:
+        heading: 'Ubah %{pool}'
+        name: 'Nama Kategori'
+        channels: 'Kanal'
+        move_channels: 'Pindahkan kanal-kanal ke kategori ini'  
+        no_channels: 'Tidak ada channel baru untuk kategori ini'
+        inventory_push: "%{channels} akan menggunakan availability %{pool} jika anda meng-klik 'Simpan'"
+        about_to_move: 'Anda akan memindahkan kanal-kanal ke kategori <strong>%{pool}</strong>? yang tidak memiliki ketersediaan.'
+        are_you_sure: 'Anda yakin ingin memindahkan <strong>%{channels}</strong>?'
+        should_continue: 'Jika ingin meneruskan, silahkan pilih 1 (satu) dari pilihan berikut:'
+        zero_inventory: '<u>Pindahkan kanal</u>. <strong>Ketersediaan yang akan dikirim ke kanal-kanal akan menggunakan ketersediaan kategori %{pool}.</strong>'
+        disable_channels: '<u>Non-aktifkan dan pindahkan kanal.</u>'
+        master_rate: 'Semua tarif dari semua tipe kamar di kanal yang terhubung dengan Tarif Induk akan dikelola secara manual, karena Tarif Induk harus didefinisikan di kategori baru.'
+        availability_confirmation: 'Saya mengerti konsekuensinya dan ingin melanjutkan'
+    delete:
+      link: 'Hapus'
+      label:
+        are_you_sure: 'Anda yakin ingin menghapus kategori yg dipilih?' 
+      message:
+        success: 'kategori terhapus'
+        last_one: 'Pool ini tidak boleh dihapus'
+
+  roles:
+    type:
+      general: 'General'
+      config: 'Config'
+      super: 'Admin'
+
+  panel:
+    logout: 'Logout'
+    home: 'Home'
+
+  members:
+    manage: 'Pengguna'
+    type:
+      placeholder: 'Pilih tipe pengguna'
+      general: 'General'
+      config: 'Config'
+      super: 'Admin'
+    new:
+      link: 'Pengguna Baru'
+      label:
+        heading: 'Pengguna Baru'
+        name : 'Nama lengkap'
+        email: 'Email' 
+        password: 'Kata sandi'
+        password_confirmation: 'Konfirmasi kata sandi' 
+        role: 'Role'
+        properties: 'Akses hotel yang diijinkan'
+        enable: 'Aktifkan' 
+    create:
+      message:
+        hotel: 'Hotel: '
+        account: 'Akun: '
+        success: 'Pengguna telah dibuat'
+        maximum_slot_general: '%{property} telah memiliki %{maximum} pengguna general.'
+        maximum_slot_config: '%{property} telah memiliki %{maximum} pengguna config.'
+        maximum_slot_super: 'Akun ini telah memiliki %{maximum} pengguna admin.'
+        email_exist: 'User with email %{email} already exist but deleted, %{undelete} to undelete the user.'
+    delete:
+      link: 'Hapus'
+      label:
+        are_you_sure: 'Anda yakin ingin menghapus pengguna yang dipilih?'
+      message:
+        success: 'Pengguna telah dihapus'
+        can_not_delete_master: 'User ini tidak boleh dihapus'
+    undelete:
+      message:
+        success: 'User is now active again'
+    edit:
+      link: 'Ubah' 
+      label:
+        heading: 'Ubah Pengguna'
+    update:
+      message:
+        success: 'Pengguna telah diperbarui'
+    index:
+      label:
+        heading: 'Pengguna'
+        super_member: 'Pengguna Admin'
+        config_member: 'Pengguna Config'
+        no_config_member: 'Tidak ada pengguna config yang terdaftar' 
+        general_member: 'Pengguna General'
+        no_general_member: 'Tidak ada pengguna general yang terdaftar' 
+        name: 'Nama'
+        email: 'Email'
+        role: 'Peran'
+        master: 'Induk'
+    prompt_password:
+      label:
+        heading: 'Tentukan kata sandi anda'
+      message:
+        success: 'Kata sandi telah berubah'
+        new_password_not_given: 'Silahkan tentukan kata sandi anda yang baru'
+        new_password_does_not_match_confirmation: 'Kata sandi baru anda tidak cocok dengan konfirmasi'
+        failure: 'Kata sandi harus menggunakan 8 - 20 karakter dan harus menggunakan huruf besar dan kecil dan angka'
+        invalid_password: 'Kata sandi harus menggunakan huruf besar dan kecil dan angka'
+
+  alerts:
+    index:
+      label:
+        heading: 'Pemberitahuan' 
+        subject: 'Subjek'
+        date: 'Tanggal'
+        empty: 'Tidak ada pemberitahuan'
+    display:
+      zero_inventory_alert: 'Room availability empty for <strong>%{pool}: %{room_type} - %{date}</strong>.'
+      property_channel_approved_alert: 'Kanal %{channel} telah disetujui dan siap untuk digunakan.'
+
+  room_types:
+    index:
+      label:
+        heading: 'Tipe kamar'
+        blank: 'Belum ada tipe kamar untuk hotel ini' 
+        name: 'Tipe kamar' 
+        no_channels: '# of channels'
+        channels_connected: 'terhubung ke %{count} kanal'
+    new:
+      label:
+        heading: 'Tipe Kamar Baru'
+        name: 'Nama'
+        rack_rate: 'Rack Rate'
+        minimum_rate: 'Tarif Minimum'
+        minimum_stay: 'Menginap Minimum'
+        info_heading: 'Informasi pembuatan tipe kamar baru'
+        info_body_1: "Ketika telah selesai dibuat, tipe kamar baru akan memerlukan pemetaan ke kanal yang dibutuhkan. Ketika kamar dipetakan ke kanal, nilai tarif kamar dan lama menginap minimal akan mengikuti nilai Rack Rate dan Lama Menginap Minimal dibawah ini."
+        info_body_2: "Umumnya, nilai Rack Rate seharusnya jauh lebih tinggi dari tarif normal kamar."
+    create:
+      message:
+        success: 'Tipe kamar baru selesai dibuat'
+    edit:
+      link: 'Modify'
+      label:
+        heading: 'Ubah %{room_type}'
+        channels_already_mapped: 'Telah terpetakan ke kanal-kanal berikut:'
+        no_channels_mapped: 'Belum ada kanal terpetakan.'
+        channels_not_mapped: 'Belum terpetakan ke kanal-kanal berikut:'
+        no_more_channels: 'Tidak ada lagi kanal untuk dipetakan'
+    show:
+      label:
+        heading: 'Tampilkan Tipe Kamar'
+        back_to_index: '<< kembali ke tipe kamar'
+    update:
+      message:
+        success: 'Tipe kamar telah diperbarui'
+    delete:
+      link: 'Hapus'
+      dialog:
+        title: 'Peringatan Penghapusan Tipe Kamar'
+        no_channel: 'Tidak ada pemetaan kanal untuk tipe kamar ini.'
+        permanent: 'Anda akan menghapus tipe kamar %{room_type} secara permanen.'
+        all_data: 'Semua data di Chanelink yang terkait dengan tipe kamar ini, seperti tarif dan ketersediaan, akan dihapus secara permanen. Tipe kamar %{room_type} saat ini terpetakan ke kanal-kanal berikut dan pemetaan akan dihapus dari Chanelink:'
+        does_not_delete: 'Please note that deleting this room type from Chanelink will not automatically delete the room on the Channel which it was mapped to. You will need to log on to the Channel and delete the room manually, if required.'
+        confirm_delete: 'Saya mengerti konsekuensi dari menghapus tipe kamar %{room_type} dan ingin melanjutkan.'
+
+    validate:
+      rack_rate_must_be_over_minimum: 'harus sama dengan atau lebih besar dari %{minimum}'
+      minimum_rate_must_be_over_minimum: 'harus sama dengan atau lebih besar dari %{minimum}'
+
+  channels:
+    placeholder: 'Pilih kanal'
+
+  room_type_channel_mappings:
+    new:
+      label:
+        link: 'Perbarui Pemetaan Tipe Kamar'
+        link_set: 'Atur Pemetaan'
+        heading: 'Map %{room_type} to %{channel}'
+        channel_room: '1. Pilih Kamar'
+        channel_settings: '2. Pengaturan Kamar'
+        rate: '3. Konfigurasi Tarif'
+        confirm: '4. Review'
+        done_creating: 'Selesai'
+        chanelink_room: 'Kamar Chanelink'
+        channel_room_label: '%{channel} Room'
+        agoda_single_rate_modifier: 'Modifier Tarif Single'
+        agoda_double_rate_modifier: 'Modifier Tarif Double'
+        agoda_full_rate_modifier: 'Modifier Tarif Full'
+        agoda_single_rate_multiplier: 'Pengali Tarif Single'
+        agoda_double_rate_multiplier: 'Pengali Tarif Double'
+        agoda_full_rate_multiplier: 'Pengali Tarif Full'
+        agoda_breakfast_inclusion: 'Termasuk Sarapan'
+        agoda_release_period: 'Release Period'
+        agoda_extra_bed_rate: 'Tarif Extra Bed'
+        expedia_rate_conversion_multiplier: 'Rate Conversion Multiplier'
+        bookingcom_single_rate_discount: 'Discount Tarif Single'
+        rate_configuration: 'Silahkan pilih konfigurasi tarif'
+        rate_configuration_short: 'Konfigurasi Tarif'
+        rack_rate: 'Gunakan Rack Rate'
+        master_rate: 'Hubungkan ke Tarif Induk'
+        new_rate: 'Tarif Baru'
+        please_review: 'Silahkan konfirmasi informasi berikut sebelum selesai'
+        enable: 'Aktifkan setelah selesai'
+        status: 'Status'
+        min_rate_warning: 'Please note that rates pushed to Channel WILL NOT be lower than %{minimum}, which is the Min Rate has been set for this room type, regardless the value of Rate Multiplier.'
+        gta_travel_rate_type: 'Rate Type'
+        gta_travel_rate_gross: 'Gross'
+        gta_travel_rate_margin: 'Margin'
+        gta_travel_rate_static: 'Static'
+        gta_travel_single_rate_multiplier: 'Single Rate Multiplier'
+        gta_travel_double_rate_multiplier: 'Double Rate Multiplier'
+        gta_travel_triple_rate_multiplier: 'Triple Rate Multiplier'
+        gta_travel_quadruple_rate_multiplier: 'Quadruple Rate Multiplier'
+        gta_travel_full_period: 'Full Period'
+        gta_travel_contract_id: 'Contract ID'
+        gta_travel_rate_plan_id: 'Rate Plan ID'
+    edit:
+      link: 'Ubah'
+      message:
+        timeout: 'Problem communicating with %{channel}. %{channel} room types can not be listed. Please retry again later.'
+    create:
+      message:
+        success: 'Pemetaan kanal terbuat'
+        new_rate_should_be_greater_than_minimum: 'should be greater than room type minimum %{minimum}'
+    update:
+      message:
+        success: 'Pemetaan kanal terbarui'
+    delete:
+      link: 'Hapus'
+      dialog:
+        title: 'Peringatan Penghapusan Pemetaan Kamar'
+        paragraph_a: 'Anda sedang menghapus %{room_type} dari %{channel} secara permanen.'
+        paragraph_b: 'Yakin akan menghapus pemetaan kamar <strong>%{room_type}</strong> dari <strong>%{channel}</strong>? Semua data di Chanelink seperti tarif, min menginap, dan stop sell akan dihapus secara permanen dan data kamar ini tidak lagi dikirim ke %{channel}.' 
+        paragraph_c: 'Kamar di system kanal tidak otomatis terhapus dengan menghapus pemetaan kamar di Chanelink'
+        paragraph_d: 'Saya mengerti konsekuensi dari menghapus pemetaan kamar %{room_type} dan ingin melanjutkan.'
+      message:
+        success: 'Pemetaan kanal terhapus'
+    index:
+      link: 'Mappings'
+      label:
+        channels_not_mapped: 'Not mapped to the following Channels yet'
+    disabled:
+      label:
+        heading: 'Disabling Room Type Mapping'
+        non_booking: 'You are about to disable this room mapping. Are you sure want to disable this room mapping? Should you wish to continue, Chanelink will no longer manage the inventory update of the room for this booking channel.'
+        bookingcom: 'Are you sure want to disable this room mapping? Should you wish to continue, Chanelink will no longer manage the inventory update of the room for this booking channel AND no reservation for the room can be made through this booking channel.'
+        confirm: 'I understand the consequence and wished to proceed'
+
+  currency_conversion:
+    submit:
+      message:
+        success: 'Base currency updated'
+    index:
+      label:
+        heading: 'Konversi Mata Uang'
+        base_currency: 'Mata uang Dasar'
+        disable: 'Non-aktif - Konversi Mata Uang'
+        channel_conversion: 'Konversi Mata Uang Kanal'
+        conversion_disabled: 'Konversi Mata Uang Non-aktif'
+        placeholder: 'Pilih mata uang'
+        channel: 'Channel'
+        conversion: 'Currency Conversion'
+        empty: 'No currency conversion set yet'
+        setting: 'Setting'
+
+  property_channels:
+    index:
+      label:
+        heading: 'Kanal'
+        blank: 'Belum ada kanal yang diaktifkan'
+        total_rooms_mapped: '%{count} total rooms mapped'
+        awaiting_approval: '(belum diaktifkan)'
+    new:
+      label:
+        heading: 'Wizard Kanal Baru'
+        intro: 'Daftar berikut menunjukkan semua kanal yang digunakan Chanelink. Silahkan pilih kanal yang akan dihubungkan'
+        important_header: 'Catatan Penting:'
+        important_body: 'Untuk dapat terhubung dengan kanal yang dipilih, anda memerlukan akun yang terdaftar di kanal tersebut. Jika anda telah memiliki akun silahkan lanjutkan ke langkah berikutnya, jika tidak silahkan hubungi kanal tersebut untuk mendaftar. Anda akan membutuhkan informasi penting dari kanal tersebut untuk dapat menyelesaikan proses ini.'
+        channel: 'Connect to Channel'
+        rate_multiplier: 'Rate Conversion Multiplier'
+        username: 'Username'
+        password: 'Kata sandi'
+        currency: 'Mata uang'
+        reservation_email_address: 'Alamat Email Reservasi'
+        modification_email_address: 'Alamat Email Modifikasi'
+        cancellation_email_address: 'Alamat Email Pembatalan'
+        status: 'Status'
+        pool: 'Pilih Kategori Untuk Kanal Baru'
+        conversion_heading: 'Pilih Konversi Mata Uang'
+        conversion_body_1: 'Chanelink akan mengirimkan semua tarif ke kanal ini menggunakan <strong>Indonesian Rupiahs</strong> sebagai Mata Uang Dasar. Jika anda ingin mengkonversi tarif ke mata uang lain sebelum dikirim ke kanal, silahkan pilih mata uang dari daftar berikut.'
+        conversion_body_2: 'Jika anda memetakan kamar ke kanal ini, anda harus memastikan nilai dari tarif kamar dalam mata uang yang baru. Mohon berhati-hati dalam menentukan mata uang yang dipilih karena anda akan menjual kamar dalam mata uang tersebut. Jika anda memiliki pertanyaan, harap menghubungi tim support kami untuk mendapatkan bantuan atau temukan keterangan lebih lanjut dari online HELP kami.'
+        rate_multiplier_heading: 'Jika dibutuhkan, tuliskan Pengali Konversi Tarif.'
+        rate_multiplier_body_1: 'Chanelink mendukung fitur Konversi Tarif yang akan mengubah tarif sebelum dikirim ke kanal. Nilai yang digunakan untuk mengubah tarif tersebut adalah Pengali Konversi Tarif, dan jika dibutuhkan silahkan masukkan nilai berikut ini.'
+        rate_multiplier_body_2: 'Contohnya, jika hotel memasukkan 1.1 sebagai Pengali Konversi Tarif, maka tarif $100 yang sebelumnya telah ada akan menjadi $110 pada saat dikirim ke kanal.'
+        rate_multiplier_body_3: 'Jika nilai untuk Pengali Konversi Tarif dibiarkan kosong, tarif yang dikirimkan tidak akan berubah. Pada kebanyakan kanal, nilai ini dibiarkan kosong. Pertimbangkan baik-baik pada saat mengubah nilai ini untuk menghindari tarif yang salah. Jika anda memiliki pertanyaan, silahkan hubungi tim support kami atau cari tahu lebih lanjut di BANTUAN online.'
+        currency_conversion: 'Konversi Mata Uang'
+        channel_to_connect: 'Channel to Connect'
+        confirm_heading: 'Silahkan konfirmasi informasi berikut sebelum selesai.'
+        done_creating_heading: 'Konfirmasi Penambahan Kanal'
+        done_creating_1: 'Permintaan kanal telah diterima dan anda akan segera mengetahui status nya melalui email anda %{email}.'
+        done_creating_2: '%{channels} to go back to Channels overview.'
+        convert_to: 'Ubah Tarif Kanal ke Mata Uang'
+        conversion_multiplier: 'Pengali konversi mata uang'
+        conversion_disabled: 'Konversi Mata Uang untuk hotel ini sedang di-non-aktifkan'
+        property_id: 'Property ID'
+        contract_id: 'Contract ID'
+        chain_code: 'Chain Code'
+        
+      breadcrumb:
+        selection: '1. Pemilihan'
+        setting: '2. Pengaturan'
+        conversion: '3. Konversi'
+        rate_multiplier: '4. Pengali Tarif'
+        review: '5. Review'
+        finish: Selesai
+    create:
+      message:
+        success: 'Selesai menambah kanal baru'
+
+    show:
+      link: 'Tampilkan'
+
+    edit:
+      link: 'Pengaturan'
+      label:
+        heading: '%{channel} Pengaturan Kanal'
+        rooms_mapped: 'Kamar Chanelink yang telah dipetakan:'
+        no_rooms_mapped: 'Belum ada kamar Chanelink yang dipetakan'
+        rooms_not_mapped: 'Kamar Chanelink yang belum dipetakan:'
+        all_rooms_mapped: 'Belum ada kamar yang terdaftar atau semua kamar Chanelink telah dipetakan'
+        channel_rooms_not_mapped: 'Kamar %{channel} belum dipetakan:'
+        all_channel_rooms_mapped: 'Semua kamar %{channel} telah dipetakan'
+        mapped_to: 'dipetakan ke:'
+        
+    update:
+      message:
+        success: 'Pengaturan kanal telah diperbarui'
+
+    delete:
+      link: 'Delete'
+      message:
+        success: 'Channel mapping deleted'
+
+    disabled:
+      label:
+        heading: 'Disabling Channel'
+        non_booking: 'You are about to disable this booking channel. Are you sure want to disable this booking channel? Should you wish to continue, Chanelink will no longer manage the inventory update for this booking channel.'
+        bookingcom: 'Are you sure want to disable this booking channel? Should you wish to continue, Chanelink will no longer manage the inventory update of the room for this booking channel AND no reservation can be made through this booking channel.'
+        confirm: 'I understand the consequence and wished to proceed'
+
+  room_type_inventory_links:
+    placeholder: 'Pilih tipe kamar'
+    index:
+      label:
+        heading: 'Pengaturan Tautan Ketersediaan'
+        with_link: 'Kamar dengan ketersediaan tertaut'
+        with_link_empty: 'Tidak ada kamar dengan ketersediaan tertaut'
+        no_link: 'Kamar yang tidak memiliki ketersediaan tertaut'
+        no_link_empty: 'Tidak ada kamar yang tidak tertaut'
+    new:
+      link: 'Atur Tautan'
+      label:
+        heading: 'Atur Tautan Ketersediaan'
+        room_type: 'Kamar yang akan ditautkan:'
+        link: 'Tautkan ke Kamar:'
+    delete:
+      link: 'Unlink'
+      message:
+        success: 'Availability link removed'
+
+  room_type_master_rate_mappings:
+    placeholder: 'Pilih Kamar Tarif Induk'
+    index:
+      label:
+        heading: 'Tarif Induk'
+        mapped: 'Mapped Master Rates Room Type'
+        no_room_mapped: 'Belum ada tipe kamar yang dipetakan ke Tarif Induk'
+        new_master_rate_room: 'Kamar Tarif Induk Baru'
+        channel: 'Kanal'
+        no_markup_set: 'markup not set'
+        update_channel_mapping: 'Perbarui'
+    new:
+      label:
+        heading: 'Kamar Tarif Induk Baru'
+        no_more: 'All room types has been added'
+    delete:
+      link: 'Delete'
+      label:
+        heading: 'Delete Master Rate Room'
+        confirm: 'Are you sure you want to delete %{room_type} from Master Rate Rooms?'
+        channel_map_exist: 'To delete %{room_type} from Master Rate Rooms, please unlink all rooms linked to this room in the following channel(s):'
+      message:
+        success: 'Master Rate Room deleted'
+    create:
+      message:
+        success: 'Master Rate Rooms succesfully created'
+        already_exist: 'master rate already exist'
+    pool_selection:
+      label:
+        intro: "Silahkan pilih kategori yang akan dikelola:"
+
+  pool_selection:
+    label:
+      heading: "Pemilihan Kategori"
+      inventory_grid: "Silahkan pilih kategori yang akan dikelola:"
+      no_channel: 'Tidak ada kanal'
+
+  room_type_master_rate_channel_mappings:
+    edit:
+      label:
+        heading: 'Konfigurasi Kamar Tarif Induk'
+        master_rate_room: 'Kamar Tarif Induk'
+        method: 'Tipe Tautan'
+        percentage: 'Persentase'
+        amount: 'Jumlah'
+        value: 'Nilai'
+        master_rate_room: 'Kamar Tarif Induk'
+        value_type: 'Tipe Nilai'
+        value_notes: 'The percentage or amount value will be used to mark-up or mark-down Master Rates to get the room rates. <br/><br/>Example: If you use 10% (percentage) and the Master Rates is IDR 500.000, you will get IDR 550.000 as the room rates. And if you use -50.000 (amount), you will get IDR 450.000 as the room rates.'
+    toggle:
+      label:
+        enable: 'Link'
+        disable: 'Unlink'
+      message:
+        disabled: 'Sekarang tipe kamar tidak terhubung ke Tarif Induk'
+        enabled: 'Sekarang tipe kamar terhubung ke Tarif Induk'
+
+  notifier:
+    email_member_password:
+      subject: 'Detail Login'
+    email_user_password:
+      subject: 'Login details for Chanelink Backoffice'
+    email_member_reset_password:
+      subject: 'Kata sandi baru'
+    email_member_lock_password:
+      subject: 'Kata sandi baru'
+    email_expedia_booking_book:
+      subject: 'New Booking'
+    email_expedia_booking_new:
+      subject: 'New Booking'
+    email_expedia_booking_modify:
+      subject: 'Booking Modification'
+    email_expedia_booking_cancel:
+      subject: 'Booking Cancellation'
+
+  users:
+    prompt_password:
+      message:
+        failure: 'Password must be between 8 - 20 characters and must have upper and lowercase letters and numbers'
+
+  error:
+    title: 'Sorry we could not find the page you were looking for.'
+    back_to_home: 'To go back to home please click %{home}.'
+    here: 'here'
+    not_found:
+      body: 'The URL you entered is incorrect or the page has been deleted/moved.'
+    exception:
+      body: 'We encounter problem with this page, please try again later.'
+    session_expired:
+      body: 'It seems like you left idle for too long. Your session has expired.'
+
+  activemodel:
+    errors:
+      models:
+        copy_tool:
+          attributes:
+            channel_id_from:
+              blank: "tidak boleh kosong"
+            channel_id_to:
+              blank: "tidak boleh kosong"
+            room_id_from:
+              blank: "tidak boleh kosong"
+            room_id_to:
+              blank: "tidak boleh kosong"
+
+  admin:
+    users:
+      validate:
+        maximum_reached: 'only %{maximum} super users are allowed.'
+      manage: 'Users'
+      prompt_password:
+        label:
+          heading: 'Set Your Own Password'
+        message:
+          success: 'Password successfully changed'
+          new_password_not_given: 'Please specify your new password'
+          new_password_does_not_match_confirmation: 'New Password does not match with the confirmation'
+          failure: 'Password must be between 8 - 20 characters and must have upper and lowercase letters and numbers'
+          invalid_password: 'Password must have upper and lowercase letters and numbers'
+      type:
+        placeholder: 'Select a role'
+        general: 'General'
+        super: 'Super'
+      new:
+        link: 'New User'
+        label:
+          heading: 'New User'
+          name : 'Fullname'
+          email: 'Email'
+          super: 'Super'
+          select_all: 'Pilih Semua'
+      create:
+        message:
+          hotel: 'Hotel: '
+          account: 'Account: '
+          success: 'User successfully created'
+          maximum_slot_general: '%{property} already has %{maximum} general users assigned.'
+          maximum_slot_super: 'This account already has %{maximum} super users.'
+      delete:
+        link: 'Delete'
+        label:
+          are_you_sure: 'Are you sure you want to delete selected user?'
+        message:
+          success: 'User deleted'
+      edit:
+        link: 'Edit'
+        label:
+          heading: 'Edit User'
+      update:
+        message:
+          success: 'User successfully updated'
+      index:
+        label:
+          heading: 'Users'
+          super_member: 'Super Users'
+          config_member: 'Config Users'
+          no_config_member: 'No Config User registered'
+          general_member: 'General Users'
+          no_general_member: 'No General User registered'
+          name: 'Name'
+          email: 'Email'
+          role: 'Role'
+          master: 'Master'
+          
+    login:
+      label:
+        title: 'Login'
+        heading: 'Login'
+        email: 'Email'
+        password: 'Kata sandi'
+        remember_me: 'Selalu login' 
+      message:
+        fail: 'Email atau kata sandi salah'
+        success: 'Selamat datang kembali!'
+
+    dashboard:
+      property_channels:
+        heading: 'Channel Request (%{count})'
+        empty: 'No pending channel request'
+        connection_request: 'Connection request to %{channel}'
+
+    logout:
+      message:
+        success: 'Anda telah logout'
+
+    accounts:
+      new:
+        label:
+          heading: 'Akun Baru'
+          name: 'Nama Akun'
+          address: 'Alamat'
+          telephone: 'Telepon'
+          created: 'Akun telah dibuat'
+          created_note: 'Akun <strong>%{account_name}</strong> telah selesai dibuat, sebuah email berisikan password telah dikirimkan ke <strong>%{super_member_email}</strong>. Untuk mendaftarkan hotel: %{new_property_link}.'
+          new_property: 'pendaftaran hotel'
+          agoda_api_key: 'API key Agoda'
+          contact_name: 'Contact Name'
+          contact_email: 'Contact Email'
+          enable: 'Enable'
+          disable_warning: '(Disabling an account will not allow the account users to login. All account hotels data will not be pushed)'
+        breadcrumb:
+          account_details: '1. Detail Akun'
+          super_member_details: '2. Detail Pengguna Admin'
+          done_creating: '3. Selesai' 
+      index:
+        label:
+          heading: 'Daftar Akun'
+      edit:
+        link: 'Ubah'
+        label:
+          heading: 'Ubah %{account}'
+      update:
+        message:
+          success: 'Akun telah diperbarui'
+      delete:
+        link: 'Delete Account'
+        message:
+          success: 'Account deleted'
+        dialog:
+          title: 'Delete Account'
+          body: 'Are you sure you want to delete this Account?'
+      activate:
+        link: 'Activate'
+        message:
+          success: 'Account activated'
+          no_property: 'Activation failed: account does not have a property'
+          no_channels: 'Activation failed: account is not connected to a channel'
+          no_room_type: 'Activation failed: account does not have a room type'
+          no_room_type_channel_mapping: 'Activation failed: each room type must be mapped to each channel'
+
+    properties:
+      new:
+        label:
+          heading: 'Hotel baru' 
+          name: 'Nama'
+          address: 'Alamat' 
+          city: 'Kota' 
+          state: 'Provinsi' 
+          postcode: 'Kode Pos' 
+          account: 'Akun' 
+          country: 'Negara' 
+          minimum_room_rate: 'Tarif minimum kamar' 
+          account_placeholder: 'Pilih akun'
+          country_placeholder: 'Pilih negara'
+          created: 'Hotel telah dibuat'
+          created_note: '<strong>%{property_name}</strong> telah selesai dibuat untuk <strong>%{account_name}</strong>, untuk mendaftarkan tipe kamar: %{new_room_type_link}.'
+          new_room_type: 'pendaftaran tipe kamar'
+          agoda_hotel_id: 'ID Hotel Agoda'
+          expedia_hotel_id: 'ID Hotel Expedia'
+          expedia_username: 'Nama pengguna Expedia'
+          expedia_password: 'Kata sandi Expedia'
+          bookingcom_hotel_id: 'ID Hotel Booking.com'
+          bookingcom_username: 'Nama pengguna Booking.com'
+          bookingcom_password: 'Kata sandi Booking.com'
+          currency: 'Currency'
+      approve:
+        link: 'Setujui'
+        message:
+          success: 'Hotel disetujui'
+          no_channels: 'Approval failed: property is not connected to a channel'
+          no_room_type: 'Approval failed: property does not have a room type'
+          no_room_type_channel_mapping: 'Approval failed: each room type must be mapped to each channel'
+          no_currency: 'Approval failed: please specify base currency'
+      index:
+        label:
+          heading: 'Daftar Hotel'
+          not_approved: 'Hotel tidak disetujui'
+      edit:
+        link: 'Ubah'
+        label:
+          heading: 'Edit Hotel'
+      delete:
+        link: 'Delete Hotel'
+        message:
+          success: 'Hotel deleted'
+        dialog:
+          title: 'Delete Hotel'
+          body: 'Are you sure you want to delete this Hotel?'
+
+    property_channels:
+      index:
+        label:
+          heading: 'Daftar kanal'
+          not_approved: 'Kanal tidak disetujui'
+
+    context:
+      select_account:
+        label:
+          header: 'Select an Account that you want to manage'
+      select_property:
+        label:
+          header: 'Select an Account and a Hotel that you want to manage'
+          back_link: '<< back to select Account'
+          account: 'Account'
+          properties_list: 'Hotels of the selected Account'
+          new_property: 'Add New Property'
+          new_account: 'Create New Account'
+
+    setup:
+      link: 'Setup'
+      label:
+        account_pending: "Account(s) waiting for activation (%{count})"
+        account_activated: 'Activated Account(s) (%{count})'
+        property_pending: "Hotel(s) waiting for approval (%{count})"
+        property_rejected: 'Rejected Hotel(s) (%{count})'
+        activation_intro: 'The following must be completed in order to activate an account:'
+        activation_a: 'Create an Admin user for the Account'
+        activation_b: 'Create at least 1 (one) Hotel, and register a Channel for the Account'
+        activation_c: 'Create initial Room Types, and Set Mapping with each Channel'
+
+    configurations:
+      label:
+        heading: 'Configuration'
+        days_to_keep_cc_info: 'Days to keep Credit Card Info'
+      update:
+        message:
+          success: 'Configuration updated'
+

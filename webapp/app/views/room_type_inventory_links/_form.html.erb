@@ -1,0 +1,17 @@
+<h2><%= raw t('room_type_inventory_links.new.label.heading') %></h2>
+<%= form_for @link do |f| %>
+  <%= f.hidden_field :room_type_from_id, :value => @link.room_type_from_id %>
+  <p>
+    <label>
+      <%= raw t('room_type_inventory_links.new.label.room_type') %>
+    </label>
+    <strong><%= @link.room_type_from.name %></strong>
+  </p>
+  <p>
+    <label><%= t('room_type_inventory_links.new.label.link') %></label>
+    <%= f.select :room_type_to_id, options_for_select(RoomTypeInventoryLink.select_list(current_property, @link.room_type_from), @link.room_type_to_id)%>
+  </p>
+  <p>
+    <%= f.submit t("button.save") %>
+  </p>
+<% end %>

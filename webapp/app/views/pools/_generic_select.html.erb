@@ -1,0 +1,7 @@
+<div class="poolSelection">
+  <% if current_property.single_pool? %>
+  <% else %>
+    <%= pool_selection_js(path_to_go) %>
+    <p><%= t('general.pool') %> <%= select_tag "select_pool", options_for_select(Pool.pool_list_without_all(current_property), params[:pool_id]) %></p>
+  <% end %>
+</div>

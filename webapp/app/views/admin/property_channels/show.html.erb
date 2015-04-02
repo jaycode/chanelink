@@ -1,0 +1,67 @@
+<%= page_title t('property_channels.edit.label.heading', :channel => @property_channel.channel.name) %>
+<div id="newChannel">
+  <div class="col9">
+    <h2><%= raw t('property_channels.edit.label.heading', :channel => @property_channel.channel.name) %></h2>
+
+    <%= form_for @property_channel do |f| %>
+      <p>
+        <label><%= t('property_channels.new.label.status') %></label>
+        <% if @property_channel.disabled? %>
+          <span class="red"><%= t("general.disabled") %></span>
+        <% else %>
+          <span class="green"><%= t("general.enabled") %></span>
+        <% end %>
+      </p>
+      <%= render "#{@property_channel.channel.cname}_read" %>
+    <% end %>
+    <br/>
+    <h4><%= t('property_channels.edit.label.rooms_mapped') %></h4>
+    <br/>
+    <% rooms_mapped = RoomTypeChannelMapping.room_type_ids(current_admin_property.room_type_ids).where(:channel_id => @property_channel.channel.id) %>
+    <% if !rooms_mapped.blank? %>
+      <% rooms_mapped.each do |mapping| %>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;<%= mapping.room_type.name %> <%= t('property_channels.edit.label.mapped_to') %> <%= mapping.agoda_room_type_id %></p>
+      <% end %>
+    <% else %>
+      <p>
+        <%= t('property_channels.edit.label.no_rooms_mapped') %>
+      </p>
+    <% end %>
+    <br/>
+    <h4><%= t('property_channels.edit.label.rooms_not_mapped') %></h4>
+    <br/>
+    <% count_not_mapped = 0 %>
+    <% if !current_admin_property.room_types.blank? %>
+      <% current_admin_property.room_types.each do |rt| %>
+        <% if RoomTypeChannelMapping.where(:room_type_id => rt.id, :channel_id => @property_channel.channel.id).blank? %>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;<%= rt.name %></p>
+          <% count_not_mapped = count_not_mapped + 1 %>
+        <% end %>
+      <% end %>
+    <% end %>
+    <% if count_not_mapped == 0 %>
+      <p>
+        <%= t('property_channels.edit.label.all_rooms_mapped') %>
+      </p>
+    <% end %>
+    <br/>
+    <h4><%= t('property_channels.edit.label.channel_rooms_not_mapped', :channel => @property_channel.channel.name) %></h4>
+    <br/>
+    <% begin %>
+      <% channel_not_mapped = @property_channel.channel.room_type_fetcher.retrieve(current_admin_property, true) %>
+      <% if !channel_not_mapped.blank? %>
+        <% channel_not_mapped.each do |crt| %>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;<%= "#{crt.name} - #{crt.id}" %></p>
+        <% end %>
+      <% else %>
+        <p>
+          <%= t('property_channels.edit.label.all_channel_rooms_mapped', :channel => @property_channel.channel.name) %>
+        </p>
+      <% end %>
+    <% rescue Exception %>
+      <p class="red">
+        <%= t('room_type_channel_mappings.edit.message.timeout', :channel => @property_channel.channel.name) %>
+      </p>
+    <% end %>
+  </div>
+</div>

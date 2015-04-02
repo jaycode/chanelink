@@ -1,0 +1,64 @@
+<% booking_xml = Nokogiri::XML(@booking.booking_xml).xpath("/reservation") %>
+<% room_xml = Nokogiri::XML(@booking.bookingcom_room_xml).xpath("/room") %>
+<div class="col10">
+  <h2>Booking View</h2>
+  <p>
+    <label>Hotel</label>
+    <%= @booking.property.name %>
+  </p>
+  <p>
+    <label>Room Type</label>
+    <%= @booking.room_type.name %>
+  </p>
+  <p>
+    <label>Channel</label>
+    <%= @booking.channel.name %>
+  </p>
+  <p>
+    <label>Booking ID</label>
+    <%= @booking.bookingcom_booking_id %>
+  </p>
+  <p>
+    <label>Status</label>
+    <%= @booking.status %>
+  </p>
+  <p>
+    <label>Guest</label>
+    <%= @booking.guest_name %>
+  </p>
+  <p>
+    <label>Stay</label>
+    <%= @booking.date_start.strftime('%d/%m/%y') %> - <%= @booking.date_end.strftime('%d/%m/%y') %>
+  </p>
+  <p>
+    <label>Amount</label>
+    <%= booking_xml.xpath('./currencycode').text() %>&nbsp;<%= @booking.amount %>
+  </p>
+  <br/>
+  <h4>Additional Room Info</h4>
+  <br/>
+  <% leaves = room_xml.xpath('//*[not(*)]') %>
+  <% leaves.each do |node| %>
+   <p>
+     <label><%= "#{node.name.titleize}" %></label>
+     <%= "#{node.text}" %>&nbsp;
+   </p>
+  <% end %>
+  <br/>
+  <h4>Payment Info</h4>
+  <br/>
+  <% leaves = booking_xml.xpath('//customer/*[not(*)]') %>
+  <% leaves.each do |node| %>
+   <p>
+     <label><%= "#{node.name.titleize}" %></label>
+     <% if node.name.start_with?("cc") and node.name != 'cc_type' %>
+       <%= StringUtils.scramble(node.text) %>
+     <% else %>
+       <%= node.text %>
+     <% end %>
+     &nbsp;
+   </p>
+  <% end %>
+
+</div>
+

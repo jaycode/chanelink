@@ -1,0 +1,7 @@
+<%= page_title t('properties.edit.label.heading') %>
+<div id="newProperty">
+  <div class="col9">
+    <h2><%= raw t('properties.edit.label.heading') %></h2>
+    <%= render 'form', :action => 'update', :locals => {:edit => true} %>
+  </div>
+</div>

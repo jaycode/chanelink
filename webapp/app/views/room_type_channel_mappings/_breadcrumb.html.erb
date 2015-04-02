@@ -1,0 +1,22 @@
+<% step = locals[:step] %>
+<div class="breadcrumb">
+  <div class="step <%= 'current' if step == 'channel_room' %>">
+    <%= t('room_type_channel_mappings.new.label.channel_room') %>
+  </div>
+  <div class="separator">&gt;&gt;</div>
+  <div class="step <%= 'current' if step == 'channel_settings' %>">
+    <%= t('room_type_channel_mappings.new.label.channel_settings') %>
+  </div>
+  <div class="separator">&gt;&gt;</div>
+  <div class="step <%= 'current' if step == 'rate' %>">
+    <%= t('room_type_channel_mappings.new.label.rate') %>
+  </div>
+  <div class="separator">&gt;&gt;</div>
+  <div class="step <%= 'current' if step == 'confirm' %>">
+    <%= t('room_type_channel_mappings.new.label.confirm') %>
+  </div>
+  <div class="separator">&gt;&gt;</div>
+  <div class="step <%= 'current' if current_page?(done_creating_room_type_channel_mappings_path) %>">
+    <%= t('room_type_channel_mappings.new.label.done_creating') %>
+  </div>
+</div>

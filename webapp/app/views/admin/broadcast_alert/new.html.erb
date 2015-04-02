@@ -1,0 +1,29 @@
+<div id="broadcastAlert">
+  <div class="col8">
+    <h2>Broadcast Alert</h2>
+    <%= form_tag admin_create_broadcast_alert_path do %>
+      <p>
+        <label>Message</label>
+        <%= text_area_tag :message, params[:message], :rows => 3, :cols => 35 %>
+      </p>
+      <% Account.approved.each do |acc| %>
+        <% if acc.properties.active_only.size > 0 %>
+          <p><strong><%= acc.name %></strong></p>
+          <% acc.properties.active_only.each do |property| %>
+            <span class="propertyCheck">
+              <%= check_box_tag "property_ids[]", property.id, ((!params[:property_ids].blank? and params[:property_ids].include?(property.id.to_s)) ? true : false), :id => "property_#{property.id}" %>&nbsp;&nbsp;<%= property.name %>
+            </span>
+          <% end %>
+          <br/>
+          <br/>
+        <% end %>
+      <% end %>
+      <%= broadcast_alert_select_all_js %>
+      <p><%= link_to t('bulk_update.tool.label.select_all'), '#', :id => 'broadcastAlertSelectAll' %> </p>
+      <p>
+        <label>&nbsp;</label>
+        <%= submit_tag t('button.create') %>
+      </p>
+    <% end %>
+  </div>
+</div>

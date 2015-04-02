@@ -1,0 +1,128 @@
+<div class="col3" id="verticalMenu">
+  <div class="currentProperty">
+    <div class="name">
+      <%= current_property.name %>
+    </div>
+    <div class="switch">
+      <%= link_to t('properties.select.link'), select_properties_path if current_member.properties.count > 1 %>
+    </div>
+  </div>
+  <div class="topMenu">
+    <%= link_to dashboard_path do %>
+      <%= image_tag 'icon-dashboard-16.png' %><%= t('menu.dashboard') %>
+    <% end %>
+  </div>
+
+  <div class="topMenu">
+    <%= link_to '#', :class => 'topMenuToggle' do %>
+      <%= image_tag 'icon-inventory-16.png' %><%= t('menu.inventory') %>
+    <% end %>
+    <% activity_paths = [grid_inventories_path, bulk_update_path, copy_tool_path] %>
+    <div class="subMenu" style="<%= check_selected_sub_menu(activity_paths) ? '' : 'display: none' %>">
+      <%= link_to grid_inventories_path do %>
+        <%= t('menu.inventory_grid') %>
+      <% end %>
+    </div>
+    <div class="subMenu" style="<%= check_selected_sub_menu(activity_paths) ? '' : 'display: none' %>">
+      <%= link_to bulk_update_path do %>
+        <%= t('menu.bulk_update') %>
+      <% end %>
+    </div>
+    <% if can? :tool, CopyTool %>
+      <div class="subMenu" style="<%= check_selected_sub_menu(activity_paths) ? '' : 'display: none' %>">
+        <%= link_to copy_tool_path do %>
+          <%= t('menu.copy_tool') %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="topMenu">
+    <%= link_to property_channels_path do %>
+      <%= image_tag 'icon-channel-24.png' %><%= t('menu.channel') %>
+    <% end %>
+  </div>
+
+  <div class="topMenu">
+    <%= link_to alerts_path do %>
+      <%= image_tag 'icon-alert-24.png' %><%= t('menu.alerts') %>
+      <% alerts = Alert.by_member_and_property_and_read(current_member, current_property, false).size  %>
+      <% if alerts > 0 %>
+        <span class="counter"><%= alerts %></span>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="topMenu">
+    <%= link_to '#', :class => 'topMenuToggle' do %>
+      <%= image_tag 'icon-report-24.png' %><%= t('menu.reports') %>
+    <% end %>
+    <% activity_paths = [checkin_reports_path, channel_yield_reports_path, channel_trends_reports_path] %>
+    <div class="subMenu" style="<%= check_selected_sub_menu(activity_paths) ? '' : 'display: none' %>">
+      <%= link_to checkin_reports_path do %>
+        <%= t('menu.reports_checkin') %>
+      <% end %>
+    </div>
+    <div class="subMenu" style="<%= check_selected_sub_menu(activity_paths) ? '' : 'display: none' %>">
+      <%= link_to channel_yield_reports_path do %>
+        <%= t('menu.reports_channel_yield') %>
+      <% end %>
+    </div>
+    <div class="subMenu" style="<%= check_selected_sub_menu(activity_paths) ? '' : 'display: none' %>">
+      <%= link_to channel_trends_reports_path do %>
+        <%= t('menu.reports_channel_trends') %>
+      <% end %>
+    </div>
+
+  </div>
+
+  <div class="topMenu">
+    <%= link_to '#', :class => 'topMenuToggle' do %>
+      <%= image_tag 'icon-setup-24.png' %><%= t('menu.setup') %>
+    <% end %>
+    <% activity_paths = [pools_path, show_embed_property_path(current_property), edit_embed_property_path(current_property), new_pool_path, room_types_path, new_room_type_path, room_type_master_rate_mappings_path, room_type_inventory_links_path] %>
+    <div class="subMenu" style="<%= check_selected_sub_menu(activity_paths) ? '' : 'display: none' %>">
+      <%= link_to pools_path do %>
+        <%= t('menu.pools') %>
+      <% end %>
+    </div>
+    <div class="subMenu" style="<%= check_selected_sub_menu(activity_paths) ? '' : 'display: none' %>">
+      <% if can? :update_embed, Property %>
+        <%= link_to edit_embed_property_path(current_property) do %>
+          <%= t('menu.hotel_details') %>
+        <% end %>
+      <% else %>
+        <%= link_to show_embed_property_path(current_property) do %>
+          <%= t('menu.hotel_details') %>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="subMenu" style="<%= check_selected_sub_menu(activity_paths) ? '' : 'display: none' %>">
+      <%= link_to room_types_path do %>
+        <%= t('menu.room_types') %>
+      <% end %>
+    </div>
+    <div class="subMenu" style="<%= check_selected_sub_menu(activity_paths) ? '' : 'display: none' %>">
+      <%= link_to room_type_master_rate_mappings_path do %>
+        <%= t('menu.master_rates') %>
+      <% end %>
+    </div>
+    <div class="subMenu" style="<%= check_selected_sub_menu(activity_paths) ? '' : 'display: none' %>">
+      <%= link_to room_type_inventory_links_path do %>
+        <%= t('menu.room_type_inventory_links') %>
+      <% end %>
+    </div>
+    <div class="subMenu" style="<%= check_selected_sub_menu(activity_paths) ? '' : 'display: none' %>">
+      <% if can? :edit, CurrencyConversion %>
+        <%= link_to edit_currency_conversion_path do %>
+          <%= t('menu.currency_conversion') %>
+        <% end %>
+      <% else %>
+        <%= link_to currency_conversion_path do %>
+          <%= t('menu.currency_conversion') %>
+        <% end %>
+      <% end %>
+    </div>
+    
+  </div>
+</div>

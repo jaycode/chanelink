@@ -1,0 +1,11 @@
+<%= page_title t('admin.accounts.new.label.heading') %>
+<div id="newAccount">
+  <div class="col9">
+    <h2><%= raw t('admin.accounts.new.label.heading') %></h2>
+    <%= render 'breadcrumb' %>
+    <%= form_for @account, :url => {:controller => 'admin/accounts', :action => 'new_wizard_for_super_member'} do |f| %>
+      <%= render 'form_fields', :f => f %>
+      <p><%= f.submit t("button.continue") %></p>
+    <% end %>
+  </div>
+</div>

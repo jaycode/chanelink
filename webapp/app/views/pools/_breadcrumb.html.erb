@@ -1,0 +1,16 @@
+<div class="breadcrumb">
+  <% if current_page?(new_wizard_for_account_admin_accounts_path) %>
+  
+  <% end %>
+  <div class="step <%= 'current' if current_page?(new_wizard_details_pools_path) %>">
+    <%= t('pools.new.label.details') %>
+  </div>
+  <div class="separator">&gt;&gt;</div>
+  <div class="step <%= 'current' if current_page?(new_wizard_confirmation_pools_path) %>">
+    <%= t('pools.new.label.confirmation') %>
+  </div>
+  <div class="separator">&gt;&gt;</div>
+  <div class="step <%= 'current' if current_page?(done_creating_pools_path) %>">
+    <%= t('pools.new.label.done_creating') %>
+  </div>
+</div>

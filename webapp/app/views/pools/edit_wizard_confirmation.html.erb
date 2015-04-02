@@ -1,0 +1,53 @@
+<%= page_title t('pools.edit.label.heading', :pool => @pool.name) %>
+
+<% channels = Array.new %>
+<% unless @pool.assigned_channels.blank? %>
+  <% @pool.assigned_channels.each do |c_id| %>
+    <% channels << Channel.find(c_id).name %>
+  <% end %>
+<% end %>
+<% channels_display = channels.join(', ') %>
+
+<div id="newPool">
+  <div class="col9">
+    <h2><%= raw t('pools.edit.label.heading', :pool => @pool.name) %></h2>
+    <%= form_for @pool, :url => {:controller => 'pools', :action => 'update'} do |f| %>
+      <p>
+        <label><%= t('pools.new.label.name') %></label>
+        <%= @pool.name %>
+      </p>
+      <p>
+        <label><%= t('pools.new.label.channels_addition') %></label>
+        <% if @pool.assigned_channels.blank? %>
+        &nbsp;-
+        <% else %>
+          <%= channels_display %>
+        <% end %>
+      </p>
+      <br/>
+      <div class="confirmationBox">
+        <% if @pool.assigned_channels.blank? %>
+          <p><em><%= t('pools.edit.label.no_channels') %></em></p>
+        <% else %>
+          <% if @pool.zero_inventories? %>
+            <p><%= raw t('pools.edit.label.about_to_move', :pool => @pool.name) %></p>
+            <p><%= raw t('pools.edit.label.are_you_sure', :channels => channels_display) %></p>
+            <p><%= raw t('pools.edit.label.should_continue') %></p>
+            <p><%= radio_button_tag 'availability', Constant::POOL_ZERO_INVENTORY, params[:availability] == Constant::POOL_ZERO_INVENTORY, :onmouseup => "javascript: editPoolAvailabilityDialog('#{t('pools.edit.label.heading', :pool => @pool.name)}', '#{edit_pool_availability_dialog_body}'); return false;" %>&nbsp;&nbsp;<%= raw t('pools.edit.label.zero_inventory', :pool => @pool.name) %></p>
+            <p><%= radio_button_tag 'availability', Constant::POOL_DISABLE_CHANNELS, params[:availability] == Constant::POOL_DISABLE_CHANNELS, :onmouseup => "javascript: editPoolAvailabilityDialog('#{t('pools.edit.label.heading', :pool => @pool.name)}', '#{edit_pool_availability_dialog_body}'); return false;" %>&nbsp;&nbsp;<%= raw t('pools.edit.label.disable_channels') %></p>
+            <br/>
+            <p><%= t('pools.edit.label.master_rate') %></p>
+          <% else %>
+            <p><%= t('pools.edit.label.inventory_push', :channels => channels_display, :pool => @pool.name) %></p>
+          <% end %>
+        <% end %>
+      </div>
+      <p>
+        <%= f.submit t("button.back"), :name => "back_button" %>
+        <% if @pool.assigned_channels.blank? or !@pool.inventories.blank? %>
+          <%= f.submit t("button.save") %>
+        <% end %>
+      </p>
+    <% end %>
+  </div>
+</div>

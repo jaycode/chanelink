@@ -1,0 +1,31 @@
+We received the following booking event from <%= @booking.channel.name %>:
+<table>
+  <tr>
+    <td>Type</td>
+    <td><%= @booking.booking_status.name %></td>
+  </tr>
+  <tr>
+    <td>Guest Name</td>
+    <td><%= @booking.guest_name %></td>
+  </tr>
+  <tr>
+    <td>Stay</td>
+    <td><%= @booking.date_start.strftime('%d/%m/%y') %> - <%= @booking.date_end.strftime('%d/%m/%y') %></td>
+  </tr>
+  <tr>
+    <td>Room Type</td>
+    <td><%= @booking.room_type.name %></td>
+  </tr>
+  <tr>
+    <td>Total Rooms</td>
+    <td><%= @booking.total_rooms %></td>
+  </tr>
+  <tr>
+    <td>Booking Date</td>
+    <td><%= @booking.booking_date.strftime('%d/%m/%y') %></td>
+  </tr>
+  <tr>
+    <td>Total Amount</td>
+    <td><%= @booking.amount %></td>
+  </tr>
+</table>

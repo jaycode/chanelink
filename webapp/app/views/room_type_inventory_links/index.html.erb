@@ -1,0 +1,43 @@
+<%= page_title t('room_type_inventory_links.index.label.heading') %>
+<div id="roomTypeInventoryLinksIndex">
+  <div class="col9">
+    <h2><%= raw t('room_type_inventory_links.index.label.heading') %></h2>
+    <h4><%= t('room_type_inventory_links.index.label.with_link') %></h4>
+    <br/>
+    <% if RoomTypeInventoryLink.find_by_property_id(current_property.id).blank? %>
+      <div class="noLinkRow">
+        <%= t('room_type_inventory_links.index.label.with_link_empty') %>
+      </div>
+    <% else %>
+      <% RoomTypeInventoryLink.find_all_by_property_id(current_property.id).each do |link| %>
+        <div class="noLinkRow">
+          <div class="roomType"><%= link.room_type_from.name %> >> <%= link.room_type_to.name %></div>
+          <div class="action">
+            <% if can? :delete, RoomTypeInventoryLink %>
+              <%= link_to t('room_type_inventory_links.delete.link'), delete_room_type_inventory_link_path(link) %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+    <br/>
+    <h4><%= t('room_type_inventory_links.index.label.no_link') %></h4>
+    <% if RoomTypeInventoryLink.room_not_linked?(current_property) %>
+      <br/>
+      <% current_property.rooms_not_inventory_linked.each do |rt| %>
+        <div class="noLinkRow">
+          <div class="roomType"><%= rt.name %></div>
+          <div class="action">
+            <% if can? :create, RoomTypeInventoryLink %>
+              <%= link_to t('room_type_inventory_links.new.link'), '#', :onclick => "javascript: newRoomTypeInventoryLinkDialog('#{t('room_type_inventory_links.new.label.heading')}', '#{new_room_type_inventory_links_dialog_body(rt)}'); return false;" %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <p>
+        <%= t('room_type_inventory_links.index.label.no_link_empty') %>
+      </p>
+    <% end %>
+  </div>
+</div>

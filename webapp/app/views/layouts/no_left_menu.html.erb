@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= page_title %> - Chanelink</title>
+  <%= include_stylesheets :main %>
+  <%= javascript_include_tag 'jquery-1.7.2.min', 'pagination', 'rails', 'application' %>
+
+  <%= csrf_meta_tag %>
+</head>
+<body>
+  <%= render 'layouts/inactivity_check' %>
+  <header>
+    <div class="plc">
+      <h1><a href="/"></a></h1>
+      <%= render 'layouts/top_panel' %>
+    </div>
+  </header>
+  <section id="contents">
+    <div class="plc">
+      <div id="mainContents">
+        <%= render 'layouts/notification' %>
+        <%= yield %>
+      </div>
+    </div>
+  </section>
+  <%= render 'layouts/footer' %>
+</body>
+</html>

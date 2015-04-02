@@ -1,0 +1,86 @@
+<div class="col10">
+  <% PropertyChannel.find_all_by_channel_id(BookingcomChannel.first.id).each do |pc| %>
+    <p><%= pc.property.name %> - ID: <%= pc.property.bookingcom_hotel_id %></p>
+    <% property = pc.property %>
+    <% builder = Nokogiri::XML::Builder.new do |xml| %>
+      <% xml.request { %>
+        <% xml.username BookingcomChannel::USERNAME %>
+        <% xml.password BookingcomChannel::PASSWORD %>
+        <% xml.hotel_id property.bookingcom_hotel_id %>
+      <% } %>
+    <% end %>
+
+    <% request_xml = builder.to_xml %>
+    <% response_xml = BookingcomChannel.post_xml(request_xml, BookingcomChannel::ROOMS) %>
+
+    <% xml_doc  = Nokogiri::XML(response_xml) %>
+    <% bookingcom_room_types = xml_doc.xpath("//room") %>
+    <% bookingcom_room_types.each do |rt| %>
+      <p>&nbsp;&nbsp;<%= rt.text() %> - ID: <%= rt["id"] %></p>
+
+      <% rate_builder = Nokogiri::XML::Builder.new do |rate_xml| %>
+      <% rate_xml.request { %>
+          <% rate_xml.username BookingcomChannel::USERNAME %>
+          <% rate_xml.password BookingcomChannel::PASSWORD %>
+          <% rate_xml.hotel_id property.bookingcom_hotel_id %>
+        <% } %>
+      <% end %>
+
+      <% rate_request_xml = rate_builder.to_xml %>
+      <% rate_response_xml = BookingcomChannel.post_xml(rate_request_xml, BookingcomChannel::RATES) %>
+      
+      <% xml_doc  = Nokogiri::XML(rate_response_xml) %>
+      <% xml_doc.xpath(".//rate").each do |rate| %>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;<%= rate.text() %> - ID: <%= rate["id"] %></p>
+      <% end %>
+    <% end %>
+    <hr/>
+  <% end %>
+  <%= form_tag admin_bookingcom_update_set_path do %>
+    <p>
+      <label>Property Booking.com ID</label>
+      <%= text_field_tag 'property_id' %>
+    </p>
+    <p>
+      <label>Room Type Booking.com ID</label>
+      <%= text_field_tag 'room_type_id' %>
+    </p>
+    <p>
+      <label>Rate Plan Booking.com ID</label>
+      <%= text_field_tag 'rate_plan_id' %>
+    </p>
+    <p>
+      <%= bookingcom_update_date_picker_js 'date_from' %>
+      <%= bookingcom_update_date_picker_js 'date_to' %>
+      <label>Date (From - To)</label>
+      <%= text_field_tag 'date_from' %>&nbsp;<%= text_field_tag 'date_to' %>
+    </p>
+    <p>
+      <label>Rate</label>
+      <%= text_field_tag 'rate' %>
+    </p>
+    <p>
+      <label>Single Rate</label>
+      <%= text_field_tag 'single_rate' %>
+    </p>
+    <p>
+      <label>Min Stay</label>
+      <%= text_field_tag 'min_stay' %>
+    </p>
+    <p>
+      <label>CTA</label>
+      <%= text_field_tag 'cta' %> Value: 1 or 0
+    </p>
+    <p>
+      <label>CTD</label>
+      <%= text_field_tag 'ctd' %> Value: 1 or 0
+    </p>
+    <p>
+      <label>Stop Sell</label>
+      <%= text_field_tag 'stop_sell' %> Value: 1 or 0
+    </p>
+    
+    <%= submit_tag t('button.update') %>
+  <% end %>
+</div>
+

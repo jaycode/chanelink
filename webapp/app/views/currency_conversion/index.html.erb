@@ -1,0 +1,16 @@
+<%= page_title t('currency_conversion.index.label.heading') %>
+<div id="indexCurrencyConversion">
+  <div class="col9">
+    <h2><%= raw t('currency_conversion.index.label.heading') %></h2>
+    <p>
+      <label><%= t('currency_conversion.index.label.base_currency') %></label>
+      <% if current_property.currency_conversion_disabled? %>
+        <%= t('general.disabled') %>
+      <% else %>
+        <%= current_property.currency.name %>
+      <% end %>
+    </p>
+    <br/>
+    <%= render 'list' %>
+  </div>
+</div>

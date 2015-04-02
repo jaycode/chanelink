@@ -1,0 +1,17 @@
+<%= page_title t('property_channels.new.label.heading') %>
+<div id="newChannel">
+  <div class="col10">
+    <h2><%= raw t('property_channels.new.label.heading') %></h2>
+    <%= render 'breadcrumb' %>
+    <h4><%= t('property_channels.new.label.done_creating_heading') %></h4>
+    <br/>
+    <div class="box review">
+      <p>
+        <%= raw t('property_channels.new.label.done_creating_1', :email => current_member.email) %>
+      </p>
+      <p>
+        <%= raw t('property_channels.new.label.done_creating_2', :channels => (link_to t('general.click_here'), property_channels_path)) %>
+      </p>
+    </div>
+  </div>
+</div>

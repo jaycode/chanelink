@@ -1,0 +1,14 @@
+<div id="newMember">
+  <div class="col9">
+    <h2><%= raw t('admin.configurations.label.heading') %></h2>
+    <%= form_for @configuration, :url => {:controller => "admin/configurations", :action => "update"} do |f| %>
+      <p>
+      <label><%= t('admin.configurations.label.days_to_keep_cc_info') %></label>
+      <%= f.text_field :days_to_keep_cc_info %>
+      </p>
+      <p>
+        <%= f.submit t("button.save") %>
+      </p>
+    <% end %>
+  </div>
+</div>

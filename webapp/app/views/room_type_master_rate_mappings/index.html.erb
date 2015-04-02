@@ -1,0 +1,79 @@
+<%= page_title t('room_type_master_rate_mappings.index.label.heading') %>
+<div id="masterRateMappingIndex">
+  <div class="col9">
+    <h2><%= raw t('room_type_master_rate_mappings.index.label.heading') %></h2>
+    <%= render 'pools/generic_select', :path_to_go => room_type_master_rate_mappings_path %>
+    <div class="masterRateRoom">
+      <h4><%= t('room_type_master_rate_mappings.index.label.mapped') %></h4>
+      <br/>
+      <% if @pool.master_rate_mappings.blank? %>
+        <p>
+          <%= t('room_type_master_rate_mappings.index.label.no_room_mapped') %>
+        </p>
+      <% else %>
+        <% @pool.master_rate_mappings.each do |map| %>
+          <p>
+            <%= map.room_type.name %> -
+            <% if map.channel_mappings.blank? %>
+              <%= link_to t('room_type_master_rate_mappings.delete.link'), '#', :onmouseup => "javascript: deleteMasterRateMappingsDialog('#{t('room_type_master_rate_mappings.delete.label.heading')}', '#{delete_master_rate_mappings_dialog_body(map)}', '#{delete_room_type_master_rate_mapping_path(:id => map.id, :pool_id => @pool.id)}'); return false;"%>
+            <% else %>
+              <%= link_to t('room_type_master_rate_mappings.delete.link'), '#', :onmouseup => "javascript: deleteWarningMasterRateMappingsDialog('#{t('room_type_master_rate_mappings.delete.label.heading')}', '#{delete_warning_master_rate_mappings_dialog_body(map)}'); return false;"%>
+            <% end %>
+          </p>
+        <% end %>
+      <% end %>
+      <% if can? :create, RoomTypeMasterRateMapping %>
+        <br/>
+        <% if @pool.all_master_rate_rooms_added? %>
+          <p>
+            <em><%= t('room_type_master_rate_mappings.new.label.no_more') %></em>
+          </p>
+        <% else %>
+          <%= link_to t('room_type_master_rate_mappings.index.label.new_master_rate_room'), '#', :class => 'btnActionGrey', :onmouseup => "javascript: newMasterRateMappingsDialog('#{t('room_type_master_rate_mappings.new.label.heading')}', '#{new_master_rate_mappings_dialog_body(@pool)}'); return false;" %>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="masterRateChannelRoom">
+      <h4><%= t('room_type_master_rate_mappings.index.label.channel') %></h4>
+      <% @pool.channels.each do |pc| %>
+        <div class="channel">
+          <h5><%= pc.channel.name %></h5>
+          <% room_type_ids = current_property.room_type_ids %>
+          <% RoomTypeChannelMapping.room_type_ids(room_type_ids).where(:channel_id => pc.channel.id).each do |map| %>
+            <% room_type = map.room_type %>
+            <% master_rate_map = RoomTypeMasterRateChannelMapping.room_type_ids_in(room_type.id).pool_id(@pool.id).where(:channel_id => pc.channel.id).first %>
+            <div class="room">
+              <div class="name"><%= room_type.name %></div>
+              <% if master_rate_map.blank? %>
+                <div class="action">
+                  <% if can? :create, RoomTypeMasterRateChannelMapping %>
+                    <%= link_to t('room_type_master_rate_mappings.index.label.update_channel_mapping'), new_room_type_master_rate_channel_mapping_path(:pool_id => @pool.id, :room_type_id => room_type.id, :channel_id => pc.channel.id) %>
+                  <% end %>
+                </div>
+              <% else %>
+                <div class="masterRate"><%= master_rate_map.master_rate_mapping.room_type.name %></div>
+                <div class="markup">
+                  <% if master_rate_map.percentage.blank? and master_rate_map.value.blank? %>
+                    <%= t('room_type_master_rate_mappings.index.label.no_markup_set') %>
+                  <% elsif master_rate_map.method == RoomTypeMasterRateChannelMapping::PERCENTAGE %>
+                    <%= master_rate_map.percentage %>%
+                  <% elsif master_rate_map.method == RoomTypeMasterRateChannelMapping::AMOUNT %>
+                    <%= master_rate_map.value %>
+                  <% end %>
+                </div>
+                <div class="action">
+                  <% if can? :manage, RoomTypeMasterRateChannelMapping %>
+                    <%= link_to t('room_type_master_rate_mappings.index.label.update_channel_mapping'), edit_room_type_master_rate_channel_mapping_path(:id => master_rate_map.id, :pool_id => @pool.id) %>
+                    &nbsp;-&nbsp;
+                    <% delete_label = master_rate_map.disabled? ? t('room_type_master_rate_channel_mappings.toggle.label.enable') : t('room_type_master_rate_channel_mappings.toggle.label.disable') %>
+                    <%= link_to delete_label, delete_room_type_master_rate_channel_mapping_path(:id => master_rate_map.id, :pool_id => @pool.id) %>
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

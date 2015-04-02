@@ -1,0 +1,24 @@
+<%= page_title t('property_channels.new.label.heading') %>
+<div id="newChannel">
+  <div class="col10">
+    <h2><%= raw t('property_channels.new.label.heading') %></h2>
+    <%= render 'breadcrumb', :locals => {:step => 'rate_multiplier'} %>
+    <%= form_for @property_channel, :url => {:controller => 'property_channels', :action => 'new_wizard_confirm'} do |f| %>
+      <div class="box">
+        <h4><%= raw t('property_channels.new.label.rate_multiplier_heading') %></h4>
+        <p><%= raw t('property_channels.new.label.rate_multiplier_body_1') %></p>
+        <p><%= raw t('property_channels.new.label.rate_multiplier_body_2') %></p>
+        <p><%= raw t('property_channels.new.label.rate_multiplier_body_3') %></p>
+      </div>
+      <p>
+        <label><%= raw t('property_channels.new.label.rate_multiplier') %></label>
+        <%= f.text_field :rate_conversion_multiplier %>
+      </p>
+      <br/>
+      <p>
+        <%= f.submit t('button.back'), :name => "back_button" %>
+        <%= f.submit t("button.continue") %>
+      </p>
+    <% end %>
+  </div>
+</div>

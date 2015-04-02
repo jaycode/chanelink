@@ -1,0 +1,28 @@
+<div class="col3" id="verticalMenu">
+  <div class="topMenu">
+    <%= link_to admin_dashboard_path do %>
+      <%= t('menu.dashboard') %>
+    <% end %>
+  </div>
+  <div class="topMenu">
+    <%= link_to edit_admin_property_path(current_admin_property) do %>
+      <%= t('menu.hotel_details') %>
+    <% end %>
+  </div>
+  <div class="topMenu">
+    <%= link_to admin_room_types_path do %>
+      <%= t('menu.room_types') %>
+    <% end %>
+  </div>
+  <div class="topMenu">
+    <%= link_to admin_property_channels_path do %>
+      <%= t('menu.channel') %>
+    <% end %>
+  </div>
+  <div class="topMenu">
+    <%= link_to admin_members_path do %>
+      <%= 'Users' %>
+    <% end %>
+  </div>
+  
+</div>

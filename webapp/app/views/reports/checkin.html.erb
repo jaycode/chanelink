@@ -1,0 +1,50 @@
+<%= page_title t('reports.checkin.label.heading') %>
+<div id="checkinReport">
+  <div class="col12">
+    <h2><%= raw t('reports.checkin.label.heading') %></h2>
+    
+    <%= form_tag(checkin_reports_path, :method => "get") do %>
+      <p>
+        <label><%= t('reports.checkin.label.period') %></label>
+        <%= select_tag "period", options_for_select(Constant.check_in_periods, params[:period]) %>
+      </p>
+      <% if !current_property.single_pool? %>
+        <p>
+          <label><%= t('reports.checkin.label.pool') %></label>
+          <%= select_tag "pool", options_for_select(Pool.pool_list(current_property), params[:pool]) %>
+        </p>
+      <% end %>
+      <p>
+        <label>&nbsp;</label>
+        <%= submit_tag(t('button.submit')) %>
+      </p>
+    <% end %>
+    <br/>
+    <% unless @bookings.empty? %>
+      <div class="table">
+          <div class="tableRowHeader grey">
+            <div class="smallColumn"><%= t('reports.checkin.label.booking_date') %></div>
+            <div class="smallColumn" style="width: 120px;"><%= t('reports.checkin.label.guest') %></div>
+            <div class="smallColumn" style="width: 150px;"><%= t('reports.checkin.label.stay') %></div>
+            <div class="smallColumn"><%= t('reports.checkin.label.room') %></div>
+            <div class="smallColumn"><%= t('reports.checkin.label.total_rooms') %></div>
+            <div class="smallColumn"><%= t('reports.checkin.label.channel') %></div>
+            <div class="smallColumn"><%= t('reports.checkin.label.amount') %></div>
+          </div>
+          <% @bookings.each do |booking| %>
+            <div class="tableRow">
+              <div class="smallColumn"><%= booking.booking_date.strftime('%d/%m/%y') %></div>
+              <div class="smallColumn" style="width: 120px;"><%= booking.guest_name %></div>
+              <div class="smallColumn" style="width: 150px;"><%= booking.date_start.strftime('%d/%m/%y') %> - <%= booking.date_end.strftime('%d/%m/%y') %></div>
+              <div class="smallColumn"><%= booking.room_type.name %></div>
+              <div class="smallColumn"><%= booking.total_rooms %></div>
+              <div class="smallColumn"><%= booking.channel.name %></div>
+              <div class="smallColumn"><%= booking.amount_in_base_currency %></div>
+            </div>
+          <% end %>
+      </div>
+    <% else %>
+      <p><em><%= t('reports.checkin.label.empty') %></em></p>
+    <% end %>
+  </div>
+</div>

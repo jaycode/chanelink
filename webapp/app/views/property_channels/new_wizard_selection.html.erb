@@ -1,0 +1,33 @@
+<%= page_title t('property_channels.new.label.heading') %>
+<div id="newChannel">
+  <div class="col10">
+    <h2><%= raw t('property_channels.new.label.heading') %></h2>
+    <%= render 'breadcrumb', :locals => {:step => 'selection'} %>
+    <%= form_for @property_channel, :url => {:controller => 'property_channels', :action => 'new_wizard_setting'} do |f| %>
+      <%= f.hidden_field :property_id, :value => current_property.id %>
+      <div class="box">
+        <p><%= t('property_channels.new.label.intro') %></p>
+      </div>
+      <div class="box">
+        <h4><%= t('property_channels.new.label.important_header') %></h4>
+        <p><%= t('property_channels.new.label.important_body') %></p>
+      </div>
+      <br/>
+      <p>
+        <label><%= t('property_channels.new.label.channel') %><%= required %></label>
+        <%= f.select :channel_id, options_for_select(Channel.select_list(current_property), @property_channel.channel_id)%>
+      </p>
+      <% unless current_property.single_pool? %>
+        <p>
+          <label><%= t('property_channels.new.label.pool') %><%= required %></label>
+          <%= f.select :pool_id, options_for_select(Pool.pool_list_with_prompt(current_property), @property_channel.pool_id)%>
+        </p>
+      <% end %>
+      <br/>
+      <p>
+        <%= f.submit t("button.continue") %>
+        <%= link_to t('button.cancel'), property_channels_path %>
+      </p>
+    <% end %>
+  </div>
+</div>

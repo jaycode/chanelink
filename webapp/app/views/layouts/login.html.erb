@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= page_title %> - Chanelink</title>
+  <%= include_stylesheets :login %>
+  <%= javascript_include_tag 'jquery-1.7.2.min', 'pagination', 'rails', 'application' %>
+
+  <%= csrf_meta_tag %>
+</head>
+<body>
+  <header>
+    <div class="plc">
+      <h1><a href="/"></a></h1>
+    </div>
+  </header>
+  <section id="contents">
+    <div class="plc">
+      <%= render 'layouts/notification' %>
+      <%= yield %>
+    </div>
+  </section>
+</body>
+</html>

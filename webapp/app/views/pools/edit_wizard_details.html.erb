@@ -1,0 +1,94 @@
+<%= page_title t('pools.edit.label.heading', :pool => @pool.name) %>
+
+<%= javascript_tag "$(document).ready(function () {
+    
+    $('#btnRight').click(function (e) {
+
+        var selectedOpts = $('#other_pools option:selected:not([disabled])');
+        if (selectedOpts.length == 0) {
+            alert('Nothing to move.');
+            e.preventDefault();
+        }
+
+        $('#pool_assigned_channels').append($(selectedOpts).clone());
+        $(selectedOpts).attr('disabled','disabled');
+        $(selectedOpts).each(function(){
+          $(this).text($(this).text() + ' (Moved)');
+        });
+        e.preventDefault();
+    });
+
+    $('#btnLeft').click(function (e) {
+        var selectedOpts = $('#pool_assigned_channels option:selected');
+        if (selectedOpts.length == 0) {
+            alert('Nothing to move.');
+            e.preventDefault();
+        }
+
+        $('#other_pools > optgroup').each(function() {
+            $(this).children('option').each(function(){
+                if ($(this).val() == $(selectedOpts).val()) {
+                    $(this).text($(selectedOpts).text());
+                    $(this).attr('disabled', false);
+                }
+            });
+        });
+        $(selectedOpts).remove();
+        e.preventDefault();
+    });
+
+    $('#editPoolSubmit').click(function(e) {
+      $('#pool_assigned_channels option').prop('selected',true);
+    });
+
+    var moved_channels = ['#{@pool.assigned_channels.join("','") unless @pool.assigned_channels.blank?}'];
+    $('#other_pools > optgroup').each(function() {
+        $(this).children('option').each(function(){
+            if ($.inArray($(this).val(), moved_channels) > -1) {
+                $(this).attr('disabled','disabled');
+                $(this).text($(this).text() + ' (Moved)');
+            }
+        });
+    });
+
+    var saved_channels = ['#{@pool.channel_ids_list.join("','") unless @pool.channels.blank?}'];
+    $('#pool_assigned_channels > option').each(function() {
+        if ($.inArray($(this).val(), saved_channels) > -1) {
+            $(this).attr('disabled','disabled');
+        }
+    });
+
+});" %>
+
+<div id="newPool">
+  <div class="col9">
+    <h2><%= raw t('pools.edit.label.heading', :pool => @pool.name) %></h2>
+    <%= form_for @pool, :url => {:controller => 'pools', :action => 'edit_wizard_confirmation'} do |f| %>
+      <p>
+        <label><%= t('pools.edit.label.name') %></label>
+        <%= f.text_field :name %>
+      </p>
+      <br/>
+      <h4><%= raw t('pools.edit.label.move_channels') %></h4>
+      <br/>
+      <div class="moveChannels">
+        <div class="left">
+          <p><%= raw t('pools.new.label.other_pools') %></p>
+          <%= select_tag 'other_pools', grouped_options_for_select(Pool.list_channel_by_pool_group(current_property, @pool)), :multiple => true, :class => 'list' %>
+        </div>
+        <div class="mid secondary">
+          <input type='button' id='btnRight' value='  >  ' />
+          <br/>
+          <input type='button' id='btnLeft' value='  <  ' />
+        </div>
+        <div class="right">
+          <p><%= raw t('pools.new.label.current_pool') %></p>
+          <% all_channels = @pool.channel_ids_list %>
+          <% all_channels = all_channels + @pool.assigned_channels if !@pool.assigned_channels.blank? %>
+          <%= select_tag 'pool[assigned_channels]', options_for_select(Pool.ids_to_list(all_channels), params[:pool]), :multiple => true, :class => 'list' %>
+        </div>
+      </div>
+      <p><%= f.submit t("button.continue"), :id => 'editPoolSubmit' %><%= link_to t('button.cancel'), pools_path %></p>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,60 @@
+<% if @property.new_record? %>
+  <p>
+    <label><%= t('admin.properties.new.label.account') %><%= required %></label>
+    <%= f.select :account_id, options_for_select(Account.select_list, @property.account_id)%>
+  </p>
+<% end %>
+<p>
+  <label><%= t('admin.properties.new.label.name') %><%= required %></label>
+  <%= f.text_field :name %>
+</p>
+<p>
+  <label><%= t('admin.properties.new.label.address') %><%= required %></label>
+  <%= f.text_area :address, :rows => 6 %>
+</p>
+<p>
+  <label><%= t('admin.properties.new.label.city') %><%= required %></label>
+  <%= f.text_field :city %>
+</p>
+<p>
+  <label><%= t('admin.properties.new.label.state') %><%= required %></label>
+  <%= f.text_field :state %>
+</p>
+<p>
+  <label><%= t('admin.properties.new.label.country') %><%= required %></label>
+  <%= f.select :country_id, options_for_select(Country.select_list, @property.country_id) %>
+</p>
+<p>
+  <label><%= t('admin.properties.new.label.postcode') %><%= required %></label>
+  <%= f.text_field :postcode %>
+</p>
+
+<p>
+  <label><%= t('admin.properties.new.label.minimum_room_rate') %><%= required %></label>
+  <%= f.text_field :minimum_room_rate %>
+</p>
+<p>
+  <label><%= t('admin.properties.new.label.agoda_hotel_id') %></label>
+  <%= f.text_field :agoda_hotel_id %>
+</p>
+<p>
+  <label><%= t('admin.properties.new.label.expedia_hotel_id') %></label>
+  <%= f.text_field :expedia_hotel_id %>
+</p>
+<p>
+  <label><%= t('admin.properties.new.label.expedia_username') %></label>
+  <%= f.text_field :expedia_username %>
+</p>
+<p>
+  <label><%= t('admin.properties.new.label.expedia_password') %></label>
+  <%= f.text_field :expedia_password %>
+</p>
+<p>
+  <label><%= t('admin.properties.new.label.bookingcom_hotel_id') %></label>
+  <%= f.text_field :bookingcom_hotel_id %>
+</p>
+<p>
+  <label><%= t('admin.properties.new.label.currency') %></label>
+  <%= f.select :currency_id, Currency.currency_list_with_prompt %>
+</p>
+<br/>

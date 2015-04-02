@@ -1,0 +1,15 @@
+<%= page_title t('property_channels.new.label.heading') %>
+<div id="newChannel">
+  <div class="col10">
+    <h2><%= raw t('property_channels.new.label.heading') %></h2>
+    <%= render 'breadcrumb', :locals => {:step => 'setting'} %>
+    <%= form_for @property_channel, :url => {:controller => 'property_channels', :action => 'new_wizard_conversion'} do |f| %>
+      <%= render "#{@channel.cname}_setting", :f => f  %>
+      <br/>
+      <p>
+        <%= f.submit t('button.back'), :name => "back_button" %>
+        <%= f.submit t("button.continue") %>
+      </p>
+    <% end %>
+  </div>
+</div>

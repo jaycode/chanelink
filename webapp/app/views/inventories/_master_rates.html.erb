@@ -1,0 +1,52 @@
+<% start_date = @master_rates_start  %>
+<% end_date = start_date + 13.days %>
+<% end_date = @max_end if end_date > @max_end %>
+
+<%= form_tag(:action => 'update', :controller => 'master_rates') do %>
+  <%= hidden_field_tag :pool_id, params[:pool_id] %>
+  <div class="gridHeader">
+    <div class="left"><h3><%= t('inventories.grid.label.master_rates') %></h3></div>
+    <div class="right">
+      <%= link_to t('inventories.grid.label.copy_across'), '#', :class => 'btnActionTool copyAcross' %>
+      <%= submit_tag t('button.save') %>
+    </div>
+  </div>
+  <div class="dateTable">
+    <div class="dateTableRowHeader grey">
+      <div class="bigColumn">
+        <div class="date">
+          <%= link_to '<<', grid_inventories_path(:master_rates_start => (start_date - 14.days).strftime(Constant::GRID_DATE_FORMAT), :pool_id => @pool.id), :class => 'control btnActionGrey' %>
+          <%= link_to '<', grid_inventories_path(:master_rates_start => (start_date - 7.days).strftime(Constant::GRID_DATE_FORMAT), :pool_id => @pool.id), :class => 'control btnActionGrey' %>
+          <% master_rates_date_picker_field = 'master_rates_date_picker' %>
+          <%= master_rates_date_picker_js(master_rates_date_picker_field, @pool.id) %>
+          <%= text_field_tag master_rates_date_picker_field, start_date.strftime('%Y-%m-%d') %>
+          <%= link_to '>', grid_inventories_path(:master_rates_start => (start_date + 7.days).strftime(Constant::GRID_DATE_FORMAT), :pool_id => @pool.id), :class => 'control btnActionGrey' %>
+          <%= link_to '>>', grid_inventories_path(:master_rates_start => (start_date + 14.days).strftime(Constant::GRID_DATE_FORMAT), :pool_id => @pool.id), :class => 'control btnActionGrey' %>
+        </div>
+      </div>
+      <% loop_date = start_date %>
+      <% while loop_date <= end_date %>
+        <div class="smallColumn <%= is_date_weekend?(loop_date) ? UiConstant::WEEKEND : '' %>">
+          <div class="day"><%= loop_date.strftime('%a') %></div>
+          <div class="date"><%= loop_date.strftime('%e') %></div>
+          <div class="month"><%= loop_date.strftime('%b') %></div>
+        </div>
+        <% loop_date = loop_date + 1.day %>
+      <% end %>
+    </div>
+    <% current_property.room_types.each do |rt| %>
+      <% not_mapped = !rt.has_master_rate_mapping?(Pool.find(params[:pool_id])) %>
+      <div class="dateTableRow">
+        <div class="bigColumn"><strong><%= rt.name %></strong></div>
+        <% loop_date = start_date %>
+        <% while loop_date <= end_date %>
+          <div class="smallColumn">
+            <% amount = determine_master_rate_amount(loop_date, rt, params[:pool_id], flash) %>
+            <%= text_field_tag generate_rates_field_name(loop_date, rt, 'amount'), amount, :disabled => not_mapped, :class => 'numericOnly' %>
+          </div>
+          <% loop_date = loop_date + 1.day %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

@@ -1,0 +1,48 @@
+<%= page_title t('room_type_channel_mappings.new.label.heading', :channel => @channel.name, :room_type => @room_type.name) %>
+<div id="newRoomTypeChannelMapping">
+  <div class="col10">
+    <h2><%= raw t('room_type_channel_mappings.new.label.heading', :channel => @channel.name, :room_type => @room_type.name) %></h2>
+    <%= render 'breadcrumb', :locals => {:step => 'rate'} %>
+
+    <%= form_for @room_type_channel_mapping, :url => {:controller => 'room_type_channel_mappings', :action => 'new_wizard_confirm'} do |f| %>
+      <%= f.hidden_field :channel_id, :value => @room_type_channel_mapping.channel.id %>
+      <div class="box">
+        <%= rate_configuration_radio_js %>
+        <p><%= t('room_type_channel_mappings.new.label.rate_configuration') %></p>
+        <p><%= f.radio_button :rate_configuration, Constant::RTCM_RACK_RATE %>&nbsp;&nbsp;<%= raw t('room_type_channel_mappings.new.label.rack_rate') %>&nbsp;&nbsp;<%= idr_currency(@room_type.basic_rack_rate) %></p>
+        <p><%= f.radio_button :rate_configuration, Constant::RTCM_MASTER_RATE %>&nbsp;&nbsp;<%= raw t('room_type_channel_mappings.new.label.master_rate') %></p>
+        <p><%= f.radio_button :rate_configuration, Constant::RTCM_NEW_RATE %>&nbsp;&nbsp;<%= raw t('room_type_channel_mappings.new.label.new_rate') %>&nbsp;&nbsp;<%= f.text_field :new_rate %></p>
+      </div>
+      <br/>
+      <div class="box masterRate" style="<%= 'display: none' unless @room_type_channel_mapping.rate_configuration == Constant::RTCM_MASTER_RATE %>">
+        <%= hidden_field_tag 'room_type_master_rate_channel_mapping[channel_id]', :value => @channel.id %>
+        <%= hidden_field_tag 'room_type_master_rate_channel_mapping[room_type_id]', :value => @room_type.id %>
+        <p>
+          <label><%= t("room_type_master_rate_channel_mappings.edit.label.master_rate_room") %></label>
+          <%= select_tag 'room_type_master_rate_channel_mapping[room_type_master_rate_mapping_id]', options_for_select(RoomTypeMasterRateMapping.select_list(PropertyChannel.find_by_channel_id_and_property_id(@channel.id, current_admin_property.id).pool), @room_type_master_rate_channel_mapping.room_type_master_rate_mapping_id) %>
+        </p>
+        <p>
+          <label><%= t("room_type_master_rate_channel_mappings.edit.label.method") %></label>
+          <%= radio_button_tag('room_type_master_rate_channel_mapping[method]', RoomTypeMasterRateChannelMapping::PERCENTAGE, @room_type_master_rate_channel_mapping.method == RoomTypeMasterRateChannelMapping::PERCENTAGE) %>&nbsp;<%= t("room_type_master_rate_channel_mappings.edit.label.percentage") %>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <%= radio_button_tag('room_type_master_rate_channel_mapping[method]', RoomTypeMasterRateChannelMapping::AMOUNT, @room_type_master_rate_channel_mapping.method == RoomTypeMasterRateChannelMapping::AMOUNT) %>&nbsp;<%= t("room_type_master_rate_channel_mappings.edit.label.amount") %>
+          <%= master_rate_radio_js %>
+        </p>
+        <% percentage_display = (@room_type_master_rate_channel_mapping.method == RoomTypeMasterRateChannelMapping::PERCENTAGE) ? '' : 'display: none' %>
+        <p class="percentage" style="<%= percentage_display %>">
+          <label><%= t("room_type_master_rate_channel_mappings.edit.label.value") %></label>
+          <%= text_field_tag "room_type_master_rate_channel_mapping[percentage]", @room_type_master_rate_channel_mapping.percentage %>&nbsp;%
+        </p>
+
+        <% amount_display = (@room_type_master_rate_channel_mapping.method == RoomTypeMasterRateChannelMapping::AMOUNT) ? '' : 'display: none' %>
+        <p class="amount" style="<%= amount_display %>">
+          <label><%= t("room_type_master_rate_channel_mappings.edit.label.value") %></label>
+          <%= text_field_tag "room_type_master_rate_channel_mapping[value]", @room_type_master_rate_channel_mapping.value %>
+        </p>
+      </div>
+      <p>
+        <%= f.submit t("button.back"), :name => "back_button" %><%= f.submit t("button.continue") %>
+      </p>
+    <% end %>
+  </div>
+</div>

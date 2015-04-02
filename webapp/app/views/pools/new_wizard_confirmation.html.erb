@@ -1,0 +1,49 @@
+<%= page_title t('pools.new.label.heading') %>
+
+<div id="newPool">
+  <div class="col9">
+    <h2><%= raw t('pools.new.label.heading') %></h2>
+    <%= render 'breadcrumb' %>
+    <%= form_for @pool, :url => {:controller => 'pools', :action => 'create'} do |f| %>
+      <p>
+        <label><%= t('pools.new.label.name') %></label>
+        <%= @pool.name %>
+      </p>
+      <p>
+        <label><%= t('pools.new.label.channels') %></label>
+        <% if @pool.assigned_channels.blank? %>
+        &nbsp;-
+        <% else %>
+          <% channels = Array.new %>
+          <% @pool.assigned_channels.each do |c_id| %>
+            <% channels << Channel.find(c_id).name %>
+          <% end %>
+          <%= channels.join(',') %>
+        <% end %>
+      </p>
+      <br/>
+      <div class="confirmationBox">
+        <% if @pool.assigned_channels.blank? %>
+          <p><em><%= t('pools.new.label.no_channels') %></em></p>
+        <% else %>
+          <p><%= t('pools.new.label.about_to_move') %></p>
+          <% @pool.assigned_channels.each do |c_id| %>
+            <p>- <%= Channel.find(c_id).name %></p>
+          <% end %>
+          <br/>
+          <p><%= t('pools.new.label.should_continue') %></p>
+          <p><%= radio_button_tag 'availability', Constant::POOL_ZERO_INVENTORY, params[:availability] == Constant::POOL_ZERO_INVENTORY, :onmouseup => "javascript: newPoolAvailabilityDialog('#{t('pools.new.label.heading')}', '#{new_pool_availability_dialog_body}'); return false;" %>&nbsp;&nbsp;<%= raw t('pools.new.label.zero_inventory') %></p>
+          <p><%= radio_button_tag 'availability', Constant::POOL_DISABLE_CHANNELS, params[:availability] == Constant::POOL_DISABLE_CHANNELS, :onmouseup => "javascript: newPoolAvailabilityDialog('#{t('pools.new.label.heading')}', '#{new_pool_availability_dialog_body}'); return false;" %>&nbsp;&nbsp;<%= raw t('pools.new.label.disable_channels') %></p>
+          <br/>
+          <p><%= t('pools.new.label.master_rate') %></p>
+        <% end %>
+      </div>
+      <p>
+        <%= f.submit t("button.back"), :name => "back_button" %>
+        <% if @pool.assigned_channels.blank? %>
+          <%= f.submit t("button.create") %>
+        <% end %>
+      </p>
+    <% end %>
+  </div>
+</div>

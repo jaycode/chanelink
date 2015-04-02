@@ -1,0 +1,37 @@
+<%= page_title t('room_types.index.label.heading') %>
+<div class="col9">
+  <h2><%= @room_type.name %></h2>
+  <h4><%= t('room_types.edit.label.channels_already_mapped') %></h4>
+  <% channels_mapped = RoomTypeChannelMapping.find_all_by_room_type_id(@room_type.id) %>
+  <br/>
+  <% if channels_mapped.blank? %>
+    <p><%= t('room_types.edit.label.no_channels_mapped') %></p>
+  <% else %>
+    <% RoomTypeChannelMapping.find_all_by_room_type_id(@room_type.id).each do |rtcm| %>
+      <p><%= rtcm.channel.name %> - 
+        <% if rtcm.disabled? %>
+          <span class="red"><%= t("general.disabled") %></span>
+        <% else %>
+          <span class="green"><%= t("general.enabled") %></span>
+        <% end %>
+        -
+        <%= link_to t('room_type_channel_mappings.edit.link'), edit_admin_room_type_channel_mapping_path(rtcm) %>
+        <% if can? :delete, RoomTypeChannelMapping %>
+          - <%= link_to t('room_type_channel_mappings.delete.link'), '', :onclick => "javascript: deleteChannelMappingDialog('#{t('room_type_channel_mappings.delete.dialog.title')}', '#{delete_channel_mapping_dialog_body(rtcm.room_type, rtcm.channel)}', '#{delete_admin_room_type_channel_mapping_path(rtcm)}'); return false;" %>
+        <% end %>
+      </p>
+    <% end %>
+  <% end %>
+  <% channel_ids = RoomTypeChannelMapping.find_all_by_room_type_id(@room_type.id).collect &:channel_id %>
+  <h4><%= t('room_type_channel_mappings.index.label.channels_not_mapped') %></h4>
+  <br/>
+  <% Channel.all.each do |ch| %>
+    <% if !channel_ids.include?(ch.id) %>
+      <p><%= ch.name %> -
+        <% if !PropertyChannel.find_by_channel_id_and_property_id(ch.id, @room_type.property.id).blank? %>
+          <%= link_to 'Set Mapping', new_admin_room_type_channel_mapping_path(:channel_id => ch.id, :room_type_id => @room_type.id)  %>
+        <% end %>
+      </p>
+    <% end %>
+  <% end %>
+</div>

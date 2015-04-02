@@ -1,0 +1,22 @@
+<h4><%= t('currency_conversion.index.label.channel_conversion') %></h4>
+<br/>
+<% if current_property.currency_conversion_disabled? %>
+  <p><%= t('currency_conversion.index.label.conversion_disabled') %></p>
+<% else %>
+  <div class="table">
+    <div class="tableRowHeader grey">
+      <div class="smallColumn"><%= t('currency_conversion.index.label.channel') %></div>
+      <div class="bigColumn"><%= t('currency_conversion.index.label.conversion') %></div>
+    </div>
+    <% if !@currency_conversions.blank? %>
+      <% @currency_conversions.each do |cc| %>
+        <div class="tableRow">
+          <div class="smallColumn"><%= cc.property_channel.channel.name %></div>
+          <div class="bigColumn"><%= current_property.currency.name %> <%= t('general.to') %> <%= cc.to_currency.name %></div>
+        </div>
+      <% end %>
+    <% else %>
+      <p><%= t('currency_conversion.index.label.empty') %></p>
+    <% end %>
+  </div>
+<% end %>

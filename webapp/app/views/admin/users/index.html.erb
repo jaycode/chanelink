@@ -1,0 +1,53 @@
+<div id="membersIndex">
+  <div class="col12">
+    <h2><%= t('admin.users.index.label.heading') %></h2>
+    <h4><%= t('admin.users.index.label.super_member') %></h4>
+    <div class="table">
+      <div class="tableRowHeader grey">
+        <div class="bigColumn"><%= t('admin.users.index.label.name') %></div>
+        <div class="smallColumn"><%= t('admin.users.index.label.email') %></div>
+        <div class="smallColumn">&nbsp;</div>
+      </div>
+      <% User.where('super = true').each do |u| %>
+        <div class="tableRow">
+          <div class="bigColumn"><%= u.name %></div>
+          <div class="smallColumn"><%= u.email %></div>
+          <div class="smallColumn">
+            <%= link_to t('admin.users.edit.link'), edit_admin_user_path(u) %>
+              <% if (can? :delete, User) and (u != current_user) %>
+                - <%= link_to t('admin.users.delete.link'), delete_admin_user_path(u), :confirm => t('admin.users.delete.label.are_you_sure') %>
+              <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <br/>
+    <h4><%= t('admin.users.index.label.general_member') %></h4>
+    <% if !User.where('super = false').blank? %>
+      <div class="table">
+        <div class="tableRowHeader grey">
+          <div class="bigColumn"><%= t('admin.users.index.label.name') %></div>
+          <div class="smallColumn"><%= t('admin.users.index.label.email') %></div>
+          <div class="smallColumn">&nbsp;</div>
+        </div>
+        <% User.where('super = false').each do |u| %>
+          <div class="tableRow">
+            <div class="bigColumn"><%= u.name %></div>
+            <div class="smallColumn"><%= u.email %></div>
+            <div class="smallColumn"><%= link_to t('admin.users.edit.link'), edit_admin_user_path(u) %>
+              <% if can? :delete, User and (u != current_user) %>
+                - <%= link_to t('admin.users.delete.link'), delete_admin_user_path(u), :confirm => t('admin.users.delete.label.are_you_sure') %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <p>
+        <em><%= t('admin.users.index.label.no_general_member') %></em>
+      </p>
+    <% end %>
+    <br/>
+    <%= link_to t('admin.users.new.link'), new_admin_user_path, :class => 'btnActionGrey' %>
+  </div>
+</div>

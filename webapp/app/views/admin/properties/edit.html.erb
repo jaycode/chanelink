@@ -1,0 +1,18 @@
+<%= page_title t('admin.properties.edit.label.heading') %>
+<div id="newProperty">
+  <div class="col9">
+    <h2><%= raw t('admin.properties.edit.label.heading') %></h2>
+    <%= form_for @property, :url => {:controller => "admin/properties", :action => "update"} do |f| %>
+      <%= render 'form_fields', :f => f %>
+      <% if !@property.new_record? %>
+        <p class="alignRight">
+          <% if can? :delete, Property %>
+            <%= link_to t('admin.properties.delete.link'), '#', :class => 'btnActionGrey', :onclick => "javascript: deletePropertyDialog('#{t('admin.properties.delete.dialog.title')}', '#{delete_property_dialog_body}', '#{delete_admin_property_path(@property)}'); return false;" %>
+          <% end %>
+        </p>
+      <% end %>
+      <br/>
+      <p><%= f.submit t("button.save") %></p>
+    <% end %>
+  </div>
+</div>

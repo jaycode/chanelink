@@ -1,0 +1,28 @@
+<% page_title t('login.label.title') %>
+<div id="login">
+  <div class="col6">
+    <h2><%= raw t('login.label.heading') %></h2>
+    <%= form_tag session_path do %>
+      <p>
+        <label><%=  t('login.label.email') %></label>
+        <%= text_field_tag :email, params[:email] %>
+      </p>
+      <p>
+        <label><%= t('login.label.password') %></label>
+        <%= password_field_tag :password, nil %>
+      </p>
+      <p class="keepLogin">
+        <label>&nbsp;</label>
+        <%= check_box_tag 'remember_me', nil, params[:remember_me] == 'on' ? true : false %><%= t('login.label.remember_me') %>
+      </p>
+      <p>
+        <label>&nbsp;</label>
+        <%= submit_tag t('login.label.title') %>
+      </p>
+    <% end %>
+      <p>
+        <label>&nbsp;</label>
+        <%= link_to t('password.reset.link'), password_reset_path %>
+      </p>
+  </div>
+</div>

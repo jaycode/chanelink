@@ -1,0 +1,88 @@
+<%= page_title t('reports.channel_yield.label.heading') %>
+<div id="channelYieldReport">
+  <div class="col12">
+    <h2><%= raw t('reports.channel_yield.label.heading') %></h2>
+    
+    <%= form_tag(channel_yield_reports_path, :method => "get") do %>
+      <p>
+        <label><%= t('reports.channel_yield.label.date_type') %></label>
+        <%= radio_button_tag 'date_type', 'created', params[:date_type] == 'created' %>&nbsp;&nbsp;<%= t('reports.channel_yield.date_type.created') %>&nbsp;&nbsp;&nbsp;&nbsp;
+        <%= radio_button_tag 'date_type', 'checkin', params[:date_type] == 'checkin' %>&nbsp;&nbsp;<%= t('reports.channel_yield.date_type.checkin') %>
+      </p>
+      <p>
+        <label><%= t('reports.channel_yield.label.range') %></label>
+        <% from_date_picker_field = 'date_from' %>
+        <%= report_date_picker_js(from_date_picker_field) %>
+        <%= text_field_tag from_date_picker_field, params[:date_from], :readonly => "readonly" %>
+
+        &nbsp;&nbsp;<%= t('reports.channel_yield.label.to') %>&nbsp;&nbsp;
+
+        <% to_date_picker_field = 'date_to' %>
+        <%= report_date_picker_js(to_date_picker_field) %>
+        <%= text_field_tag to_date_picker_field, params[:date_to], :readonly => "readonly" %>
+      </p>
+      <% if !current_property.single_pool? %>
+        <p>
+          <label><%= t('reports.channel_yield.label.pool') %></label>
+          <%= select_tag "pool", options_for_select(Pool.pool_list(current_property), params[:pool]) %>
+        </p>
+      <% end %>
+      <p>
+        <label>&nbsp;</label>
+        <%= submit_tag(t('button.submit')) %>
+        <%= submit_tag t('reports.channel_yield.label.export_csv'), :name => "csv", :class => 'btnActionGrey' %>
+      </p>
+    <% end %>
+    <br/>
+    <% by_channels = organize_bookings_by_channels(@bookings) %>
+    <% if !by_channels.empty? %>
+      <div class="table">
+        <div class="tableRowHeader grey">
+          <div class="bigColumn"><%= t('reports.channel_yield.label.channel') %></div>
+          <div class="smallColumn"><%= t('reports.channel_yield.label.reservations') %></div>
+          <div class="smallColumn"><%= t('reports.channel_yield.label.lead_time') %></div>
+          <div class="smallColumn"><%= t('reports.channel_yield.label.los') %></div>
+          <div class="smallColumn"><%= t('reports.channel_yield.label.avg_earnings', :currency => current_property.currency.code) %></div>
+          <div class="smallColumn"><%= t('reports.channel_yield.label.total_earnings', :currency => current_property.currency.code) %></div>
+        </div>
+        <% grand_reservation_total = 0 %>
+        <% grand_total_lead_time = 0 %>
+        <% grand_total_los = 0 %>
+        <% grand_total_amount = 0 %>
+        <% by_channels.each do |channel_id, array| %>
+          <% reservation_total = array.count %>
+          <% total_lead_time = 0 %>
+          <% total_los = 0 %>
+          <% total_amount = 0 %>
+          <% array.each do |booking| %>
+            <% total_lead_time = total_lead_time + booking.lead_time %>
+            <% total_los = total_los + booking.length_of_stay %>
+            <% total_amount = total_amount + booking.amount_in_base_currency %>
+          <% end %>
+          <div class="tableRow grey">
+            <div class="bigColumn"><%= Channel.find(channel_id).name %></div>
+            <div class="smallColumn"><%= reservation_total %></div>
+            <div class="smallColumn"><%= (total_lead_time * 1.0) / reservation_total %></div>
+            <div class="smallColumn"><%= (total_los * 1.0) / reservation_total %></div>
+            <div class="smallColumn"><%= (total_amount * 1.0) / reservation_total %></div>
+            <div class="smallColumn"><%= total_amount %></div>
+          </div>
+          <% grand_reservation_total = grand_reservation_total + reservation_total %>
+          <% grand_total_lead_time = grand_total_lead_time + total_lead_time %>
+          <% grand_total_los = grand_total_los + total_los %>
+          <% grand_total_amount = grand_total_amount + total_amount %>
+        <% end %>
+        <div class="tableRowHeader">
+          <div class="bigColumn"><%= t('reports.channel_yield.label.total') %></div>
+          <div class="smallColumn"><%= grand_reservation_total %></div>
+          <div class="smallColumn"><%= (grand_total_lead_time * 1.0) / grand_reservation_total %></div>
+          <div class="smallColumn"><%= (grand_total_los * 1.0) / grand_reservation_total %></div>
+          <div class="smallColumn"><%= (grand_total_amount * 1.0) / grand_reservation_total %></div>
+          <div class="smallColumn"><%= grand_total_amount %></div>
+        </div>
+      </div>
+    <% elsif @parameter_exist and @errors.blank? %>
+      <p><em><%= t('reports.checkin.label.empty') %></em></p>
+    <% end %>
+  </div>
+</div>

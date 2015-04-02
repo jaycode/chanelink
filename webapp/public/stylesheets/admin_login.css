@@ -1,0 +1,553 @@
+@charset "UTF-8";
+@import url("styles-reset.css");
+@import url("colorbox.css");
+@import url("ie-warning.css");
+
+@font-face {
+    font-family: "FeltTipRomanRegular";
+    font-style: normal;
+    font-weight: normal;
+    src: url("../type/FeltTipRoman-webfont.eot?iefix") format("eot"), url("../type/FeltTipRoman-webfont.woff") format("woff"), url("../type/FeltTipRoman-webfont.ttf") format("truetype"), url("../type/FeltTipRoman-webfont.svg#webfontm8lHNW1b") format("svg");
+}
+
+@font-face {
+    font-family: 'ChunkFiveRegular';
+    src: url('../type/Chunkfive-webfont.eot');
+    src: url('../type/Chunkfive-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../type/Chunkfive-webfont.woff') format('woff'),
+         url('../type/Chunkfive-webfont.ttf') format('truetype'),
+         url('../type/Chunkfive-webfont.svg#ChunkFiveRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'BitstreamVera';
+    src: url('../type/Vera-webfont.eot');
+    src: url('../type/Vera-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../type/Vera-webfont.woff') format('woff'),
+         url('../type/Vera-webfont.ttf') format('truetype'),
+         url('../type/Vera-webfont.svg#BitstreamVeraSansRoman') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'BitstreamVera';
+    src: url('../type/Vera-Italic-webfont.eot');
+    src: url('../type/Vera-Italic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../type/Vera-Italic-webfont.woff') format('woff'),
+         url('../type/Vera-Italic-webfont.ttf') format('truetype'),
+         url('../type/Vera-Italic-webfont.svg#BitstreamVeraSansOblique') format('svg');
+    font-weight: normal;
+    font-style: italic;
+
+}
+
+@font-face {
+    font-family: 'BitstreamVera';
+    src: url('../type/Vera-Bold-webfont.eot');
+    src: url('../type/Vera-Bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../type/Vera-Bold-webfont.woff') format('woff'),
+         url('../type/Vera-Bold-webfont.ttf') format('truetype'),
+         url('../type/Vera-Bold-webfont.svg#BitstreamVeraSansBold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'BitstreamVera';
+    src: url('../type/Vera-Bold-Italic-webfont.eot');
+    src: url('../type/Vera-Bold-Italic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../type/Vera-Bold-Italic-webfont.woff') format('woff'),
+         url('../type/Vera-Bold-Italic-webfont.ttf') format('truetype'),
+         url('../type/Vera-Bold-Italic-webfont.svg#BitstreamVeraSansBoldOblique') format('svg');
+    font-weight: bold;
+    font-style: italic;
+
+}
+
+html {
+    width: 100%;
+    min-width: 1000px;
+}
+
+body {
+    background: url("../images/bg-grey.png") repeat scroll 0 0 #F0F1F2;
+    width: 100%;
+    min-width: 1000px;
+    padding: 0px;
+    margin: 0px;
+    font: 10px/20px LucidaGrande, helvetica, arial, sans-serif;
+    font-size: 62.5%;
+    color: #333;
+}
+
+a:link, a:visited {
+    color: #0b62a4;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #ffbf00;
+}
+
+a.divlink:link, a.divlink:visited {
+    display: block;
+}
+
+a.divlink:hover {
+    background-color: #E0EFF5;
+}
+
+a.cancelLink:link, a.cancelLink:visited {
+    color: #999;
+    margin-left: 10px;
+    font-size: 11px;
+}
+
+a.cancelLink:hover {
+    color: #333;
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: bold;
+}
+
+h1 {
+    font-size: 22px;
+}
+
+h2 {
+    font-size: 22px;
+}
+
+h3 {
+    font-size: 19px;
+    line-height: 1.3em;
+}
+
+h4 {
+    font-size: 16px;
+}
+
+h5 {
+    font-size: 13px;
+}
+
+h6 {
+    font-size: 13px;
+}
+
+p {
+    margin-bottom: 15px;
+    line-height: 1.8em;
+    font-size: 14px;
+}
+
+ul, ol {
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+ul li {
+    list-style: disc inside;
+}
+
+ol li {
+    list-style: decimal inside;
+}
+
+img {
+    vertical-align: middle;
+}
+
+blockquote {
+    background-color: #fff7de;
+    margin: 0px 20px 20px 20px;
+    padding: 20px;
+    font-size: 14px;
+    font-style: italic;
+    line-height: 1.8em;
+}
+
+strong {
+    font-weight: bold;
+}
+
+em, cite {
+    font-style: italic;
+}
+
+small {
+    font-size: 0.9em;
+}
+
+sup {
+    font-size: 0.7em;
+    position: relative;
+    top: -0.6em;
+}
+
+sub {
+    font-size: 0.7em;
+    position: relative;
+    bottom: -0.6em;
+}
+
+input[type="text"], input[type="email"], input[type="password"], textarea, select {
+    background: #fff;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1) inset;
+}
+
+textarea {
+    font: 13px LucidaGrande, helvetica, arial, sans-serif;
+}
+
+select {
+}
+
+input[type="button"], input[type="submit"] {
+    background: #06cf8c;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#06cf8c), color-stop(100%,#059e6b));
+    background: -moz-linear-gradient(center top, #06cf8c 0%, #059e6b 100%);
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    padding: 8px 10px;
+    display: block;
+    border-color: #059e6b;
+    border-width: 1px;
+    border-style: solid;
+    font-size: 16px;
+    color: #FFFFFF;
+    text-shadow: 0 -1px rgba(34, 25, 25, 0.5);
+}
+
+input[type="button"]:hover, input[type="submit"]:hover {
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#059e6b), color-stop(100%,#059e6b));
+    background: -moz-linear-gradient(center top, #059e6b 0%, #059e6b 100%);
+}
+
+.secondary input[type="button"], .secondary input[type="submit"] {
+    background: #F5F5F5;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#F5F5F5), color-stop(100%,#DEDEDE));
+    background: -moz-linear-gradient(center top , #F5F5F5, #DEDEDE) repeat scroll 0 0 transparent;
+    border: 1px solid #DEDEDE;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    padding: 8px 10px;
+    display: block;
+    font-size: 16px;
+    color: #555555;
+    text-shadow: 0 1px 0 #FFFFFF;
+}
+
+.secondary input[type="button"]:hover, .secondary input[type="submit"]:hover {
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#FFFFFF), color-stop(100%,#E8E8E8));
+    background: -moz-linear-gradient(center top , #FFFFFF, #E8E8E8) repeat scroll 0 0 transparent;
+}
+
+/* Additional Classes */
+
+.nomargin {
+    margin: 0px;
+}
+
+.alignLeft {
+    float: left;
+    margin-right: 20px;
+}
+
+.alignRight {
+    float: right;
+    margin-left: 20px;
+}
+
+.alignCenter {
+    text-align: center;
+}
+
+.clear {
+    clear: both;
+}
+
+.overflow {
+    overflow: hidden;
+}
+
+hr {
+    clear: both;
+    margin: 15px 0px;
+    border-top: 1px solid #ccc;
+    font-size: 1px;
+    line-height: 1px;
+}
+
+.divider {
+    clear: both;
+    width: 100%;
+    border-top: 1px solid rgba(0,0,0,0.1);
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+    margin: 20px 0px;
+}
+
+.textBlue {
+    color: #00B3D8;
+}
+
+a.btnAction:link, a.btnAction:visited {
+    padding: 10px 20px;
+    color: #ffffff;
+    background: #00B3D8;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #24DAFF), color-stop(100%,#00B3D8));
+    background: -moz-linear-gradient(center top, #24DAFF 0%, #00B3D8 100%);
+    border: 1px solid #00B3D8;
+    text-decoration: none;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    font-size: 14px;
+    text-shadow: 0 -1px rgba(34, 25, 25, 0.5);
+}
+
+a.btnAction:hover {
+    background: #00B3D8;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #00B3D8), color-stop(100%,#00B3D8));
+    background: -moz-linear-gradient(center top, #00B3D8 0%, #00B3D8 100%);
+}
+
+a.btnActionGrey:link, a.btnActionGrey:visited {
+    padding: 10px 20px;
+    background: #F5F5F5;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#F5F5F5), color-stop(100%,#DEDEDE));
+    background: -moz-linear-gradient(center top , #F5F5F5, #DEDEDE) repeat scroll 0 0 transparent;
+    border: 1px solid #DEDEDE;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #555555;
+    text-shadow: 0 1px 0 #FFFFFF;
+}
+
+a.btnActionGrey:hover {
+    background: #F5F5F5;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#DEDEDE), color-stop(100%,#DEDEDE));
+    background: -moz-linear-gradient(center top , #DEDEDE, #DEDEDE) repeat scroll 0 0 transparent;
+}
+
+a.btnActionGreen:link, a.btnActionGreen:visited {
+    background: #06cf8c;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#06cf8c), color-stop(100%,#059e6b));
+    background: -moz-linear-gradient(center top, #06cf8c 0%, #059e6b 100%);
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    text-shadow: 0px 1px 0px #ffffff;
+    padding: 10px 20px;
+    border-color: #059e6b;
+    border-width: 1px;
+    border-style: solid;
+    font-size: 14px;
+    color: #FFFFFF;
+    text-shadow: 0 -1px rgba(34, 25, 25, 0.5);
+}
+
+a.btnActionGreen:hover {
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#059e6b), color-stop(100%,#059e6b));
+    background: -moz-linear-gradient(center top, #059e6b 0%, #059e6b 100%);
+}
+
+.defaultRound {
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.defaultShadow {
+    -webkit-box-shadow: 0px 4px 5px rgba(0,0,0,0.3);
+    -moz-box-shadow: 0px 4px 5px rgba(0,0,0,0.3);
+    box-shadow: 0px 4px 5px rgba(0,0,0,0.3);
+}
+
+.defaultBorder {
+    border: 1px solid #ccc;
+}
+
+img.photo {
+    border: 2px solid #ffc20d;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+}
+
+/* Layout Settings */
+
+
+/* Generic Columns 1-12 */
+
+.col1, .col2, .col3, .col4, .col5, .col6, .col7, .col8, .col9, .col10, .col11, .col12 {
+    padding: 20px;
+    float: left;
+}
+
+.col1 {
+    width: 40px;
+}
+
+.col2 {
+    width: 120px;
+}
+
+.col3 {
+    width: 200px;
+}
+
+.col4 {
+    width: 280px;
+}
+
+.col5 {
+    width: 360px;
+}
+
+.col6 {
+    width: 438px;
+}
+
+.col7 {
+    width: 520px;
+}
+
+.col8 {
+    width: 600px;
+}
+
+.col9 {
+    width: 680px;
+}
+
+.col10 {
+    width: 760px;
+}
+
+.col11 {
+    width: 840px;
+}
+
+.col12 {
+    width: 920px;
+    float: none;
+}
+
+header {
+    min-width: 500px;
+    height: 65px;
+    margin-top: 70px;
+    overflow: hidden;
+}
+
+header .plc {
+    width: 500px;
+    margin: 0px auto;
+    padding: 0px 20px 0px 20px;
+    overflow: hidden;
+    position: relative;
+    z-index: 2;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    width: 305px;
+    height: 65px;
+    float: left;
+    display: block;
+}
+
+header h1 a {
+    background: url("../images/chanelink-logo.png") no-repeat;
+    width: 300px;
+    height: 60px;
+    display: block;
+    text-indent: -10000em;
+}
+
+header .backoffice {
+    float: right;
+    display: block;
+    font-size: 30px;
+    font-style: italic;
+    margin-top: 19px;
+    margin-left: 15px;
+}
+
+header a {
+    font-size: 14px;
+}
+
+#contents {
+    width: 100%;
+    min-width: 500px;
+    overflow: hidden;
+}
+
+#contents .plc {
+    width: 500px;
+    margin: 0px auto;
+    overflow: hidden;
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #D9D9D9;
+    position: relative;
+    z-index: 2;
+}
+
+#contents h2 {
+    margin-bottom: 30px;
+}
+
+#contents h3 {
+    margin-bottom: 10px;
+}
+
+#login label {
+    display: inline-block;
+    float: left;
+    padding-top: 5px;
+    width: 180px;
+    font-weight: bold;
+}
+
+#login input[type="text"], #login input[type="email"], #login input[type="password"] {
+    font-size: 13px;
+    padding: 5px;
+    width: 240px;
+    border: 1px solid #ccc;
+}
+
+#login input[type="checkbox"] {
+    margin-right: 10px;
+    display: inline-block;
+    float: left;
+}
+
+#login .keepLogin {
+    font-size: 12px;
+    color: #999999;
+    margin-bottom: 10px;
+}
+
+
+

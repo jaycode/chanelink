@@ -1,0 +1,65 @@
+<h3><%= raw t('reports.channel_trends.label.total_room_type') %></h3>
+  <% if !@filtered_bookings.blank? %>
+    <% channel_size = @filtered_bookings.keys.size %>
+    <% date_size = @filtered_bookings.first[1].keys.size %>
+    <% if (channel_size * date_size) <= 9 %>
+      <div id="container"></div>
+      <script>
+        $(function () {
+            var colors = Highcharts.getOptions().colors
+            $('#container').highcharts({
+
+                chart: {
+                    type: 'column'
+                },
+
+                title: {
+                      text: '<%= t('reports.channel_trends.label.total_room_type') %>',
+                      x: -20 //center
+                },
+
+                xAxis: {
+                    categories: [<% @filtered_bookings.first[1].keys.each do |category| %>
+                             {
+                               name: '<%= category %>',
+                               categories: <%= trends_extract_channel(@filtered_bookings) %>
+                             },
+                           <% end %>]
+                },
+
+                yAxis: {
+                    title: {
+                        text: '<%= t('reports.channel_trends.label.total_room_type') %>'
+                    }
+                },
+
+                tooltip: {
+                    formatter: function() {
+                        return '<b>'+ this.x +'</b><br/>'+
+                            this.series.name +': '+ this.y +'<br/>'+
+                            'Total: '+ this.point.stackTotal;
+                    }
+                },
+
+                plotOptions: {
+                    column: {
+                        stacking: 'normal'
+                    }
+                },
+
+                series: [<% trends_extract_room_type_id(@bookings).each_with_index do |room_type_id, index| %> {
+                    name: '<%= RoomType.find(room_type_id).name %>',
+                    data: <%= trends_extract_room_type_count(@filtered_bookings, room_type_id) %>,
+                    color: colors[<%= index %>]
+                },
+                <% end %>]
+            });
+        });
+      </script>
+    <% else %>
+      <p>
+        <%= t('reports.too_big') %>
+      </p>
+      <%= link_to t('reports.channel_yield.label.export_csv'), 'javascript:reportExportCSV()', :class => 'btnActionGrey' %>
+    <% end %>
+  <% end %>

@@ -1,0 +1,9 @@
+<%= page_title t('admin.properties.new.label.heading') %>
+<div id="newAccount">
+  <div class="col9">
+    <h2><%= raw t('admin.properties.new.label.created') %></h2>
+    <p>
+      <%= raw t('admin.properties.new.label.created_note', :account_name => @property.account.name, :property_name => @property.name, :new_room_type_link => (link_to t("admin.properties.new.label.new_room_type"), admin_root_path)) %>
+    </p>
+  </div>
+</div>

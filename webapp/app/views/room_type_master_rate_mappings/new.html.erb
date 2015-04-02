@@ -1,0 +1,18 @@
+<%= page_title t('room_type_master_rate_mappings.new.label.heading') %>
+<div id="newChannel">
+  <div class="col9">
+    <h2><%= raw t('room_type_master_rate_mappings.new.label.heading') %></h2>
+
+    <%= form_for @room_type_master_rate_mapping do |f| %>
+      <%= f.hidden_field :pool_id, :value => @room_type_master_rate_mapping.pool.id %>
+      <p>Pool: <strong><%= @room_type_master_rate_mapping.pool.name %></strong></p>
+
+      <p>
+        <%= f.select :room_type_id, options_for_select(@room_types, @room_type_master_rate_mapping.room_type_id)%>
+      </p>
+      <p>
+        <%= f.submit t("button.save") %>
+      </p>
+    <% end %>
+  </div>
+</div>

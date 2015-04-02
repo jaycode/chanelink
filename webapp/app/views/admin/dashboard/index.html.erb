@@ -1,0 +1,27 @@
+<div id="feedback">
+  <div class="col10">
+    <div class="alerts">
+      <h3 class="textBlack heading"><%= t('admin.dashboard.property_channels.heading', :count => current_admin_property.channels.not_approved.count) %></h3>
+      <% if current_admin_property.channels.not_approved.blank? %>
+        <p><%= t('admin.dashboard.property_channels.empty') %></p>
+      <% else %>
+        <% current_admin_property.channels.not_approved.each do |pc| %>
+          <div class="alertRow"><%= t('admin.dashboard.connection_request', :channel => pc.channel.name) %></div>
+        <% end %>
+      <% end %>
+      <br/>
+      <h3 class="textBlack heading"><%= t('dashboard.alerts.heading') %></h3>
+      <% if current_admin_property.account.members.first.alerts.blank? %>
+        <p><%= t('alerts.index.label.empty') %></p>
+      <% else %>
+        <% current_admin_property.account.members.first.alerts.take(5).each do |alert| %>
+          <div class="alertRow"><%= raw alert.to_display %></div>
+        <% end %>
+        <p>
+          <div class="alertRow"><%= link_to t('general.see_all'), admin_alerts_path %></div>
+        </p>
+      <% end %>
+    </div>
+  </div>
+</div>
+

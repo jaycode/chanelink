@@ -1,0 +1,22 @@
+<%= page_title t('currency_conversion.index.label.heading') %>
+<div id="indexCurrencyConversion">
+  <div class="col9">
+    <h2><%= raw t('currency_conversion.index.label.heading') %></h2>
+    <%= form_tag submit_currency_conversion_path do %>
+      <p>
+        <label><%= t('currency_conversion.index.label.setting') %></label>
+        <%= radio_button_tag "currency_conversion", "enabled", current_property.currency_conversion_enabled %>
+        <%= t('general.enabled') %>
+        &nbsp;&nbsp;
+        <%= radio_button_tag "currency_conversion", "disabled", !current_property.currency_conversion_enabled %>
+        <%= t('general.disabled') %>
+      </p>
+      <p>
+        <label>&nbsp;</label>
+        <%= submit_tag t('button.save') %>
+      </p>
+    <% end %>
+    <br/>
+    <%= render 'list' %>
+  </div>
+</div>

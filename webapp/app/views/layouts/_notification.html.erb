@@ -1,0 +1,13 @@
+<div class="notification">
+  <% if flash[:notice] %>
+    <div class="success">
+      <%= raw collect_flash_messages(:notice) %>
+    </div>
+  <% end %>
+
+  <% if (flash[:alert] and !flash[:alert].blank?) or flash[:model_alert] %>
+    <div class="error">
+      <%= raw collect_flash_messages([:alert, :model_alert]) %>
+    </div>
+  <% end %>
+</div>

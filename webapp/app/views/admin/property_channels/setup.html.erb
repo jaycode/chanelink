@@ -1,0 +1,18 @@
+<%= page_title t('admin.property_channels.new.label.heading') %>
+<div id="newProperty">
+  <div class="col9">
+    <h2><%= raw t('admin.property_channels.index.label.heading') %></h2>
+    <% PropertyChannel.not_approved.each do |p| %>
+      <% if p.property.active? and (current_user.super? or current_user.given_properties.include?(p.property)) %>
+        <p><%= p.property.name %> - <%= p.channel.name %> - <%= link_to t('admin.properties.edit.link'), edit_admin_property_channel_path(p) %></p>
+      <% end %>
+    <% end %>
+    <br/>
+    <h3><%= raw t('admin.property_channels.index.label.not_approved') %></h3>
+    <% PropertyChannel.where(:approved => false).each do |p| %>
+      <% if p.property.active? and (current_user.super? or current_user.given_properties.include?(p.property)) %>
+        <p><%= p.property.name %> - <%= p.channel.name %> - <%= link_to t('admin.properties.edit.link'), edit_admin_property_channel_path(p) %> - <%= link_to t('admin.properties.approve.link'), approve_admin_property_channel_path(p) %></p>
+      <% end %>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,55 @@
+<%= page_title @property.name %>
+<div id="showProperty">
+  <div class="col9">
+    <h2><%= @property.name %></h2>
+    <p>
+      <label><%= t('admin.properties.new.label.name') %></label>
+      <%= @property.name %>
+    </p>
+    <p>
+      <label><%= t('admin.properties.new.label.address') %></label>
+      <%= @property.address %>
+    </p>
+    <p>
+      <label><%= t('admin.properties.new.label.city') %></label>
+      <%= @property.city %>
+    </p>
+    <p>
+      <label><%= t('admin.properties.new.label.state') %></label>
+      <%= @property.state %>
+    </p>
+    <p>
+      <label><%= t('admin.properties.new.label.country') %></label>
+      <%= @property.country.name %>
+    </p>
+    <p>
+      <label><%= t('admin.properties.new.label.postcode') %></label>
+      <%= @property.postcode %>
+    </p>
+
+    <p>
+      <label><%= t('admin.properties.new.label.minimum_room_rate') %></label>
+      <%= @property.minimum_room_rate %>
+    </p>
+    <p>
+      <label><%= t('admin.properties.new.label.agoda_hotel_id') %></label>
+      <%= @property.agoda_hotel_id %>&nbsp;
+    </p>
+    <p>
+      <label><%= t('admin.properties.new.label.expedia_hotel_id') %></label>
+      <%= @property.expedia_hotel_id %>&nbsp;
+    </p>
+    <p>
+      <label><%= t('admin.properties.new.label.expedia_username') %></label>
+      <%= @property.expedia_username %>&nbsp;
+    </p>
+    <p>
+      <label><%= t('admin.properties.new.label.expedia_password') %></label>
+      <%= @property.expedia_password %>&nbsp;
+    </p>
+    <p>
+      <label><%= t('admin.properties.new.label.bookingcom_hotel_id') %></label>
+      <%= @property.bookingcom_hotel_id %>&nbsp;
+    </p>
+  </div>
+</div>

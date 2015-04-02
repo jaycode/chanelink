@@ -1,0 +1,9 @@
+<%= page_title t('admin.accounts.new.label.heading') %>
+<div id="newProperty">
+  <div class="col9">
+    <h2><%= raw t('admin.accounts.index.label.heading') %></h2>
+    <% Account.all.each do |a| %>
+      <p><%= a.name %> - <%= link_to t('admin.accounts.edit.link'), edit_admin_account_path(a) %></p>
+    <% end %>
+  </div>
+</div>

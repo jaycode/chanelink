@@ -1,0 +1,42 @@
+<%= page_title t('property_channels.index.label.heading') %>
+<div id="indexPropertyChannel">
+  <div class="col9">
+    <h2><%= raw t('property_channels.index.label.heading') %></h2>
+    <%= render 'pools/generic_select', :path_to_go => property_channels_path %>
+    <% if @property_channels.blank?  %>
+      <p>
+        <%= t('property_channels.index.label.blank') %>
+      </p>
+    <% else %>
+      <div class="roomTypes">
+        <% @property_channels.each do |pc| %>
+          <p>
+            <strong><%= pc.channel.name %></strong> -
+            <% if !pc.approved? %>
+              <span class="red"><%= t("property_channels.index.label.awaiting_approval") %></span>
+            <% elsif pc.disabled? %>
+              <span class="red"><%= t("general.disabled") %></span>
+            <% else %>
+              <span class="green"><%= t("general.enabled") %></span>
+            <% end %>
+            <span class="action">
+              <% if pc.approved? %>
+                <% if can? :update, PropertyChannel %>
+                  <%= link_to t('property_channels.edit.link'), edit_property_channel_path(pc), :class => 'btnActionGrey' %>
+                <% elsif can? :read, PropertyChannel %>
+                  <%= link_to t('property_channels.edit.link'), property_channel_path(pc), :class => 'btnActionGrey' %>
+                <% end %>
+              <% end %>
+            </span>
+          </p>
+          <p>&nbsp;&nbsp;<%= t('property_channels.index.label.total_rooms_mapped', :count => RoomTypeChannelMapping.room_type_ids(current_property.room_type_ids).where(:channel_id => pc.channel.id).count) %></p>
+          
+        <% end %>
+      </div>
+    <% end %>
+    <br/>
+    <% if can? :create, PropertyChannel %>
+      <%= link_to 'New Channel', new_property_channel_path, :class => 'btnActionGrey' %>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+<%= page_title t('property_channels.edit.label.heading', :channel => @property_channel.channel.name) %>
+<div id="newChannel">
+  <div class="col9">
+    <h2><%= raw t('property_channels.edit.label.heading', :channel => @property_channel.channel.name) %></h2>
+
+    <%= form_for @property_channel, :url => {:controller => 'property_channels', :action => 'update_embed'} do |f| %>
+      <p>
+        <label><%= t('property_channels.new.label.status') %></label>
+        <%= f.radio_button(:disabled, false) %>&nbsp;<span class="green"><%= t("general.enabled") %></span>
+        &nbsp;&nbsp;
+        <%= f.radio_button(:disabled, true) %>&nbsp;<span class="red"><%= t("general.disabled") %></span>
+      </p>
+      <%= render "#{@property_channel.channel.cname}_setting", :f => f %>
+      <br/>
+      <p>
+        <%= f.submit t("button.save") %>
+        <%= link_to t('property_channels.delete.link'), delete_admin_property_channel_path(@property_channel), :class => 'btnActionGrey', :confirm => 'Are you sure?' %>
+      </p>
+    <% end %>
+  </div>
+</div>

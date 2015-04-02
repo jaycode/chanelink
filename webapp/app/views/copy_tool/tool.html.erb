@@ -1,0 +1,59 @@
+<div id="copyTool">
+  <div class="col12">
+    <h2><%= t('copy_tool.tool.label.heading') %></h2>
+    <%= form_tag copy_tool_submit_path do %>
+      <% if !current_property.single_pool? %>
+        <%= copy_tool_pool_select_js %>
+        <p>
+          <label><%= t('copy_tool.tool.label.select_pool') %></label>
+          <%= select_tag "ct[pool_id]", options_for_select(Pool.pool_list_without_all(current_property), @pool.id) %>
+        </p>
+      <% end %>
+      <%= copy_tool_value_type_select_js %>
+      <p>
+        <label><%= t('copy_tool.tool.label.what_to_copy') %></label>
+        <%= select_tag "ct[value_type]", options_for_select(CopyTool.value_type_list, @copy_tool.value_type) %>
+      </p>
+      <br/>
+      <div class="fromTo">
+        <div class="from">
+          <h4><%= t('copy_tool.tool.label.from') %></h4>
+          <div class="box">
+            <%= copy_tool_channel_from_select_js %>
+            <p>
+              <label><%= t('copy_tool.tool.label.channel') %></label>
+              <%= select_tag "ct[channel_id_from]", options_for_select(Channel.list_by_property_and_pool_without_all(current_property, @pool, @restriction_from), @copy_tool.channel_id_from) %>
+            </p>
+            <p>
+              <label><%= t('copy_tool.tool.label.room') %></label>
+              <% if @copy_tool.channel_from == GtaTravelChannel.first or @copy_tool.value_type == CopyTool::VALUE_CTB %>
+                <%= t('copy_tool.tool.label.all') %>
+              <% else %>
+                <%= select_tag "ct[room_id_from]", options_for_select(RoomType.room_type_list_by_channel(current_property, Channel.find_by_id(@copy_tool.channel_id_from)), @copy_tool.room_id_from) %>
+              <% end %>
+            </p>
+          </div>
+        </div>
+        <div class="from">
+          <h4><%= t('copy_tool.tool.label.to') %></h4>
+          <div class="box">
+            <%= copy_tool_channel_to_select_js %>
+            <p>
+              <label><%= t('copy_tool.tool.label.channel') %></label>
+              <%= select_tag "ct[channel_id_to]", options_for_select(Channel.list_by_property_and_pool_without_all(current_property, @pool, @restriction_to), @copy_tool.channel_id_to) %>
+            </p>
+            <p>
+              <label><%= t('copy_tool.tool.label.room') %></label>
+              <% if @copy_tool.channel_from == GtaTravelChannel.first and (@copy_tool.value_type == CopyTool::VALUE_CTA or @copy_tool.value_type == CopyTool::VALUE_CTD) %>
+                <%= t('copy_tool.tool.label.all') %>
+              <% else %>
+                <%= select_tag "ct[room_id_to]", options_for_select(RoomType.room_type_list_by_channel(current_property, Channel.find_by_id(@copy_tool.channel_id_to)), @copy_tool.room_id_to) %>
+              <% end %>
+            </p>
+          </div>
+        </div>
+      </div>
+      <%= submit_tag t('button.copy') %>
+    <% end %>
+  </div>
+</div>

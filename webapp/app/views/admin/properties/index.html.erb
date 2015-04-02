@@ -1,0 +1,14 @@
+<%= page_title t('admin.properties.new.label.heading') %>
+<div id="newProperty">
+  <div class="col9">
+    <h2><%= raw t('admin.properties.index.label.heading') %></h2>
+    <% Property.active_only.each do |p| %>
+      <p><%= p.account.name %> - <%= p.name %> - <%= link_to t('admin.properties.edit.link'), edit_admin_property_path(p) %></p>
+    <% end %>
+    <br/>
+    <h3><%= raw t('admin.properties.index.label.not_approved') %></h3>
+    <% Property.not_approved.each do |p| %>
+      <p><%= p.account.name %> - <%= p.name %> - <%= link_to t('admin.properties.edit.link'), edit_admin_property_path(p) %> - <%= link_to t('admin.properties.approve.link'), approve_reject_admin_property_path(p) %></p>
+    <% end %>
+  </div>
+</div>

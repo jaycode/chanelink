@@ -1,0 +1,33 @@
+<%= page_title t('room_types.index.label.heading') %>
+<div class="col9">
+  <h2><%= raw t('room_types.index.label.heading') %></h2>
+  <div class="table">
+    <div class="tableRowHeader grey">
+      <div class="bigColumn"><%= t('room_types.index.label.name') %></div>
+      <div class="smallColumn"><%= t('room_types.index.label.no_channels') %></div>
+      <div class="smallColumn">&nbsp;</div>
+    </div>
+    <% if @room_types.blank?  %>
+      <div class="tableRow">
+        <div class="bigColumn">
+          <%= t('room_types.index.label.blank') %>
+        </div>
+      </div>
+    <% else %>
+      <% @room_types.each do |rt| %>
+        <div class="tableRow">
+          <div class="bigColumn">
+            <%= rt.name %>
+          </div>
+          <div class="smallColumn green"><%= t('room_types.index.label.channels_connected', :count => RoomTypeChannelMapping.find_all_by_room_type_id(rt.id).count) %></div>
+          <div class="smallColumn">
+            <%= link_to t('room_types.edit.link'), edit_admin_room_type_path(rt) %> / <%= link_to t('room_type_channel_mappings.index.link'), admin_room_type_channel_mappings_path(:room_type_id => rt.id) %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <br/>
+  <br/>
+  <%= link_to 'New Room Type', new_admin_room_type_path, :class => 'btnActionGrey' %>
+</div>

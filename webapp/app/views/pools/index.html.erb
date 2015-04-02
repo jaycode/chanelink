@@ -1,0 +1,36 @@
+<%= page_title t('pools.index.label.heading') %>
+<div id="indexRoomType">
+  <div class="col9">
+    <h2><%= raw t('pools.index.label.heading') %></h2>
+    <div class="table">
+      <div class="tableRowHeader grey">
+        <div class="bigColumn"><%= t('pools.index.label.name') %></div>
+        <div class="smallColumn"><%= t('pools.index.label.no_channels') %></div>
+        <div class="smallColumn">&nbsp;</div>
+      </div>
+      <% if @pools.blank?  %>
+        <p>
+          <%= t('pools.index.label.blank') %>
+        </p>
+      <% else %>
+        <% @pools.each do |p| %>
+          <div class="tableRow">
+            <div class="bigColumn"><%= p.name %></div>
+            <div class="smallColumn"><%= p.channels.size %></div>
+            <div class="smallColumn">
+              <%= link_to t('pools.edit.link'), edit_pool_path(p) %>
+              <% if p.channels.blank? %>
+                - <%= link_to t('pools.delete.link'), delete_pool_path(p), :confirm => t('pools.delete.label.are_you_sure') %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+      
+    </div>
+    <br/>
+    <% if can? :create, Pool %>
+      <%= link_to  t('pools.new.label.heading'), new_pool_path, :class => 'btnActionGrey' %>
+    <% end %>
+  </div>
+</div>

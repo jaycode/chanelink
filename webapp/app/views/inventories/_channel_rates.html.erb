@@ -1,0 +1,9 @@
+<%= stop_sell_toggle %>
+<%= min_stay_toggle %>
+<%= cta_toggle %>
+<%= ctd_toggle %>
+<% @pool.channels.each do |pc| %>
+  <%= render "#{pc.channel.cname}_rates", :channel => pc.channel %>
+  <br/>
+  <br/>
+<% end %>

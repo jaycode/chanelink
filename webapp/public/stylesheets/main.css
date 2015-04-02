@@ -1,0 +1,1841 @@
+@charset "UTF-8";
+@import url("styles-reset.css");
+@import url("colorbox.css");
+@import url("ie-warning.css");
+
+@font-face {
+    font-family: "FeltTipRomanRegular";
+    font-style: normal;
+    font-weight: normal;
+    src: url("../type/FeltTipRoman-webfont.eot?iefix") format("eot"), url("../type/FeltTipRoman-webfont.woff") format("woff"), url("../type/FeltTipRoman-webfont.ttf") format("truetype"), url("../type/FeltTipRoman-webfont.svg#webfontm8lHNW1b") format("svg");
+}
+
+@font-face {
+    font-family: 'ChunkFiveRegular';
+    src: url('../type/Chunkfive-webfont.eot');
+    src: url('../type/Chunkfive-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../type/Chunkfive-webfont.woff') format('woff'),
+         url('../type/Chunkfive-webfont.ttf') format('truetype'),
+         url('../type/Chunkfive-webfont.svg#ChunkFiveRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'BitstreamVera';
+    src: url('../type/Vera-webfont.eot');
+    src: url('../type/Vera-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../type/Vera-webfont.woff') format('woff'),
+         url('../type/Vera-webfont.ttf') format('truetype'),
+         url('../type/Vera-webfont.svg#BitstreamVeraSansRoman') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'BitstreamVera';
+    src: url('../type/Vera-Italic-webfont.eot');
+    src: url('../type/Vera-Italic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../type/Vera-Italic-webfont.woff') format('woff'),
+         url('../type/Vera-Italic-webfont.ttf') format('truetype'),
+         url('../type/Vera-Italic-webfont.svg#BitstreamVeraSansOblique') format('svg');
+    font-weight: normal;
+    font-style: italic;
+
+}
+
+@font-face {
+    font-family: 'BitstreamVera';
+    src: url('../type/Vera-Bold-webfont.eot');
+    src: url('../type/Vera-Bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../type/Vera-Bold-webfont.woff') format('woff'),
+         url('../type/Vera-Bold-webfont.ttf') format('truetype'),
+         url('../type/Vera-Bold-webfont.svg#BitstreamVeraSansBold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'BitstreamVera';
+    src: url('../type/Vera-Bold-Italic-webfont.eot');
+    src: url('../type/Vera-Bold-Italic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../type/Vera-Bold-Italic-webfont.woff') format('woff'),
+         url('../type/Vera-Bold-Italic-webfont.ttf') format('truetype'),
+         url('../type/Vera-Bold-Italic-webfont.svg#BitstreamVeraSansBoldOblique') format('svg');
+    font-weight: bold;
+    font-style: italic;
+
+}
+
+html {
+    width: 100%;
+    min-width: 1000px;
+}
+
+body {
+    background: url("../images/bg-grey.png") repeat scroll 0 0 #F0F1F2;
+    width: 100%;
+    min-width: 1000px;
+    padding: 0px;
+    margin: 0px;
+    font: 10px/20px LucidaGrande, helvetica, arial, sans-serif;
+    font-size: 62.5%;
+    color: #333;
+}
+
+a:link, a:visited {
+    color: #0b62a4;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #ffbf00;
+}
+
+a.divlink:link, a.divlink:visited {
+    display: block;
+}
+
+a.divlink:hover {
+    background-color: #E0EFF5;
+}
+
+a.cancelLink:link, a.cancelLink:visited {
+    color: #999;
+    margin-left: 10px;
+    font-size: 11px;
+}
+
+a.cancelLink:hover {
+    color: #333;
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: bold;
+}
+
+h1 {
+    font-size: 22px;
+}
+
+h2 {
+    font-size: 22px;
+}
+
+h3 {
+    font-size: 19px;
+    line-height: 1.3em;
+}
+
+h4 {
+    font-size: 16px;
+}
+
+h5 {
+    font-size: 13px;
+}
+
+h6 {
+    font-size: 13px;
+}
+
+p {
+    margin-bottom: 15px;
+    line-height: 1.8em;
+    font-size: 14px;
+}
+
+ul, ol {
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+ul li {
+    list-style: disc inside;
+}
+
+ol li {
+    list-style: decimal inside;
+}
+
+img {
+    vertical-align: middle;
+}
+
+blockquote {
+    background-color: #fff7de;
+    margin: 0px 20px 20px 20px;
+    padding: 20px;
+    font-size: 14px;
+    font-style: italic;
+    line-height: 1.8em;
+}
+
+strong {
+    font-weight: bold;
+}
+
+em, cite {
+    font-style: italic;
+}
+
+small {
+    font-size: 0.9em;
+}
+
+sup {
+    font-size: 0.7em;
+    position: relative;
+    top: -0.6em;
+}
+
+sub {
+    font-size: 0.7em;
+    position: relative;
+    bottom: -0.6em;
+}
+
+input[type="text"], input[type="email"], input[type="password"], textarea, select {
+    background: #fff;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1) inset;
+}
+
+input[type="text"]:disabled {
+    background: #dddddd;
+    font-style: italic;
+}
+
+textarea {
+    font: 13px LucidaGrande, helvetica, arial, sans-serif;
+}
+
+select {
+}
+
+input[type="button"], input[type="submit"] {
+    background: #06cf8c;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#06cf8c), color-stop(100%,#059e6b));
+    background: -moz-linear-gradient(center top, #06cf8c 0%, #059e6b 100%);
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    padding: 8px 10px;
+    display: block;
+    border-color: #059e6b;
+    border-width: 1px;
+    border-style: solid;
+    font-size: 16px;
+    color: #FFFFFF;
+    text-shadow: 0 -1px rgba(34, 25, 25, 0.5);
+}
+
+input[type="button"]:hover, input[type="submit"]:hover {
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#059e6b), color-stop(100%,#059e6b));
+    background: -moz-linear-gradient(center top, #059e6b 0%, #059e6b 100%);
+}
+
+.secondary input[type="button"], .secondary input[type="submit"] {
+    background: #F5F5F5;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#F5F5F5), color-stop(100%,#DEDEDE));
+    background: -moz-linear-gradient(center top , #F5F5F5, #DEDEDE) repeat scroll 0 0 transparent;
+    border: 1px solid #DEDEDE;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    padding: 8px 10px;
+    display: block;
+    font-size: 16px;
+    color: #555555;
+    text-shadow: 0 1px 0 #FFFFFF;
+}
+
+.secondary input[type="button"]:hover, .secondary input[type="submit"]:hover {
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#FFFFFF), color-stop(100%,#E8E8E8));
+    background: -moz-linear-gradient(center top , #FFFFFF, #E8E8E8) repeat scroll 0 0 transparent;
+}
+
+/* Additional Classes */
+
+.nomargin {
+    margin: 0px;
+}
+
+.alignLeft {
+    float: left;
+    margin-right: 20px;
+}
+
+.alignRight {
+    float: right;
+    margin-left: 20px;
+}
+
+.alignCenter {
+    text-align: center;
+}
+
+.clear {
+    clear: both;
+}
+
+.overflow {
+    overflow: hidden;
+}
+
+hr {
+    clear: both;
+    margin: 15px 0px;
+    border-top: 1px solid #ccc;
+    font-size: 1px;
+    line-height: 1px;
+}
+
+.divider {
+    clear: both;
+    width: 100%;
+    border-top: 1px solid rgba(0,0,0,0.1);
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+    margin: 20px 0px;
+}
+
+.textBlue {
+    color: #00B3D8;
+}
+
+a.btnAction:link, a.btnAction:visited {
+    padding: 10px 20px;
+    color: #ffffff;
+    background: #00B3D8;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #24DAFF), color-stop(100%,#00B3D8));
+    background: -moz-linear-gradient(center top, #24DAFF 0%, #00B3D8 100%);
+    border: 1px solid #00B3D8;
+    text-decoration: none;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    font-size: 14px;
+    text-shadow: 0 -1px rgba(34, 25, 25, 0.5);
+}
+
+a.btnAction:hover {
+    background: #00B3D8;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #00B3D8), color-stop(100%,#00B3D8));
+    background: -moz-linear-gradient(center top, #00B3D8 0%, #00B3D8 100%);
+}
+
+a.btnActionGrey:link, a.btnActionGrey:visited {
+    padding: 10px 20px;
+    background: #F5F5F5;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#F5F5F5), color-stop(100%,#DEDEDE));
+    background: -moz-linear-gradient(center top , #F5F5F5, #DEDEDE) repeat scroll 0 0 transparent;
+    border: 1px solid #DEDEDE;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #555555;
+    text-shadow: 0 1px 0 #FFFFFF;
+}
+
+a.btnActionGrey:hover {
+    background: #F5F5F5;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#DEDEDE), color-stop(100%,#DEDEDE));
+    background: -moz-linear-gradient(center top , #DEDEDE, #DEDEDE) repeat scroll 0 0 transparent;
+}
+
+a.btnActionGreen:link, a.btnActionGreen:visited {
+    background: #06cf8c;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#06cf8c), color-stop(100%,#059e6b));
+    background: -moz-linear-gradient(center top, #06cf8c 0%, #059e6b 100%);
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    text-shadow: 0px 1px 0px #ffffff;
+    padding: 10px 20px;
+    border-color: #059e6b;
+    border-width: 1px;
+    border-style: solid;
+    font-size: 14px;
+    color: #FFFFFF;
+    text-shadow: 0 -1px rgba(34, 25, 25, 0.5);
+}
+
+a.btnActionGreen:hover {
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#059e6b), color-stop(100%,#059e6b));
+    background: -moz-linear-gradient(center top, #059e6b 0%, #059e6b 100%);
+}
+
+.defaultRound {
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.defaultShadow {
+    -webkit-box-shadow: 0px 4px 5px rgba(0,0,0,0.3);
+    -moz-box-shadow: 0px 4px 5px rgba(0,0,0,0.3);
+    box-shadow: 0px 4px 5px rgba(0,0,0,0.3);
+}
+
+.defaultBorder {
+    border: 1px solid #ccc;
+}
+
+img.photo {
+    border: 2px solid #ffc20d;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+}
+
+.red {
+  color: #d70000;
+}
+
+.green {
+  color: #2e9401;
+}
+
+/* Layout Settings */
+
+
+/* Generic Columns 1-12 */
+
+.col1, .col2, .col3, .col4, .col5, .col6, .col7, .col8, .col9, .col10, .col11, .col12 {
+    padding: 20px;
+    float: left;
+}
+
+.col1 {
+    width: 40px;
+}
+
+.col2 {
+    width: 120px;
+}
+
+.col3 {
+    width: 200px;
+}
+
+.col4 {
+    width: 280px;
+}
+
+.col5 {
+    width: 360px;
+}
+
+.col6 {
+    width: 438px;
+}
+
+.col7 {
+    width: 520px;
+}
+
+.col8 {
+    width: 600px;
+}
+
+.col9 {
+    width: 680px;
+}
+
+.col10 {
+    width: 760px;
+}
+
+.col11 {
+    width: 840px;
+}
+
+.col12 {
+    width: 920px;
+    float: none;
+}
+
+header {
+    width: 100%;
+    min-width: 1000px;
+    height: 65px;
+    overflow: hidden;
+}
+
+header .plc {
+    width: 1180px;
+    margin: 0px auto;
+    padding: 0px 20px 0px 20px;
+    overflow: hidden;
+    background: none repeat scroll 0 0 #FFFFFF;
+    position: relative;
+    z-index: 2;
+}
+
+header h1 {
+    width: 205px;
+    height: 65px;
+    float: left;
+    display: block;
+    margin: 5px 0px 0px 0px;
+}
+
+header h1 a {
+    background: url("../images/chanelink-logo.png") no-repeat;
+    width: 250px;
+    height: 60px;
+    display: block;
+    text-indent: -10000em;
+}
+
+header a {
+    font-size: 14px;
+}
+
+header nav {
+    width: 550px;
+    float: right;
+    margin-top: 12px;
+    font-size: 14px;
+}
+
+header nav a:link, header nav a:visited {
+    text-decoration: none;
+    float: right;
+    margin-left: 20px;
+    padding: 5px 0px;
+    font-weight: normal;
+}
+
+header nav a.btnAction:link, header nav a.btnAction:visited {
+    color: #000;
+    padding: 5px 15px;
+    font-weight: bold;
+    text-shadow: 0px 1px 1px rgba(255, 255, 255, 1);
+}
+
+/* Footer Settings */
+
+footer {
+    width: 100%;
+    min-width: 1000px;
+    font-size: 12px;
+    color: #999;
+}
+
+footer .plc {
+    width: 1180px;
+    margin: 0px auto;
+    padding: 10px 20px 10px 20px;
+    overflow: hidden;
+    background: none repeat scroll 0 0 #333333;
+    position: relative;
+    z-index: 2;
+}
+
+footer img {
+    vertical-align: baseline;
+}
+
+/* Footer Leftside Settings */
+footer .left {
+    width: 530px;
+    float: left;
+}
+
+/* Footer Rightside Settings */
+footer .right {
+    width: 430px;
+    float: right;
+    text-align: right;
+}
+
+footer .plc .left nav a:link, footer .plc .left nav a:visited, footer .plc .right nav a:link, footer .plc .right nav a:visited {
+    color: #999999;
+}
+
+footer .plc .left nav a:hover, footer .plc .right nav a:hover {
+    color: #ffbf00;
+}
+
+/* Generic table */
+
+.table {
+    overflow: hidden;
+    width: 600px;
+    font-size: 13px;
+}
+
+.table .tableRowHeader {
+    height: 30px;
+    overflow: hidden;
+    text-align: center;
+    background-color: #F5F5F5;
+    font-weight: bold;
+}
+
+.table .tableRow {
+    overflow: hidden;
+    height: 25px;
+    margin-top: 5px;
+    margin-bottom: 7px;
+}
+
+
+.table .bigColumn {
+    width: 200px;
+    float: left;
+    overflow: hidden;
+    padding: 5px;
+    text-align: left;
+}
+
+.table .smallColumn {
+    width: 170px;
+    float: left;
+    overflow: hidden;
+    text-align: center;
+    padding: 5px;
+}
+
+.table .miniColumn {
+    width: 50px;
+    float: left;
+    overflow: hidden;
+    text-align: center;
+    padding: 5px;
+}
+
+/* end */
+
+#contents {
+    width: 100%;
+    min-width: 1000px;
+    overflow: hidden;
+}
+
+#contents .plc {
+    width: 1220px;
+    margin: 0px auto;
+    overflow: hidden;
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #D9D9D9;
+    position: relative;
+    z-index: 2;
+    min-height: 500px;
+}
+
+#contents h2 {
+    margin-bottom: 30px;
+}
+
+#contents h3 {
+    margin-bottom: 10px;
+}
+
+#dashboard {
+    background: url("../images/bg-menu.png") repeat-y scroll 0 0 rgba(0, 0, 0, 0);
+    overflow: hidden;
+    min-height: inherit;
+}
+
+#verticalMenu {
+    padding-top: 0px;
+}
+
+#verticalMenu .topMenu {
+    overflow: hidden;
+    border-top: 1px solid #D9D9D9;
+    border-left: 1px solid #D9D9D9;   
+}
+
+#verticalMenu .topMenu:last-child {
+    border-bottom: 1px solid #D9D9D9;
+}
+
+#verticalMenu .topMenu a {
+    padding: 10px;
+    font-size: 14px;
+    color: black;
+    display: block;
+    width: auto;
+}
+
+#verticalMenu .topMenu a:hover {
+    background: #D9D9D9;
+}
+
+#verticalMenu .topMenu a img {
+    margin-right: 15px;
+}
+
+#verticalMenu .topMenu span.counter {
+    background: none repeat scroll 0 0 #D70000;
+    border-radius: 10px;
+    color: #FFFFFF;
+    font-size: 14px;
+    padding: 4px 5px 3px 5px;
+    margin-left: 6px;
+    position: relative;
+    top: -3px;
+}
+
+#verticalMenu .subMenu {
+    margin-left: 25px;
+}
+
+#verticalMenu .subMenu a {
+    padding: 0px;
+    padding-left: 10px;
+    margin-bottom: 5px;
+    font-size: 12px;
+    color: black;
+    display: block;
+    width: auto;
+}
+
+#verticalMenu .subMenu a:hover {
+    background: #D9D9D9;
+}
+
+#verticalMenu .subMenu a img {
+    margin-right: 15px;
+}
+
+#verticalMenu .currentProperty {
+  background-color: #0b62a4;
+  left: -20px;
+  right: 20px;
+  position: relative;
+  padding: 10px 20px;
+  color: #fff;
+  width: 180px;
+}
+
+#verticalMenu .currentProperty .name {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+#verticalMenu .currentProperty .switch {
+  font-size: 10px;
+  font-style: italic;
+}
+
+#verticalMenu .currentProperty .switch a {
+  color: #fff;
+}
+
+#verticalMenu .currentProperty .switch a:hover {
+  color: #FFBF00;
+}
+
+#feedback label {
+    display: inline-block;
+    float: left;
+    padding-top: 5px;
+    width: 100px;
+}
+
+#feedback input[type="submit"] {
+    display: inline-block;
+}
+
+#newRoomType label {
+    display: inline-block;
+    float: left;
+    padding-top: 5px;
+    width: 180px;
+    font-weight: bold;
+}
+
+#newRoomType input[type="text"] {
+    font-size: 13px;
+    padding: 5px;
+    width: 240px;
+    border: 1px solid #ccc;
+}
+
+#newRoomType input[type="submit"] {
+    margin-right: 10px;
+    display: inline;
+}
+
+#newRoomType .infoBox h4 {
+    margin-bottom: 10px;
+    font-size: 12px;
+}
+
+#newRoomType .infoBox {
+    border: 1px solid #ccc;
+    padding: 20px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+#newRoomType .infoBox p {
+    margin-bottom: 0px;
+    font-size: 12px;
+}
+
+#newRoomType p {
+    margin-bottom: 5px;
+}
+
+#showRoomType label {
+    display: inline-block;
+    float: left;
+    padding-top: 0px;
+    width: 180px;
+    font-weight: bold;
+}
+
+#mainContents {
+  overflow: hidden;
+}
+
+#indexRoomType .roomTypes {
+  overflow: hidden;
+   margin-left: 20px;
+}
+
+#indexRoomType .roomTypeRow {
+  overflow: hidden;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #DEDEDE;
+  margin-bottom: 10px;
+}
+
+#indexRoomType .roomTypeRow .details {
+  overflow: hidden;
+  float: left;
+  width: 300px;
+}
+
+#indexRoomType .roomTypeRow .details .name {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+#indexRoomType .roomTypeRow .actions {
+  overflow: hidden;
+  float: left;
+}
+
+#newChannel label {
+    display: inline-block;
+    float: left;
+    padding-top: 5px;
+    width: 270px;
+    font-weight: bold;
+}
+
+#newChannel input[type="text"] {
+    font-size: 13px;
+    padding: 5px;
+    width: 240px;
+    border: 1px solid #ccc;
+}
+
+#newChannel input[type="submit"] {
+    margin-right: 10px;
+    display: inline;
+}
+
+#newChannel .currency label {
+    width: 270px;
+}
+
+#newChannel .calculation {
+    font-size: 13px;
+}
+
+#setPoolInventory {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-right: 20px;
+    font-size: 12px;
+}
+
+#setPoolInventory .grey {
+    background-color: #F5F5F5;
+}
+
+#setPoolInventory .dataTableTool {
+    height: 30px;
+    background-color: #FFE8A3;
+    padding-left: 10px;
+    padding-top: 10px;
+}
+
+#setPoolInventory .dataTableTool .tool {
+    float: left;
+    margin-right: 10px;
+}
+
+#setPoolInventory .dateTableRowHeader {
+    height: 61px;
+    overflow: hidden;
+    text-align: center;
+}
+
+#setPoolInventory .dateTableRowHeader .date {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+#setPoolInventory .dateTable {
+    overflow: hidden;
+    width: 930px;
+}
+
+#setPoolInventory .dateTableRow {
+    overflow: hidden;
+    height: 25px;
+    margin-top: 5px;
+}
+
+
+#setPoolInventory .bigColumn {
+    width: 180px;
+    float: left;
+    overflow: hidden;
+    padding-left: 5px;
+}
+
+#setPoolInventory .bigColumn .date {
+    margin-top: 20px;
+}
+
+#setPoolInventory .bigColumn .date input[type="text"] {
+    font-size: 11px;
+    padding: 2px 0px 2px 0px;
+    border: 1px solid #ccc;
+    border-radius: 0px;
+    width: 70px;
+}
+
+#setPoolInventory .bigColumn .date .control {
+    display: inline-block;
+    width: 15px;
+}
+
+#setPoolInventory .bigColumn .date a.btnActionGrey:link, #setPoolInventory .bigColumn .date a.btnActionGrey:visited {
+    padding: 1px 1px;
+    background: #F5F5F5;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#F5F5F5), color-stop(100%,#DEDEDE));
+    background: -moz-linear-gradient(center top , #F5F5F5, #DEDEDE) repeat scroll 0 0 transparent;
+    border: 1px solid #DEDEDE;
+    -webkit-border-radius: 1px;
+    -moz-border-radius: 1px;
+    border-radius: 1px;
+    font-size: 12px;
+    color: #555555;
+    text-shadow: 0 1px 0 #FFFFFF;
+}
+
+#setPoolInventory .bigColumn .date a.btnActionGrey:hover {
+    background: #F5F5F5;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#DEDEDE), color-stop(100%,#DEDEDE));
+    background: -moz-linear-gradient(center top , #DEDEDE, #DEDEDE) repeat scroll 0 0 transparent;
+}
+
+#setPoolInventory .smallColumn {
+    width: 53px;
+    float: left;
+    overflow: hidden;
+    text-align: center;
+}
+
+#setPoolInventory .weekend {
+  background-color: #CFCFCF;
+}
+
+#setPoolInventory .smallColumn input[type="text"] {
+    font-size: 12px;
+    padding: 2px 0px 2px 0px;
+    border: 1px solid #ccc;
+    border-radius: 0px;
+    width: 50px;
+}
+
+#setPoolInventory .minStay input[type="text"] {
+    width: 20px;
+}
+
+#setPoolInventory .gridHeader {
+  overflow: hidden;
+  margin-bottom: 15px;
+}
+
+#setPoolInventory .gridHeader .left {
+  float: left;
+}
+
+#setPoolInventory .gridHeader .left h3 {
+    display: inline;
+}
+
+#setPoolInventory .gridHeader .left .rateMultiplier {
+    margin-left: 15px;
+    font-style: italic;
+}
+
+#setPoolInventory .gridHeader .right {
+  float: right;
+  margin-right: 35px;
+}
+
+#setPoolInventory h2 {
+  margin-bottom: 5px;
+}
+
+#setPoolInventory input[type="submit"] {
+  font-size: 14px;
+  padding: 6px 8px;
+  display: inline;
+}
+
+#setPoolInventory a.btnActionTool:link, #setPoolInventory a.btnActionTool:visited {
+    padding: 6px 8px;
+    background: #F5F5F5;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#F5F5F5), color-stop(100%,#DEDEDE));
+    background: -moz-linear-gradient(center top , #F5F5F5, #DEDEDE) repeat scroll 0 0 transparent;
+    border: 1px solid #DEDEDE;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    font-size: 12px;
+    color: #555555;
+    text-shadow: 0 1px 0 #FFFFFF;
+    margin-right: 20px;
+}
+
+#setPoolInventory a.btnActionTool:hover {
+    background: #F5F5F5;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#DEDEDE), color-stop(100%,#DEDEDE));
+    background: -moz-linear-gradient(center top , #DEDEDE, #DEDEDE) repeat scroll 0 0 transparent;
+}
+
+#masterRateMappingIndex .masterRateRoom {
+  margin-left: 20px;
+  margin-top: 20px;
+}
+
+#masterRateMappingIndex .masterRateChannelRoom {
+  margin-left: 20px;
+  margin-top: 40px;
+}
+
+#masterRateMappingIndex .masterRateChannelRoom .channel h5 {
+  border-bottom: 1px solid #ccc;
+  font-size: 14px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+#masterRateMappingIndex .masterRateChannelRoom .room {
+  font-size: 13px;
+  overflow: hidden;
+}
+
+#masterRateMappingIndex .masterRateChannelRoom .room .name {
+  float: left;
+  width: 120px;
+}
+
+#masterRateMappingIndex .masterRateChannelRoom .room .masterRate {
+  float: left;
+  margin-left: 40px;
+  width: 120px;
+}
+
+#masterRateMappingIndex .masterRateChannelRoom .room .markup {
+  float: left;
+  margin-left: 40px;
+  width: 150px;
+}
+
+#masterRateMappingIndex .masterRateChannelRoom .room .action {
+  float: left;
+  margin-left: 40px;
+}
+
+#memberDashboard .heading {
+  border-bottom: 1px solid #ccc;
+  padding-left: 1px;
+}
+
+#memberDashboard .left {
+  float: left;
+  overflow: hidden;
+  margin-right: 30px;
+}
+
+#memberDashboard .right {
+  float: left;
+  overflow: hidden;
+}
+
+#memberDashboard .alerts {
+  width: 400px;
+}
+
+#memberDashboard .channels {
+  width: 400px;
+}
+
+#memberDashboard .hotelStatus {
+  width: 400px;
+}
+
+#memberDashboard .bookings {
+  width: 400px;
+}
+
+#memberDashboard .channels .channel {
+  overflow: hidden;
+  margin-left: 5px;
+  margin-top: 10px;
+}
+
+#memberDashboard .channels .channel .name {
+  float: left;
+  font-size: 14px;
+  width: 180px;
+  font-weight: bold;
+}
+
+#memberDashboard .channels .channel .status {
+  float: left;
+  margin-left: 50px;
+  font-size: 14px;
+  color: #2e9401;
+}
+
+#memberDashboard .alerts .alertRow {
+  font-size: 13px;
+  margin-left: 5px;
+}
+
+#checkinReport .dateHeading {
+  border-bottom: 1px solid #ccc;
+  margin-top: 10px;
+}
+
+#checkinReport .booking {
+  overflow: hidden;
+  margin-left: 15px;
+  margin-top: 15px;
+  font-size: 13px;
+}
+
+#checkinReport .left {
+  float: left;
+  width: 350px;
+}
+
+#checkinReport .guest {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+#checkinReport .right {
+  float: left;
+  margin-left: 10px;
+}
+
+#checkinReport label {
+    display: inline-block;
+    float: left;
+    width: 180px;
+    font-weight: bold;
+}
+
+#checkinReport select {
+    font-size: 13px;
+    padding: 5px;
+    width: 140px;
+    border: 1px solid #ccc;
+}
+
+#checkinReport .table {
+    width: 900px;
+}
+
+#checkinReport .table .smallColumn {
+    width: 100px;
+}
+
+#roomTypeInventoryLinksIndex .noLinkRow {
+  font-size: 14px;
+  overflow: hidden;
+  margin-left: 15px;
+  margin-bottom: 10px;
+}
+
+#roomTypeInventoryLinksIndex .noLinkRow .roomType {
+  float: left;
+  width: 300px;
+}
+
+#roomTypeInventoryLinksIndex .noLinkRow .action {
+  float: left;
+}
+
+#newRoomTypeInventoryLink label {
+    display: inline-block;
+    float: left;
+    padding-top: 5px;
+    width: 180px;
+    font-weight: bold;
+}
+
+#propertySelection .propertyList {
+  overflow: hidden;
+}
+
+#propertySelection .propertyList .property {
+  float: left;
+  width: 200px;
+  height: 70px;
+  border: 1px solid #D9D9D9;
+  padding: 10px;
+  margin-right: 25px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+}
+
+#propertySelection .propertyList .property .name {
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+#propertySelection .propertyList .property .pending {
+  text-align: center;
+  font-size: 13px;
+  font-weight: bold;
+  color: #d70000;
+}
+
+#propertySelection .propertyList .property .action {
+  text-align: center;
+  font-size: 13px;
+  font-weight: bold;
+  margin-top: 10px;
+  color: #F5F5F5;
+  ;
+}
+
+#propertySelection .propertyList .property .channel {
+  text-align: center;
+  font-size: 13px;
+  font-weight: bold;
+  ;
+}
+
+#newMember label {
+    display: inline-block;
+    float: left;
+    padding-top: 5px;
+    width: 240px;
+    font-weight: bold;
+}
+
+#newMember input[type="text"] {
+    font-size: 13px;
+    padding: 5px;
+    width: 240px;
+    border: 1px solid #ccc;
+}
+
+#newMember select {
+    width: 200px;
+}
+
+#newMember input[type="submit"] {
+    margin-right: 10px;
+    display: inline;
+}
+
+#newMember .propertiesWrap {
+    overflow: hidden;
+    font-size: 13px;
+}
+
+#newMember .properties {
+    float: left;
+    display: block;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+
+#channelYieldReport label {
+    display: inline-block;
+    float: left;
+    padding-top: 3px;
+    width: 180px;
+    font-weight: bold;
+}
+
+#channelYieldReport input[type="radio"] {
+    font-size: 13px;
+    padding: 5px;
+    border: 1px solid #ccc;
+}
+
+#channelYieldReport input[type="text"] {
+    font-size: 13px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    width: 100px;
+}
+
+#channelYieldReport select {
+    font-size: 13px;
+    padding: 5px;
+    width: 140px;
+    border: 1px solid #ccc;
+}
+
+#channelYieldReport .tableRowHeader {
+    height: 30px;
+    overflow: hidden;
+    text-align: center;
+    background-color: #F5F5F5;
+    font-weight: bold;
+}
+
+#channelYieldReport .table {
+    overflow: hidden;
+    width: 930px;
+    font-size: 13px;
+}
+
+#channelYieldReport .tableRow {
+    overflow: hidden;
+    height: 25px;
+    margin-top: 5px;
+    margin-bottom: 7px;
+}
+
+
+#channelYieldReport .bigColumn {
+    width: 180px;
+    float: left;
+    overflow: hidden;
+    padding: 5px;
+    text-align: left;
+}
+
+#channelYieldReport .smallColumn {
+    width: 130px;
+    float: left;
+    overflow: hidden;
+    text-align: center;
+    padding: 5px;
+}
+
+#channelYieldReport input[type="button"], #channelYieldReport input[type="submit"] {
+  display: inline-block;
+}
+
+#membersIndex h4 {
+  margin-bottom: 15px;
+}
+
+#membersIndex .tableRowHeader {
+    height: 30px;
+    overflow: hidden;
+    text-align: center;
+    background-color: #F5F5F5;
+    font-weight: bold;
+}
+
+#membersIndex .table {
+    overflow: hidden;
+    width: 600px;
+    font-size: 13px;
+}
+
+#membersIndex .tableRow {
+    overflow: hidden;
+    height: 25px;
+    margin-top: 5px;
+    margin-bottom: 7px;
+}
+
+
+#membersIndex .bigColumn {
+    width: 200px;
+    float: left;
+    overflow: hidden;
+    padding: 5px;
+    text-align: left;
+}
+
+#membersIndex .smallColumn {
+    width: 170px;
+    float: left;
+    overflow: hidden;
+    text-align: center;
+    padding: 5px;
+}
+
+#newProperty label {
+    display: inline-block;
+    float: left;
+    padding-top: 5px;
+    width: 180px;
+    font-weight: bold;
+}
+
+#newProperty .readOnly {
+    padding-top: 0px;
+}
+
+#newProperty input[type="text"] {
+    font-size: 13px;
+    padding: 5px;
+    width: 240px;
+    border: 1px solid #ccc;
+}
+
+#newProperty input[type="submit"] {
+    margin-right: 10px;
+    display: inline;
+}
+
+#showProperty label {
+    display: inline-block;
+    float: left;
+    width: 180px;
+    font-weight: bold;
+}
+
+#newPool label {
+    display: inline-block;
+    float: left;
+    padding-top: 2px;
+    width: 180px;
+    font-weight: bold;
+}
+
+#newPool input[type="text"] {
+    font-size: 13px;
+    padding: 5px;
+    width: 240px;
+    border: 1px solid #ccc;
+}
+
+#newPool input[type="submit"] {
+    margin-right: 10px;
+    display: inline;
+}
+
+#newPool .moveChannels {
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+#newPool .moveChannels .left {
+    float: left;
+    overflow: hidden;
+}
+
+#newPool .moveChannels .right {
+    float: left;
+    overflow: hidden;
+}
+
+#newPool .moveChannels .mid {
+    float: left;
+    overflow: hidden;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding-top: 70px;
+}
+
+#newPool .moveChannels .list {
+    width: 200px;
+    height: 200px;
+}
+
+#newPool .moveChannels .secondary input[type="button"] {
+    background: #F5F5F5;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#F5F5F5), color-stop(100%,#DEDEDE));
+    background: -moz-linear-gradient(center top , #F5F5F5, #DEDEDE) repeat scroll 0 0 transparent;
+    border: 1px solid #DEDEDE;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    padding: 4px 5px;
+    display: block;
+    font-size: 12px;
+    color: #555555;
+    text-shadow: 0 1px 0 #FFFFFF;
+}
+
+#newPool .moveChannels .secondary input[type="button"]:hover {
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#FFFFFF), color-stop(100%,#E8E8E8));
+    background: -moz-linear-gradient(center top , #FFFFFF, #E8E8E8) repeat scroll 0 0 transparent;
+}
+
+#newPool option:disabled
+{
+    color: #dddddd;
+    font-style: italic;
+}
+
+#newPool .breadcrumb {
+    font-size: 13px;
+    overflow: hidden;
+    margin-bottom: 25px;
+}
+
+#newPool .breadcrumb .step {
+    float: left;
+    color: #777777;
+    border: 1px solid #DDDDDD;
+    border-radius: 3px 3px 3px 3px;
+    padding: 1px 8px;
+}
+
+#newPool .breadcrumb .current {
+    float: left;
+    color: #ffffff;
+    background-color: #E9727C;
+}
+
+#newPool .breadcrumb .separator {
+    float: left;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+#newPool .confirmationBox {
+    border: 1px solid #ccc;
+    padding: 25px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+#newPool .confirmationBox p {
+    margin-bottom: 0px;
+}
+
+#newRoomTypeChannelMapping .breadcrumb {
+    font-size: 13px;
+    overflow: hidden;
+    margin-bottom: 25px;
+}
+
+#newRoomTypeChannelMapping .breadcrumb .step {
+    float: left;
+    color: #777777;
+    border: 1px solid #DDDDDD;
+    border-radius: 3px 3px 3px 3px;
+    padding: 1px 8px;
+}
+
+#newRoomTypeChannelMapping .breadcrumb .current {
+    float: left;
+    color: #ffffff;
+    background-color: #E9727C;
+}
+
+#newRoomTypeChannelMapping .breadcrumb .separator {
+    float: left;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+#newRoomTypeChannelMapping label {
+    display: inline-block;
+    float: left;
+    width: 200px;
+    font-weight: bold;
+    padding-top: 5px;
+}
+
+#newRoomTypeChannelMapping input[type="submit"] {
+    margin-right: 10px;
+    display: inline;
+}
+
+#newRoomTypeChannelMapping .box {
+    border: 1px solid #ccc;
+    padding: 20px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+#newRoomTypeChannelMapping .box p {
+    margin-bottom: 5px;
+}
+
+#newRoomTypeChannelMapping .indent {
+    margin-right: 40px;
+}
+
+#newRoomTypeChannelMapping .masterRate p {
+    margin-bottom: 15px;
+}
+
+#newRoomTypeChannelMapping .masterRate label {
+    padding-top: 3px;
+}
+
+#newRoomTypeChannelMapping .review label {
+    padding-top: 0px;
+}
+
+#newRoomTypeChannelMapping .readonly label {
+    padding-top: 0px;
+}
+
+#newChannel .breadcrumb {
+    font-size: 13px;
+    overflow: hidden;
+    margin-bottom: 25px;
+}
+
+#newChannel .breadcrumb .step {
+    float: left;
+    color: #777777;
+    border: 1px solid #DDDDDD;
+    border-radius: 3px 3px 3px 3px;
+    padding: 1px 8px;
+}
+
+#newChannel .breadcrumb .current {
+    float: left;
+    color: #ffffff;
+    background-color: #E9727C;
+}
+
+#newChannel .breadcrumb .separator {
+    float: left;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+#newChannel .box {
+    border: 1px solid #ccc;
+    padding: 20px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+#newChannel .box p {
+    margin-bottom: 5px;
+    font-size: 13px;
+}
+
+#newChannel .box h4 {
+    margin-bottom: 10px;
+}
+
+#newChannel .review label {
+    padding-top: 0px;
+}
+
+#bulkUpdate .valueType p {
+  margin-bottom: 3px;
+}
+
+#bulkUpdate label {
+    display: inline-block;
+    float: left;
+    width: 120px;
+    padding-top: 2px;
+}
+
+#bulkUpdate input[type="text"] {
+    font-size: 13px;
+    padding: 3px;
+    width: 80px;
+    border: 1px solid #ccc;
+}
+
+#bulkUpdate .datesDays p {
+  margin-bottom: 3px;
+}
+
+#bulkUpdate .roomTypes p {
+    margin-bottom: 3px;
+}
+
+#bulkUpdate .disabled {
+    color: #dddddd;
+    font-style: italic;
+}
+
+#bulkUpdate .col {
+    float: left;
+    overflow: hidden;
+    margin-right: 15px;
+    border: 1px solid #ccc;
+    padding: 8px;
+}
+
+#bulkUpdate .valueType {
+    width: 220px;
+}
+
+#copyTool label {
+    display: inline-block;
+    float: left;
+    width: 150px;
+    padding-top: 0px;
+}
+
+#copyTool .fromTo {
+  overflow: hidden;
+}
+
+#copyTool .from, #copyTool .to {
+    float: left;
+    margin-right: 25px;
+}
+
+#copyTool .box {
+    border: 1px solid #ccc;
+    padding: 20px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+#copyTool .fromTo h4 {
+    margin-bottom: 10px;
+}
+
+#indexAlert .table {
+    width: 750px;
+}
+
+#indexAlert .table .tableRow {
+    width: 750px;
+    display: table;
+}
+
+#indexAlert .table .bigColumn {
+    width: 500px;
+    float: left;
+    overflow: visible;
+    padding: 5px;
+    text-align: left;
+}
+
+#indexAlert .table .smallColumn {
+    width: 100px;
+    float: left;
+    overflow: hidden;
+    text-align: center;
+    padding: 5px;
+}
+
+#indexAlert .table .miniColumn {
+    width: 30px;
+    float: left;
+    overflow: hidden;
+    text-align: center;
+    padding: 5px;
+}
+
+#indexAlert .new {
+    background-color: #FFECB3;
+}
+
+.pagination {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.pagination .disabled {
+    display: inline-block;
+    margin-right: 2px;
+    padding: 2px 5px;
+    color: #ccc;
+    font-size: 11px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+
+.pagination em {
+    margin-right: 2px;
+    padding: 2px 6px;
+}
+
+.pagination a:link, .pagination a:visited {
+    display: inline-block;
+    margin-right: 2px;
+    padding: 2px 6px;
+    font-size: 11px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+
+.pagination a:hover {
+    background: #ccc;
+}
+
+.poolSelection {
+    margin-bottom: 25px;
+}
+
+.poolSelection p {
+    font-size: 15px;
+}
+
+#indexCurrencyConversion label {
+    display: inline-block;
+    float: left;
+    padding-top: 0px;
+    width: 180px;
+    font-weight: bold;
+}
+
+#indexCurrencyConversion .bigColumn {
+    width: 400px;
+}
+
+#indexPropertyChannel .action {
+    margin-left: 50px;
+}
+
+#indexPropertyChannel .action .btnActionGrey {
+    padding: 6px 10px;
+}
+
+#editMasterRateChannel label {
+    display: inline-block;
+    float: left;
+    padding-top: 2px;
+    width: 180px;
+    font-weight: bold;
+}
+
+#editMasterRateChannel input[type="text"] {
+    font-size: 13px;
+    padding: 5px;
+    width: 150px;
+    border: 1px solid #ccc;
+}
+

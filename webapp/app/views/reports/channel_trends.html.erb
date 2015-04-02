@@ -1,0 +1,53 @@
+<%= page_title t('reports.channel_trends.label.heading') %>
+<div id="channelYieldReport">
+  <div class="col12">
+    <h2><%= raw t('reports.channel_trends.label.heading') %></h2>
+    
+    <%= form_tag(channel_trends_reports_path, :method => "get") do %>
+      <p>
+        <label><%= t('reports.channel_trends.label.date_type') %></label>
+        <%= radio_button_tag 'date_type', Constant::YIELD_CREATED, params[:date_type] == Constant::YIELD_CREATED %>&nbsp;&nbsp;<%= t('reports.channel_trends.date_type.created') %>&nbsp;&nbsp;&nbsp;&nbsp;
+        <%= radio_button_tag 'date_type', Constant::YIELD_CHECKIN, params[:date_type] == Constant::YIELD_CHECKIN %>&nbsp;&nbsp;<%= t('reports.channel_trends.date_type.checkin') %>
+      </p>
+      <p>
+        <label><%= t('reports.channel_trends.label.range') %></label>
+        <% from_date_picker_field = 'date_from' %>
+        <%= report_date_picker_js(from_date_picker_field) %>
+        <%= text_field_tag from_date_picker_field, params[:date_from], :readonly => "readonly" %>
+
+        &nbsp;&nbsp;<%= t('reports.channel_trends.label.to') %>&nbsp;&nbsp;
+
+        <% to_date_picker_field = 'date_to' %>
+        <%= report_date_picker_js(to_date_picker_field) %>
+        <%= text_field_tag to_date_picker_field, params[:date_to], :readonly => "readonly" %>
+      </p>
+      <p>
+        <label><%= t('reports.channel_trends.label.breakdown') %></label>
+        <%= radio_button_tag 'breakdown', Constant::TRENDS_DAY, params[:breakdown] == Constant::TRENDS_DAY %>&nbsp;&nbsp;<%= t('reports.channel_trends.breakdown.day') %>&nbsp;&nbsp;&nbsp;&nbsp;
+        <%= radio_button_tag 'breakdown', Constant::TRENDS_MONTH, params[:breakdown] == Constant::TRENDS_MONTH %>&nbsp;&nbsp;<%= t('reports.channel_trends.breakdown.month') %>
+      </p>
+      <% if !current_property.single_pool? %>
+        <p>
+          <label><%= t('reports.channel_trends.label.pool') %></label>
+          <%= select_tag "pool", options_for_select(Pool.pool_list(current_property), params[:pool]) %>
+        </p>
+      <% end %>
+      <p>
+        <label><%= t('reports.channel_trends.label.channel') %></label>
+        <%= select_tag "channel", options_for_select(Channel.list_by_property_and_pool(current_property, nil), params[:channel]) %>
+      </p>
+      <p>
+        <label><%= t('reports.channel_trends.label.report_type') %></label>
+        <%= select_tag "report_type", options_for_select(Constant.trends_type, params[:report_type]) %>
+      </p>
+      <p>
+        <label>&nbsp;</label>
+        <%= submit_tag(t('button.submit')) %>
+      </p>
+    <% end %>
+    <br/>
+    <% if !@report_type.blank? and @errors.blank? %>
+      <%= render "reports/#{@report_type}_channel_trends" %>
+    <% end %>
+  </div>
+</div>

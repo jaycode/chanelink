@@ -1,0 +1,26 @@
+<% property_channel = PropertyChannel.find_by_property_id_and_channel_id(@room_type_channel_mapping.room_type.property.id, @channel.id) %>
+<% if !property_channel.orbitz_hotel_code.blank? %>
+  <pre>
+    <% contract_xml = OrbitzChannel.get_property_contract(property_channel) %>
+    <% doc = Nokogiri.XML(contract_xml) do |config| %>
+      <% config.default_xml.noblanks %>
+    <% end %>
+    <%= doc.to_xml(:indent => 2) %>
+  </pre>
+<% end %>
+<p>
+  <label><%= t('room_type_channel_mappings.new.label.orbitz_rate_plan_id') %></label>
+  <%= f.text_field :orbitz_rate_plan_id %>
+</p>
+<p>
+  <label><%= t('room_type_channel_mappings.new.label.orbitz_single_rate_multiplier') %></label>
+  <%= f.text_field :orbitz_single_rate_multiplier %>
+</p>
+<p>
+  <label><%= t('room_type_channel_mappings.new.label.orbitz_double_rate_multiplier') %></label>
+  <%= f.text_field :orbitz_double_rate_multiplier %>
+</p>
+<p>
+  <label><%= t('room_type_channel_mappings.new.label.orbitz_additional_guest_amount') %></label>
+  <%= f.text_field :orbitz_additional_guest_amount %>
+</p>

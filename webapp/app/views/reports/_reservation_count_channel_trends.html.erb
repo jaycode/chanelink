@@ -1,0 +1,37 @@
+<h3><%= raw t('reports.channel_trends.label.reservation_count') %></h3>
+<% if !@filtered_bookings.blank? %>
+  <% col_size = trends_extract_category_count(@filtered_bookings) %>
+  <% if col_size <= Constant::REPORT_MAX_COL %>
+    <div id="container"></div>
+    <script>
+      $(function () {
+            $('#container').highcharts({
+                title: {
+                    text: '<%= t('reports.channel_trends.label.reservation_count') %>',
+                    x: -20 //center
+                },
+                xAxis: {
+                    categories: <%= trends_extract_category(@filtered_bookings) %>
+                },
+                yAxis: {
+                    title: {
+                        text: '<%= t('reports.channel_trends.label.reservation_count') %>'
+                    }
+                },
+                series: [<% @filtered_bookings.keys.each do |channel| %>
+                           {
+                             name: '<%= channel %>',
+                             data: <%= trends_extract_reservation_count(@filtered_bookings[channel]) %>
+                           },
+                         <% end %>
+                       ]
+            });
+        });
+     </script>
+   <% else %>
+    <p>
+      <%= t('reports.too_big') %>
+    </p>
+    <%= link_to t('reports.channel_yield.label.export_csv'), 'javascript:reportExportCSV()', :class => 'btnActionGrey' %>
+  <% end %>
+<% end %>

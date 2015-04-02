@@ -1,0 +1,26 @@
+<%= page_title t('room_types.show.label.heading') %>
+<div id="showRoomType">
+  <div class="col9">
+    <h2><%= raw t('room_types.show.label.heading') %></h2>
+    <p>
+      <label><%= t('room_types.new.label.name') %><%= required %></label>
+      <%= @room_type.name %>
+    </p>
+    <p>
+      <label><%= t('room_types.new.label.rack_rate') %><%= required %></label>
+      <%= @room_type.rack_rate %>
+    </p>
+    <p>
+      <label><%= t('room_types.new.label.minimum_rate') %></label>
+      <%= @room_type.minimum_rate %>&nbsp;
+    </p>
+    <p>
+      <label><%= t('room_types.new.label.minimum_stay') %></label>
+      <%= @room_type.minimum_stay %>&nbsp;
+    </p>
+    <br/>
+    <p>
+      <%= link_to t('room_types.show.label.back_to_index'), room_types_path %>
+    </p>
+  </div>
+</div>

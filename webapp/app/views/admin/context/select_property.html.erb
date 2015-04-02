@@ -1,0 +1,27 @@
+<div class="col12">
+  <h2><%= t('admin.context.select_property.label.header') %></h2>
+  <br/>
+  <% if !@account.blank? %>
+    <p>
+      <label><%= t('admin.context.select_property.label.account') %></label>
+      <%= select_tag "select_account", options_for_select(Account.select_list_check_user_access(current_user), @account.id) %>
+      <%= account_selection_js admin_select_property_path %>
+    </p>
+    <div class="infoBox" style="width: 500px">
+      <h4><%= t('admin.context.select_property.label.properties_list') %></h4>
+      <br/>
+      <% @account.properties.each do |prop| %>
+        <% if current_user.super? or !UserPropertyAccess.find_by_user_id_and_property_id(current_user.id, prop.id).blank? %>
+          <p>
+            <%= link_to prop.name, admin_select_property_set_path(:id => prop.id) %>
+          </p>
+        <% end %>
+      <% end %>
+      <%= link_to t('admin.context.select_property.label.new_property'), new_admin_property_path(:account_id => @account.id), :class => 'btnActionGrey alignRight' %>
+    </div>
+  <% end %>
+  <%= link_to t('admin.context.select_property.label.new_account'), new_admin_account_path, :class => 'btnActionGrey alignRight' %>
+  <br/>
+  <br/>
+  <br/>
+</div>

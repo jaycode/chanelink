@@ -1,0 +1,90 @@
+<div id="memberDashboard">
+  <div class="col12">
+    <div class="left">
+      <div class="channels">
+        <h3 class="textBlack heading"><%= t('dashboard.channel.heading') %></h3>
+        <% if current_property.channels.blank? %>
+          <p><em><%= t('dashboard.channel.no_channel') %></em></p>
+        <% else %>
+          <div class="channel">
+            <% current_property.channels.each do |pc| %>
+              <div class="name"><%= pc.channel.name %></div>
+              <div class="status">
+                <% if pc.disabled? %>
+                  <span class="red"><%= t("general.disabled") %></span>
+                <% else %>
+                  <span class="green"><%= t("general.enabled") %></span>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+      <br/>
+      <div class="alerts">
+        <h3 class="textBlack heading"><%= t('dashboard.alerts.heading') %></h3>
+        <% if current_member.alerts.blank? %>
+          <p><%= t('alerts.index.label.empty') %></p>
+        <% else %>
+          <% current_member.alerts.take(5).each do |alert| %>
+            <div class="alertRow"><%= raw alert.to_display %></div>
+          <% end %>
+          <p>
+            <div class="alertRow"><%= link_to t('general.see_all'), alerts_path %></div>
+          </p>
+        <% end %>
+      </div>
+    </div>
+    <div class="right">
+      <div class="hotelStatus">
+        <h3 class="textBlack heading"><%= t('dashboard.hotel_status.heading') %></h3>
+        <p>
+          <%= t('dashboard.hotel_status.disabled_channels', :count => (current_property.channels.find_all_by_disabled(true).count)) %>
+        </p>
+        <p>
+          <%= t('dashboard.hotel_status.disabled_channel_rooms', :count => (RoomTypeChannelMapping.room_type_ids(current_property.room_type_ids).find_all_by_disabled(true).count)) %>
+        </p>
+      </div>
+      <div class="bookings">
+        <h3 class="textBlack heading"><%= t('dashboard.bookings.heading') %></h3>
+        <div id="bookings" style="height: 250px;"></div>
+      </div>
+      <% channels = Array.new %>
+      <% current_property.channels.each do |pc| %>
+        <% channels << pc.channel %>
+      <% end %>
+      <% bookings_count = Array.new %>
+      <% channels.each do |ch| %>
+        <% bookings_count << Booking.booking_date_between(DateTime.now - 30.days, DateTime.now).find_all_by_property_id_and_channel_id(current_property.id, ch.id).count %>
+      <% end %>
+      <script>
+        $(function () {
+            $('#bookings').highcharts({
+                chart: {
+                    type: 'bar'
+                },
+                title: {
+                    text: '<%= t('dashboard.bookings.last_30_days') %>'
+                },
+                xAxis: {
+                    categories: ['<%= (channels.collect &:name).join("','") %>']
+                },
+                yAxis: {
+                    title: {
+                        text: 'Bookings'
+                    }
+                },
+                legend: {enabled: false},
+                series: [{
+                    data: [<%= bookings_count.join(',') %>]
+                }]
+            });
+        });
+
+
+
+      </script>
+    </div>
+  </div>
+</div>
+

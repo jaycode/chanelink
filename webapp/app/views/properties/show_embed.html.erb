@@ -1,0 +1,36 @@
+<%= page_title @property.name %>
+<div id="showProperty">
+  <div class="col9">
+    <h2><%= @property.name %></h2>
+    <p>
+      <label><%= t('admin.properties.new.label.name') %></label>
+      <%= @property.name %>
+    </p>
+    <p>
+      <label><%= t('admin.properties.new.label.address') %></label>
+      <%= @property.address %>
+    </p>
+    <p>
+      <label><%= t('admin.properties.new.label.city') %></label>
+      <%= @property.city %>
+    </p>
+    <p>
+      <label><%= t('admin.properties.new.label.state') %></label>
+      <%= @property.state %>
+    </p>
+    <p>
+      <label><%= t('admin.properties.new.label.country') %></label>
+      <%= @property.country.name %>
+    </p>
+    <p>
+      <label><%= t('admin.properties.new.label.postcode') %></label>
+      <%= @property.postcode %>
+    </p>
+
+    <p>
+      <label><%= t('admin.properties.new.label.minimum_room_rate') %></label>
+      <%= @property.minimum_room_rate %>
+    </p>
+    <br/>
+  </div>
+</div>
