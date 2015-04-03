@@ -141,7 +141,7 @@ Read more about running specific tests [here](http://flavio.castelli.name/2010/0
 
 #### Using cookies in test code
 
-Instead of cookies[:something], use @request.cookie_jar[:something], because the latter allows you
+Instead of `cookies[:something]`, use `@request.cookie_jar[:something]`, because the latter allows you
 to use permanent and signed featuress (i.e. it is an object instead of hash).
 
 ### Routing
