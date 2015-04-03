@@ -2,17 +2,9 @@ require 'active_record/fixtures'
 
 print "Running db/seeds.rb...\n"
 
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
-#   Mayor.create(:name => 'Daley', :city => cities.first)
-
 connection = ActiveRecord::Base.connection
 connection.tables.each do |table|
-connection.execute("TRUNCATE #{table}") unless table == "schema_migrations"
+  connection.execute("TRUNCATE #{table}") unless table == "schema_migrations"
 end
 
 # - IMPORTANT: SEED DATA ONLY
@@ -25,14 +17,36 @@ print "Found #{statements.count} queries.\n"
 statements.pop  # the last empty statement
 
 ActiveRecord::Base.transaction do
-    statements.each do |statement|
-        # print "#{statement.strip}\n"
-        connection.execute(statement.strip)
-    end
+  statements.each do |statement|
+    connection.execute(statement.strip)
+  end
 end
 
+#---------------------------------
 # Other seed data
+#---------------------------------
 
-super_admin = Member.create
+# Test members creation
+#---------------------------------
+admin_account = Account.where(:name => 'Plaza Hotel Glodok').first
+property_ids = Property.all(:select => :id, :conditions => {:approved => 1}).collect(&:id)
+
+super_admin_email = 'jay@chanelink.com'
+super_admin_pass = 'Passw0rd'
+
+super_admin = Member.create do |m|
+  m.name = "Super Admin"
+  m.email = super_admin_email
+  m.disabled = false
+  m.password = super_admin_pass
+  m.account = admin_account
+  m.assigned_properties = property_ids
+  m.master = 1
+  m.role = MemberRole.where(:type => 'SuperRole').first
+end
+
+super_admin.skip_properties_validation = true
+super_admin.update_attributes(:password => super_admin_pass, :prompt_password_change => false)
+#---------------------------------
 
 print "Seed data imported!\n"

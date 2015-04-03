@@ -1,0 +1,24 @@
+big_hotel_1:
+    name: Big Hotel Chain - Branch 1
+    address: Hotel Address
+    city: Surabaya
+    state: Jawa Timur
+    postcode: 60322
+    minimum_room_rate: 250000
+    country: indonesia
+    account: big_hotel_chain
+    agoda_hotel_id: bighotel1
+    expedia_hotel_id: bighotel1
+    approved: 1
+big_hotel_2:
+    name: Big Hotel Chain - Branch 2
+    address: Hotel Address
+    city: Jakarta
+    state: Jawa Barat
+    postcode: 60322
+    minimum_room_rate: 350000
+    country: indonesia
+    account: big_hotel_chain
+    agoda_hotel_id: bighotel2
+    expedia_hotel_id: bighotel2
+    approved: 1

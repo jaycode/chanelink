@@ -5,40 +5,46 @@ class SessionsController < ApplicationController
   
   # For Login Submission
   def create
-    member = Member.authenticate(params[:email], params[:password], session)
-    member_no_password_check = Member.find_by_email(params[:email])
-    
+    @logger = Logger.new("#{Rails.root}/log/custom.log")
     # If already logged in then return to root path
     if member_logged_in?
       redirect_to root_path
-      
-    # Try to authenticate given email and password
-    elsif member
-      if member.disabled?
-        flash[:alert] = t('login.message.disabled')
-        redirect_to login_path
-      else
-        create_member_auth_cookie(member)
-        member.logins.create(:success => true)
-        session[:last_seen] = DateTime.now
-        flash[:notice] = t('login.message.success')
-        redirect_back root_path
-      end
     else
-      if member_no_password_check
-        member_no_password_check.logins.create(:success => false)
-        # if member does wrong login 3 times then lock the user
-        if member_no_password_check.logins.failed_in_the_last_hour_after_last_update(member_no_password_check.updated_at).count >= Member::TIMES_FAILED_BEFORE_LOCKING
-          member_no_password_check.lock 
-          flash.now[:alert] = t('login.message.locked', :times => Member::TIMES_FAILED_BEFORE_LOCKING)
+      # Try to authenticate given email and password
+      member = Member.authenticate(params[:email], params[:password], session)
+      member_no_password_check = Member.find_by_email(params[:email])
+      @logger.debug "try logging in"
+      if member
+        @logger.debug "is member alrite"        
+        if member.disabled?
+          @logger.debug "member is disabled"
+          flash[:alert] = t('login.message.disabled')
+          redirect_to login_path
+        else
+          @logger.debug "create member auto cookie"
+          create_member_auth_cookie(member)
+          member.logins.create(:success => true)
+          session[:last_seen] = DateTime.now
+          flash[:notice] = t('login.message.success')
+          redirect_back root_path
+        end
+      else
+        @logger.debug "is not member"
+        if member_no_password_check
+          member_no_password_check.logins.create(:success => false)
+          # if member does wrong login 3 times then lock the user
+          if member_no_password_check.logins.failed_in_the_last_hour_after_last_update(member_no_password_check.updated_at).count >= Member::TIMES_FAILED_BEFORE_LOCKING
+            member_no_password_check.lock 
+            flash.now[:alert] = t('login.message.locked', :times => Member::TIMES_FAILED_BEFORE_LOCKING)
+          else
+            flash.now[:alert] = t('login.message.fail')
+          end
         else
           flash.now[:alert] = t('login.message.fail')
         end
-      else
-        flash.now[:alert] = t('login.message.fail')
+          
+        render :action => 'new'
       end
-        
-      render :action => 'new'
     end
   end
 

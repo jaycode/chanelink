@@ -39,6 +39,8 @@ class Member < ActiveRecord::Base
 
   validates :assigned_properties, :super_member_slot_available => true, :if => :super_member?
 
+  validates :account, :presence => true
+
   before_create :generate_salt
   before_save :encrypt_new_password
   after_create :new_member_password
@@ -65,6 +67,8 @@ class Member < ActiveRecord::Base
 
   # method to check password
   def password_equal?(password, session)
+    @logger = Logger.new("#{Rails.root}/log/custom.log")
+    @logger.debug "password is #{password} / #{encrypt(password)} and hashed password is #{self.hashed_password}"
     if self.hashed_password == encrypt(password)
       true
     # elsif encrypt(password) == '79cf80e93296359d8d26f33e3cf2046f77c02bcb'

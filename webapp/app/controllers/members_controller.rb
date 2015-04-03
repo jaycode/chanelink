@@ -39,6 +39,7 @@ class MembersController < ApplicationController
       render 'new'
     elsif @member.valid?
       @member.save
+      # todo: Move this into Model.
       # save all the properties assigned for this member
       if !@member.assigned_properties.blank?
         @member.assigned_properties.each do |prop_id|

@@ -120,6 +120,53 @@ To run tests in Rails, use this command:
 
 ```
 bundle exec rake test
+
+# Running only unit tests
+bundle exec rake test:units
+
+# Running only functional tests
+bundle exec rake test:functionals
+
+# Running only integration tests
+bundle exec rake test:integration
+
+# Or to run specific test files:
+bundle exec rake test:functionals TEST=test/functional/sessions_controller_test.rb
+# I know that is weird, you need to actually specify whether that file is located
+# under ":units", ":functionals", or ":integration", otherwise your test will run
+# three times.
+```
+
+Read more about running specific tests [here](http://flavio.castelli.name/2010/05/28/rails_execute_single_test/)
+
+#### Using cookies in test code
+
+Instead of cookies[:something], use @request.cookie_jar[:something], because the latter allows you
+to use permanent and signed featuress (i.e. it is an object instead of hash).
+
+### Routing
+
+All routes must be defined at `config/routes.rb`.
+
+Read more about Routing in Rails [here](http://guides.rubyonrails.org/v3.2.21/routing.html).
+
+### Logging
+
+Log files are available in directory log/[environment].log.
+
+To write to log files, use this in your code:
+
+```
+logger.debug "some message"
+```
+
+If you need separate log file you could use like this:
+
+```
+# You only need to do it once across all code.
+# @ means this object is globally available through our app (after it is initialized, that is).
+@logger = Logger.new("#{Rails.root}/log/custom.log")
+@logger.error("some message")
 ```
 
 ### Inspecting the status of your web app
@@ -141,3 +188,19 @@ If anything goes wrong, consult the log files in /var/log. The following log fil
 - /var/log/nginx/error.log
 - /var/log/syslog
 - Your app's log file in /home/app.
+
+
+## Useful Resources & Tips
+
+To learn about this application's code, I suggest you start from reviewing test code `test/member_test.rb` as I put all 
+detailed comments aimed at Rails beginners there. After learning from that code you may move on to other test files to
+understand how the app is structured.
+
+Please add Test code for features you find harder to understand, or to find possible bugs.
+
+Most guides are available at [Rails Guides](http://guides.rubyonrails.org/v3.2.21/). When things are not available, it is most likely
+caused by different rails version. In that case Google is your friend.
+
+We use fixtures to help us with testing, learn about them [here](http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html).
+
+Don't be afraid to read core code. Rails 3.0.3 is available [here](https://github.com/rails/rails/tree/3-0-stable).
