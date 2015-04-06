@@ -17,10 +17,10 @@ class PropertyChannelTest < ActiveSupport::TestCase
     property_channel.settings = {:agoda => {:id => 'agoda-id2'}}
     property_channel.save
 
-    saved_property_channel = PropertyChannel.find(id: property_channel.id).first
+    saved_property_channel = PropertyChannel.find_by_id(property_channel.id)
     assert_equal 'agoda-id2', saved_property_channel.settings(:agoda, :id)
 
     saved_property_channel.destroy_settings
-    assert_equal saved_property_channel.settings(:__default, {})
+    assert saved_property_channel.settings(:__default).empty?
   end
 end

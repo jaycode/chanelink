@@ -147,12 +147,14 @@ class PropertyChannel < ActiveRecord::Base
       obj
     else
       params.each do |p|
-        puts "obj-#{p}: #{obj[p.to_s]}"
         obj = obj[p.to_s]
       end
+      obj
     end
   end
 
+  # Setter. Simply merge with given params. See property_channel_test for sample
+  # test case.
   def settings=(params)
     settings_json = settings.merge(params)
     write_attribute(:settings, ActiveSupport::JSON.encode(settings_json))
