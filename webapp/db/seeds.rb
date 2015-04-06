@@ -49,4 +49,6 @@ super_admin.skip_properties_validation = true
 super_admin.update_attributes(:password => super_admin_pass, :prompt_password_change => false)
 #---------------------------------
 
+# Consult release_notes.md for upgrading migrations.
+
 print "Seed data imported!\n"

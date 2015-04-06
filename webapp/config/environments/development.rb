@@ -14,9 +14,9 @@ Chanelinkweb::Application.configure do
   config.action_view.debug_rjs             = true
   config.action_controller.perform_caching = false
 
-  # Don't care if the mailer can't send
-  config.action_mailer.raise_delivery_errors = false
-  config.action_mailer.default_url_options = { :host => "localhost:3000" }
+  # Raise error if the mailer can't send
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default_url_options = { :host => "chanelink-trial.mail" }
 
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
@@ -27,14 +27,17 @@ Chanelinkweb::Application.configure do
   # disable SSL for development
   SslRequirement.disable_ssl_check = true
   
-  # Gmail SMTP server setup
+  # ZOHO SMTP server setup
+  ActionMailer::Base.delivery_method = :smtp
   ActionMailer::Base.smtp_settings = {
-    :address => "smtp.sendgrid.net",
+    :address => "smtp.zoho.com",
     :enable_starttls_auto => true,
     :port => 587,
-    :authentication => :plain,
-    :user_name => "chanelink",
-    :password => 'chanel1nk'
+    :authentication => :login,
+    :ssl => true,
+    :tls => true,
+    :user_name => "application@chanelink.com",
+    :password => 'Chan3l1nkApp'
   }
 end
 

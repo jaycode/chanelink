@@ -86,7 +86,7 @@ en:
       link: 'Forgot password?'
       label:
         heading: 'Reset Password'
-        email: 'You email for login'
+        email: 'Your login email'
       message:
         email_not_given: 'Please specify your login email'
         member_not_found: 'Email is unregistered'

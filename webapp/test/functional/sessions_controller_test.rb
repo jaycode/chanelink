@@ -12,6 +12,8 @@ class SessionsControllerTest < ActionController::TestCase
     # This is required as :new action uses ssl_required (see it in the controller).
     @request.env['HTTPS'] = 'on'
     get :new
+    # You can use @response.inspect to see if the page is being redirected and other header information.
+    # puts @response.inspect
     assert_response :success
   end
 
@@ -35,4 +37,7 @@ class SessionsControllerTest < ActionController::TestCase
     puts member.inspect
     assert_equal(member.email, email)
   end
+
+  # Next please continue to test/functional/property_channels_controller_test.rb
+  # for an example of real-world case where you log in and do changes on the app.
 end

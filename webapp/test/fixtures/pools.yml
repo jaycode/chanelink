@@ -1,0 +1,12 @@
+# A pool can be owned by multiple properties (i.e. different
+# pools may share the same property but not the other way around).
+# A pool can have multiple channels.
+# Basically pool is used to group together a set of channels.
+# Todo: This calls for optimization, i.e. maybe auto create default property?
+#       
+default_big_hotel_1:
+    name: Default
+    property: big_hotel_1
+default_big_hotel_2:
+    name: Default
+    property: big_hotel_2

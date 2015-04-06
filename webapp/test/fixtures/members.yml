@@ -5,3 +5,4 @@ super_admin:
     salt: <%= UUIDTools::UUID.timestamp_create %>
     role: super
     account: big_hotel_chain
+    prompt_password_change: 0
