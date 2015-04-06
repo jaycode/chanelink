@@ -70,6 +70,12 @@ RUN sudo apt-get -y --no-install-recommends install telnet-ssl iptables
 
 #---------------------
 
+# Bundle Install
+#---------------------
+ADD webapp/Gemfile .
+RUN bundle install
+#---------------------
+
 RUN mkdir -p /home/app/webapp
 WORKDIR /home/app/webapp
 
