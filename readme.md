@@ -23,6 +23,8 @@ Feel free to update this document as you found new things worth documenting.
 3. Build docker container:
     ```
     cd /c/Users/Path/to/project
+    ```
+    ```
     docker build -t jaycode/chink .
     ```
 4. Run docker with following command:
