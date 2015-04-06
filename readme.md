@@ -192,7 +192,30 @@ If anything goes wrong, consult the log files in /var/log. The following log fil
 - /var/log/syslog
 - Your app's log file in /home/app.
 
-### Pushing to production 
+### Pushing to production
+
+### Remote MySQL
+
+To create new remote client access, do all the commands below (in that order)
+
+```
+/sbin/iptables -A INPUT -p tcp -s 139.192.80.71 --dport 3306 -j ACCEPT
+/sbin/iptables -A INPUT -p tcp -s 139.195.126.19 --dport 3306 -j ACCEPT
+## Block all connections to 3306 ##
+/sbin/iptables -A INPUT -p tcp --dport 3306 -j DROP
+```
+
+To drop all rules, e.g. before adding a new ip:
+
+```
+iptables -F
+```
+
+To see all clients:
+
+```
+echo -e "target     prot opt source               destination\n$(iptables -L INPUT -n | grep 3306)"
+```
 
 ## Useful Resources & Tips
 
