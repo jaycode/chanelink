@@ -51,6 +51,10 @@ RUN sudo service mysql restart && \
     sudo mysql -uroot -e "CREATE USER '$CODENVY_MYSQL_USER'@'%' IDENTIFIED BY '"$CODENVY_MYSQL_PASSWORD"'" && \
     sudo mysql -uroot -e "GRANT ALL PRIVILEGES ON *.* TO '$CODENVY_MYSQL_USER'@'%' IDENTIFIED BY '"$CODENVY_MYSQL_PASSWORD"'; FLUSH PRIVILEGES;" && \
     sudo mysql -uroot -e "CREATE DATABASE $CODENVY_MYSQL_DB;"
+
+# Make sure mysql can only be accessed locally. See readme.md for adding more IP addresses for remote access.
+RUN /sbin/iptables -A INPUT -p tcp --dport 3306 -j DROP
+
 #---------------------
 
 # Running NGINX Server
