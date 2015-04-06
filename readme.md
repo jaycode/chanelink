@@ -19,13 +19,10 @@ Feel free to update this document as you found new things worth documenting.
    3. If you're on Windows machine, [enable Intel VT and V Virtualization hardware extensions in BIOS](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Virtualization_Administration_Guide/sect-Virtualization-Troubleshooting-Enabling_Intel_VT_and_AMD_V_virtualization_hardware_extensions_in_BIOS.html) and [disable Hyper V feature](https://pricklytech.wordpress.com/2014/02/25/windows-8-1-vmware-player-and-hyper-v-are-not-compatible/).
 2. Setup configuration:
  - Check file /container_config/passenger/webapp.conf. Change rails environment here when needed.
- - Create MySQL user and database by entering correct information through /webapp/Dockerfile.
+ - Create MySQL user and database by entering correct information through /Dockerfile.
 3. Build docker container:
     ```
-    cd /c/Users/Path/to/project
-    ```
-    ```
-    docker build -t jaycode/chink .
+    cd /c/Users/Path/to/project && docker build -t jaycode/chink .
     ```
 4. Run docker with following command:
     ```
@@ -61,7 +58,7 @@ Feel free to update this document as you found new things worth documenting.
     bundle install && service mysql restart && bundle exec rake db:migrate && bundle exec rake db:seed
 
     # Run delayed jobs
-    ruby script/delayed_job start
+    mkdir tmp && ruby script/delayed_job start
     ```
 6. After initialising for the first time, you may want to store your container as an image,
 so you do not need to bundle install everytime you run it. For this, do the following:
