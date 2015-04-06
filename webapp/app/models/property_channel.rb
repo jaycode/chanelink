@@ -1,4 +1,5 @@
 # represent a channel mapping to a property
+# Todo: Instead of putting keys for OTAs as fields here, use "settings" field and put OTA details there.
 class PropertyChannel < ActiveRecord::Base
 
   extend Unscoped
@@ -137,6 +138,30 @@ class PropertyChannel < ActiveRecord::Base
     self.update_attributes(:deleted => true, :disabled => true)
   end
 
+  # Getter. *params is parameters in hierarchial order,
+  # e.g. settings(:ota, :username) will get {:ota => {:username => 'this value'}}.
+  # If no params given, give the json decoded settings
+  def settings(*params)
+    obj = JSON.parse(read_attribute(:settings))
+    if params.empty?
+      obj
+    else
+      params.each do |p|
+        puts "obj-#{p}: #{obj[p.to_s]}"
+        obj = obj[p.to_s]
+      end
+    end
+  end
+
+  def settings=(params)
+    settings_json = settings.merge(params)
+    write_attribute(:settings, ActiveSupport::JSON.encode(settings_json))
+  end
+
+  def destroy_settings
+    write_attribute(:settings, ActiveSupport::JSON.encode({__default: {}}))
+  end
+
   private
 
   def notify_backoffice
@@ -144,5 +169,5 @@ class PropertyChannel < ActiveRecord::Base
       TeamNotifier.delay.email_new_property_channel(self, user)
     end
   end
-  
+
 end

@@ -1,5 +1,7 @@
 # class representing a channel
 class Channel < ActiveRecord::Base
+  validates_uniqueness_of :name
+  validates_uniqueness_of :type
 
   def cname
     # to be override by child class

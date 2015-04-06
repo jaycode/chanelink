@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150119104234) do
+ActiveRecord::Schema.define(:version => 20150406033818) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(:version => 20150119104234) do
     t.boolean  "approved",      :default => false
     t.string   "contact_name"
     t.string   "contact_email"
+    t.string   "agoda_api_key"
     t.boolean  "disabled",      :default => false
     t.boolean  "deleted",       :default => false
   end
@@ -504,6 +505,7 @@ ActiveRecord::Schema.define(:version => 20150119104234) do
     t.string   "ctrip_room_rate_plan_code"
     t.string   "orbitz_hotel_code"
     t.string   "orbitz_chain_code"
+    t.string   "settings",                                                             :default => "{\"__default\":{}}"
   end
 
   create_table "room_type_channel_mappings", :force => true do |t|
