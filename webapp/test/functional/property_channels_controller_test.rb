@@ -26,4 +26,6 @@ class PropertyChannelsControllerTest < ActionController::TestCase
         :ctrip_password => 'Ctrip123456'
       }
     })
+    
+  end
 end
