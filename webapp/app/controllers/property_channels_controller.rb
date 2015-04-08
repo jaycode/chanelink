@@ -23,8 +23,6 @@ class PropertyChannelsController < ApplicationController
 
   # new channel wizard
   def new
-    session[:property_channel_params] = {}
-    session[:currency_conversion_params] = {}
     redirect_to new_wizard_selection_property_channels_path
   end
 
@@ -166,6 +164,9 @@ class PropertyChannelsController < ApplicationController
 
   # helper for wizard
   def init_variables_from_sessions
+    session[:property_channel_params] ||= {}
+    session[:currency_conversion_params] ||= {}
+
     session[:property_channel_params].deep_merge!(params[:property_channel]) if params[:property_channel]
     session[:currency_conversion_params].deep_merge!(params[:currency_conversion]) if params[:currency_conversion]
 

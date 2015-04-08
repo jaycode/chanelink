@@ -12,15 +12,11 @@ class CtripTest < ActionDispatch::IntegrationTest
     open_session do |sess|
       property_channel = property_channels(:big_hotel_1_default_ctrip)
       
-      puts "about to login"
       login(sess, :super_admin)
       select_property(sess, :big_hotel_1)
 
-      puts "after login"
+      puts "after login, session is:"
       puts sess.request.cookie_jar.signed[ApplicationController::MEMBER_AUTH_COOKIE].inspect
-      # member = members(:super_admin)
-      # sess.request.cookie_jar.signed[ApplicationController::MEMBER_AUTH_COOKIE] = {:value => [member.id, member.salt]}
-      # sess.session[:current_property_id] = properties(:big_hotel_1).id
 
       sess.post '/property_channels/new_wizard_setting',
         :property_channel => {
@@ -28,8 +24,6 @@ class CtripTest < ActionDispatch::IntegrationTest
           :channel_id => channels(:ctrip)
         }
       
-
-      puts sess.response.inspect
       session_property_channel = PropertyChannel.new(sess.session[:property_channel_params])
       assert_equal pools(:test_big_hotel_1).id, session_property_channel.pool_id
 
@@ -37,7 +31,7 @@ class CtripTest < ActionDispatch::IntegrationTest
       # it is :username and :password). Different channel may have
       # different settings and you will need to add them into your
       # form.
-      post(url_for(:controller => 'property_channels', :action => 'new_wizard_conversion'), {
+      sess.post(url_for(:controller => 'property_channels', :action => 'new_wizard_conversion'), {
         :property_channel => {
           :settings => {
             :username => property_channel.settings(:username),
@@ -46,9 +40,9 @@ class CtripTest < ActionDispatch::IntegrationTest
         }
       })
 
-      assert_redirected_to redirect_to new_wizard_setting_property_channels_path
+      assert_equal url_for(:controller => 'property_channels', :action => 'new_wizard_setting'), sess.response.location
       session_property_channel = PropertyChannel.new(sess.session[:property_channel_params])
-      assert_equal property_channel.settings(:username), session_property_channel.setting(:username)
-    end    
+      assert_equal property_channel.settings(:username), session_property_channel.settings(:username)
+    end
   end
 end

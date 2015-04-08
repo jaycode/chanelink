@@ -1,8 +1,6 @@
 module IntegrationTestHelper
   def login(sess, member_fixture_key)
-    puts "inside integration test helper login method"
     member = members(member_fixture_key)
-    puts "member: #{member.inspect}"
     sess.https!
     sess.post '/session',
       :email => member.email,

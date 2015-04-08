@@ -5,26 +5,18 @@ class SessionsController < ApplicationController
   
   # For Login Submission
   def create
-    @logger = Logger.new("#{Rails.root}/log/custom.log")
-    @logger.debug "in sessions create"
     # If already logged in then return to root path
     if member_logged_in?
-      @logger.debug "member already logged in"
       redirect_to root_path
     else
       # Try to authenticate given email and password
-      @logger.debug "params: #{params.inspect}"
       member = Member.authenticate(params[:email], params[:password], session)
       member_no_password_check = Member.find_by_email(params[:email])
-      @logger.debug "try logging in"
       if member
-        @logger.debug "is member alrite"        
         if member.disabled?
-          @logger.debug "member is disabled"
           flash[:alert] = t('login.message.disabled')
           redirect_to login_path
         else
-          @logger.debug "create member auto cookie"
           create_member_auth_cookie(member)
           member.logins.create(:success => true)
           session[:last_seen] = DateTime.now
@@ -32,7 +24,6 @@ class SessionsController < ApplicationController
           redirect_back root_path
         end
       else
-        @logger.debug "is not member"
         if member_no_password_check
           member_no_password_check.logins.create(:success => false)
           # if member does wrong login 3 times then lock the user
@@ -53,8 +44,6 @@ class SessionsController < ApplicationController
 
   # For Login Form
   def new
-    @logger = Logger.new("#{Rails.root}/log/custom.log")
-    @logger.debug "in sessions new"
     if member_logged_in?
       redirect_to dashboard_path
     end
