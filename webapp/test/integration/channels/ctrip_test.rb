@@ -22,10 +22,12 @@ class CtripTest < ActionDispatch::IntegrationTest
       # sess.request.cookie_jar.signed[ApplicationController::MEMBER_AUTH_COOKIE] = {:value => [member.id, member.salt]}
       # sess.session[:current_property_id] = properties(:big_hotel_1).id
 
-      sess.post(url_for(:controller => 'property_channels', :action => 'new_wizard_setting'), {:property_channel => {
-        :pool_id => pools(:test_big_hotel_1).id,
-        :channel_id => channels(:ctrip)}}
-      )
+      sess.post '/property_channels/new_wizard_setting',
+        :property_channel => {
+          :pool_id => pools(:test_big_hotel_1).id,
+          :channel_id => channels(:ctrip)
+        }
+      
 
       puts sess.response.inspect
       session_property_channel = PropertyChannel.new(sess.session[:property_channel_params])

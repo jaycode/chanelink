@@ -22,11 +22,11 @@ Feel free to update this document as you found new things worth documenting.
  - Create MySQL user and database by entering correct information through /Dockerfile.
 3. Build docker container:
     ```
-    cd /c/Users/Path/to/project && docker build -t jaycode/chink .
+    cd /c/Users/Path/to/project && docker build -t chink/main .
     ```
 4. Run docker with following command:
     ```
-    docker run -d -p 80:80 -p 3306:3306 -p 587:587 --privileged -v /c/Users/Path/to/project:/home/app jaycode/chink
+    docker run -d -p 80:80 -p 3306:3306 -p 587:587 --privileged -v /c/Users/Path/to/project:/home/app chink/main
     ```
 
     **Notes:**
@@ -64,15 +64,11 @@ Feel free to update this document as you found new things worth documenting.
 so you do not need to bundle install everytime you run it. For this, do the following:
     ```
     # You can get container ID from `docker ps`.
-    docker commit -m "Initialised" ID jaycode/chink:v0.1
+    docker commit -m "Initialised" ID chink/main:v0.1
     ```
 
-    That command stores your created container into image "jaycode/chink:v0.1". From now on,
-    you may run that image to get your app to current stage. To test this, feel free to remove
-    the currently running docker container (docker stop ID && docker rm ID) then run the following:
-    ```
-    docker run -d -p 80:80 -v /c/Users/Path/to/project:/home/app jaycode/chink:v0.1
-    ```
+    That command stores your created container into image "chink/main:v0.1". From now on,
+    you may `run` that image to get your app to current stage.
 
     If you get mysql socket connection error, run the following:
     ```
