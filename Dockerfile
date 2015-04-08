@@ -19,8 +19,12 @@ RUN echo "setting up MySQL..." && \
     sudo apt-get update && \
     sudo -E bash -c "apt-get -y --no-install-recommends install mysql-server > /dev/null" && \
     sudo sed -i.bak 's/127.0.0.1/0.0.0.0/g' /etc/mysql/my.cnf && \
+    # Use /home/app/data/mysql as location of data so it is physically stored outside of container
+    mkdir -p /home/app/data/mysql && \
+    sudo sed -i.bak 's/\/var\/lib\/mysql/\/home\/app\/data\/mysql/g' /etc/mysql/my.cnf && \
+    sudo sed -i.bak 's/\/var\/lib\/mysql/\/home\/app\/data\/mysql/g' /etc/apparmor.d/usr.sbin.mysqld
     # sudo chmod -R 755 /var/run/mysqld/ && \
-    sudo service mysql restart && \
+RUN sudo service mysql restart && \
     sudo mysql -uroot -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%'; FLUSH PRIVILEGES;" && \
     echo "MySQL setup completed!"
  

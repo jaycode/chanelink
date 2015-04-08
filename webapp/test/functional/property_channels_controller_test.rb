@@ -13,19 +13,5 @@ class PropertyChannelsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "create a new channel" do
-    login(:super_admin)
-    select_property(:big_hotel_1)
-    post(:new_wizard_setting, {:property_channel => {
-      :pool_id => pools(:default_big_hotel_1).id,
-      :channel_id => channels(:ctrip)}}
-    )
-    post(:new_wizard_conversion, {
-      :property_channel => {
-        :ctrip_username => '54394',
-        :ctrip_password => 'Ctrip123456'
-      }
-    })
-    
-  end
+  # More tests on Property Channel are available in test/integration/channels/*_test.rb
 end

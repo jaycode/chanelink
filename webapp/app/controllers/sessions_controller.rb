@@ -5,9 +5,12 @@ class SessionsController < ApplicationController
   
   # For Login Submission
   def create
+    logger.debug "wat1"
     @logger = Logger.new("#{Rails.root}/log/custom.log")
+    @logger.debug "in sessions create"
     # If already logged in then return to root path
     if member_logged_in?
+      @logger.debug "member already logged in"
       redirect_to root_path
     else
       # Try to authenticate given email and password
@@ -50,6 +53,9 @@ class SessionsController < ApplicationController
 
   # For Login Form
   def new
+    @logger = Logger.new("#{Rails.root}/log/custom.log")
+    @logger.debug "in sessions new"
+    logger.debug "wat"
     if member_logged_in?
       redirect_to dashboard_path
     end

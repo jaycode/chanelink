@@ -1,8 +1,8 @@
 # todo: Put this in config file, since it is not
 #       supposed to be updateable anyway.
 super:
-    type: SuperRole
+  type: SuperRole
 config:
-    type: ConfigRole
+  type: ConfigRole
 general:
-    type: GeneralRole
+  type: GeneralRole

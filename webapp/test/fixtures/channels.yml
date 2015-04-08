@@ -1,11 +1,11 @@
 # Todo: This should not be in database since it will
 #       make updating production version harder.
 agoda:
-    name: Agoda
-    type: AgodaChannel
+  name: Agoda
+  type: AgodaChannel
 bookingcom:
-    name: Bookingcom
-    type: BookingcomChannel
+  name: Bookingcom
+  type: BookingcomChannel
 ctrip:
-    name: Ctrip
-    type: CtripChannel
+  name: Ctrip
+  type: CtripChannel

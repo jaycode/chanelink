@@ -5,8 +5,14 @@
 # Todo: This calls for optimization, i.e. maybe auto create default property?
 #       
 default_big_hotel_1:
-    name: Default
-    property: big_hotel_1
+  name: Default
+  property: big_hotel_1
+
+# This is used in testing property channel creation.
+test_big_hotel_1:
+  name: Test
+  property: big_hotel_1
+
 default_big_hotel_2:
-    name: Default
-    property: big_hotel_2
+  name: Default
+  property: big_hotel_2

@@ -1,8 +1,8 @@
 super_admin:
-    name: Super Admin
-    email: jay@chanelink.com
-    hashed_password: <%= Digest::SHA1.hexdigest('testpass') %>
-    salt: <%= UUIDTools::UUID.timestamp_create %>
-    role: super
-    account: big_hotel_chain
-    prompt_password_change: 0
+  name: Super Admin
+  email: jay@chanelink.com
+  hashed_password: <%= Digest::SHA1.hexdigest('testpass') %>
+  salt: <%= UUIDTools::UUID.timestamp_create %>
+  role: super
+  account: big_hotel_chain
+  prompt_password_change: 0

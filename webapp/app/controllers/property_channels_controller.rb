@@ -1,4 +1,10 @@
 # controller for property mapped to a channel
+# Todo: Currently property channel creation is done by making several calls to the server
+#       as the server updates a session node of that property channel. Will it be possible
+#       to later change it to either the following?
+#       a. (preferable) No session is needed, so changes are made directly to db, so users may proceed
+#          later, or
+#       b. Data can be created in a single request / response. Some javascript will be required.
 class PropertyChannelsController < ApplicationController
 
   before_filter :member_authenticate_and_property_selected

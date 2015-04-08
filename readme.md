@@ -18,7 +18,7 @@ Feel free to update this document as you found new things worth documenting.
    2. Install Docker, tick both Git and VM.
    3. If you're on Windows machine, [enable Intel VT and V Virtualization hardware extensions in BIOS](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Virtualization_Administration_Guide/sect-Virtualization-Troubleshooting-Enabling_Intel_VT_and_AMD_V_virtualization_hardware_extensions_in_BIOS.html) and [disable Hyper V feature](https://pricklytech.wordpress.com/2014/02/25/windows-8-1-vmware-player-and-hyper-v-are-not-compatible/).
 2. Setup configuration:
- - Check file /container_config/passenger/webapp.conf. Change rails environment here when needed.
+ - Check file /container_config/passenger/webapp.conf. (for different server, create a copy of webapp.conf.default and rename it to webapp.conf) Change rails environment here when needed.
  - Create MySQL user and database by entering correct information through /Dockerfile.
 3. Build docker container:
     ```
@@ -93,7 +93,42 @@ This part contains all the useful notes for development of Chanelink app.
 You can connect to MySQL server in Docker container from any MySQL client app by directly
 connecting to host `IP` and port `3306` (You can get IP from running `boot2docker ip`).
 
+#### Connecting to local Docker container's MySQL server
+
+Since it is local anyway, you may allow any connection to your Docker container. Run the following:
+
+```
+iptables -F
+```
+
+Then you can connect with username `root` without password.
+
+#### Connecting to remote Docker container's MySQL server
+
 Username and password are the same with what you already set in Dockerfile.
+
+You need to include your ip in the whitelist of iptables before the container will allow you to connect.
+
+To create new remote client access, do all the commands below (in that order)
+
+```
+/sbin/iptables -A INPUT -p tcp -s 139.192.80.71 --dport 3306 -j ACCEPT
+/sbin/iptables -A INPUT -p tcp -s 139.195.126.19 --dport 3306 -j ACCEPT
+## Block all connections to 3306 ##
+/sbin/iptables -A INPUT -p tcp --dport 3306 -j DROP
+```
+
+To drop all rules, e.g. before adding a new ip:
+
+```
+iptables -F
+```
+
+To see all clients:
+
+```
+echo -e "target     prot opt source               destination\n$(iptables -L INPUT -n | grep 3306)"
+```
 
 ### Seeding the database
 
@@ -147,6 +182,10 @@ Read more about running specific tests [here](http://flavio.castelli.name/2010/0
 Instead of `cookies[:something]`, use `@request.cookie_jar[:something]`, because the latter allows you
 to use permanent and signed featuress (i.e. it is an object instead of hash).
 
+#### Sample data in test code
+
+We do not run seeds.rb in testing. Instead, we add required data in `fixtures/*.yml` files.
+
 ### Routing
 
 All routes must be defined at `config/routes.rb`.
@@ -192,32 +231,19 @@ If anything goes wrong, consult the log files in /var/log. The following log fil
 - /var/log/syslog
 - Your app's log file in /home/app.
 
-### Pushing to production
+## Pushing to production
 
-Will add this later...
+Going outside the development realm and to actually putting things into production does introduce additional complexities e.g. how do we pull the data, What if we have additional rows in the database, among other issues.
 
-### Remote MySQL
+### How to update table schema and adding new rows.
 
-To create new remote client access, do all the commands below (in that order)
+Updating table schema must be done via migrations, consult the Rails documentation for this. As far as naming, you can use whatever works for you as long as it explains what you are doing there.
 
-```
-/sbin/iptables -A INPUT -p tcp -s 139.192.80.71 --dport 3306 -j ACCEPT
-/sbin/iptables -A INPUT -p tcp -s 139.195.126.19 --dport 3306 -j ACCEPT
-## Block all connections to 3306 ##
-/sbin/iptables -A INPUT -p tcp --dport 3306 -j DROP
-```
+**note:** Do not update old migration files! To fix older migration files, create newer migrations instead.
 
-To drop all rules, e.g. before adding a new ip:
+Adding rows / entities on the other hand, MUST NOT be done via migration files. You need to update `db/seeds.rb` file to include entity creations there. Don't forget to either remove or skip any duplication. Check the file `db/seeds.rb` for examples.
 
-```
-iptables -F
-```
-
-To see all clients:
-
-```
-echo -e "target     prot opt source               destination\n$(iptables -L INPUT -n | grep 3306)"
-```
+Doing this guide would ensure both `bundle exec rake db:migrate` and `bundle exec rake db:seed` are safe to run on production server.
 
 ## Useful Resources & Tips
 
@@ -233,3 +259,5 @@ caused by different rails version. In that case Google is your friend.
 We use fixtures to help us with testing, learn about them [here](http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html).
 
 Don't be afraid to read core code. Rails 3.0.3 is available [here](https://github.com/rails/rails/tree/3-0-stable).
+
+When you find something you want to add later, write `# Todo` comment on it. RubyMine will pick up any todo items and we can view them as list.

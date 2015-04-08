@@ -147,7 +147,11 @@ class PropertyChannel < ActiveRecord::Base
       obj
     else
       params.each do |p|
-        obj = obj[p.to_s]
+        if defined? obj[p.to_s]
+          obj = obj[p.to_s]
+        else
+          obj = nil
+        end
       end
       obj
     end
@@ -161,7 +165,7 @@ class PropertyChannel < ActiveRecord::Base
   end
 
   def destroy_settings
-    write_attribute(:settings, ActiveSupport::JSON.encode({__default: {}}))
+    write_attribute(:settings, ActiveSupport::JSON.encode({}))
   end
 
   private

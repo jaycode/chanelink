@@ -505,7 +505,7 @@ ActiveRecord::Schema.define(:version => 20150406033818) do
     t.string   "ctrip_room_rate_plan_code"
     t.string   "orbitz_hotel_code"
     t.string   "orbitz_chain_code"
-    t.string   "settings",                                                             :default => "{\"__default\":{}}"
+    t.string   "settings",                                                             :default => "{}"
   end
 
   create_table "room_type_channel_mappings", :force => true do |t|
