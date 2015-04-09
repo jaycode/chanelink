@@ -34,8 +34,6 @@ class PropertyChannel < ActiveRecord::Base
 
   validates :gta_travel_property_id, :presence => true, :if => :is_validate_gta_travel_info?
 
-  validates :ctrip_hotel_code, :presence => true, :if => :is_validate_ctrip_info?
-
   # validates :orbitz_hotel_code, :presence => true, :if => :is_validate_orbitz_info?
   # validates :orbitz_chain_code, :presence => true, :if => :is_validate_orbitz_info?
 

@@ -9,3 +9,15 @@ bookingcom:
 ctrip:
   name: Ctrip
   type: CtripChannel
+expedia:
+  name: Expedia
+  type: ExpediaChannel
+gta_travel:
+  name: GtaTravel
+  type: GtaTravelChannel
+orbitz:
+  name: Orbitz
+  type: OrbitzChannel
+tiketcom:
+  name: Tiketcom
+  type: TiketcomChannel

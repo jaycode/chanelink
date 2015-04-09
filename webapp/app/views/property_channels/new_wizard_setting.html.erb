@@ -7,7 +7,7 @@
       <%= render "#{@channel.cname}_setting", :f => f  %>
       <br/>
       <p>
-        <%= f.submit t('button.back'), :name => "back_button" %>
+        <%= f.submit t('button.back'), :name => "back_button", :id => 'property_channel_setting_back' %>
         <%= f.submit t("button.continue") %>
       </p>
     <% end %>

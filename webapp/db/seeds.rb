@@ -78,6 +78,18 @@ def production_seeds
     {
       :name => 'Ctrip',
       :type => 'CtripChannel'
+    },
+    {
+      :name => 'GtaTravel',
+      :type => 'GtaTravelChannel'
+    },
+    {
+      :name => 'Orbitz',
+      :type => 'OrbitzChannel'
+    },
+    {
+      :name => 'Tiketcom',
+      :type => 'TiketcomChannel'
     }
   ]
   channels.each do |channel|

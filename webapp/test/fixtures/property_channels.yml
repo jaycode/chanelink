@@ -2,4 +2,4 @@ big_hotel_1_default_ctrip:
   property: big_hotel_1
   pool: default
   channel: ctrip
-  settings: '{"username": "54394", "password": "123456"}'
+  settings: '{"username": "54394", "password": "Ctrip123456"}'

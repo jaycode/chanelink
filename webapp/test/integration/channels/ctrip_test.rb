@@ -1,14 +1,20 @@
+# This class is only used for a reference on how to do testing with access to session.
+
 require 'test_helper'
 require 'integration/integration_test_helper'
- 
+require 'capybara/rails'
+
 class CtripTest < ActionDispatch::IntegrationTest
   fixtures :all
-  include IntegrationTestHelper
-
+  include IntegrationTestHelper::Rails
+  include Capybara::DSL
+  
   test "property channel creation" do
     # Create session variables for our test.
     # Session object resulting from this is referenced here:
     # http://api.rubyonrails.org/classes/ActionDispatch/Integration/Session.html
+    # sess = Capybara::Session.new(:rack_test, Capybara.app)
+
     open_session do |sess|
       property_channel = property_channels(:big_hotel_1_default_ctrip)
       
@@ -39,10 +45,18 @@ class CtripTest < ActionDispatch::IntegrationTest
           }
         }
       })
+      # sess.visit '/property_channels/new_wizard_setting'
+      # sess.save_and_open_page
+      # sess.fill_in 'property_channel_settings_username', :with => property_channel.settings(:username)
+      # sess.fill_in 'property_channel_settings_password', :with => property_channel.settings(:password)
+      # sess.click_button 'continue'
+
 
       assert_equal url_for(:controller => 'property_channels', :action => 'new_wizard_setting'), sess.response.location
       session_property_channel = PropertyChannel.new(sess.session[:property_channel_params])
       assert_equal property_channel.settings(:username), session_property_channel.settings(:username)
+
+      visit '/property_channels/new_wizard_conversion'
     end
   end
 end
