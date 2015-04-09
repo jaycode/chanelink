@@ -1,3 +1,8 @@
+# In our test code files, the lines after ADD_YOUR_CODE_HERE
+# are code that are likely to change during creation of each
+# channel, but do not follow that as a strict guideline
+# i.e. please adjust the any other part of the code as you require.
+
 # See https://github.com/jnicklas/capybara
 require 'test_helper'
 require 'integration/integration_test_helper'
@@ -14,8 +19,11 @@ class CtripChannelCreationTest < ActionDispatch::IntegrationTest
     login member.email, 'testpass'
     property = properties(:big_hotel_1)
     select_property property.id
+    # ADD YOUR CODE HERE:
+    #----------------------------------
     @property_channel_username = '54394'
     @property_channel_password = 'Ctrip123456'
+    #----------------------------------
   end
 
   test "Channel creation" do
@@ -31,6 +39,7 @@ class CtripChannelCreationTest < ActionDispatch::IntegrationTest
     # Following are inputs that the property channel must have. They can be created by
     # writing a view file property_channels/_{channel}_setting.html.erb
     #----------------------------------
+    # ADD YOUR CODE HERE:
     assert page.has_selector?('#property_channel_settings_username')
     assert page.has_selector?('#property_channel_settings_password')
     #----------------------------------
@@ -59,6 +68,7 @@ class CtripChannelCreationTest < ActionDispatch::IntegrationTest
     print page.html
     puts "Current path: #{current_path}"
     # if you'd like to view it on browser, you can do this:
-    save_and_open_page
+    # save_and_open_page
   end
+
 end

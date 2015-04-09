@@ -131,56 +131,12 @@ echo -e "target     prot opt source               destination\n$(iptables -L INP
 Seeding the database is done by running `bundle exec rake db:seed`. This will run the script
 `db/seeds.rb`.
 
-### Asset Packaging
+### Testing
 
-Chanelink uses the Jammit gem (http://documentcloud.github.io/jammit/) to pre-package its assets.
-By packaging assets, all css and javascripts are compressed, improving overall site's speed.
+Testing plays a big part in the development of Chanelink app that it needs
+its own page:
 
-To pack assets, run the following:
-
-```
-jammit
-```
-
-inside the container, or from outside the container it can be run as follows:
-```
-docker exec ID bash -c "jammit"
-```
----
-
-### Rails Testing
-
-To run tests in Rails, use this command:
-
-```
-bundle exec rake test
-
-# Running only unit tests
-bundle exec rake test:units
-
-# Running only functional tests
-bundle exec rake test:functionals
-
-# Running only integration tests
-bundle exec rake test:integration
-
-# Or to run specific test files:
-bundle exec rake test:functionals TEST=test/functional/sessions_controller_test.rb
-# I know that is weird, you need to actually specify whether that file is located
-# under ":units", ":functionals", or ":integration", otherwise your test will run
-# three times.
-```
-
-Read more about running specific tests [here](http://flavio.castelli.name/2010/05/28/rails_execute_single_test/)
-
-#### Using cookies in test code
-
-Instead of `cookies[:something]`, use `@request.cookie_jar[:something]`, because the latter allows you
-to use permanent and signed featuress (i.e. it is an object instead of hash).
-
-#### Sample data in test code
-
-We do not run seeds.rb in testing. Instead, we add required data in `fixtures/*.yml` files.
+[READ THIS PAGE TO LEARN ABOUT TESTING CHANELINK APP](https://github.com/jaycode/chanelink/blob/master/testing.md)
 
 ### Routing
 
@@ -206,6 +162,23 @@ If you need separate log file you could use like this:
 @logger = Logger.new("#{Rails.root}/log/custom.log")
 @logger.error("some message")
 ```
+
+### Asset Packaging
+
+Chanelink uses the Jammit gem (http://documentcloud.github.io/jammit/) to pre-package its assets.
+By packaging assets, all css and javascripts are compressed, improving overall site's speed.
+
+To pack assets, run the following:
+
+```
+jammit
+```
+
+inside the container, or from outside the container it can be run as follows:
+```
+docker exec ID bash -c "jammit"
+```
+---
 
 ### Inspecting the status of your web app
 
@@ -251,8 +224,6 @@ Please add Test code for features you find harder to understand, or to find poss
 
 Most guides are available at [Rails Guides](http://guides.rubyonrails.org/v3.2.21/). When things are not available, it is most likely
 caused by different rails version. In that case Google is your friend.
-
-We use fixtures to help us with testing, learn about them [here](http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html).
 
 Don't be afraid to read core code. Rails 3.0.3 is available [here](https://github.com/rails/rails/tree/3-0-stable).
 
