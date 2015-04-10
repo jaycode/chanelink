@@ -21,7 +21,7 @@ Feel free to update this document as you found new things worth documenting.
     - Check file /container_config/passenger/webapp.conf. (for different server, create a copy of webapp.conf.default and rename it to webapp.conf) Change rails environment here when needed e.g. to change environment from "development" to "production" you may run the following:
     
     ```
-    sed -i.bak 's/development/production/g' /container_config/passenger/webapp.conf
+    sed -i.bak 's/development/production/g' container_config/passenger/webapp.conf
     ```
     
     - Create MySQL user and database by entering correct information through /Dockerfile.
@@ -66,6 +66,17 @@ Feel free to update this document as you found new things worth documenting.
     # Run delayed jobs
     mkdir tmp && ruby script/delayed_job start
     ```
+
+    **Notes:**
+
+    When you get error `* /etc/init.d/mysql: ERROR: The partition with /home/app/data/mysql is too full!`
+    copy all files from `/var/lib/mysql` to `/home/app/data/` i.e. following command:
+
+    ```
+    sudo cp -r /var/lib/mysql /home/app/data
+    ```
+
+    When you get `fail` error when running `sudo service mysql start` you may `cat /var/log/mysql/error.log` to see what went wrong.
 
 6. After initialising for the first time, you may want to store your container as an image,
 so you do not need to bundle install everytime you run it. For this, do the following:

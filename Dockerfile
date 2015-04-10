@@ -25,6 +25,13 @@ RUN echo "setting up MySQL..." && \
     echo "MySQL setup completed!"
  
 EXPOSE 3306
+
+# Use /home/app/data/mysql as location of data so it is physically stored outside of container
+RUN mkdir -p /home/app/data && \
+    sudo cp -r /var/lib/mysql /home/app/data/ && \
+    sudo sed -i.bak 's/\/var\/lib\/mysql/\/home\/app\/data\/mysql/g' /etc/mysql/my.cnf && \
+    sudo sed -i.bak 's/\/var\/lib\/mysql/\/home\/app\/data\/mysql/g' /etc/apparmor.d/usr.sbin.mysqld && \
+    mysql_install_db --user=root -ldata=/app/data/mysql
  
 # Create MySQL user and database, and start it
 #---------------------
@@ -64,13 +71,6 @@ RUN sudo service mysql restart && \
     sudo mysql -uroot -e "CREATE USER '$CODENVY_MYSQL_USER'@'%' IDENTIFIED BY '"$CODENVY_MYSQL_PASSWORD"'" && \
     sudo mysql -uroot -e "GRANT ALL PRIVILEGES ON *.* TO '$CODENVY_MYSQL_USER'@'%' IDENTIFIED BY '"$CODENVY_MYSQL_PASSWORD"'; FLUSH PRIVILEGES;" && \
     sudo mysql -uroot -e "CREATE DATABASE $CODENVY_MYSQL_DB;"
-
-# Use /home/app/data/mysql as location of data so it is physically stored outside of container
-RUN mkdir -p /home/app/data && \
-    sudo cp -r /var/lib/mysql /home/app/data/ && \
-    sudo sed -i.bak 's/\/var\/lib\/mysql/\/home\/app\/data\/mysql/g' /etc/mysql/my.cnf && \
-    sudo sed -i.bak 's/\/var\/lib\/mysql/\/home\/app\/data\/mysql/g' /etc/apparmor.d/usr.sbin.mysqld
-
 #---------------------
 
 # Running NGINX Server
