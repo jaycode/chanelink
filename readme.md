@@ -66,7 +66,7 @@ Feel free to update this document as you found new things worth documenting.
     bundle install && sudo service mysql restart && bundle exec rake db:migrate && bundle exec rake db:seed
 
     # Run delayed jobs
-    mkdir tmp && ruby script/delayed_job start
+    ruby script/delayed_job start
     ```
 
     **Notes:**
