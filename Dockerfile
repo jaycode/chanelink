@@ -60,6 +60,26 @@ RUN mkdir -p /home/app/data && \
 
 #---------------------
 
+#---------------------
+RUN sudo service mysql restart && \
+    CODENVY_MYSQL_PASSWORD=2190j1jsK(al && \
+    CODENVY_MYSQL_DB=c_production && \
+    CODENVY_MYSQL_USER=c_2mcod && \
+    echo "MySQL password: $CODENVY_MYSQL_PASSWORD" >> /home/app/.mysqlrc && \
+    echo "MySQL user    : $CODENVY_MYSQL_USER" >> /home/app/.mysqlrc && \
+    echo "MySQL Database:$CODENVY_MYSQL_DB" >> /home/app/.mysqlrc && \
+    sudo mysql -uroot -e "CREATE USER '$CODENVY_MYSQL_USER'@'%' IDENTIFIED BY '"$CODENVY_MYSQL_PASSWORD"'" && \
+    sudo mysql -uroot -e "GRANT ALL PRIVILEGES ON *.* TO '$CODENVY_MYSQL_USER'@'%' IDENTIFIED BY '"$CODENVY_MYSQL_PASSWORD"'; FLUSH PRIVILEGES;" && \
+    sudo mysql -uroot -e "CREATE DATABASE $CODENVY_MYSQL_DB;"
+
+# Use /home/app/data/mysql as location of data so it is physically stored outside of container
+RUN mkdir -p /home/app/data && \
+    sudo cp /var/lib/mysql /home/app/data/ && \
+    sudo sed -i.bak 's/\/var\/lib\/mysql/\/home\/app\/data\/mysql/g' /etc/mysql/my.cnf && \
+    sudo sed -i.bak 's/\/var\/lib\/mysql/\/home\/app\/data\/mysql/g' /etc/apparmor.d/usr.sbin.mysqld
+
+#---------------------
+
 # Running NGINX Server
 #---------------------
 RUN rm /etc/nginx/sites-enabled/default && \
