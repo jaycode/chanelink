@@ -55,7 +55,7 @@ RUN sudo service mysql restart && \
 
 #---------------------
 RUN sudo service mysql restart && \
-    CODENVY_MYSQL_PASSWORD=2190j1jsK(al && \
+    CODENVY_MYSQL_PASSWORD=2190j1jsKal && \
     CODENVY_MYSQL_DB=c_production && \
     CODENVY_MYSQL_USER=c_2mcod && \
     echo "MySQL password: $CODENVY_MYSQL_PASSWORD" >> /home/app/.mysqlrc && \
