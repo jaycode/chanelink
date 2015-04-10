@@ -26,12 +26,16 @@ RUN echo "setting up MySQL..." && \
  
 EXPOSE 3306
 
+# DOES NOT WORK!!
+# For now lets use /home/app/data only for backup location
+# ---------------------
 # Use /home/app/data/mysql as location of data so it is physically stored outside of container
-RUN mkdir -p /home/app/data && \
-    sudo cp -r /var/lib/mysql /home/app/data/ && \
-    sudo sed -i.bak 's/\/var\/lib\/mysql/\/home\/app\/data\/mysql/g' /etc/mysql/my.cnf && \
-    sudo sed -i.bak 's/\/var\/lib\/mysql/\/home\/app\/data\/mysql/g' /etc/apparmor.d/usr.sbin.mysqld && \
-    mysql_install_db --user=root -ldata=/app/data/mysql
+# RUN mkdir -p /home/app/data && \
+    # sudo cp -r /var/lib/mysql /home/app/data/ && \
+#    sudo sed -i.bak 's/\/var\/lib\/mysql/\/home\/app\/data\/mysql/g' /etc/mysql/my.cnf && \
+#    sudo sed -i.bak 's/\/var\/lib\/mysql/\/home\/app\/data\/mysql/g' /etc/apparmor.d/usr.sbin.mysqld
+# RUN sudo mysql_install_db --user=mysql -ldata=/app/data/mysql
+# ---------------------
  
 # Create MySQL user and database, and start it
 #---------------------

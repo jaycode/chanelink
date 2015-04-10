@@ -24,6 +24,8 @@ Feel free to update this document as you found new things worth documenting.
     sed -i.bak 's/development/production/g' container_config/passenger/webapp.conf
     ```
     
+    Later on when you wish to change configuration environment, in addition to that you need to: `cp container_config/passenger/webapp.conf /etc/nginx/sites-enabled/webapp.conf`.
+
     - Create MySQL user and database by entering correct information through /Dockerfile.
 
 3. Build docker container:
@@ -224,13 +226,19 @@ Going outside the development realm and to actually putting things into producti
 
 ### How to update table schema and adding new rows.
 
+Add `RAILS_ENV` directive to your rake command i.e.
+
+```
+bundle exec rake db:migrate RAILS_ENV=production && bundle exec rake db:seed RAILS_ENV=production
+```
+
 Updating table schema must be done via migrations, consult the Rails documentation for this. As far as naming, you can use whatever works for you as long as it explains what you are doing there.
 
 **note:** Do not update old migration files! To fix older migration files, create newer migrations instead.
 
 Adding rows / entities on the other hand, MUST NOT be done via migration files. You need to update `db/seeds.rb` file to include entity creations there. Don't forget to either remove or skip any duplication. Check the file `db/seeds.rb` for examples.
 
-Doing this guide would ensure both `bundle exec rake db:migrate` and `bundle exec rake db:seed` are safe to run on production server.
+Doing the above would ensure both `bundle exec rake db:migrate` and `bundle exec rake db:seed` are safe to run on production server.
 
 ## Useful Resources & Tips
 
