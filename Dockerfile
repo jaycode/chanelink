@@ -51,13 +51,6 @@ RUN sudo service mysql restart && \
     sudo mysql -uroot -e "CREATE USER '$CODENVY_MYSQL_USER'@'%' IDENTIFIED BY '"$CODENVY_MYSQL_PASSWORD"'" && \
     sudo mysql -uroot -e "GRANT ALL PRIVILEGES ON *.* TO '$CODENVY_MYSQL_USER'@'%' IDENTIFIED BY '"$CODENVY_MYSQL_PASSWORD"'; FLUSH PRIVILEGES;" && \
     sudo mysql -uroot -e "CREATE DATABASE $CODENVY_MYSQL_DB;"
-
-# Use /home/app/data/mysql as location of data so it is physically stored outside of container
-RUN mkdir -p /home/app/data && \
-    sudo cp /var/lib/mysql /home/app/data/ && \
-    sudo sed -i.bak 's/\/var\/lib\/mysql/\/home\/app\/data\/mysql/g' /etc/mysql/my.cnf && \
-    sudo sed -i.bak 's/\/var\/lib\/mysql/\/home\/app\/data\/mysql/g' /etc/apparmor.d/usr.sbin.mysqld
-
 #---------------------
 
 #---------------------
