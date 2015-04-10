@@ -22,7 +22,7 @@ Feel free to update this document as you found new things worth documenting.
  - Create MySQL user and database by entering correct information through /Dockerfile.
 3. Build docker container:
     ```
-    cd /c/Users/Path/to/project && docker build -t chink/main .
+    cd /c/Users/Path/to/project && sudo docker build -t chink/main .
     ```
 4. Run docker with following command:
     ```
@@ -55,11 +55,12 @@ Feel free to update this document as you found new things worth documenting.
     Then inside your docker container:
     ```
     # Install all required gems, Start mysql sever, Run the migration, then seed the database.
-    bundle install && service mysql restart && bundle exec rake db:migrate && bundle exec rake db:seed
+    bundle install && sudo service mysql restart && bundle exec rake db:migrate && bundle exec rake db:seed
 
     # Run delayed jobs
     mkdir tmp && ruby script/delayed_job start
     ```
+
 6. After initialising for the first time, you may want to store your container as an image,
 so you do not need to bundle install everytime you run it. For this, do the following:
     ```

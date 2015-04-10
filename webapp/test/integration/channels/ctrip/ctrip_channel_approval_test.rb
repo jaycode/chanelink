@@ -3,7 +3,7 @@ require 'integration/integration_test_helper'
 require 'capybara/rails'
 
 class CtripChannelApprovalTest < ActionDispatch::IntegrationTest
-  fixtures :accounts, :channels, :countries, :member_roles, :members, :pools, :properties
+  fixtures :accounts, :channels, :countries, :member_roles, :members, :pools, :properties, :property_channels
   include IntegrationTestHelper::Capybara
   include Capybara::DSL
   setup do

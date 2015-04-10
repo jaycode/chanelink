@@ -1,6 +1,6 @@
 class SetupSchema < ActiveRecord::Migration
   def self.up
-  	  create_table "accounts", :force => true do |t|
+  	  create_table "accounts", :force => true, :options => "ENGINE=MyISAM" do |t|
 	    t.string   "name"
 	    t.text     "address"
 	    t.string   "telephone"
@@ -16,7 +16,7 @@ class SetupSchema < ActiveRecord::Migration
 
 	  add_index "accounts", ["id"], :name => "index_accounts_on_id", :unique => true
 
-	  create_table "alerts", :force => true do |t|
+	  create_table "alerts", :force => true, :options => "ENGINE=MyISAM" do |t|
 	    t.integer  "receiver_id",                    :null => false
 	    t.integer  "data_id"
 	    t.string   "type"
@@ -28,7 +28,7 @@ class SetupSchema < ActiveRecord::Migration
 	    t.integer  "property_id"
 	  end
 
-	  create_table "booking_retrievals", :force => true do |t|
+	  create_table "booking_retrievals", :force => true, :options => "ENGINE=MyISAM" do |t|
 	    t.text     "request_xml",   :limit => 2147483647
 	    t.text     "response_xml",  :limit => 2147483647
 	    t.string   "response_code"
@@ -38,13 +38,13 @@ class SetupSchema < ActiveRecord::Migration
 	    t.datetime "updated_at"
 	  end
 
-	  create_table "booking_statuses", :force => true do |t|
+	  create_table "booking_statuses", :force => true, :options => "ENGINE=MyISAM" do |t|
 	    t.string   "name"
 	    t.datetime "created_at"
 	    t.datetime "updated_at"
 	  end
 
-	  create_table "bookingcom_booking_datas", :force => true do |t|
+	  create_table "bookingcom_booking_datas", :force => true, :options => "ENGINE=MyISAM" do |t|
 	    t.integer  "bookings_id"
 	    t.decimal  "total_commission_amount",       :precision => 10, :scale => 0
 	    t.string   "currency_code"
@@ -82,7 +82,7 @@ class SetupSchema < ActiveRecord::Migration
 	    t.datetime "updated_at"
 	  end
 
-	  create_table "bookings", :force => true do |t|
+	  create_table "bookings", :force => true, :options => "ENGINE=MyISAM" do |t|
 	    t.string   "type"
 	    t.integer  "channel_id"
 	    t.integer  "property_id"
@@ -118,7 +118,7 @@ class SetupSchema < ActiveRecord::Migration
 	    t.string   "orbitz_booking_id"
 	  end
 
-	  create_table "change_set_channel_logs", :force => true do |t|
+	  create_table "change_set_channel_logs", :force => true, :options => "ENGINE=MyISAM" do |t|
 	    t.integer  "change_set_channel_id"
 	    t.text     "request_xml",           :limit => 2147483647
 	    t.text     "response_xml",          :limit => 2147483647
@@ -130,7 +130,7 @@ class SetupSchema < ActiveRecord::Migration
 	    t.integer  "fragment_id"
 	  end
 
-	  create_table "change_set_channels", :force => true do |t|
+	  create_table "change_set_channels", :force => true, :options => "ENGINE=MyISAM" do |t|
 	    t.integer  "change_set_id"
 	    t.integer  "room_type_id"
 	    t.integer  "channel_id"
@@ -140,14 +140,14 @@ class SetupSchema < ActiveRecord::Migration
 	    t.datetime "updated_at"
 	  end
 
-	  create_table "change_sets", :force => true do |t|
+	  create_table "change_sets", :force => true, :options => "ENGINE=MyISAM" do |t|
 	    t.string   "type"
 	    t.integer  "room_type_channel_mapping_id"
 	    t.datetime "created_at"
 	    t.datetime "updated_at"
 	  end
 
-	  create_table "channel_cta_logs", :force => true do |t|
+	  create_table "channel_cta_logs", :force => true, :options => "ENGINE=MyISAM" do |t|
 	    t.integer  "channel_cta_id"
 	    t.boolean  "cta"
 	    t.integer  "change_set_id"
@@ -155,7 +155,7 @@ class SetupSchema < ActiveRecord::Migration
 	    t.datetime "updated_at"
 	  end
 
-	  create_table "channel_ctas", :force => true do |t|
+	  create_table "channel_ctas", :force => true, :options => "ENGINE=MyISAM" do |t|
 	    t.datetime "date"
 	    t.integer  "channel_id"
 	    t.integer  "room_type_id"
@@ -166,7 +166,7 @@ class SetupSchema < ActiveRecord::Migration
 	    t.datetime "updated_at"
 	  end
 
-	  create_table "channel_ctbs", :force => true do |t|
+	  create_table "channel_ctbs", :force => true, :options => "ENGINE=MyISAM" do |t|
 	    t.datetime "date"
 	    t.integer  "channel_id"
 	    t.integer  "room_type_id"
@@ -177,7 +177,7 @@ class SetupSchema < ActiveRecord::Migration
 	    t.datetime "updated_at"
 	  end
 
-	  create_table "channel_ctd_logs", :force => true do |t|
+	  create_table "channel_ctd_logs", :force => true, :options => "ENGINE=MyISAM" do |t|
 	    t.integer  "channel_ctd_id"
 	    t.boolean  "ctd"
 	    t.integer  "change_set_id"
@@ -185,7 +185,7 @@ class SetupSchema < ActiveRecord::Migration
 	    t.datetime "updated_at"
 	  end
 
-	  create_table "channel_ctds", :force => true do |t|
+	  create_table "channel_ctds", :force => true, :options => "ENGINE=MyISAM" do |t|
 	    t.datetime "date"
 	    t.integer  "channel_id"
 	    t.integer  "room_type_id"
@@ -196,7 +196,7 @@ class SetupSchema < ActiveRecord::Migration
 	    t.datetime "updated_at"
 	  end
 
-	  create_table "channel_min_stay_logs", :force => true do |t|
+	  create_table "channel_min_stay_logs", :force => true, :options => "ENGINE=MyISAM" do |t|
 	    t.integer  "channel_min_stay_id"
 	    t.integer  "min_stay"
 	    t.integer  "change_set_id"
@@ -204,7 +204,7 @@ class SetupSchema < ActiveRecord::Migration
 	    t.datetime "updated_at"
 	  end
 
-	  create_table "channel_min_stays", :force => true do |t|
+	  create_table "channel_min_stays", :force => true, :options => "ENGINE=MyISAM" do |t|
 	    t.datetime "date"
 	    t.integer  "channel_id"
 	    t.integer  "room_type_id"
@@ -215,7 +215,7 @@ class SetupSchema < ActiveRecord::Migration
 	    t.datetime "updated_at"
 	  end
 
-	  create_table "channel_rate_logs", :force => true do |t|
+	  create_table "channel_rate_logs", :force => true, :options => "ENGINE=MyISAM" do |t|
 	    t.integer  "channel_rate_id"
 	    t.decimal  "amount",          :precision => 30, :scale => 20
 	    t.integer  "change_set_id"
@@ -223,7 +223,7 @@ class SetupSchema < ActiveRecord::Migration
 	    t.datetime "updated_at"
 	  end
 
-	  create_table "channel_rates", :force => true do |t|
+	  create_table "channel_rates", :force => true, :options => "ENGINE=MyISAM" do |t|
 	    t.datetime "date"
 	    t.integer  "channel_id"
 	    t.integer  "room_type_id"
@@ -234,7 +234,7 @@ class SetupSchema < ActiveRecord::Migration
 	    t.datetime "updated_at"
 	  end
 
-	  create_table "channel_stop_sell_logs", :force => true do |t|
+	  create_table "channel_stop_sell_logs", :force => true, :options => "ENGINE=MyISAM" do |t|
 	    t.integer  "channel_stop_sell_id"
 	    t.boolean  "stop_sell"
 	    t.integer  "change_set_id"
@@ -242,7 +242,7 @@ class SetupSchema < ActiveRecord::Migration
 	    t.datetime "updated_at"
 	  end
 
-	  create_table "channel_stop_sells", :force => true do |t|
+	  create_table "channel_stop_sells", :force => true, :options => "ENGINE=MyISAM" do |t|
 	    t.datetime "date"
 	    t.integer  "channel_id"
 	    t.integer  "room_type_id"
@@ -253,20 +253,20 @@ class SetupSchema < ActiveRecord::Migration
 	    t.datetime "updated_at"
 	  end
 
-	  create_table "channels", :force => true do |t|
+	  create_table "channels", :force => true, :options => "ENGINE=MyISAM" do |t|
 	    t.string   "name"
 	    t.string   "type"
 	    t.datetime "created_at"
 	    t.datetime "updated_at"
 	  end
 
-	  create_table "configurations", :force => true do |t|
+	  create_table "configurations", :force => true, :options => "ENGINE=MyISAM" do |t|
 	    t.integer  "days_to_keep_cc_info"
 	    t.datetime "created_at"
 	    t.datetime "updated_at"
 	  end
 
-	  create_table "countries", :force => true do |t|
+	  create_table "countries", :force => true, :options => "ENGINE=MyISAM" do |t|
 	    t.string   "code"
 	    t.string   "name"
 	    t.datetime "created_at"
@@ -275,7 +275,7 @@ class SetupSchema < ActiveRecord::Migration
 
 	  add_index "countries", ["id"], :name => "index_countries_on_id", :unique => true
 
-	  create_table "currencies", :force => true do |t|
+	  create_table "currencies", :force => true, :options => "ENGINE=MyISAM" do |t|
 	    t.string   "code"
 	    t.string   "name"
 	    t.datetime "created_at"
@@ -284,7 +284,7 @@ class SetupSchema < ActiveRecord::Migration
 
 	  add_index "currencies", ["id"], :name => "index_currencies_on_id", :unique => true
 
-	  create_table "currency_conversions", :force => true do |t|
+	  create_table "currency_conversions", :force => true, :options => "ENGINE=MyISAM" do |t|
 	    t.integer  "property_channel_id"
 	    t.integer  "to_currency_id"
 	    t.decimal  "multiplier",          :precision => 30, :scale => 20
@@ -292,7 +292,7 @@ class SetupSchema < ActiveRecord::Migration
 	    t.datetime "updated_at"
 	  end
 
-	  create_table "delayed_jobs", :force => true do |t|
+	  create_table "delayed_jobs", :force => true, :options => "ENGINE=MyISAM" do |t|
 	    t.integer  "priority",   :default => 0
 	    t.integer  "attempts",   :default => 0
 	    t.text     "handler"
@@ -308,7 +308,7 @@ class SetupSchema < ActiveRecord::Migration
 
 	  add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
 
-	  create_table "gta_travel_channel_cta_logs", :force => true do |t|
+	  create_table "gta_travel_channel_cta_logs", :force => true, :options => "ENGINE=MyISAM" do |t|
 	    t.integer  "gta_travel_channel_cta_id"
 	    t.boolean  "cta"
 	    t.integer  "change_set_id"
@@ -316,7 +316,7 @@ class SetupSchema < ActiveRecord::Migration
 	    t.datetime "updated_at"
 	  end
 
-	  create_table "gta_travel_channel_ctas", :force => true do |t|
+	  create_table "gta_travel_channel_ctas", :force => true, :options => "ENGINE=MyISAM" do |t|
 	    t.datetime "date"
 	    t.integer  "channel_id"
 	    t.integer  "property_id"
@@ -326,7 +326,7 @@ class SetupSchema < ActiveRecord::Migration
 	    t.datetime "updated_at"
 	  end
 
-	  create_table "gta_travel_channel_ctb_logs", :force => true do |t|
+	  create_table "gta_travel_channel_ctb_logs", :force => true, :options => "ENGINE=MyISAM" do |t|
 	    t.integer  "gta_travel_channel_ctb_id"
 	    t.boolean  "ctb"
 	    t.integer  "change_set_id"
@@ -334,7 +334,7 @@ class SetupSchema < ActiveRecord::Migration
 	    t.datetime "updated_at"
 	  end
 
-	  create_table "gta_travel_channel_ctbs", :force => true do |t|
+	  create_table "gta_travel_channel_ctbs", :force => true, :options => "ENGINE=MyISAM" do |t|
 	    t.datetime "date"
 	    t.integer  "channel_id"
 	    t.integer  "property_id"
@@ -344,7 +344,7 @@ class SetupSchema < ActiveRecord::Migration
 	    t.datetime "updated_at"
 	  end
 
-	  create_table "inventories", :force => true do |t|
+	  create_table "inventories", :force => true, :options => "ENGINE=MyISAM" do |t|
 	    t.datetime "date"
 	    t.integer  "room_type_id"
 	    t.integer  "property_id"
@@ -354,7 +354,7 @@ class SetupSchema < ActiveRecord::Migration
 	    t.datetime "updated_at"
 	  end
 
-	  create_table "inventory_logs", :force => true do |t|
+	  create_table "inventory_logs", :force => true, :options => "ENGINE=MyISAM" do |t|
 	    t.integer  "inventory_id"
 	    t.integer  "booking_id"
 	    t.string   "type"
@@ -364,7 +364,7 @@ class SetupSchema < ActiveRecord::Migration
 	    t.datetime "updated_at"
 	  end
 
-	  create_table "master_rate_logs", :force => true do |t|
+	  create_table "master_rate_logs", :force => true, :options => "ENGINE=MyISAM" do |t|
 	    t.integer  "master_rate_id"
 	    t.decimal  "amount",         :precision => 30, :scale => 20
 	    t.integer  "change_set_id"
@@ -372,7 +372,7 @@ class SetupSchema < ActiveRecord::Migration
 	    t.datetime "updated_at"
 	  end
 
-	  create_table "master_rate_new_room_logs", :force => true do |t|
+	  create_table "master_rate_new_room_logs", :force => true, :options => "ENGINE=MyISAM" do |t|
 	    t.integer  "master_rate_id"
 	    t.decimal  "amount",         :precision => 30, :scale => 2
 	    t.integer  "change_set_id"
@@ -380,7 +380,7 @@ class SetupSchema < ActiveRecord::Migration
 	    t.datetime "updated_at"
 	  end
 
-	  create_table "master_rates", :force => true do |t|
+	  create_table "master_rates", :force => true, :options => "ENGINE=MyISAM" do |t|
 	    t.datetime "date"
 	    t.integer  "room_type_id"
 	    t.integer  "property_id"
@@ -390,27 +390,27 @@ class SetupSchema < ActiveRecord::Migration
 	    t.datetime "updated_at"
 	  end
 
-	  create_table "member_logins", :force => true do |t|
+	  create_table "member_logins", :force => true, :options => "ENGINE=MyISAM" do |t|
 	    t.integer  "member_id"
 	    t.boolean  "success"
 	    t.datetime "created_at"
 	    t.datetime "updated_at"
 	  end
 
-	  create_table "member_property_accesses", :force => true do |t|
+	  create_table "member_property_accesses", :force => true, :options => "ENGINE=MyISAM" do |t|
 	    t.integer  "member_id"
 	    t.integer  "property_id"
 	    t.datetime "created_at"
 	    t.datetime "updated_at"
 	  end
 
-	  create_table "member_roles", :force => true do |t|
+	  create_table "member_roles", :force => true, :options => "ENGINE=MyISAM" do |t|
 	    t.string   "type"
 	    t.datetime "created_at"
 	    t.datetime "updated_at"
 	  end
 
-	  create_table "members", :force => true do |t|
+	  create_table "members", :force => true, :options => "ENGINE=MyISAM" do |t|
 	    t.string   "email"
 	    t.text     "name"
 	    t.string   "hashed_password"
@@ -427,7 +427,7 @@ class SetupSchema < ActiveRecord::Migration
 
 	  add_index "members", ["id"], :name => "index_members_on_id", :unique => true
 
-	  create_table "pools", :force => true do |t|
+	  create_table "pools", :force => true, :options => "ENGINE=MyISAM" do |t|
 	    t.string   "name"
 	    t.integer  "property_id"
 	    t.datetime "created_at"
@@ -435,7 +435,7 @@ class SetupSchema < ActiveRecord::Migration
 	    t.boolean  "deleted",     :default => false
 	  end
 
-	  create_table "properties", :force => true do |t|
+	  create_table "properties", :force => true, :options => "ENGINE=MyISAM" do |t|
 	    t.string   "name"
 	    t.text     "address"
 	    t.string   "city"
@@ -462,7 +462,7 @@ class SetupSchema < ActiveRecord::Migration
 
 	  add_index "properties", ["id"], :name => "index_properties_on_id", :unique => true
 
-	  create_table "property_channels", :force => true do |t|
+	  create_table "property_channels", :force => true, :options => "ENGINE=MyISAM" do |t|
 	    t.integer  "property_id"
 	    t.integer  "channel_id"
 	    t.integer  "pool_id"
@@ -495,7 +495,7 @@ class SetupSchema < ActiveRecord::Migration
 	    t.string   "orbitz_chain_code"
 	  end
 
-	  create_table "room_type_channel_mappings", :force => true do |t|
+	  create_table "room_type_channel_mappings", :force => true, :options => "ENGINE=MyISAM" do |t|
 	    t.integer  "room_type_id"
 	    t.integer  "channel_id"
 	    t.string   "agoda_room_type_id"
@@ -551,7 +551,7 @@ class SetupSchema < ActiveRecord::Migration
 	    t.string   "ctrip_room_rate_plan_code"
 	  end
 
-	  create_table "room_type_inventory_links", :force => true do |t|
+	  create_table "room_type_inventory_links", :force => true, :options => "ENGINE=MyISAM" do |t|
 	    t.integer  "property_id"
 	    t.integer  "room_type_from_id",                    :null => false
 	    t.integer  "room_type_to_id",                      :null => false
@@ -560,7 +560,7 @@ class SetupSchema < ActiveRecord::Migration
 	    t.boolean  "deleted",           :default => false
 	  end
 
-	  create_table "room_type_master_rate_channel_mappings", :force => true do |t|
+	  create_table "room_type_master_rate_channel_mappings", :force => true, :options => "ENGINE=MyISAM" do |t|
 	    t.integer  "room_type_master_rate_mapping_id"
 	    t.integer  "room_type_id"
 	    t.integer  "channel_id"
@@ -573,7 +573,7 @@ class SetupSchema < ActiveRecord::Migration
 	    t.boolean  "deleted",                                                          :default => false
 	  end
 
-	  create_table "room_type_master_rate_mappings", :force => true do |t|
+	  create_table "room_type_master_rate_mappings", :force => true, :options => "ENGINE=MyISAM" do |t|
 	    t.integer  "pool_id"
 	    t.integer  "room_type_id"
 	    t.datetime "created_at"
@@ -581,7 +581,7 @@ class SetupSchema < ActiveRecord::Migration
 	    t.boolean  "deleted",      :default => false
 	  end
 
-	  create_table "room_types", :force => true do |t|
+	  create_table "room_types", :force => true, :options => "ENGINE=MyISAM" do |t|
 	    t.string   "name"
 	    t.decimal  "rack_rate",    :precision => 30, :scale => 20
 	    t.decimal  "minimum_rate", :precision => 30, :scale => 20
@@ -592,7 +592,7 @@ class SetupSchema < ActiveRecord::Migration
 	    t.datetime "updated_at"
 	  end
 
-	  create_table "sessions", :force => true do |t|
+	  create_table "sessions", :force => true, :options => "ENGINE=MyISAM" do |t|
 	    t.string   "session_id", :null => false
 	    t.text     "data"
 	    t.datetime "created_at"
@@ -602,21 +602,21 @@ class SetupSchema < ActiveRecord::Migration
 	  add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
 	  add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
-	  create_table "user_logins", :force => true do |t|
+	  create_table "user_logins", :force => true, :options => "ENGINE=MyISAM" do |t|
 	    t.integer  "user_id"
 	    t.boolean  "success"
 	    t.datetime "created_at"
 	    t.datetime "updated_at"
 	  end
 
-	  create_table "user_property_accesses", :force => true do |t|
+	  create_table "user_property_accesses", :force => true, :options => "ENGINE=MyISAM" do |t|
 	    t.integer  "user_id"
 	    t.integer  "property_id"
 	    t.datetime "created_at"
 	    t.datetime "updated_at"
 	  end
 
-	  create_table "users", :force => true do |t|
+	  create_table "users", :force => true, :options => "ENGINE=MyISAM" do |t|
 	    t.string   "name"
 	    t.string   "email"
 	    t.string   "email_validation_key"
