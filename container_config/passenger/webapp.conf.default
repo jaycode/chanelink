@@ -15,7 +15,7 @@ server {
     passenger_user app;
     passenger_ruby /usr/bin/ruby1.9.1;
 
-    # Ensures that RAILS_ENV, NODE_ENV, etc are set to "staging"
+    # Ensures that RAILS_ENV, NODE_ENV, etc are set to "development"
     # when your application is started.
     # For production set this accordingly.
     passenger_app_env development;

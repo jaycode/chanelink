@@ -18,8 +18,14 @@ Feel free to update this document as you found new things worth documenting.
    2. Install Docker, tick both Git and VM.
    3. If you're on Windows machine, [enable Intel VT and V Virtualization hardware extensions in BIOS](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Virtualization_Administration_Guide/sect-Virtualization-Troubleshooting-Enabling_Intel_VT_and_AMD_V_virtualization_hardware_extensions_in_BIOS.html) and [disable Hyper V feature](https://pricklytech.wordpress.com/2014/02/25/windows-8-1-vmware-player-and-hyper-v-are-not-compatible/).
 2. Setup configuration:
- - Check file /container_config/passenger/webapp.conf. (for different server, create a copy of webapp.conf.default and rename it to webapp.conf) Change rails environment here when needed.
- - Create MySQL user and database by entering correct information through /Dockerfile.
+    - Check file /container_config/passenger/webapp.conf. (for different server, create a copy of webapp.conf.default and rename it to webapp.conf) Change rails environment here when needed e.g. to change environment from "development" to "production" you may run the following:
+    
+    ```
+    sed -i.bak 's/development/production/g' /container_config/passenger/webapp.conf
+    ```
+    
+    - Create MySQL user and database by entering correct information through /Dockerfile.
+
 3. Build docker container:
     ```
     cd /c/Users/Path/to/project && sudo docker build -t chink/main .
