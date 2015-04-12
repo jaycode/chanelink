@@ -33,5 +33,9 @@ module IntegrationTestHelper
       fill_in 'password', :with => pass
       click_button 'Login'
     end
+
+    def select_property_backend(property_id)
+      visit "/backoffic3/select_property_set?id=#{property_id}"
+    end
   end
 end

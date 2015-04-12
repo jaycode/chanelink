@@ -100,6 +100,11 @@ ADD webapp/Gemfile .
 RUN bundle install
 #---------------------
 
+# Installing Firefox for Selenium module used in Rails testing
+#---------------------
+RUN sudo apt-get -y --no-install-recommends install firefox
+#---------------------
+
 RUN mkdir -p /home/app/webapp
 WORKDIR /home/app/webapp
 

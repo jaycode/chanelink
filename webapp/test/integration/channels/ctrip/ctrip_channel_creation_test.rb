@@ -20,10 +20,15 @@ class CtripChannelCreationTest < ActionDispatch::IntegrationTest
     #----------------------------------
     @property_channel_username = '54394'
     @property_channel_password = 'Ctrip123456'
+    @pool_id = pools(:default_big_hotel_3).id
     #----------------------------------
   end
 
   test "Channel creation" do
+    # Todo: Use javascript-enabled testing later - need to figure out error 
+    #       "unable to obtain stable firefox connection in 60 seconds (127.0.0.1:7055)".
+    #       Maybe we need to open port 7055?
+    # Capybara.current_driver = :selenium
     visit '/property_channels/new_wizard_selection'
 
     # Must select from name, not id
@@ -52,19 +57,26 @@ class CtripChannelCreationTest < ActionDispatch::IntegrationTest
     click_button 'Continue'
     assert_equal '/property_channels/new_wizard_confirm', current_path
 
-    puts "Current path: #{current_path}"
+    assert page.has_content?(@property_channel_username)
+    assert page.has_content?(@property_channel_password)
+
     click_button 'Finish'
     assert_equal '/property_channels/done_creating', current_path
 
     click_link 'Click here'
-    assert_equal '/property_channels', current_path
+    # Directly open the page instead of selecting and let ajax opens the page.
+    visit "/property_channels?pool_id=#{@pool_id}"
+
+    # Capybara.default_wait_time = 10
+    # select(@pool_name, :from => 'select_pool')
+
     assert page.has_content?('Ctrip')
     assert page.has_content?('waiting for approval')
 
     # Always put this at the bottom so we always know where we're at
     # as we are writing the page:
-    print page.html
-    puts "Current path: #{current_path}"
+    # print page.html
+    # puts "Current path: #{current_path}"
     # if you'd like to view it on browser, you can do this:
     # save_and_open_page
   end

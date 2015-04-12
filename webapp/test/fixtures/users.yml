@@ -5,3 +5,4 @@ super_admin:
   hashed_password: <%= Digest::SHA1.hexdigest('testpass') %>
   salt: <%= UUIDTools::UUID.timestamp_create %>
   super: 1
+  prompt_password_change: 0

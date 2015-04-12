@@ -54,10 +54,15 @@ class Admin::PropertyChannelsController < Admin::AdminController
 
   # approve channel mapping
   def approve
+    @logger = Logger.new("#{Rails.root}/log/custom.log")
+    @logger.error("approve 1")
     @property_channel = PropertyChannel.find(params[:id])
+    @logger.error("approve 2")
     @property_channel.update_attributes(:approved => true, :disabled => false)
+    @logger.error("approve 3")
     PropertyChannelApprovedAlert.create_for_property(@property_channel, @property_channel.property)
     flash[:notice] = t('admin.properties.approve.message.success')
+    @logger.error("approve 4 #{@property_channel.id} #{@property_channel.approved}")
     redirect_to admin_setup_path
   end
 
