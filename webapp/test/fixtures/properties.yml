@@ -7,9 +7,12 @@ big_hotel_1:
   minimum_room_rate: 250000
   country: indonesia
   account: big_hotel_chain
-  agoda_hotel_id: bighotel1
-  expedia_hotel_id: bighotel1
+  agoda_hotel_id: 253984
+  expedia_hotel_id: 4397866
+  expedia_username: EQC4397866CHA
+  expedia_password: ke9uwUsE
   approved: 1
+  settings: '{"ctrip_hotel_id"}'
 
 # Test hotel used for unapproved property channel.
 big_hotel_2:

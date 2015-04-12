@@ -1,3 +1,12 @@
+big_hotel_1_default_agoda:
+  property: big_hotel_1
+  pool: default
+  channel: agoda
+  agoda_username: marketing@plazahotelglodok.com
+  agoda_password: plaza2014*
+  agoda_currency: IDR
+  settings: '{"username": "marketing@plazahotelglodok.com", "password": "plaza2014", "currency": "IDR"}'
+  approved: 1
 big_hotel_1_default_ctrip:
   property: big_hotel_1
   pool: default
