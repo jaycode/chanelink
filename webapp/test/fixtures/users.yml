@@ -1,0 +1,7 @@
+# Users are admins with access to back3nd site.
+super_admin:
+  name: Super admin
+  email: jay@chanelink.com
+  hashed_password: <%= Digest::SHA1.hexdigest('testpass') %>
+  salt: <%= UUIDTools::UUID.timestamp_create %>
+  super: 1

@@ -57,18 +57,31 @@ def production_seeds
   ]
 
   super_admins.each do |admin|
-    if !Member.find_by_name(admin[:name])
+    # For front end
+    if !Member.find_by_email(admin[:email])
       super_admin = Member.create do |m|
         m.name = admin[:name]
         m.email = admin[:email]
-        m.disabled = false
         m.password = admin[:password]
+        m.disabled = false
         m.account = admin_account
         m.assigned_properties = property_ids
         m.master = 1
         m.role = MemberRole.where(:type => 'SuperRole').first
       end
 
+      super_admin.skip_properties_validation = true
+      super_admin.update_attributes(:password => admin[:password], :prompt_password_change => false)
+    end
+
+    # For back end
+    if !User.find_by_email(admin[:email])
+      super_admin = User.create do |u|
+        u.name = admin[:name]
+        u.email = admin[:email]
+        u.password = admin[:password]
+        u.super = 1
+      end
       super_admin.skip_properties_validation = true
       super_admin.update_attributes(:password => admin[:password], :prompt_password_change => false)
     end
@@ -107,7 +120,18 @@ end
 # Seed data used only for development.
 # You may add any sample data here.
 def development_seeds
-  
+  property = Property.first(:conditions => {:approved => 1})
+  pool = Pool.first(:conditions => {:property_id => property.id, :name => 'OTA'})
+  ctrip = Channel.first(:conditions => {:name => 'Ctrip'})
+  property_channels = [
+    {
+        property: property,
+        pool: pool,
+        channel: ctrip,
+        settings: '{"username": "54394", "password": "Ctrip123456"}',
+        approved: 1
+    }
+  ]
 end
 
 # test data do not need seed, obviously. They are set up in test/fixtures.

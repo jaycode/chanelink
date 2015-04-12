@@ -26,5 +26,12 @@ module IntegrationTestHelper
     def select_property(property_id)
       visit "/properties/do_select?property_id=#{property_id}"
     end
+
+    def login_backend(email, pass)
+      visit '/backoffic3'
+      fill_in 'email', :with => email
+      fill_in 'password', :with => pass
+      click_button 'Login'
+    end
   end
 end

@@ -3,3 +3,10 @@ big_hotel_1_default_ctrip:
   pool: default
   channel: ctrip
   settings: '{"username": "54394", "password": "Ctrip123456"}'
+  approved: 1
+unapproved:
+  property: big_hotel_2
+  pool: default
+  channel: ctrip
+  settings: '{"username": "54394", "password": "Ctrip123456"}'
+  approved: 0
