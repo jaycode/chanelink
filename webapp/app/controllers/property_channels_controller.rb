@@ -33,8 +33,6 @@ class PropertyChannelsController < ApplicationController
 
   # new channel wizard - step 2
   def new_wizard_setting
-    @logger = Logger.new("#{Rails.root}/log/custom.log")
-    @logger.error("inside new wizard setting.")
 
     init_variables_from_sessions
     

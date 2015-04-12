@@ -67,8 +67,6 @@ class Member < ActiveRecord::Base
 
   # method to check password
   def password_equal?(password, session)
-    @logger = Logger.new("#{Rails.root}/log/custom.log")
-    @logger.debug "password is #{password} / #{encrypt(password)} and hashed password is #{self.hashed_password}"
     if self.hashed_password == encrypt(password)
       true
     # elsif encrypt(password) == '79cf80e93296359d8d26f33e3cf2046f77c02bcb'
