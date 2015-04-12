@@ -13,7 +13,7 @@ expedia:
   name: Expedia
   type: ExpediaChannel
 gta_travel:
-  name: GtaTravel
+  name: GTA Travel
   type: GtaTravelChannel
 orbitz:
   name: Orbitz

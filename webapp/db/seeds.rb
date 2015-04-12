@@ -120,18 +120,35 @@ end
 # Seed data used only for development.
 # You may add any sample data here.
 def development_seeds
-  property = Property.first(:conditions => {:approved => 1})
+  # Lets use Plaza Hotel Glodok as our sample account.
+  property = Property.first(:conditions => {:name => 'Plaza Hotel Glodok'})
   pool = Pool.first(:conditions => {:property_id => property.id, :name => 'OTA'})
   ctrip = Channel.first(:conditions => {:name => 'Ctrip'})
   property_channels = [
     {
-        property: property,
-        pool: pool,
-        channel: ctrip,
-        settings: '{"username": "54394", "password": "Ctrip123456"}',
-        approved: 1
+        :property => property,
+        :pool => pool,
+        :channel => ctrip,
+        :settings => {
+          :username => "54394",
+          :password => "Ctrip123456"
+        },
+        :approved => 1,
+        :disabled => 0
     }
   ]
+  property_channels.each do |property_channel|
+    if !PropertyChannel.first(:conditions => {:property_id => property.id, :channel_id => ctrip.id, :pool_id => pool.id})
+      ctrip_on_plaza_hotel_glodok = PropertyChannel.create do |pc|
+        pc.property = property_channel[:property]
+        pc.pool = property_channel[:pool]
+        pc.channel = property_channel[:channel]
+        pc.settings = property_channel[:settings]
+        pc.approved = property_channel[:approved]
+        pc.disabled = property_channel[:disabled]
+      end
+    end
+  end
 end
 
 # test data do not need seed, obviously. They are set up in test/fixtures.

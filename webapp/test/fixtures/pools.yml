@@ -16,3 +16,11 @@ test_big_hotel_1:
 default_big_hotel_2:
   name: Default
   property: big_hotel_2
+
+default_big_hotel_3:
+  name: Default
+  property: big_hotel_3
+
+test_big_hotel_3:
+  name: Test
+  property: big_hotel_3

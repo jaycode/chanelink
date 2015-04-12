@@ -3,6 +3,8 @@ require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 
 class ActiveSupport::TestCase
+  # Rails cannot load different fixtures per each test case so we have to load all of them here.
+  fixtures :all
   # Helper Methods
   #-----------------------
 

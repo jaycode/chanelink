@@ -10,6 +10,8 @@ big_hotel_1:
   agoda_hotel_id: bighotel1
   expedia_hotel_id: bighotel1
   approved: 1
+
+# Test hotel used for unapproved property channel.
 big_hotel_2:
   name: Big Hotel Chain - Branch 2
   address: Hotel Address
@@ -21,4 +23,16 @@ big_hotel_2:
   account: big_hotel_chain
   agoda_hotel_id: bighotel2
   expedia_hotel_id: bighotel2
+  approved: 1
+
+# Test hotel without any property channel to test its creation.
+big_hotel_3:
+  name: Big Hotel Chain - Branch 3
+  address: Hotel Address
+  city: Jakarta
+  state: Jawa Barat
+  postcode: 60322
+  minimum_room_rate: 350000
+  country: indonesia
+  account: big_hotel_chain
   approved: 1
