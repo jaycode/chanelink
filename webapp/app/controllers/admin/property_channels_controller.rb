@@ -1,7 +1,7 @@
 # admin module to manage channel property
 class Admin::PropertyChannelsController < Admin::AdminController
 
-  before_filter :user_authenticate
+  before_filter :user_authenticate, :admin_account_property_selected
 
   # edit channel mapping
   def edit
