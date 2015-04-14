@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150413035822) do
+ActiveRecord::Schema.define(:version => 20150414143223) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -563,6 +563,7 @@ ActiveRecord::Schema.define(:version => 20150413035822) do
     t.string   "ctrip_room_type_name"
     t.string   "ctrip_room_rate_plan_category"
     t.string   "ctrip_room_rate_plan_code"
+    t.string   "settings",                                                             :default => "{}"
   end
 
   create_table "room_type_inventory_links", :force => true do |t|

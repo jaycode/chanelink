@@ -1,5 +1,6 @@
 # represent room type mapping
 class RoomTypeChannelMapping < ActiveRecord::Base
+  include HasSettings
 
   belongs_to :room_type
   belongs_to :channel

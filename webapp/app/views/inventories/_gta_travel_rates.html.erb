@@ -4,7 +4,7 @@
 <%= gta_travel_cta_toggle %>
 <%= gta_travel_ctb_toggle %>
 
-<%= form_tag(:action => 'update', :controller => 'channel_rates') do %>
+<%= form_tag({:action => 'update', :controller => 'channel_rates'}, :id => "channel_rates-form-#{channel.id}") do %>
   <%= hidden_field_tag :pool_id, params[:pool_id] %>
   <%= hidden_field_tag :channel_id, channel.id %>
   <div class="gridHeader">

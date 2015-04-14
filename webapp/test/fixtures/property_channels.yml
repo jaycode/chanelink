@@ -1,6 +1,6 @@
 big_hotel_1_default_agoda:
   property: big_hotel_1
-  pool: default
+  pool: default_big_hotel_1
   channel: agoda
   agoda_username: marketing@plazahotelglodok.com
   agoda_password: plaza2014*
@@ -9,13 +9,13 @@ big_hotel_1_default_agoda:
   approved: 1
 big_hotel_1_default_ctrip:
   property: big_hotel_1
-  pool: default
+  pool: default_big_hotel_1
   channel: ctrip
   settings: '{"username": "54394", "password": "Ctrip123456"}'
   approved: 1
 unapproved:
   property: big_hotel_2
-  pool: default
+  pool: default_big_hotel_2
   channel: ctrip
   settings: '{"username": "54394", "password": "Ctrip123456"}'
   approved: 0

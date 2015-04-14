@@ -2,7 +2,7 @@
 <% end_date = start_date + 13.days %>
 <% end_date = @max_end if end_date > @max_end %>
 
-<%= form_tag(:action => 'update', :controller => 'channel_rates') do %>
+<%= form_tag({:action => 'update', :controller => 'channel_rates'}, :id => "channel_rates-form-#{channel.id}") do %>
   <%= hidden_field_tag :pool_id, params[:pool_id] %>
   <%= hidden_field_tag :channel_id, channel.id %>
   <div class="gridHeader">

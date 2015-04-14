@@ -1,0 +1,3 @@
+default_big_hotel_1_pool_to_superior_room:
+  pool: default_big_hotel_1
+  room_type: superior

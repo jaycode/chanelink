@@ -1,0 +1,5 @@
+default_big_hotel_1_pool_to_superior_room_in_agoda:
+  master_rate_mapping: default_big_hotel_1_pool_to_superior_room
+  room_type: superior
+  channel: agoda
+  method: amount
