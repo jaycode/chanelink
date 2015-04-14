@@ -33,6 +33,7 @@ class AgodaRoomTypeFetcher < RoomTypeFetcher
     builder = Nokogiri::XML::Builder.new do |xml|
       xml.GetHotelRatePlansRequest('xmlns' => AgodaChannel::XMLNS) {
         # Todo: Change this to use settings i.e. property.settings(:hotel_id)
+        # Todo: 
         xml.Authentication(:APIKey => AgodaChannel::API_KEY, :HotelID => property.agoda_hotel_id)
       }
     end

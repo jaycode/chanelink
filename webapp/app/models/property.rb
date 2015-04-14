@@ -2,6 +2,7 @@
 class Property < ActiveRecord::Base
 
   extend Unscoped
+  include HasSettings
 
   ADDRESS_MINIMUM_LENGTH = 15
   ADDRESS_MAXIMUM_LENGTH = 200

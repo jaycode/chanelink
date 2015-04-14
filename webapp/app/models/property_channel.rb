@@ -3,6 +3,7 @@
 class PropertyChannel < ActiveRecord::Base
 
   extend Unscoped
+  include HasSettings
 
   belongs_to :property
   belongs_to :channel
@@ -134,36 +135,6 @@ class PropertyChannel < ActiveRecord::Base
       rtcm.update_attribute(:deleted, true)
     end
     self.update_attributes(:deleted => true, :disabled => true)
-  end
-
-  # Getter. *params is parameters in hierarchial order,
-  # e.g. settings(:ota, :username) will get {:ota => {:username => 'this value'}}.
-  # If no params given, give the json decoded settings
-  def settings(*params)
-    obj = JSON.parse(read_attribute(:settings))
-    if params.empty?
-      obj
-    else
-      params.each do |p|
-        if defined? obj[p.to_s]
-          obj = obj[p.to_s]
-        else
-          obj = nil
-        end
-      end
-      obj
-    end
-  end
-
-  # Setter. Simply merge with given params. See property_channel_test for sample
-  # test case.
-  def settings=(params)
-    settings_json = settings.merge(params)
-    write_attribute(:settings, ActiveSupport::JSON.encode(settings_json))
-  end
-
-  def destroy_settings
-    write_attribute(:settings, ActiveSupport::JSON.encode({}))
   end
 
   private

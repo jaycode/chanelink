@@ -961,6 +961,9 @@ en:
           bookingcom_hotel_id: 'Booking.com Hotel ID'
           bookingcom_username: 'Booking.com Username'
           bookingcom_password: 'Booking.com Password'
+          ctrip_hotel_id: 'Ctrip Hotel ID'
+          ctrip_password: 'Ctrip Password'
+          ctrip_code_context: 'Ctrip Code Context'
           currency: 'Currency'
       approve:
         link: 'Approve'

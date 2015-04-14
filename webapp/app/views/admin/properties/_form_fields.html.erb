@@ -53,6 +53,20 @@
   <label><%= t('admin.properties.new.label.bookingcom_hotel_id') %></label>
   <%= f.text_field :bookingcom_hotel_id %>
 </p>
+
+<p>
+  <label><%= t('admin.properties.new.label.ctrip_hotel_id') %></label>
+  <%= text_field_tag 'property[settings][ctrip_hotel_id]', @property.settings(:ctrip_hotel_id) %>
+</p>
+<p>
+  <label><%= t('admin.properties.new.label.ctrip_password') %></label>
+  <%= text_field_tag 'property[settings][ctrip_password]', @property.settings(:ctrip_password) %>
+</p>
+<p>
+  <label><%= t('admin.properties.new.label.ctrip_code_context') %></label>
+  <%= text_field_tag 'property[settings][ctrip_code_context]', @property.settings(:ctrip_code_context) %>
+</p>
+
 <p>
   <label><%= t('admin.properties.new.label.currency') %></label>
   <%= f.select :currency_id, Currency.currency_list_with_prompt %>

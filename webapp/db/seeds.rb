@@ -122,6 +122,10 @@ end
 def development_seeds
   # Lets use Plaza Hotel Glodok as our sample account.
   property = Property.first(:conditions => {:name => 'Plaza Hotel Glodok'})
+  property.settings(:ctrip_hotel_id) = '54394'
+  property.settings(:ctrip_username) = '54394'
+  property.settings(:ctrip_password) = '123qaz'
+  property.settings(:ctrip_code_context) = '4085'
   pool = Pool.first(:conditions => {:property_id => property.id, :name => 'OTA'})
   ctrip = Channel.first(:conditions => {:name => 'Ctrip'})
   property_channels = [
@@ -129,10 +133,6 @@ def development_seeds
         :property => property,
         :pool => pool,
         :channel => ctrip,
-        :settings => {
-          :username => "54394",
-          :password => "Ctrip123456"
-        },
         :approved => 1,
         :disabled => 0
     }

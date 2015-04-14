@@ -16,14 +16,14 @@ class CtripRoomTypeFetcher < RoomTypeFetcher
         xml['SOAP-ENV'].Header
         xml['SOAP-ENV'].Body {
           xml.OTA_HotelRatePlanRQ(:Version => CtripChannel::API_VERSION, :PrimaryLangID => CtripChannel::PRIMARY_LANG, :xmlns => CtripChannel::XMLNS) {
-            CtripChannel.construct_authentication_element(xml)
+            CtripChannel.construct_authentication_element(xml, property)
             xml.RatePlans {
               xml.RatePlan {
                 xml.DateRange(:End => '2015-02-25', :Start => '2015-02-23')
                 xml.RatePlanCandidates {
                   xml.RatePlanCandidate(:AvailRatesOnlyInd => 'false') {
                     xml.HotelRefs {
-                      xml.HotelRef(:HotelCode => property_channel.ctrip_hotel_code)
+                      xml.HotelRef(:HotelCode => property.settings(:ctrip_hotel_id))
                     }
                   }
                 }
@@ -35,6 +35,7 @@ class CtripRoomTypeFetcher < RoomTypeFetcher
     end
 
     request_xml = builder.to_xml
+    puts "request xml is #{request_xml}"
     response_xml = CtripChannel.post_xml(request_xml, CtripChannel::RATE_PLAN)
 
     puts response_xml

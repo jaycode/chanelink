@@ -5,13 +5,18 @@ class CtripChannel < Channel
   CNAME = 'ctrip'
   XMLNS = 'http://www.opentravel.org/OTA/2003/05'
 
-  API_VERSION = "2.1"
+  API_VERSION = "2.2"
   PRIMARY_LANG = 'en-us'
 
   RATE_PLAN = 'rate_plan'
   AVAIL_NOTIF = 'avail_notif'
   RATE_AMOUNT_NOTIF = 'rate_amount_notif'
   NOTIF_REPORT = 'notif_report'
+
+  # 10 is for individual hotel (see Ctrip Integration API Specification V2.2.pdf)
+  USER_CATEGORY = 10
+
+  COMPANY_CODE = 'C'
 
   def cname
     CNAME
@@ -132,11 +137,11 @@ class CtripChannel < Channel
     RoomTypeChannelMapping.room_type_ids(property.room_type_ids).bookingcom_type
   end
 
-  def self.construct_authentication_element(xml)
+  def self.construct_authentication_element(xml, property)
     xml.POS {
       xml.Source {
-        xml.RequestorID(:ID => "54394", :MessagePassword => "123qaz", :Type => "10") {
-          xml.CompanyName(:Code => "C", :CodeContext => "4085")
+        xml.RequestorID(:ID => property.settings(:ctrip_username), :MessagePassword => property.settings(:ctrip_password), :Type => USER_CATEGORY) {
+          xml.CompanyName(:Code => COMPANY_CODE, :CodeContext => property.settings(:ctrip_code_context))
         }
       }
     }

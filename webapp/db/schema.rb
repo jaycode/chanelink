@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150406033818) do
+ActiveRecord::Schema.define(:version => 20150413035822) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -470,6 +470,7 @@ ActiveRecord::Schema.define(:version => 20150406033818) do
     t.boolean  "rejected",                                                    :default => false
     t.boolean  "deleted",                                                     :default => false
     t.boolean  "currency_conversion_enabled",                                 :default => false
+    t.string   "settings",                                                    :default => "{}"
   end
 
   add_index "properties", ["id"], :name => "index_properties_on_id", :unique => true
