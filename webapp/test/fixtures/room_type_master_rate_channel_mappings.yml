@@ -3,3 +3,4 @@ default_big_hotel_1_pool_to_superior_room_in_agoda:
   room_type: superior
   channel: agoda
   method: amount
+  value: 0

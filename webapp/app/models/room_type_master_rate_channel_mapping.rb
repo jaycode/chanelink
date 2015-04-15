@@ -22,9 +22,7 @@ class RoomTypeMasterRateChannelMapping < ActiveRecord::Base
 
   # return the value method
   def method
-    puts 'hero'
     if self[:method].blank?
-      puts 'here'
       PERCENTAGE
     else
       self[:method]

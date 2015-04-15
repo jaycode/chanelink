@@ -122,10 +122,10 @@ end
 def development_seeds
   # Lets use Plaza Hotel Glodok as our sample account.
   property = Property.first(:conditions => {:name => 'Plaza Hotel Glodok'})
-  property.settings(:ctrip_hotel_id) = '54394'
-  property.settings(:ctrip_username) = '54394'
-  property.settings(:ctrip_password) = '123qaz'
-  property.settings(:ctrip_code_context) = '4085'
+  property.settings = {:ctrip_hotel_id => '54394'}
+  property.settings = {:ctrip_username => '54394'}
+  property.settings = {:ctrip_password => '123qaz'}
+  property.settings = {:ctrip_code_context => '4085'}
   pool = Pool.first(:conditions => {:property_id => property.id, :name => 'OTA'})
   ctrip = Channel.first(:conditions => {:name => 'Ctrip'})
   property_channels = [
@@ -134,11 +134,16 @@ def development_seeds
         :pool => pool,
         :channel => ctrip,
         :approved => 1,
-        :disabled => 0
+        :disabled => 0,
+        :settings => {}
     }
   ]
   property_channels.each do |property_channel|
-    if !PropertyChannel.first(:conditions => {:property_id => property.id, :channel_id => ctrip.id, :pool_id => pool.id})
+    if 0 == PropertyChannel.count(:conditions => {
+      :property_id => property_channel[:property].id,
+      :channel_id => property_channel[:channel].id,
+      :pool_id => property_channel[:pool].id
+    })
       ctrip_on_plaza_hotel_glodok = PropertyChannel.create do |pc|
         pc.property = property_channel[:property]
         pc.pool = property_channel[:pool]
