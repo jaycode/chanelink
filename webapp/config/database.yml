@@ -9,11 +9,11 @@ development:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: c_development
+  database: chanelink_development
   pool: 5
   username: c_0dlak
   password: 20jxX-9_
-  host: localhost
+  host: docker
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -22,11 +22,11 @@ test:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: c_test
+  database: chanelink_test
   pool: 5
   username: c_190kd
   password: 2-dklm-
-  host: localhost
+  host: docker
 
 staging:
   adapter: mysql2
@@ -36,17 +36,17 @@ staging:
   pool: 5
   username: test
   password: oisadj
-  host: localhost
+  host: docker
 
 production:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: c_production
+  database: chanelink_production
   pool: 5
   username: c_2mcod
   password: 2190j1jsKal
-  host: localhost
+  host: docker
 
 staging2:
   adapter: mysql2
@@ -56,5 +56,4 @@ staging2:
   pool: 5
   username: root
   password: 0291jedas#)i
-  host: localhost
-
+  host: docker

@@ -11,72 +11,6 @@ CMD ["/sbin/my_init"]
 
 # ...put your own build instructions here...
 
-# MySQL
-# ---------------------
-# Install MYSQL
-
-RUN echo "setting up MySQL..." && \
-    sudo apt-get update && \
-    sudo -E bash -c "apt-get -y --no-install-recommends install mysql-server > /dev/null" && \
-    sudo sed -i.bak 's/127.0.0.1/0.0.0.0/g' /etc/mysql/my.cnf && \
-    # sudo chmod -R 755 /var/run/mysqld/ && \
-    sudo service mysql restart && \
-    sudo mysql -uroot -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%'; FLUSH PRIVILEGES;" && \
-    echo "MySQL setup completed!"
- 
-EXPOSE 3306
-
-# DOES NOT WORK!!
-# For now lets use /home/app/data only for backup location
-# ---------------------
-# Use /home/app/data/mysql as location of data so it is physically stored outside of container
-# RUN mkdir -p /home/app/data && \
-    # sudo cp -r /var/lib/mysql /home/app/data/ && \
-#    sudo sed -i.bak 's/\/var\/lib\/mysql/\/home\/app\/data\/mysql/g' /etc/mysql/my.cnf && \
-#    sudo sed -i.bak 's/\/var\/lib\/mysql/\/home\/app\/data\/mysql/g' /etc/apparmor.d/usr.sbin.mysqld
-# RUN sudo mysql_install_db --user=mysql -ldata=/app/data/mysql
-# ---------------------
- 
-# Create MySQL user and database, and start it
-#---------------------
-RUN sudo service mysql restart && \
-    CODENVY_MYSQL_PASSWORD=20jxX-9_ && \
-    CODENVY_MYSQL_DB=c_development && \
-    CODENVY_MYSQL_USER=c_0dlak && \
-    echo "MySQL password: $CODENVY_MYSQL_PASSWORD" >> /home/app/.mysqlrc && \
-    echo "MySQL user    : $CODENVY_MYSQL_USER" >> /home/app/.mysqlrc && \
-    echo "MySQL Database:$CODENVY_MYSQL_DB" >> /home/app/.mysqlrc && \
-    sudo mysql -uroot -e "CREATE USER '$CODENVY_MYSQL_USER'@'%' IDENTIFIED BY '"$CODENVY_MYSQL_PASSWORD"'" && \
-    sudo mysql -uroot -e "GRANT ALL PRIVILEGES ON *.* TO '$CODENVY_MYSQL_USER'@'%' IDENTIFIED BY '"$CODENVY_MYSQL_PASSWORD"'; FLUSH PRIVILEGES;" && \
-    sudo mysql -uroot -e "CREATE DATABASE $CODENVY_MYSQL_DB;"
-#---------------------
-
-#---------------------
-RUN sudo service mysql restart && \
-    CODENVY_MYSQL_PASSWORD=2-dklm- && \
-    CODENVY_MYSQL_DB=c_test && \
-    CODENVY_MYSQL_USER=c_190kd && \
-    echo "MySQL password: $CODENVY_MYSQL_PASSWORD" >> /home/app/.mysqlrc && \
-    echo "MySQL user    : $CODENVY_MYSQL_USER" >> /home/app/.mysqlrc && \
-    echo "MySQL Database:$CODENVY_MYSQL_DB" >> /home/app/.mysqlrc && \
-    sudo mysql -uroot -e "CREATE USER '$CODENVY_MYSQL_USER'@'%' IDENTIFIED BY '"$CODENVY_MYSQL_PASSWORD"'" && \
-    sudo mysql -uroot -e "GRANT ALL PRIVILEGES ON *.* TO '$CODENVY_MYSQL_USER'@'%' IDENTIFIED BY '"$CODENVY_MYSQL_PASSWORD"'; FLUSH PRIVILEGES;" && \
-    sudo mysql -uroot -e "CREATE DATABASE $CODENVY_MYSQL_DB;"
-#---------------------
-
-#---------------------
-RUN sudo service mysql restart && \
-    CODENVY_MYSQL_PASSWORD=2190j1jsKal && \
-    CODENVY_MYSQL_DB=c_production && \
-    CODENVY_MYSQL_USER=c_2mcod && \
-    echo "MySQL password: $CODENVY_MYSQL_PASSWORD" >> /home/app/.mysqlrc && \
-    echo "MySQL user    : $CODENVY_MYSQL_USER" >> /home/app/.mysqlrc && \
-    echo "MySQL Database:$CODENVY_MYSQL_DB" >> /home/app/.mysqlrc && \
-    sudo mysql -uroot -e "CREATE USER '$CODENVY_MYSQL_USER'@'%' IDENTIFIED BY '"$CODENVY_MYSQL_PASSWORD"'" && \
-    sudo mysql -uroot -e "GRANT ALL PRIVILEGES ON *.* TO '$CODENVY_MYSQL_USER'@'%' IDENTIFIED BY '"$CODENVY_MYSQL_PASSWORD"'; FLUSH PRIVILEGES;" && \
-    sudo mysql -uroot -e "CREATE DATABASE $CODENVY_MYSQL_DB;"
-#---------------------
-
 # Running NGINX Server
 #---------------------
 RUN rm /etc/nginx/sites-enabled/default && \
@@ -87,10 +21,10 @@ COPY container_config/passenger/webapp.conf /etc/nginx/sites-enabled/webapp.conf
 # Email Setup
 #---------------------
 
-RUN sudo apt-get -y --no-install-recommends install telnet-ssl
+# RUN sudo apt-get -y --no-install-recommends install telnet-ssl
 
 # Port 587 must be opened to enable mail services.
-EXPOSE 587
+# EXPOSE 587
 
 #---------------------
 
@@ -102,7 +36,7 @@ RUN bundle install
 
 # Installing Firefox for Selenium module used in Rails testing
 #---------------------
-RUN sudo apt-get -y --no-install-recommends install firefox
+# RUN sudo apt-get -y --no-install-recommends install firefox
 #---------------------
 
 RUN mkdir -p /home/app/webapp

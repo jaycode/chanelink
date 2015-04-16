@@ -34,7 +34,7 @@ Feel free to update this document as you found new things worth documenting.
     ```
 4. Run docker with following command:
     ```
-    docker run -d -p 80:80 -p 3306:3306 -p 587:587 --privileged -v /c/Users/Path/to/project:/home/app chink/main
+    docker run -d -p 80:80 --add-host=docker:13.13.13.13 --privileged -v /c/Users/Path/to/project:/home/app chink/main
     ```
 
     **Notes:**
