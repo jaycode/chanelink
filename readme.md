@@ -60,7 +60,7 @@ Feel free to update this document as you found new things worth documenting.
     
     `--privileged` option gives complete host access to the container, allowing you to use telnet from within the app to test out email service.
 
-5. Now we need to setup our database. First, connect to container's bash in (boot2docker) terminal:
+5. Now we need to setup our database. We do this b create a user with your docker:
 
     ```
     # Find the id of running container with this command.

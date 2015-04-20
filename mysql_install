@@ -17,7 +17,7 @@
     MYSQL_PASSWORD=2190j1jsKal && \
     MYSQL_DB=chanelink_production && \
     MYSQL_USER=c_2mcod && \
-    MYSQL_IP=172.17.0.9 && \
+    MYSQL_IP=172.17.0.% && \
     sudo mysql -u c_2mcod -p -e "CREATE USER '$MYSQL_USER'@'$MYSQL_IP' IDENTIFIED BY '"$MYSQL_PASSWORD"'" && \
     sudo mysql -u c_2mcod -p -e "GRANT ALL PRIVILEGES ON $MYSQL_DB.* TO '$MYSQL_USER'@'$MYSQL_IP' IDENTIFIED BY '"$MYSQL_PASSWORD"'; FLUSH PRIVILEGES;"
 #---------------------
