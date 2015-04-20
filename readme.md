@@ -80,6 +80,11 @@ Feel free to update this document as you found new things worth documenting.
     ruby script/delayed_job start
     ```
 
+    Or in Production:
+    ```
+        bundle install && bundle exec rake db:migrate RAILS_ENV=production && bundle exec rake db:seed RAILS_ENV=production
+    ```
+
     **Notes:**
 
     When you get error `* /etc/init.d/mysql: ERROR: The partition with /home/app/data/mysql is too full!`

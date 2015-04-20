@@ -14,10 +14,10 @@
 # Sample of user creation query:
 #---------------------
     sudo service mysql restart && \
-    MYSQL_PASSWORD=20jxX-9_ && \
-    MYSQL_DB=chanelink_development && \
-    MYSQL_USER=c_0dlak && \
-    sudo mysql -uroot -e "CREATE USER '$MYSQL_USER'@'%' IDENTIFIED BY '"$MYSQL_PASSWORD"'" && \
-    sudo mysql -uroot -e "GRANT ALL PRIVILEGES ON *.* TO '$MYSQL_USER'@'%' IDENTIFIED BY '"$MYSQL_PASSWORD"'; FLUSH PRIVILEGES;" && \
-    sudo mysql -uroot -e "CREATE DATABASE $MYSQL_DB;"
+    MYSQL_PASSWORD=2190j1jsKal && \
+    MYSQL_DB=chanelink_production && \
+    MYSQL_USER=c_2mcod && \
+    MYSQL_IP=172.17.0.9 && \
+    sudo mysql -u c_2mcod -p -e "CREATE USER '$MYSQL_USER'@'$MYSQL_IP' IDENTIFIED BY '"$MYSQL_PASSWORD"'" && \
+    sudo mysql -u c_2mcod -p -e "GRANT ALL PRIVILEGES ON $MYSQL_DB.* TO '$MYSQL_USER'@'$MYSQL_IP' IDENTIFIED BY '"$MYSQL_PASSWORD"'; FLUSH PRIVILEGES;"
 #---------------------
