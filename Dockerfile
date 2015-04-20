@@ -1,5 +1,10 @@
 FROM phusion/passenger-ruby19:0.9.15
 
+# Installing MySql client, but no need for server
+#---------------------
+RUN sudo apt-get -y install mysql-client
+#---------------------
+
 # To avoid error "debconf: unable to initialize frontend: Dialog" causing installation to lag.
 ENV DEBIAN_FRONTEND noninteractive
 

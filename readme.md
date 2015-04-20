@@ -33,19 +33,30 @@ Feel free to update this document as you found new things worth documenting.
     cd /c/Users/Path/to/project && sudo docker build -t chink/main .
     ```
 4. Run docker with following command:
+    First get host ip, we need this to connect to mysql server, then run the image, as follows:
+
+    **On local environment i.e. there's a possibility of no connection to internet**
+
     ```
-    docker run -d -p 80:80 --add-host=docker:13.13.13.13 --privileged -v /c/Users/Path/to/project:/home/app chink/main
+    alias hostip="ip route show 0.0.0.0/0 | grep -Eo 'via \S+' | awk '{ print \$2 }'"
+    docker run -d -P --add-host=docker:$(hostip) --privileged -v /c/Users/Path/to/project:/home/app chink/main
+    ```
+
+    **In Staging and Production Server, run the following:**
+    
+    ```
+    docker run -d -p 80:80 -p 443:443 -v /apps/ChanelinkProduction:/home/app chink/main
     ```
 
     **Notes:**
+
+    In Staging and Production Server, --add-host=docker:IP somehow does not allow access
 
     `-v /c/Users/Path/to/project:/home/app` will synchronize (mount) dir `/c/Users/Path/to/project` in host to this path in our container: `/home/app`.
 
     You may then access the app on http://IP where IP is the value you may get from running this command in a (non-boot2docker) terminal: `boot2docker ip`
 
     `-p 3306:3306` links the container's mysql database port `3306` with host's. `docker ps` can be used to view if the ports are correctly linked.
-    
-    `-p 587:587` is needed to open port to Zoho's email server so the app can send emails from within container.
     
     `--privileged` option gives complete host access to the container, allowing you to use telnet from within the app to test out email service.
 
@@ -62,8 +73,8 @@ Feel free to update this document as you found new things worth documenting.
 
     Then inside your docker container:
     ```
-    # Install all required gems, Start mysql sever, Run the migration, then seed the database.
-    bundle install && sudo service mysql restart && bundle exec rake db:migrate && bundle exec rake db:seed
+    # Install all required gems, Run the migration, then seed the database.
+    bundle install && bundle exec rake db:migrate && bundle exec rake db:seed
 
     # Run delayed jobs
     ruby script/delayed_job start

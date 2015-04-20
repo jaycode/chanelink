@@ -36,7 +36,7 @@ staging:
   pool: 5
   username: test
   password: oisadj
-  host: docker
+  host: 192.237.185.101
 
 production:
   adapter: mysql2
@@ -46,7 +46,7 @@ production:
   pool: 5
   username: c_2mcod
   password: 2190j1jsKal
-  host: docker
+  host: 162.209.89.85
 
 staging2:
   adapter: mysql2
