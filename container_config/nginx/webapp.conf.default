@@ -15,7 +15,7 @@ server {
     passenger_user app;
     passenger_ruby /usr/bin/ruby1.9.1;
 
-    # Ensures that RAILS_ENV, NODE_ENV, etc are set to "development"
+    # Ensures that RAILS_ENV, NODE_ENV, etc are set to whatever this is set to.
     # when your application is started.
     # For production set this accordingly.
     passenger_app_env development;
@@ -28,7 +28,12 @@ server {
     listen 443;
     server_name dashboard.chanelink.com;
     root /home/app/webapp/public;
-    index index.html index.htm index.php;
+
+    passenger_enabled on;
+    passenger_user app;
+    passenger_ruby /usr/bin/ruby1.9.1;
+
+    passenger_app_env development;
 
     ssl on;
     ssl_certificate /home/app/container_config/ssl/27a36ae1d01f36.crt;

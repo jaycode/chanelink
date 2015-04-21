@@ -18,13 +18,13 @@ Feel free to update this document as you found new things worth documenting.
    2. Install Docker, tick both Git and VM.
    3. If you're on Windows machine, [enable Intel VT and V Virtualization hardware extensions in BIOS](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Virtualization_Administration_Guide/sect-Virtualization-Troubleshooting-Enabling_Intel_VT_and_AMD_V_virtualization_hardware_extensions_in_BIOS.html) and [disable Hyper V feature](https://pricklytech.wordpress.com/2014/02/25/windows-8-1-vmware-player-and-hyper-v-are-not-compatible/).
 2. Setup configuration:
-    - Check file /container_config/passenger/webapp.conf. (for different server, create a copy of webapp.conf.default and rename it to webapp.conf) Change rails environment here when needed e.g. to change environment from "development" to "production" you may run the following:
+    - Check file /container_config/nginx/webapp.conf. (for different server, create a copy of webapp.conf.default and rename it to webapp.conf) Change rails environment here when needed e.g. to change environment from "development" to "production" you may run the following:
     
     ```
-    sed -i.bak 's/development/production/g' container_config/passenger/webapp.conf
+    sed -i.bak 's/development/production/g' container_config/nginx/webapp.conf
     ```
     
-    Later on when you wish to change configuration environment, in addition to that you need to: `cp container_config/passenger/webapp.conf /etc/nginx/sites-enabled/webapp.conf`.
+    Later on when you wish to change configuration environment, in addition to that you need to: `cp container_config/nginx/webapp.conf /etc/nginx/sites-enabled/webapp.conf`.
 
     - Create MySQL user and database by entering correct information through /Dockerfile.
 
@@ -32,14 +32,15 @@ Feel free to update this document as you found new things worth documenting.
     ```
     cd /c/Users/Path/to/project && sudo docker build -t chink/main .
     ```
+
 4. Run docker with following command:
     First get host ip, we need this to connect to mysql server, then run the image, as follows:
 
-    **On local environment i.e. there's a possibility of no connection to internet**
+    **On local environment i.e. host server ports may not be opened to the network.**
 
     ```
     alias hostip="ip route show 0.0.0.0/0 | grep -Eo 'via \S+' | awk '{ print \$2 }'"
-    docker run -d -P --add-host=docker:$(hostip) --privileged -v /c/Users/Path/to/project:/home/app chink/main
+    docker run -d -p 80:80 -p 443:443 --add-host=docker:$(hostip) -v /c/Users/Path/to/project:/home/app chink/main
     ```
 
     **In Staging and Production Server, run the following:**
@@ -55,12 +56,17 @@ Feel free to update this document as you found new things worth documenting.
     `-v /c/Users/Path/to/project:/home/app` will synchronize (mount) dir `/c/Users/Path/to/project` in host to this path in our container: `/home/app`.
 
     You may then access the app on http://IP where IP is the value you may get from running this command in a (non-boot2docker) terminal: `boot2docker ip`
-
-    `-p 3306:3306` links the container's mysql database port `3306` with host's. `docker ps` can be used to view if the ports are correctly linked.
     
     `--privileged` option gives complete host access to the container, allowing you to use telnet from within the app to test out email service.
 
-5. Now we need to setup our database. We do this b create a user with your docker:
+5. Now we need to setup our database. In our docker setup, database is installed at host and the app within
+   docker container would access it remotely. To do this, you will need:
+   - MySQL Database installed and enabled in your host.
+   - A database user for the container's IP created.
+
+   Please refer to [mysql_install.md](https://github.com/jaycode/chanelink/blob/master/mysql_install.md) for detailed info on how to setup mysql and create user in fresh Linux server.
+
+6. Finishing up container setup.
 
     ```
     # Find the id of running container with this command.
@@ -96,7 +102,7 @@ Feel free to update this document as you found new things worth documenting.
 
     When you get `fail` error when running `sudo service mysql start` you may `cat /var/log/mysql/error.log` to see what went wrong.
 
-6. After initialising for the first time, you may want to store your container as an image,
+7. After initialising for the first time, you may want to store your container as an image,
 so you do not need to bundle install everytime you run it. For this, do the following:
     ```
     # You can get container ID from `docker ps`.
@@ -112,7 +118,7 @@ so you do not need to bundle install everytime you run it. For this, do the foll
     docker exec ID bash "service mysql restart"
     ```
 
-7. Your server should be up and running now.
+8. Your server should be up and running now.
 
 
 
@@ -120,47 +126,9 @@ so you do not need to bundle install everytime you run it. For this, do the foll
 
 This part contains all the useful notes for development of Chanelink app.
 
-### Connecting to Docker's MySQL server
+### Connecting to server's MySQL server
 
-You can connect to MySQL server in Docker container from any MySQL client app by directly
-connecting to host `IP` and port `3306` (You can get IP from running `boot2docker ip`).
-
-#### Connecting to local Docker container's MySQL server
-
-Since it is local anyway, you may allow any connection to your Docker container. Run the following:
-
-```
-iptables -F
-```
-
-Then you can connect with username `root` without password.
-
-#### Connecting to remote Docker container's MySQL server
-
-Username and password are the same with what you already set in Dockerfile.
-
-You need to include your ip in the whitelist of iptables before the container will allow you to connect.
-
-To create new remote client access, do all the commands below (in that order)
-
-```
-/sbin/iptables -A INPUT -p tcp -s 139.192.80.71 --dport 3306 -j ACCEPT
-/sbin/iptables -A INPUT -p tcp -s 139.195.126.19 --dport 3306 -j ACCEPT
-## Block all connections to 3306 ##
-/sbin/iptables -A INPUT -p tcp --dport 3306 -j DROP
-```
-
-To drop all rules, e.g. before adding a new ip:
-
-```
-iptables -F
-```
-
-To see all clients:
-
-```
-echo -e "target     prot opt source               destination\n$(iptables -L INPUT -n | grep 3306)"
-```
+Use SSH connection to database.
 
 ### Seeding the database
 

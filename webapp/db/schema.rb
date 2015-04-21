@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(:version => 20150414143223) do
     t.boolean  "approved",      :default => false
     t.string   "contact_name"
     t.string   "contact_email"
+    t.string   "agoda_api_key"
     t.boolean  "disabled",      :default => false
     t.boolean  "deleted",       :default => false
   end

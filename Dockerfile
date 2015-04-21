@@ -2,7 +2,8 @@ FROM phusion/passenger-ruby19:0.9.15
 
 # Installing MySql client, but no need for server
 #---------------------
-RUN sudo apt-get -y install mysql-client
+RUN sudo apt-get update && \
+sudo apt-get -y install mysql-client
 #---------------------
 
 # To avoid error "debconf: unable to initialize frontend: Dialog" causing installation to lag.
@@ -20,7 +21,7 @@ CMD ["/sbin/my_init"]
 #---------------------
 RUN rm /etc/nginx/sites-enabled/default && \
     rm -f /etc/service/nginx/down
-COPY container_config/passenger/webapp.conf /etc/nginx/sites-enabled/webapp.conf
+COPY container_config/nginx/webapp.conf /etc/nginx/sites-enabled/webapp.conf
 #---------------------
 
 # Email Setup
