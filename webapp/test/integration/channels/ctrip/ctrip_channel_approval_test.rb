@@ -3,7 +3,7 @@ require 'integration/integration_test_helper'
 require 'capybara/rails'
 
 class CtripChannelApprovalTest < ActionDispatch::IntegrationTest
-  include IntegrationTestHelper::Capybara
+  include IntegrationTestHelper::WithCapybara
   include Capybara::DSL
   setup do
     user = users(:super_admin)

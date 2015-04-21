@@ -24,7 +24,7 @@ class AgodaInventoryTest < ActionDispatch::IntegrationTest
   # - room_type_inventory_links 
   #
   # Data is entered at table inventories.
-  include IntegrationTestHelper::Capybara
+  include IntegrationTestHelper::WithCapybara
   include Capybara::DSL
   setup do
     member = members(:super_admin)

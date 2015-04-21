@@ -6,7 +6,7 @@ require 'capybara/rails'
 
 class CtripTest < ActionDispatch::IntegrationTest
   fixtures :all
-  include IntegrationTestHelper::Rails
+  include IntegrationTestHelper::WithRails
   include Capybara::DSL
   
   test "property channel creation" do

@@ -1,5 +1,5 @@
 module IntegrationTestHelper
-  module Rails
+  module WithRails
     def login(sess, member_fixture_key)
       member = members(member_fixture_key)
       sess.https!
@@ -14,13 +14,15 @@ module IntegrationTestHelper
         :property_id => properties(property_fixture_key).id
     end
   end
-  module Capybara
+  module WithCapybara
     def login(email, pass)
-      visit '/session/new'
-      # print page.html
-      fill_in 'email', :with => email
-      fill_in 'password', :with => pass
-      click_button 'Login'
+      unless logged_in?
+        visit '/session/new'
+        # print page.html
+        fill_in 'email', :with => email
+        fill_in 'password', :with => pass
+        click_button 'Login'
+      end
     end
 
     def select_property(property_id)
@@ -28,14 +30,43 @@ module IntegrationTestHelper
     end
 
     def login_backend(email, pass)
-      visit '/backoffic3'
-      fill_in 'email', :with => email
-      fill_in 'password', :with => pass
-      click_button 'Login'
+      unless backend_logged_in?
+        visit '/backoffic3'
+        fill_in 'email', :with => email
+        fill_in 'password', :with => pass
+        click_button 'Login'
+      end
     end
 
     def select_property_backend(property_id)
       visit "/backoffic3/select_property_set?id=#{property_id}"
+    end
+    def logged_in?
+      begin
+        cookies = Capybara.current_session.driver.request.cookies
+        puts "has key?"
+        if cookies.has_key?('member_chanelink_auth')
+          puts 'yep'
+          true
+        else
+          puts 'nope'
+          false
+        end
+      rescue
+        false
+      end
+    end
+    def backend_logged_in?
+      begin
+        cookies = Capybara.current_session.driver.request.cookies
+        if cookies.has_key?('user_chanelink_auth')
+          true
+        else
+          false
+        end
+      rescue
+        false
+      end
     end
   end
 end
