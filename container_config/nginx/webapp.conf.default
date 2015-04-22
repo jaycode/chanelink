@@ -18,7 +18,11 @@ server {
 
     # SSL setup
     # ----
-    ssl on;
+    
+    # Remove this line as listen 443 ssl is enough, adding this line means the entire
+    # block must have ssl
+    # ssl on;
+
     ssl_certificate /home/app/container_config/ssl/27a36ae1d01f36.crt;
     ssl_certificate_key /home/app/container_config/ssl/dashboardchanelink-B.key;
 
