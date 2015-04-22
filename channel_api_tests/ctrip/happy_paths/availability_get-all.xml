@@ -1,0 +1,28 @@
+URL: http://58.221.127.196:8090/Hotel/OTAReceive/NotifReport.asmx
+
+Request:
+
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Body>
+    <OTA_HotelAvailRQ Version="2.2" PrimaryLangID="en-us" xmlns="http://www.opentravel.org/OTA/2003/05">
+      <AvailRequestSegments>
+        <AvailRequestSegment>
+          <HotelSearchCriteria>
+            <Criterion>
+              <HotelRef HotelCode="54394" />
+              <StayDateRange Start="2015-10-16" End="2015-10-16" />
+              <RoomStayCandidates>
+                <RoomStayCandidate Quantity="1">
+                  <GuestCounts>
+                    <GuestCount AgeQualifyingCode="10" />
+                  </GuestCounts>
+                </RoomStayCandidate>
+              </RoomStayCandidates>
+            </Criterion>
+          </HotelSearchCriteria>
+        </AvailRequestSegment>
+      </AvailRequestSegments>
+    </OTA_HotelAvailRQ>
+  </soap:Body>
+</soap:Envelope>

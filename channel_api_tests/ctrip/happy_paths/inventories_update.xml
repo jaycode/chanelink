@@ -1,0 +1,36 @@
+URL: http://58.221.127.196:8090/Hotel/OTAReceive/HotelAvailNotif.asmx
+
+Request:
+
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <soap:Body>
+    <OTA_HotelAvailNotifRQ Version="2.2" PrimaryLangID="en-us" xmlns="http://www.opentravel.org/OTA/2003/05">
+      <POS>
+        <Source>
+          <RequestorID ID="54394" Type="10" MessagePassword="qaz123">
+            <CompanyName Code="C" CodeContext="4085" />
+          </RequestorID>
+        </Source>
+      </POS>
+      <AvailStatusMessages HotelCode="54394">
+        <AvailStatusMessage BookingLimit="10" BookingLimitMessageType="SetLimit">
+          <StatusApplicationControl Start="2015-10-16" End="2015-10-16" RatePlanCode="1251431" RatePlanCategory="501" />
+          <RestrictionStatus Status="Close" />
+        </AvailStatusMessage>
+      </AvailStatusMessages>
+    </OTA_HotelAvailNotifRQ>
+  </soap:Body>
+</soap:Envelope>
+
+Response:
+
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <soap:Body>
+    <OTA_HotelAvailNotifRS TimeStamp="2015-04-22T17:34:45.1621628+08:00" Version="2.1" PrimaryLangID="en-us" xmlns="http://www.opentravel.org/OTA/2003/05">
+      <Success />
+      <UniqueID ID="259254211" Type="505" />
+    </OTA_HotelAvailNotifRS>
+  </soap:Body>
+</soap:Envelope>
