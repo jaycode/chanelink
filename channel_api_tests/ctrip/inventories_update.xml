@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Body>
+    <OTA_HotelAvailNotifRQ TimeStamp="1980-05-31T13:20:00.000-05:00" Version="0.0" PrimaryLangID="language" xmlns="http://www.opentravel.org/OTA/2003/05">
+      <POS>
+        <Source>
+          <RequestorID MessagePassword="">
+            <CompanyName xsi:nil="true" />
+          </RequestorID>
+        </Source>
+      </POS>
+      <AvailStatusMessages HotelCode="">
+        <AvailStatusMessage BookingLimitMessageType="" BookingLimit="1">
+          <StatusApplicationControl Start="" End="" RatePlanCode="" RatePlanCategory="" InvTypeCode="" />
+          <RestrictionStatus Restriction="" Status="Open or Close or ClosedOnArrival or ClosedOnArrivalOnRequest or OnRequest or RemoveCloseOnly" />
+          <LengthsOfStay FixedPatternLength="0">
+            <LengthOfStay xsi:nil="true" />
+          </LengthsOfStay>
+        </AvailStatusMessage>
+      </AvailStatusMessages>
+    </OTA_HotelAvailNotifRQ>
+  </soap:Body>
+</soap:Envelope>

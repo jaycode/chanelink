@@ -11,10 +11,12 @@ class CtripRoomTypeChannelMappingTest < ActionDispatch::IntegrationTest
     property = properties(:big_hotel_1)
     select_property property.id
     @property_channel = property_channels(:big_hotel_1_default_ctrip)
+    @room_type = room_types(:superior)
   end
 
-  test "Creating a new room type mapping" do
-    
+  test "Mapping a Chanelink's room to OTA's" do
+    visit "/room_type_channel_mappings/new?property_channel_id=#{@property_channel.id}&room_type_id=#{@room_type.id}"
+    save_and_open_page
   end
 
   test "Editing a room type mapping" do

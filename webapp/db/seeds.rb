@@ -124,7 +124,7 @@ def development_seeds
   property = Property.first(:conditions => {:name => 'Plaza Hotel Glodok'})
   property.settings = {:ctrip_hotel_id => '54394'}
   property.settings = {:ctrip_username => '54394'}
-  property.settings = {:ctrip_password => '123qaz'}
+  property.settings = {:ctrip_password => 'qaz123'}
   property.settings = {:ctrip_code_context => '4085'}
   pool = Pool.first(:conditions => {:property_id => property.id, :name => 'OTA'})
   ctrip = Channel.first(:conditions => {:name => 'Ctrip'})

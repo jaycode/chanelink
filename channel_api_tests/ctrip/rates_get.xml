@@ -1,0 +1,60 @@
+URL: http://58.221.127.196:8090/Hotel/OTAReceive/HotelRatePlan.asmx
+
+Request:
+
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <soap:Body>
+    <OTA_HotelRatePlanRQ Version="2.2" PrimaryLangID="en-us" xmlns="http://www.opentravel.org/OTA/2003/05">
+      <POS>
+        <Source>
+          <RequestorID ID="54394" Type="10" MessagePassword="qaz123">
+            <CompanyName Code="C" CodeContext="4085" />
+          </RequestorID>
+        </Source>
+      </POS>
+      <RatePlans>
+        <RatePlan>
+          <DateRange Start="2015-10-16" End="2015-10-16" />
+          <RatePlanCandidates>
+            <RatePlanCandidate RatePlanCode="1251431">
+              <HotelRefs>
+                <HotelRef HotelCode="54394" />
+              </HotelRefs>
+            </RatePlanCandidate>
+          </RatePlanCandidates>
+        </RatePlan>
+      </RatePlans>
+    </OTA_HotelRatePlanRQ>
+  </soap:Body>
+</soap:Envelope>
+
+Response:
+
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <soap:Body>
+    <OTA_HotelRatePlanRS TimeStamp="2015-04-22T12:55:56.5877658+08:00" Version="2.1" PrimaryLangID="en-us" xmlns="http://www.opentravel.org/OTA/2003/05">
+      <Success />
+      <RatePlans HotelCode="54394">
+        <RatePlan RatePlanCode="1251431" RatePlanCategory="16">
+          <Rates>
+            <Rate Start="2015-10-16" End="2015-10-16" NumberOfUnits="1" Status="Open" />
+          </Rates>
+          <Description Name="Superior(CNY Promo)" />
+        </RatePlan>
+        <RatePlan RatePlanCode="1251431" RatePlanCategory="501">
+          <Rates>
+            <Rate Start="2015-10-16" End="2015-10-16" NumberOfUnits="1" Status="Open">
+              <BaseByGuestAmts>
+                <BaseByGuestAmt AmountAfterTax="50" CurrencyCode="SGD" Code="Sell" />
+              </BaseByGuestAmts>
+              <MealsIncluded Breakfast="true" NumberOfBreakfast="2" />
+            </Rate>
+          </Rates>
+          <Description Name="Superior(CNY Promo)" />
+        </RatePlan>
+      </RatePlans>
+    </OTA_HotelRatePlanRS>
+  </soap:Body>
+</soap:Envelope>

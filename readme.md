@@ -238,3 +238,12 @@ caused by different rails version. In that case Google is your friend.
 Don't be afraid to read core code. Rails 3.0.3 is available [here](https://github.com/rails/rails/tree/3-0-stable).
 
 When you find something you want to add later, write `# Todo` comment on it. RubyMine will pick up any todo items and we can view them as list.
+
+---
+
+# Testing Strategy
+
+**Inventory**
+
+  1. Test if inventory can be added.
+  2. Connect to OTA through Storm SOAP to see if it is updated alright.

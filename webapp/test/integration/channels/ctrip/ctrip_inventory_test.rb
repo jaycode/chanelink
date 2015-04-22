@@ -2,7 +2,7 @@ require 'test_helper'
 require 'integration/integration_test_helper'
 require 'capybara/rails'
 
-class AgodaInventoryTest < ActionDispatch::IntegrationTest
+class CtripInventoryTest < ActionDispatch::IntegrationTest
   # For prices to be shown in inventories page, following tables must be filled:
   # - properties
   # - pools
@@ -34,7 +34,7 @@ class AgodaInventoryTest < ActionDispatch::IntegrationTest
     # ADD YOUR CODE HERE:
     #----------------------------------
     @pool_id = pools(:default_big_hotel_1).id
-    @channel_id = channels(:agoda).id
+    @channel_id = channels(:ctrip).id
     #----------------------------------
   end
 
@@ -49,12 +49,12 @@ class AgodaInventoryTest < ActionDispatch::IntegrationTest
     end
     click_button "master_rates-save"
 
+    save_and_open_page
     # The next page should have all associated channel room prices changed.
     14.times do |i|
       price_cell = find(:css, "#channel_rates-form-#{@channel_id} .dateTableRow .smallColumn:nth-child(#{i+2})")
       assert_equal 300000.0, price_cell.native.text.strip.to_f
     end
 
-    # save_and_open_page
   end
 end
