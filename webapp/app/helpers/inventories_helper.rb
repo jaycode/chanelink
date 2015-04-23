@@ -52,8 +52,7 @@ module InventoriesHelper
       });"
   end
 
-  # inventory grid date picker
-  def agoda_rates_date_picker_js(field_id, pool_id)
+  def date_picker_js(channel_name, field_id, pool_id)
     parameter = {
       :minDate => 0,
       :dateFormat => "yy-mm-dd",
@@ -62,71 +61,7 @@ module InventoriesHelper
     javascript_tag "$(function() {
         $( \"\##{field_id}\" ).datepicker(#{parameter.to_json});
         $( \"\##{field_id}\" ).change(function(){
-          url = '#{grid_inventories_url}' + '?agoda_rates_start=' + this.value + '&pool_id=' + #{pool_id};
-          window.location.replace(url);
-        });
-      });"
-  end
-
-  # inventory grid date picker
-  def expedia_rates_date_picker_js(field_id, pool_id)
-    parameter = {
-      :minDate => 0,
-      :dateFormat => "yy-mm-dd",
-      :maxDate => "+400D"
-    }
-    javascript_tag "$(function() {
-        $( \"\##{field_id}\" ).datepicker(#{parameter.to_json});
-        $( \"\##{field_id}\" ).change(function(){
-          url = '#{grid_inventories_url}' + '?expedia_rates_start=' + this.value + '&pool_id=' + #{pool_id};
-          window.location.replace(url);
-        });
-      });"
-  end
-
-  # inventory grid date picker
-  def bookingcom_rates_date_picker_js(field_id, pool_id)
-    parameter = {
-      :minDate => 0,
-      :dateFormat => "yy-mm-dd",
-      :maxDate => "+400D"
-    }
-    javascript_tag "$(function() {
-        $( \"\##{field_id}\" ).datepicker(#{parameter.to_json});
-        $( \"\##{field_id}\" ).change(function(){
-          url = '#{grid_inventories_url}' + '?bookingcom_rates_start=' + this.value + '&pool_id=' + #{pool_id};
-          window.location.replace(url);
-        });
-      });"
-  end
-
-  # inventory grid date picker
-  def gta_travel_rates_date_picker_js(field_id, pool_id)
-    parameter = {
-      :minDate => 0,
-      :dateFormat => "yy-mm-dd",
-      :maxDate => "+400D"
-    }
-    javascript_tag "$(function() {
-        $( \"\##{field_id}\" ).datepicker(#{parameter.to_json});
-        $( \"\##{field_id}\" ).change(function(){
-          url = '#{grid_inventories_url}' + '?gta_travel_rates_start=' + this.value + '&pool_id=' + #{pool_id};
-          window.location.replace(url);
-        });
-      });"
-  end
-
-  # inventory grid date picker
-  def orbitz_rates_date_picker_js(field_id, pool_id)
-    parameter = {
-      :minDate => 0,
-      :dateFormat => "yy-mm-dd",
-      :maxDate => "+400D"
-    }
-    javascript_tag "$(function() {
-        $( \"\##{field_id}\" ).datepicker(#{parameter.to_json});
-        $( \"\##{field_id}\" ).change(function(){
-          url = '#{grid_inventories_url}' + '?orbitz_rates_start=' + this.value + '&pool_id=' + #{pool_id};
+          url = '#{grid_inventories_url}' + '?#{channel_name}_rates_start=' + this.value + '&pool_id=' + #{pool_id};
           window.location.replace(url);
         });
       });"

@@ -162,6 +162,7 @@ en:
         master_rates: 'Master Rates'
         prices: 'Prices'
         rate_multiplier: 'You have set a Rate Multiplier for this channel. All room rates send to this channel will be multiplied by %{rate_multiplier}.'
+        nothing_mapped: 'No room mapped for this pool, go to <a href="%{link}">%{channel_name} Channel Settings</a> to map a room.'
     update:
       message:
         nothing_saved: 'There was no availability change to be saved'

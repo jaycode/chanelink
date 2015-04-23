@@ -126,3 +126,8 @@
   <% end %>
 </div>
 <% end %>
+<% if nothing_is_mapped %>
+  <div class="info">
+    <%= raw t('inventories.grid.label.nothing_mapped', link: edit_property_channel_path(:id => pc.id), :channel_name => channel.name) %>
+  </div>
+<% end %>
