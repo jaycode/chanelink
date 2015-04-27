@@ -12,7 +12,11 @@ big_hotel_1:
   expedia_username: EQC4397866CHA
   expedia_password: ke9uwUsE
   approved: 1
-  settings: '{"ctrip_hotel_id": "54394", "ctrip_password": "123qaz", "ctrip_code_context": "4085"}'
+  settings: >
+    {"ctrip_username": "54394",
+    "ctrip_hotel_id": "54394",
+    "ctrip_password": "qaz123",
+    "ctrip_code_context": "4085"}
 
 # Test hotel used for unapproved property channel.
 big_hotel_2:

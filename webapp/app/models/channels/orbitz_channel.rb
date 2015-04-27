@@ -4,6 +4,8 @@ class OrbitzChannel < Channel
 
   CNAME = 'orbitz'
   XMLNS = 'http://www.opentravel.org/OTA/2003/05'
+
+  # Todo: Move the following to default_settings
   TYPE4_USERNAME = 'Chanelink'
   TYPE4_PASSWORD = '8bd6f6c'
   TYPE10_USERNAME = 'CLink'

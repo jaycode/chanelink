@@ -254,7 +254,7 @@ class Admin::RoomTypeChannelMappingsController < Admin::AdminController
       elsif @room_type_channel_mapping.channel_id == CtripChannel.first.id
         ert = CtripChannel.first.room_type_fetcher.retrieve(current_property, false)
         ert.each do |rt|
-          if @room_type_channel_mapping.ctrip_rate_plan_code == rt.rate_plan_code and @room_type_channel_mapping.ctrip_rate_plan_category == rt.rate_plan_category
+          if @room_type_channel_mapping.settings(:ctrip_rate_plan_code) == rt.rate_plan_code and @room_type_channel_mapping.settings(:ctrip_rate_plan_category) == rt.rate_plan_category
             @room_type_channel_mapping.ctrip_room_type_name = rt.name
             @room_type_channel_mapping.ctrip_rate_plan_code = rt.rate_plan_code
             @room_type_channel_mapping.ctrip_rate_plan_category = rt.rate_plan_category

@@ -66,6 +66,8 @@ group :development, :test do
   gem 'capybara'
   # gem 'selenium-webdriver'
   gem 'show_me_the_cookies'
+  gem 'spork', github: 'sporkrb/spork'
+  gem "spork-rails"
 end
 
 # Use unicorn as the web server

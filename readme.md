@@ -243,7 +243,13 @@ When you find something you want to add later, write `# Todo` comment on it. Rub
 
 # Testing Strategy
 
+**Channel**
+1. Test if channel can be created.
+
 **Inventory**
 
-  1. Test if inventory can be added.
-  2. Connect to OTA through Storm SOAP to see if it is updated alright.
+1. Test if inventory can be added.
+2. Connect to OTA through Storm SOAP to see if it is updated alright.
+3. Connect to OTA through app by writing [Channel]RoomTypeFetcher class.
+Test out code `CtripChannel.first.room_type_fetcher.retrieve(current_property, false)` with Unit Testing.
+4. Setup endpoints in `app_config.yml`.

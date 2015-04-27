@@ -18,9 +18,5 @@ class CtripRoomTypeChannelMappingTest < ActionDispatch::IntegrationTest
     visit "/room_type_channel_mappings/new?property_channel_id=#{@property_channel.id}&room_type_id=#{@room_type.id}"
     save_and_open_page
   end
-
-  test "Editing a room type mapping" do
-    visit "/property_channels/#{@property_channel.id}/edit"
-  end
-
+  
 end

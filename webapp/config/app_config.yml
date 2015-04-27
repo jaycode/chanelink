@@ -10,11 +10,13 @@ development:
   gta_travel_username: 'CHANELINK'
   gta_travel_password: 'LINK14'
   support_email: 'support-dev@chanelink.com'
-  ctrip_end_point: 'http://58.221.127.196:8090/'
-  ctrip_rate_plan: '/Hotel/OTAReceive/HotelRatePlan.asmx'
-  ctrip_avail_notif: '/Hotel/OTAReceive/HotelAvailNotif.asmx'
-  ctrip_rate_amount_notif: '/Hotel/OTAReceive/HotelRateAmountNotif.asmx'
-  ctrip_notif_report: '/Hotel/OTAReceive/NotifReport.asmx'
+
+  # Always make this part similar to urls listed in /channel_api_tests directory.
+  # Todo: Unsure if this should be put here, or define them within channel classes,
+  #       but let us keep them here for now until further arguments arise.
+  ctrip_rates_get_endpoint: 'http://58.221.127.196:8090/Hotel/OTAReceive/HotelRatePlan.asmx'
+  ctrip_inventories_update_endpoint: 'http://58.221.127.196:8090/Hotel/OTAReceive/HotelAvailNotif.asmx'
+
   orbitz_room_rate_fetch: 'https://ws.owweasyconnect.com/easyconnect/service/midtier/roomratetypefetch'
   orbitz_other: 'https://ws.owweasyconnect.com/xml/service'
 
@@ -30,11 +32,10 @@ staging:
   gta_travel_username: 'CHANELINK'
   gta_travel_password: 'LINK14'
   support_email: 'support-dev@chanelink.com'
-  ctrip_end_point: 'http://58.221.127.196:8090/'
-  ctrip_rate_plan: 'http://58.221.127.196:8090/Hotel/OTAReceive/HotelRatePlan.asmx'
-  ctrip_avail_notif: 'http://vendor.hotels.test.sh.ctriptravel.com/Hotel/OTAReceive/HotelAvailNotif.asmx'
-  ctrip_rate_amount_notif: 'http://vendor.hotels.test.sh.ctriptravel.com/Hotel/OTAReceive/HotelRateAmountNotif.asmx'
-  ctrip_notif_report: 'http://vendor.hotels.test.sh.ctriptravel.com/Hotel/OTAReceive/NotifReport.asmx'
+
+  ctrip_rates_get_endpoint: 'http://58.221.127.196:8090/Hotel/OTAReceive/HotelRatePlan.asmx'
+  ctrip_inventories_update_endpoint: 'http://58.221.127.196:8090/Hotel/OTAReceive/HotelAvailNotif.asmx'
+
   orbitz_room_rate_fetch: 'https://ws.owweasyconnect.com/easyconnect/service/midtier/roomratetypefetch'
   orbitz_other: 'https://ws.owweasyconnect.com/xml/service'
 
@@ -47,11 +48,10 @@ production:
   expedia_parr_endpoint: 'https://ws.expediaquickconnect.com/connect/parr'
   gta_travel_endpoint: 'https://hotels.gta-travel.com'
   support_email: 'support@chanelink.com'
-  ctrip_end_point: 'http://58.221.127.196:8090/'
-  ctrip_rate_plan: 'https://vendor.ctrip.com/Hotel/OTAReceive/HotelRatePlan.asmx'
-  ctrip_avail_notif: 'https://vendor.ctrip.com/Hotel/OTAReceive/HotelAvailNotif.asmx'
-  ctrip_rate_amount_notif: 'https://vendor.ctrip.com/Hotel/OTAReceive/HotelRateAmountNotif.asmx'
-  ctrip_notif_report: 'https://vendor.ctrip.com/Hotel/OTAReceive/NotifReport.asmx'
+
+  ctrip_rates_get_endpoint: 'https://vendor.ctrip.com/Hotel/OTAReceive/HotelRatePlan.asmx'
+  ctrip_inventories_update_endpoint: 'http://vendor.ctrip.com/Hotel/OTAReceive/HotelAvailNotif.asmx'
+
   orbitz_room_rate_fetch: 'https://ws.owweasyconnect.com/easyconnect/service/midtier/roomratetypefetch'
   orbitz_other: 'https://ws.owweasyconnect.com/xml/service'
 
@@ -67,11 +67,10 @@ staging2:
   gta_travel_username: 'CHANELINK'
   gta_travel_password: 'LINK14'
   support_email: 'support-dev@chanelink.com'
-  ctrip_end_point: 'http://58.221.127.196:8090/'
-  ctrip_rate_plan: 'http://58.221.127.196:8090/Hotel/OTAReceive/HotelRatePlan.asmx'
-  ctrip_avail_notif: 'http://vendor.hotels.test.sh.ctriptravel.com/Hotel/OTAReceive/HotelAvailNotif.asmx'
-  ctrip_rate_amount_notif: 'http://vendor.hotels.test.sh.ctriptravel.com/Hotel/OTAReceive/HotelRateAmountNotif.asmx'
-  ctrip_notif_report: 'http://vendor.hotels.test.sh.ctriptravel.com/Hotel/OTAReceive/NotifReport.asmx'
+
+  ctrip_rates_get_endpoint: 'http://58.221.127.196:8090/Hotel/OTAReceive/HotelRatePlan.asmx'
+  ctrip_inventories_update_endpoint: 'http://58.221.127.196:8090/Hotel/OTAReceive/HotelAvailNotif.asmx'
+
   orbitz_room_rate_fetch: 'https://ws.owweasyconnect.com/easyconnect/service/midtier/roomratetypefetch'
   orbitz_other: 'https://ws.owweasyconnect.com/xml/service'
 
@@ -87,10 +86,9 @@ test:
   gta_travel_username: 'CHANELINK'
   gta_travel_password: 'LINK14'
   support_email: 'support-dev@chanelink.com'
-  ctrip_end_point: 'http://58.221.127.196:8090/'
-  ctrip_rate_plan: '/Hotel/OTAReceive/HotelRatePlan.asmx'
-  ctrip_avail_notif: '/Hotel/OTAReceive/HotelAvailNotif.asmx'
-  ctrip_rate_amount_notif: '/Hotel/OTAReceive/HotelRateAmountNotif.asmx'
-  ctrip_notif_report: '/Hotel/OTAReceive/NotifReport.asmx'
+
+  ctrip_rates_get_endpoint: 'http://58.221.127.196:8090/Hotel/OTAReceive/HotelRatePlan.asmx'
+  ctrip_inventories_update_endpoint: 'http://58.221.127.196:8090/Hotel/OTAReceive/HotelAvailNotif.asmx'
+
   orbitz_room_rate_fetch: 'https://ws.owweasyconnect.com/easyconnect/service/midtier/roomratetypefetch'
   orbitz_other: 'https://ws.owweasyconnect.com/xml/service'

@@ -35,22 +35,28 @@ class CtripRoomTypeFetcher < RoomTypeFetcher
     end
 
     request_xml = builder.to_xml
-    puts "request xml is #{request_xml}"
-    response_xml = CtripChannel.post_xml(request_xml, CtripChannel::RATE_PLAN)
-
-    puts response_xml
-    
+    response_xml = CtripChannel.post_xml(request_xml, APP_CONFIG[:ctrip_rates_get_endpoint])
     xml_doc  = Nokogiri::XML(response_xml)
-    ctrip_room_types = xml_doc.xpath("/soap:Envelope/soap:Body/ctrip:OTA_HotelRatePlanRS/ctrip:RatePlans//ctrip:RatePlan", "ctrip" => CtripChannel::XMLNS, "soap" => "http://schemas.xmlsoap.org/soap/envelope/")
-    ctrip_room_types.each do |rt|
-      rt = CtripRoomTypeXml.new(rt["RatePlanCode"], rt.xpath("./ctrip:Description", "ctrip" => CtripChannel::XMLNS).first["Name"], rt["RatePlanCategory"])
-      if exclude_mapped_room
-        room_types << rt if RoomTypeChannelMapping.room_type_ids(property.room_type_ids).where(:ctrip_room_rate_plan_code => rt.id, :channel_id => CtripChannel.first.id).blank?
-      else
-        room_types << rt
+    success = xml_doc.xpath("/soap:Envelope/soap:Body/OTA_HotelRatePlanRS/Success")
+    puts "xxx"
+    if success
+      # ctrip_room_types = xml_doc.xpath("/soap:Envelope/soap:Body/OTA_HotelRatePlanRS/RatePlans/RatePlan")
+      # puts response_xml
+      puts "resulting xml: #{xml_doc.to_xhtml(indent: 3)}"
+      puts "aaa"
+      ctrip_room_types = xml_doc.xpath('//RatePlans/*')
+      puts "after xpath: #{ctrip_room_types.inspect}"
+      puts "count = #{ctrip_room_types.count}"
+      ctrip_room_types.each do |rt|
+        puts rt.inspect
+        rt = CtripRoomTypeXml.new(rt["RatePlanCode"], rt.xpath("./ctrip:Description", "ctrip" => CtripChannel::XMLNS).first["Name"], rt["RatePlanCategory"])
+        if exclude_mapped_room
+          room_types << rt if RoomTypeChannelMapping.room_type_ids(property.room_type_ids).where(:ctrip_room_rate_plan_code => rt.id, :channel_id => CtripChannel.first.id).blank?
+        else
+          room_types << rt
+        end
       end
     end
-
     room_types
   end
 

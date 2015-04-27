@@ -3,6 +3,16 @@ class Channel < ActiveRecord::Base
   validates_uniqueness_of :name
   validates_uniqueness_of :type
 
+  # Override in child classes. Setup default values for
+  # settings field. These settings are used in Property class.
+  def default_settings
+  end
+
+  # Get all channels.
+  def self.descendants
+    ObjectSpace.each_object(Class).select { |klass| klass < self }
+  end
+
   def cname
     # to be override by child class
   end

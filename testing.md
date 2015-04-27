@@ -19,7 +19,31 @@ let us go through different scenario to find out what kinds of test code are app
 
 ## Write test code as you are developing new channels
 
-[Capybara](https://github.com/jnicklas/capybara). Integration test with Capybara allows you to test out
+Chanelink app uses three main modules for testing:
+
+- [Capybara](https://github.com/jnicklas/capybara) to test HTML.
+- [RSpec](https://github.com/rspec/rspec-rails) for better looking test code. Not really important,
+  but we use it anyway so Spork would work.
+- [Spork](https://github.com/sporkrb/spork-rails) for much faster test execution.
+
+[This railscast shows how to run Spork and RSpec](http://railscasts.com/episodes/285-spork). Basically you would
+need two terminal windows, and in one terminal run
+```
+spork
+```
+
+And in another:
+```
+rspec --drb
+```
+
+Keep in mind that with this technique you will need to restart Spork server when you do any of the following:
+
+1. Updated the fixtures.
+2. Updated site configurations or environment variables.
+3. Added new initializers or libraries or modules.
+
+Integration test with Capybara allows you to test out
 view files in your app. BUT it does not allow you to read app's session; you need standard integration test
 for that.
 
@@ -27,13 +51,15 @@ Integration test, `test/integration/channels/{channel name}`. Add each feature n
 there. Not all features are owned by all channels. {example}.
 
 ```
-bundle exec rake test:integration
+bundle exec rspec
 
 # Or to run specific test files:
-bundle exec rake test:integration TEST=test/integration/sessions_controller_test.rb
-# I know that is weird, you need to actually specify whether that file is located
-# under ":units", ":functionals", or ":integration", otherwise your test will run
-# three times.
+bundle exec rspec spec/models/channels/ctrip_channel_spec.rb
+
+# Or to run models / controllers / features / views / routing / helpers / requests / api / integration only:
+# Change "models" to any of the items above.
+bundle exec rspec spec/models
+
 ```
 
 Read more about running specific tests [here](http://flavio.castelli.name/2010/05/28/rails_execute_single_test/)

@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class PropertyChannelTest < ActiveSupport::TestCase
+class HasSettingsTest < ActiveSupport::TestCase
   test "settings creation and removal" do
     property_channel = PropertyChannel.new do |p|
       p.property = properties(:big_hotel_1)
@@ -15,6 +15,9 @@ class PropertyChannelTest < ActiveSupport::TestCase
     property_channel.skip_rate_conversion_multiplier = true
 
     property_channel.settings = {:something => {:is => 'nothing'}}
+    property_channel.settings = {:something_else => 'none'}
+    property_channel.settings = nil
+    property_channel.settings = ""
     property_channel.save
 
     saved_property_channel = PropertyChannel.find_by_id(property_channel.id)

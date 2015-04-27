@@ -62,6 +62,17 @@ class Property < ActiveRecord::Base
 
   after_create :create_default_pool
 
+  after_initialize :setup_default_settings
+
+  def setup_default_settings
+    klasses = Channel.descendants
+    klasses.each do |klass|
+      # Todo: If channels are not kept as model, this is no longer needed.
+      channel = klass.first
+      self.settings = channel.default_settings
+    end
+  end
+
   # make sure room type minimum is less than
   def minimum_room_rate_must_be_less_than_lowest
     if !self.room_types.blank?

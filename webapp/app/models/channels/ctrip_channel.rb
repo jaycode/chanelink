@@ -1,5 +1,11 @@
 require 'net/https'
 
+# Todo: Not all classes need to be Model. In this case, 
+#       Channels may better be left as Model-less Ruby Class,
+#       Since it doesn't really need database, now does it?
+# Todo: Currently this class is externally dependant to app_config.yml,
+#       not sure if it is the best way forward but let's think about this
+#       after we have detached it from database.
 class CtripChannel < Channel
 
   CNAME = 'ctrip'
@@ -8,15 +14,17 @@ class CtripChannel < Channel
   API_VERSION = "2.2"
   PRIMARY_LANG = 'en-us'
 
-  RATE_PLAN = 'rate_plan'
-  AVAIL_NOTIF = 'avail_notif'
-  RATE_AMOUNT_NOTIF = 'rate_amount_notif'
-  NOTIF_REPORT = 'notif_report'
+  # These will be passed to Property's settings. The reason we put them here is
+  # so it is easier if later the OTA should decide to make a setting dynamic, e.g.
+  # what if Ctrip company code can be set differently per each user?
+  def default_settings
+    {
+      :ctrip_company_code => 'C',
 
-  # 10 is for individual hotel (see Ctrip Integration API Specification V2.2.pdf)
-  USER_CATEGORY = 10
-
-  COMPANY_CODE = 'C'
+      # 10 is for individual hotel (see Ctrip Integration API Specification V2.2.pdf)
+      :ctrip_user_category => 10
+    }
+  end
 
   def cname
     CNAME
@@ -78,31 +86,7 @@ class CtripChannel < Channel
 
   # helper class to post xml
   def self.post_xml(request_xml, type)
-    # puts "END POINT #{get_end_point}"
-    # puts request_xml
-
-    # uri = URI.parse(get_end_path(type))
-    # http = Net::HTTP.new(uri.host,uri.port)
-    # http.use_ssl = false
-    # path = get_end_path(type)
-
-    # puts path
-
-    # # Set Headers
-    # headers = {
-    #   'Content-Type' => 'text/xml',
-    #   'Host' => uri.host,
-    #   'SOAPAction' => "http://www.opentravel.org/OTA/2003/05/Request"
-    # }
-
-    # # Post the request
-    # resp, data = http.post(path, request_xml, headers)
-
-    # puts resp
-
-    # data
-
-    uri = URI.parse("http://58.221.127.196:8090/Hotel/OTAReceive/HotelRatePlan.asmx")
+    uri = URI.parse(APP_CONFIG[:ctrip_rates_get_endpoint])
     https = Net::HTTP.new(uri.host,uri.port)
     https.use_ssl = false
 
@@ -112,8 +96,6 @@ class CtripChannel < Channel
 
     req.body = request_xml
     res = https.request(req)
-
-    puts res.body
 
     res.body
   end
@@ -140,30 +122,10 @@ class CtripChannel < Channel
   def self.construct_authentication_element(xml, property)
     xml.POS {
       xml.Source {
-        xml.RequestorID(:ID => property.settings(:ctrip_username), :MessagePassword => property.settings(:ctrip_password), :Type => USER_CATEGORY) {
-          xml.CompanyName(:Code => COMPANY_CODE, :CodeContext => property.settings(:ctrip_code_context))
+        xml.RequestorID(:ID => property.settings(:ctrip_username), :MessagePassword => property.settings(:ctrip_password), :Type => property.settings(:ctrip_user_category)) {
+          xml.CompanyName(:Code => property.settings(:ctrip_company_code), :CodeContext => property.settings(:ctrip_code_context))
         }
       }
     }
   end
-
-  private
-
-  def self.get_end_point
-    APP_CONFIG[:ctrip_end_point]
-  end
-
-  def self.get_end_path(type)
-    if type == RATE_PLAN
-      APP_CONFIG[:ctrip_rate_plan]
-    elsif type == AVAIL_NOTIF
-      APP_CONFIG[:ctrip_avail_notif]
-    elsif type == RATE_AMOUNT_NOTIF
-      APP_CONFIG[:ctrip_rate_amount_notif]
-    elsif type == NOTIF_REPORT
-      APP_CONFIG[:ctrip_notif_report]
-    end
-  end
-
-
 end

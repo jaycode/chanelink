@@ -16,10 +16,10 @@ Request:
       <RateAmountMessages HotelCode="54394">
         <RateAmountMessage>
           <StatusApplicationControl RatePlanCode="1251431" RatePlanCategory="16" />
-          <Rates Start="2015-10-16" End="2015-10-16">
-            <Rate>
+          <Rates>
+            <Rate Start="2015-10-16" End="2015-10-16">
               <BaseByGuestAmts>
-                <BaseByGuestAmt Code="Sell" AmountAfterTax="500000" CurrencyCode="IDR">
+                <BaseByGuestAmt Code="Sell" AmountAfterTax="5000" CurrencyCode="SGD" />
               </BaseByGuestAmts>
               <MealsIncluded Breakfast="false" />
             </Rate>
@@ -31,3 +31,13 @@ Request:
 </soap:Envelope>
 
 Response:
+
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <soap:Body>
+    <OTA_HotelRateAmountNotifRS TimeStamp="2015-04-24T12:36:21.5859872+08:00" Version="2.1" PrimaryLangID="en-us" xmlns="http://www.opentravel.org/OTA/2003/05">
+      <Success />
+      <UniqueID ID="259264369" Type="506" />
+    </OTA_HotelRateAmountNotifRS>
+  </soap:Body>
+</soap:Envelope>

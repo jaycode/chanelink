@@ -22,8 +22,10 @@ module HasSettings
   # Setter. Simply merge with given params. See property_channel_test for sample
   # test case.
   def settings=(params)
-    settings_json = settings.merge(params)
-    write_attribute(:settings, ActiveSupport::JSON.encode(settings_json))
+    if params.class == Hash # this also covers not nil.
+      settings_json = settings.merge(params)
+      write_attribute(:settings, ActiveSupport::JSON.encode(settings_json))
+    end
   end
 
   def destroy_settings

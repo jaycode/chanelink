@@ -5,6 +5,7 @@ class BookingcomChannel < Channel
 
   CNAME = 'bookingcom'
 
+  # Todo: Remove this, it has no importance to interface.
   ROOMS = 'rooms'
   ROOM_RATES = 'roomrates'
   RATES = 'rates'

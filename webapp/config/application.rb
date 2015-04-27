@@ -40,6 +40,8 @@ module Chanelinkweb
     config.autoload_paths += %W( #{config.root}/lib/validators )
     config.autoload_paths += %W( #{config.root}/lib/ext )
     config.autoload_paths += %W( #{config.root}/lib/utilities )
+    config.autoload_paths += %W( #{config.root}/initializers/monkeys )
+
 
     # load all models subfolder
     config.autoload_paths += Dir[Rails.root.join('app', 'models', '{**}')]

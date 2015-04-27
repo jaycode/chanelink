@@ -4,6 +4,7 @@ require 'net/https'
 class ExpediaChannel < Channel
 
   CNAME = 'expedia'
+  # Todo: Remove this, it has no importance to interface.
   XMLNS_AR = 'http://www.expediaconnect.com/EQC/AR/2011/06'
   XMLNS_BR = 'http://www.expediaconnect.com/EQC/BR/2007/02'
   XMLNS_BR_2014 = 'http://www.expediaconnect.com/EQC/BR/2014/01'

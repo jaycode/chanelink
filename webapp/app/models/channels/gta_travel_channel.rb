@@ -3,6 +3,8 @@ require 'net/https'
 class GtaTravelChannel < Channel
 
   CNAME = 'gta_travel'
+
+  # Todo: Remove this, it has no importance to interface.
   PROPERTY_READ = '/supplierapi/rest/property/search'
   PROPERTY_DETAILS_READ = '/supplierapi/rest/propertyDetails/search'
   ROOM_READ = '/supplierapi/rest/rooms/search'
