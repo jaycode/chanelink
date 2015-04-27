@@ -1,4 +1,5 @@
 require "rails_helper"
+
 describe CtripChannel, :type => :model do
   scenario 'fetching room types - success' do
     channel = CtripChannel.first
