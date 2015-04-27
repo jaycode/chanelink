@@ -80,7 +80,11 @@
     <br/>
     <h4><%= t('property_channels.edit.label.channel_rooms_not_mapped', :channel => @property_channel.channel.name) %></h4>
     <br/>
-      <% channel_not_mapped = @property_channel.channel.room_type_fetcher.retrieve(current_property, true) %>
+      <% begin %>
+        <% channel_not_mapped = @property_channel.channel.room_type_fetcher.retrieve(current_property, true) %>
+      <% rescue Exception => e %>
+        <p class="error"><%= raw e.message -%></p>
+      <% end %>
       <% if !channel_not_mapped.blank? %>
         <% channel_not_mapped.each do |crt| %>
           <p>&nbsp;&nbsp;&nbsp;&nbsp;<%= "#{crt.name} - #{crt.id}" %> </p>

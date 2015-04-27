@@ -37,8 +37,8 @@ class CtripRoomTypeFetcher < RoomTypeFetcher
     response_xml = CtripChannel.post_xml(request_xml, APP_CONFIG[:ctrip_rates_get_endpoint])
     response_xml = response_xml.gsub(/xmlns=\"([^\"]*)\"/, "")
     xml_doc  = Nokogiri::XML(response_xml)
-    success = xml_doc.xpath("/soap:Envelope/soap:Body/OTA_HotelRatePlanRS/Success")
-    if success
+    success = xml_doc.xpath("//Success")
+    if success.count > 0
       # @logger = Logger.new("#{Rails.root}/log/custom.log")
       # @logger.error("resulting xml: #{xml_doc.to_xhtml(indent: 3)}")
       ctrip_room_types = xml_doc.xpath('//RatePlan')
@@ -50,6 +50,15 @@ class CtripRoomTypeFetcher < RoomTypeFetcher
           room_types << rt_model
         end
       end
+    else
+      raise Exception, I18n.t('activemodel.errors.models.room_type_fetcher.fetch_failed', {
+        :channel => CtripChannel.name,
+        :contact_us_link => ActionController::Base.helpers.link_to(I18n.t('activemodel.errors.models.room_type_fetcher.contact_us'),
+          "mailto:#{APP_CONFIG[:support_email]}?Subject=#{I18n.t('activemodel.errors.models.room_type_fetcher.email_subject', :property_id => property.id)}",
+          {
+            :target => '_blank'
+        })
+      })
     end
     room_types
   end

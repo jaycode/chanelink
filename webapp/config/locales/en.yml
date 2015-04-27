@@ -802,6 +802,10 @@ en:
   activemodel:
     errors:
       models:
+        room_type_fetcher:
+          fetch_failed: "Fetching room types from channel %{channel} failed. Please %{contact_us_link}."
+          contact_us: "contact us"
+          email_subject: "Fetching%20Room%20Types%20Failed%20(Property%20ID:%20%{property_id})"
         copy_tool:
           attributes:
             channel_id_from:

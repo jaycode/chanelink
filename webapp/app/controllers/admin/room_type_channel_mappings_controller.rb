@@ -120,11 +120,15 @@ class Admin::RoomTypeChannelMappingsController < Admin::AdminController
 
     get_channel_room_types
 
+    @logger = Logger.new("#{Rails.root}/log/custom.log")
+    @logger.error("edit top")
     all_channel_room_types = Array.new
     begin
       # get channel/OTA room type data
+      @logger.error("before room types")
       all_channel_room_types = @channel.room_type_fetcher.retrieve(current_admin_property, false)
-    rescue Exception
+    rescue Exception => e
+      @logger.error("after room types")
       flash[:notice] = t('room_type_channel_mappings.edit.message.timeout', :channel => @channel.channel.name)
     end
 
