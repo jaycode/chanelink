@@ -33,27 +33,21 @@ class CtripRoomTypeFetcher < RoomTypeFetcher
         }
       }
     end
-
     request_xml = builder.to_xml
     response_xml = CtripChannel.post_xml(request_xml, APP_CONFIG[:ctrip_rates_get_endpoint])
+    response_xml = response_xml.gsub(/xmlns=\"([^\"]*)\"/, "")
     xml_doc  = Nokogiri::XML(response_xml)
     success = xml_doc.xpath("/soap:Envelope/soap:Body/OTA_HotelRatePlanRS/Success")
-    puts "xxx"
     if success
-      # ctrip_room_types = xml_doc.xpath("/soap:Envelope/soap:Body/OTA_HotelRatePlanRS/RatePlans/RatePlan")
-      # puts response_xml
-      puts "resulting xml: #{xml_doc.to_xhtml(indent: 3)}"
-      puts "aaa"
-      ctrip_room_types = xml_doc.xpath('//RatePlans/*')
-      puts "after xpath: #{ctrip_room_types.inspect}"
-      puts "count = #{ctrip_room_types.count}"
+      # @logger = Logger.new("#{Rails.root}/log/custom.log")
+      # @logger.error("resulting xml: #{xml_doc.to_xhtml(indent: 3)}")
+      ctrip_room_types = xml_doc.xpath('//RatePlan')
       ctrip_room_types.each do |rt|
-        puts rt.inspect
-        rt = CtripRoomTypeXml.new(rt["RatePlanCode"], rt.xpath("./ctrip:Description", "ctrip" => CtripChannel::XMLNS).first["Name"], rt["RatePlanCategory"])
+        rt_model = CtripRoomTypeXml.new(rt["RatePlanCode"], rt.xpath("./Description").first["Name"], rt["RatePlanCategory"])
         if exclude_mapped_room
-          room_types << rt if RoomTypeChannelMapping.room_type_ids(property.room_type_ids).where(:ctrip_room_rate_plan_code => rt.id, :channel_id => CtripChannel.first.id).blank?
+          room_types << rt_model if RoomTypeChannelMapping.room_type_ids(property.room_type_ids).where(:ctrip_room_rate_plan_code => rt_model.id, :channel_id => CtripChannel.first.id).blank?
         else
-          room_types << rt
+          room_types << rt_model
         end
       end
     end

@@ -68,6 +68,8 @@ group :development, :test do
   gem 'show_me_the_cookies'
   gem 'spork', github: 'sporkrb/spork'
   gem "spork-rails"
+
+  gem 'debugger'
 end
 
 # Use unicorn as the web server
