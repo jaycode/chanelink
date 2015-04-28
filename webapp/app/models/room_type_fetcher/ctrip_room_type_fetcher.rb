@@ -39,8 +39,6 @@ class CtripRoomTypeFetcher < RoomTypeFetcher
     xml_doc  = Nokogiri::XML(response_xml)
     success = xml_doc.xpath("//Success")
     if success.count > 0
-      # @logger = Logger.new("#{Rails.root}/log/custom.log")
-      # @logger.error("resulting xml: #{xml_doc.to_xhtml(indent: 3)}")
       ctrip_room_types = xml_doc.xpath('//RatePlan')
       ctrip_room_types.each do |rt|
         rt_model = CtripRoomTypeXml.new(rt["RatePlanCode"], rt.xpath("./Description").first["Name"], rt["RatePlanCategory"])
@@ -51,6 +49,14 @@ class CtripRoomTypeFetcher < RoomTypeFetcher
         end
       end
     else
+      api_logger = Logger.new("#{Rails.root}/log/api_errors.log")
+      api_logger.error("[#{Time.now}] Fetching room types failed.\n
+PropertyChannel ID: #{property_channel.id}
+Channel: #{CtripChannel.first.name}
+Property: #{property.id} - #{property.name}
+SOAP XML sent to #{APP_CONFIG[:ctrip_rates_get_endpoint]}\n
+xml sent:\n#{request_xml}\n
+xml retrieved:\n#{xml_doc.to_xhtml(indent: 3)}")
       raise Exception, I18n.t('activemodel.errors.models.room_type_fetcher.fetch_failed', {
         :channel => CtripChannel.name,
         :contact_us_link => ActionController::Base.helpers.link_to(I18n.t('activemodel.errors.models.room_type_fetcher.contact_us'),

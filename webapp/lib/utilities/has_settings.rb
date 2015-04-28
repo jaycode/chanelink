@@ -4,7 +4,11 @@ module HasSettings
   # e.g. settings(:ota, :username) will get {:ota => {:username => 'this value'}}.
   # If no params given, give the json decoded settings
   def settings(*params)
-    obj = JSON.parse(read_attribute(:settings))
+    settings_json = read_attribute(:settings)
+    if settings_json.nil?
+      settings_json = '{}'
+    end
+    obj = JSON.parse(settings_json)
     if params.empty?
       obj
     else
@@ -31,5 +35,21 @@ module HasSettings
 
   def destroy_settings
     write_attribute(:settings, ActiveSupport::JSON.encode({}))
+  end
+
+  def update_empty_settings(params)
+    if settings.blank?
+      settings_json = {}
+    else
+      settings_json = settings
+    end
+    if params.class == Hash or params.class == ActiveSupport::HashWithIndifferentAccess
+      params.each do |k, v|
+        if !defined?(settings_json[k.to_s]) or settings_json[k.to_s].blank?
+          settings_json[k.to_s] = v
+        end
+      end
+    end
+    write_attribute(:settings, ActiveSupport::JSON.encode(settings_json))
   end
 end

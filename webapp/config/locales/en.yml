@@ -803,7 +803,7 @@ en:
     errors:
       models:
         room_type_fetcher:
-          fetch_failed: "Fetching room types from channel %{channel} failed. Please %{contact_us_link}."
+          fetch_failed: "Fetching room types from channel %{channel} failed. We have been notified about this, but if you'd like to add additional details, please %{contact_us_link}."
           contact_us: "contact us"
           email_subject: "Fetching%20Room%20Types%20Failed%20(Property%20ID:%20%{property_id})"
         copy_tool:
@@ -966,8 +966,9 @@ en:
           bookingcom_hotel_id: 'Booking.com Hotel ID'
           bookingcom_username: 'Booking.com Username'
           bookingcom_password: 'Booking.com Password'
-          ctrip_hotel_id: 'Ctrip Hotel ID'
+          ctrip_username: 'Ctrip Username'
           ctrip_password: 'Ctrip Password'
+          ctrip_hotel_id: 'Ctrip Hotel ID'
           ctrip_code_context: 'Ctrip Code Context'
           currency: 'Currency'
       approve:

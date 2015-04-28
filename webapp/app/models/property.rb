@@ -65,11 +65,13 @@ class Property < ActiveRecord::Base
   after_initialize :setup_default_settings
 
   def setup_default_settings
-    klasses = Channel.descendants
+    klasses = Channel.descendants_without_loading
     klasses.each do |klass|
       # Todo: If channels are not kept as model, this is no longer needed.
       channel = klass.first
-      self.settings = channel.default_settings
+      unless channel.nil?
+        self.update_empty_settings(channel.default_settings)
+      end
     end
   end
 

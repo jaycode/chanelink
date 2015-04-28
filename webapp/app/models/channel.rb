@@ -9,8 +9,10 @@ class Channel < ActiveRecord::Base
   end
 
   # Get all channels.
-  def self.descendants
-    ObjectSpace.each_object(Class).select { |klass| klass < self }
+  # self.descendants is already used in ActiveRecord::Base, and using that
+  # would break [something]Channel.first
+  def self.descendants_without_loading
+    Dir[Rails.root + 'app/models/channels/*.rb'].map {|f| File.basename(f, '.*').camelize.constantize}
   end
 
   def cname

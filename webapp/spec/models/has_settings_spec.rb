@@ -39,4 +39,13 @@ describe 'HasSettings', :type => :model do
     property_channel.update_attributes({:settings => {:this => 'that'}})
     expect(property_channel.settings(:this)).to eq('that')
   end
+
+  scenario 'update if empty' do
+    property_channel = property_channels(:big_hotel_1_default_ctrip)
+    property_channel.settings = ({:empty => '', :not_empty => 'yay'})
+    property_channel.update_empty_settings({:empty => 'value', :not_empty => 'value', :undefined => 'value'})
+    expect(property_channel.settings(:empty)).to eq('value')
+    expect(property_channel.settings(:undefined)).to eq('value')
+    expect(property_channel.settings(:not_empty)).to eq('yay')
+  end
 end

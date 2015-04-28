@@ -107,11 +107,20 @@ def production_seeds
   ]
   channels.each do |channel|
     if !Channel.find_by_name(channel[:name])
-      ctrip = Channel.create do |c|
+      channel = Channel.create do |c|
         c.name = channel[:name]
         c.type = channel[:type]
       end
     end
+  end
+  setup_default_settings_to_all_properties
+end
+
+def setup_default_settings_to_all_properties
+  properties = Property.all
+  properties.each do |property|
+    property.setup_default_settings
+    property.save
   end
 end
 
@@ -122,10 +131,11 @@ end
 def development_seeds
   # Lets use Plaza Hotel Glodok as our sample account.
   property = Property.first(:conditions => {:name => 'Plaza Hotel Glodok'})
-  property.settings = {:ctrip_hotel_id => '54394'}
   property.settings = {:ctrip_username => '54394'}
   property.settings = {:ctrip_password => 'qaz123'}
+  property.settings = {:ctrip_hotel_id => '54394'}
   property.settings = {:ctrip_code_context => '4085'}
+  property.save
   pool = Pool.first(:conditions => {:property_id => property.id, :name => 'OTA'})
   ctrip = Channel.first(:conditions => {:name => 'Ctrip'})
   property_channels = [

@@ -17,8 +17,14 @@ class CtripChannel < Channel
   # These will be passed to Property's settings. The reason we put them here is
   # so it is easier if later the OTA should decide to make a setting dynamic, e.g.
   # what if Ctrip company code can be set differently per each user?
+  # Secondly it acts as a quick way of documenting what options should settings field have.
   def default_settings
     {
+      :ctrip_username => '',
+      :ctrip_password => '',
+      :ctrip_hotel_id => '',
+      :ctrip_code_context => '',
+
       :ctrip_company_code => 'C',
 
       # 10 is for individual hotel (see Ctrip Integration API Specification V2.2.pdf)

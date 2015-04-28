@@ -55,13 +55,20 @@
 </p>
 
 <p>
-  <label><%= t('admin.properties.new.label.ctrip_hotel_id') %></label>
-  <%= text_field_tag 'property[settings][ctrip_hotel_id]', @property.settings(:ctrip_hotel_id) %>
+  <label><%= t('admin.properties.new.label.ctrip_username') %></label>
+  <%= text_field_tag 'property[settings][ctrip_username]', @property.settings(:ctrip_username) %>
 </p>
+
 <p>
   <label><%= t('admin.properties.new.label.ctrip_password') %></label>
   <%= text_field_tag 'property[settings][ctrip_password]', @property.settings(:ctrip_password) %>
 </p>
+
+<p>
+  <label><%= t('admin.properties.new.label.ctrip_hotel_id') %></label>
+  <%= text_field_tag 'property[settings][ctrip_hotel_id]', @property.settings(:ctrip_hotel_id) %>
+</p>
+
 <p>
   <label><%= t('admin.properties.new.label.ctrip_code_context') %></label>
   <%= text_field_tag 'property[settings][ctrip_code_context]', @property.settings(:ctrip_code_context) %>
