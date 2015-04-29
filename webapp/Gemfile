@@ -61,7 +61,7 @@ gem 'unscoped_associations', "0.4.2"
 
 gem 'attr_encrypted', "1.3.2"
 
-group :development, :test do
+group :development, :test, :staging do
   gem 'rspec-rails'
   gem 'capybara'
   # gem 'selenium-webdriver'
