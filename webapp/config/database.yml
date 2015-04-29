@@ -32,10 +32,10 @@ staging:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: chanelink_staging
+  database: chanelink_production
   pool: 5
-  username: test
-  password: oisadj
+  username: c_2mcod
+  password: 2190j1jsKal
   host: 192.237.185.101
 
 production:
