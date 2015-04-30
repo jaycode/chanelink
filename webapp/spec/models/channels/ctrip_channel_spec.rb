@@ -17,7 +17,7 @@ describe CtripChannel, :type => :model do
       room_types = channel.room_type_fetcher.retrieve(properties(:big_hotel_2))
     rescue Exception => e
       error = 1
-      puts "Error: #{e.message}"
+      # puts "Error: #{e.message}"
     end
     expect(error).to eq 1
   end

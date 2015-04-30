@@ -13,8 +13,11 @@ class AgodaRoomTypeFetcher < RoomTypeFetcher
     end
 
     request_xml = builder.to_xml
+    # puts '============'
+    # puts request_xml
+    # puts '============'
     response_xml = AgodaChannel.post_xml(request_xml)
-    puts response_xml
+    # puts response_xml
 
     # process each room type and form it as our own object
     room_types = Array.new
@@ -40,7 +43,11 @@ class AgodaRoomTypeFetcher < RoomTypeFetcher
 
     request_xml = builder.to_xml
     response_xml = AgodaChannel.post_xml(request_xml)
-    puts response_xml
+    # puts '============'
+    # puts request_xml
+    # puts '============'
+    # puts response_xml
+    # puts '============'
 
 
     room_types

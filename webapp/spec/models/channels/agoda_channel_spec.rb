@@ -4,7 +4,10 @@ describe 'AgodaChannel', :type => :model do
 	scenario 'room type fetcher' do
 		channel = AgodaChannel.first
 		room_types = channel.room_type_fetcher.retrieve(properties(:big_hotel_1))
-		assert room_types.count > 0
+		# puts '============'
+		# puts YAML::dump(room_types)
+		# puts '============'
+		expect(room_types.count).to be > 0
 	end
 
 	scenario 'inventory handler' do
