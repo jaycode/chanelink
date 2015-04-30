@@ -15,7 +15,7 @@ Request:
       </POS>
       <RatePlans>
         <RatePlan>
-          <DateRange Start="2015-10-16" End="2015-10-16" />
+          <DateRange Start="2015-07-01" End="2015-07-03" />
           <RatePlanCandidates>
             <RatePlanCandidate RatePlanCode="1251431">
               <HotelRefs>
@@ -34,18 +34,47 @@ Response:
 <?xml version="1.0" encoding="utf-8"?>
 <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <soap:Body>
-    <OTA_HotelRatePlanRS TimeStamp="2015-04-22T12:55:56.5877658+08:00" Version="2.1" PrimaryLangID="en-us" xmlns="http://www.opentravel.org/OTA/2003/05">
+    <OTA_HotelRatePlanRS TimeStamp="2015-04-30T16:15:49.4105465+08:00" Version="2.1" PrimaryLangID="en-us" xmlns="http://www.opentravel.org/OTA/2003/05">
       <Success />
       <RatePlans HotelCode="54394">
         <RatePlan RatePlanCode="1251431" RatePlanCategory="16">
           <Rates>
-            <Rate Start="2015-10-16" End="2015-10-16" NumberOfUnits="1" Status="Open" />
+            <Rate Start="2015-07-01" End="2015-07-01" NumberOfUnits="1" Status="Open">
+              <BaseByGuestAmts>
+                <BaseByGuestAmt AmountAfterTax="50" CurrencyCode="SGD" Code="Sell" />
+              </BaseByGuestAmts>
+              <MealsIncluded Breakfast="false" NumberOfBreakfast="0" />
+            </Rate>
+            <Rate Start="2015-07-02" End="2015-07-02" NumberOfUnits="1" Status="Open">
+              <BaseByGuestAmts>
+                <BaseByGuestAmt AmountAfterTax="50" CurrencyCode="SGD" Code="Sell" />
+              </BaseByGuestAmts>
+              <MealsIncluded Breakfast="false" NumberOfBreakfast="0" />
+            </Rate>
+            <Rate Start="2015-07-03" End="2015-07-03" NumberOfUnits="1" Status="Open">
+              <BaseByGuestAmts>
+                <BaseByGuestAmt AmountAfterTax="50" CurrencyCode="SGD" Code="Sell" />
+              </BaseByGuestAmts>
+              <MealsIncluded Breakfast="false" NumberOfBreakfast="0" />
+            </Rate>
           </Rates>
           <Description Name="Superior(CNY Promo)" />
         </RatePlan>
         <RatePlan RatePlanCode="1251431" RatePlanCategory="501">
           <Rates>
-            <Rate Start="2015-10-16" End="2015-10-16" NumberOfUnits="1" Status="Open">
+            <Rate Start="2015-07-01" End="2015-07-01" NumberOfUnits="1" Status="Open">
+              <BaseByGuestAmts>
+                <BaseByGuestAmt AmountAfterTax="50" CurrencyCode="SGD" Code="Sell" />
+              </BaseByGuestAmts>
+              <MealsIncluded Breakfast="true" NumberOfBreakfast="2" />
+            </Rate>
+            <Rate Start="2015-07-02" End="2015-07-02" NumberOfUnits="1" Status="Open">
+              <BaseByGuestAmts>
+                <BaseByGuestAmt AmountAfterTax="50" CurrencyCode="SGD" Code="Sell" />
+              </BaseByGuestAmts>
+              <MealsIncluded Breakfast="true" NumberOfBreakfast="2" />
+            </Rate>
+            <Rate Start="2015-07-03" End="2015-07-03" NumberOfUnits="1" Status="Open">
               <BaseByGuestAmts>
                 <BaseByGuestAmt AmountAfterTax="50" CurrencyCode="SGD" Code="Sell" />
               </BaseByGuestAmts>

@@ -4,7 +4,7 @@ describe CtripChannel, :type => :model do
   scenario 'fetching room types - success' do
     channel = CtripChannel.first
     begin
-      room_types = channel.room_type_fetcher.retrieve(properties(:big_hotel_1))
+      room_types = channel.room_type_fetcher.retrieve(properties(:big_hotel_1), false, '2015-02-23', '2015-02-25')
     rescue Exception => e
       puts "Error: #{e.message}"
     end
