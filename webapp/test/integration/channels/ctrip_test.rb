@@ -26,12 +26,12 @@ class CtripTest < ActionDispatch::IntegrationTest
 
       sess.post '/property_channels/new_wizard_setting',
         :property_channel => {
-          :pool_id => pools(:test_big_hotel_1).id,
+          :pool_id => pools(:default_big_hotel_3).id,
           :channel_id => channels(:ctrip)
         }
       
       session_property_channel = PropertyChannel.new(sess.session[:property_channel_params])
-      assert_equal pools(:test_big_hotel_1).id, session_property_channel.pool_id
+      assert_equal pools(:default_big_hotel_3).id, session_property_channel.pool_id
 
       # Take note of the settings keys used here (in this case
       # it is :username and :password). Different channel may have

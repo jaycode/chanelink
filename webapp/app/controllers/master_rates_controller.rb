@@ -5,6 +5,7 @@ class MasterRatesController < ApplicationController
 
   # handle form submission from inventory grid - master rate
   def update
+    puts "master rates update"
     @pool = Pool.find(params[:pool_id])
     if validate_master_rates
       do_update
@@ -19,6 +20,9 @@ class MasterRatesController < ApplicationController
     current_property.room_types.each do |rt|
       if params["#{rt.id}"]
         params["#{rt.id}"].each do |date_rate|
+          puts "date_rate #{date_rate.inspect}"
+          puts "rt #{rt.inspect}"
+          puts "logs #{logs.inspect}"
           handle_amount(date_rate, rt, logs)
         end
       end

@@ -17,3 +17,19 @@ unapproved:
   pool: default_big_hotel_2
   channel: ctrip
   approved: 0
+
+# For testing master rate mappings:
+master_rate_mappings_tester_agoda:
+  property: big_hotel_1
+  pool: test_big_hotel_1_for_testing_master_rate_mapping
+  channel: agoda
+  agoda_username: marketing@plazahotelglodok.com
+  agoda_password: plaza2014*
+  agoda_currency: IDR
+  settings: '{"username": "marketing@plazahotelglodok.com", "password": "plaza2014", "currency": "IDR"}'
+  approved: 1
+master_rate_mappings_tester_ctrip:
+  property: big_hotel_1
+  pool: test_big_hotel_1_for_testing_master_rate_mapping
+  channel: ctrip
+  approved: 1

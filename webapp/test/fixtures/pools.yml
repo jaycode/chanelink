@@ -8,15 +8,20 @@ default_big_hotel_1:
   name: Default
   property: big_hotel_1
 
-# This is used in testing property channel creation.
-test_big_hotel_1:
+# Used to test master rate mapping i.e. when
+# agoda has room mapping to room, it does not show input boxes,
+# but in ctrip case which has no room mapping, it shows input boxes.
+# See inventories_controller_spec.rb.
+test_big_hotel_1_for_testing_master_rate_mapping:
   name: Test
   property: big_hotel_1
 
+# This is used to test unapproved property channel
 default_big_hotel_2:
   name: Default
   property: big_hotel_2
 
+# This is used in testing property channel creation.
 default_big_hotel_3:
   name: Default
   property: big_hotel_3

@@ -1,5 +1,6 @@
 require 'rails_helper'
-describe Admin::PropertiesController, :type => :controller do
+# NOTE: Using class name here (i.e. describe Admin::PropertyController) makes the app unable to run the view.
+describe "Admin::PropertyController", :type => :controller do
   include IntegrationTestHelper
   include Capybara::DSL
   # Somehow before :all is loaded before fixtures loaded so we cannot use that.

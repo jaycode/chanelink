@@ -1,7 +1,6 @@
 <% start_date = @inv_start  %>
 <% end_date = start_date + 13.days %>
 <% end_date = @max_end if end_date > @max_end %>
-
 <div id="setPoolInventory">
   <%= render 'pools/generic_select', :path_to_go => grid_inventories_path %>
   <%= store_previously_selected_js %>

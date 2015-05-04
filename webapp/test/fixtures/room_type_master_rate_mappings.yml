@@ -1,3 +1,6 @@
 default_big_hotel_1_pool_to_superior_room:
   pool: default_big_hotel_1
   room_type: superior
+room_type_to_channel_mapping_tester:
+  pool: test_big_hotel_1_for_testing_master_rate_mapping
+  room_type: superior

@@ -4,3 +4,15 @@ default_big_hotel_1_pool_to_superior_room_in_agoda:
   channel: agoda
   method: amount
   value: 0
+default_big_hotel_1_pool_to_superior_room_in_ctrip:
+  master_rate_mapping: default_big_hotel_1_pool_to_superior_room
+  room_type: superior
+  channel: ctrip
+  method: amount
+  value: 0
+room_type_to_channel_mapping_tester_with_agoda:
+  master_rate_mapping: room_type_to_channel_mapping_tester
+  room_type: superior
+  channel: agoda
+  method: amount
+  value: 0
