@@ -10,6 +10,9 @@ class CtripChannel < Channel
 
   CNAME = 'ctrip'
   XMLNS = 'http://www.opentravel.org/OTA/2003/05'
+  XMLNS_XSI = 'http://www.w3.org/2001/XMLSchema-instance'
+  XMLNS_XSD = 'http://www.w3.org/2001/XMLSchema'
+  SOAP_ENV = 'http://schemas.xmlsoap.org/soap/envelope/'
 
   API_VERSION = "2.2"
   PRIMARY_LANG = 'en-us'

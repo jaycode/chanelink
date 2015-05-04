@@ -22,13 +22,13 @@ class CtripChannelRateHandler < ChannelRateHandler
     logs_by_room_type = change_set.logs_organized_by_room_type_id
 
     builder = Nokogiri::XML::Builder.new do |xml|
-      xml.Envelope("xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance", "xmlns:xsd" => "http://www.w3.org/2001/XMLSchema") {
-        xml.parent.namespace = xml.parent.add_namespace_definition("SOAP-ENV", "http://schemas.xmlsoap.org/soap/envelope/")
+      xml.Envelope("xmlns:xsi" => CtripChannel::XMLNS_XSI, "xmlns:xsd" => CtripChannel::XMLNS_XSD) {
+        xml.parent.namespace = xml.parent.add_namespace_definition("SOAP-ENV", CtripChannel::SOAP_ENV)
         xml['SOAP-ENV'].Header
         xml['SOAP-ENV'].Body {
           xml.OTA_HotelRateAmountNotifRQ(:Version => CtripChannel::API_VERSION, :PrimaryLangID => CtripChannel::PRIMARY_LANG, :xmlns => CtripChannel::XMLNS) {
             CtripChannel.construct_authentication_element(xml)
-            xml.RateAmountMessages(:HotelCode => property_channel.ctrip_hotel_code) {
+            xml.RateAmountMessages(:HotelCode => property.settings(:ctrip_hotel_id)) {
               logs_by_room_type.keys.each do |rt_id|
                 next unless room_type_ids.include?(rt_id)
 

@@ -11,7 +11,6 @@ class PopulateMinStayController < ApplicationController
           channel = pc.channel
 
           RoomTypeChannelMapping.room_type_ids(property.room_type_ids).where(:channel_id => channel.id, :disabled => false).each do |rtm|
-            puts "#{property.id} #{pool.id} #{channel.id} #{rtm.room_type.id} #{rtm.room_type.name}"
             populate_min_stay_channel(rtm.room_type, channel, pool, property)
           end
           
@@ -27,7 +26,6 @@ class PopulateMinStayController < ApplicationController
   def populate_min_stay_channel(room_type, channel, pool, property)
     return if room_type.minimum_stay.blank?
 
-    puts "populate_room_type_channel #{property.id} #{pool.id} #{channel.id} #{room_type.id} #{room_type.name}"
     logs = Array.new
     loop_date = DateTime.now.in_time_zone.beginning_of_day
 

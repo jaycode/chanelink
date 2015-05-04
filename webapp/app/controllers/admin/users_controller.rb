@@ -9,7 +9,6 @@ class Admin::UsersController < Admin::AdminController
 
   # ask for password change menu
   def prompt_password
-    puts 'dsds'
     @user = current_user
   end
 
@@ -36,7 +35,7 @@ class Admin::UsersController < Admin::AdminController
       @user.skip_properties_validation = true
       if User.valid_attribute?(:password, new_password)
         @user.update_attributes(:password => new_password, :prompt_password_change => false)
-        puts @user.errors
+        # puts @user.errors
         redirect_to admin_dashboard_path
       else
         flash.now[:alert] = t("users.prompt_password.message.failure")
@@ -64,7 +63,6 @@ class Admin::UsersController < Admin::AdminController
   def create
     @user = User.new(params[:user])
     @user.skip_password_validation = true
-    puts @user.assigned_properties
 
     if @user.valid?
       @user.save

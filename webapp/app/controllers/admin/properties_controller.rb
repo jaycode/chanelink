@@ -45,7 +45,6 @@ class Admin::PropertiesController < Admin::AdminController
   # update property
   def update
     @property = Property.find(params[:id])
-    puts "updating attributes with #{params.inspect}"
     if @property.update_attributes(params[:property])
       flash[:notice] = t('properties.update.message.success')
       redirect_to admin_dashboard_path

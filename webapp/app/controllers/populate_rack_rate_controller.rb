@@ -10,14 +10,12 @@ class PopulateRackRateController < ApplicationController
           channel = pc.channel
 
           RoomTypeChannelMapping.room_type_ids(property.room_type_ids).where(:channel_id => channel.id, :disabled => false).each do |rtm|
-            puts "#{property.id} #{pool.id} #{channel.id} #{rtm.room_type.id} #{rtm.room_type.name}"
             populate_room_type_channel(rtm.room_type, channel, pool, property)
           end
           
         end
 
         RoomTypeMasterRateMapping.find_all_by_pool_id(pool.id).each do |mapping|
-          puts "#{mapping.id} #{pool.id}"
           populate_master_room(mapping, pool, property)
         end
       end
@@ -33,7 +31,6 @@ class PopulateRackRateController < ApplicationController
       # master rate channel mapping exist
       # do nothing
     else
-      puts "populate_room_type_channel #{property.id} #{pool.id} #{channel.id} #{room_type.id} #{room_type.name}"
       logs = Array.new
       loop_date = DateTime.now.in_time_zone.beginning_of_day
 
@@ -43,8 +40,6 @@ class PopulateRackRateController < ApplicationController
         existing_rate = ChannelRate.find_by_date_and_property_id_and_pool_id_and_room_type_id_and_channel_id(loop_date, property.id, pool.id, room_type.id, channel.id)
 
         if existing_rate.blank?
-
-          puts "#{room_type.id} #{loop_date}"
           rate = ChannelRate.new
           rate.date = loop_date
           rate.amount = room_type.rack_rate

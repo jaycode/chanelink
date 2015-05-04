@@ -71,7 +71,7 @@ class Admin::MembersController < Admin::AdminController
         # add new access
         @member.assigned_properties.each do |prop_id|
           prop = Property.active_only.find(prop_id)
-          puts "#{prop} #{prop.account == @member.account} #{MemberPropertyAccess.find_by_member_id_and_property_id(@member.id, prop.id).blank?}"
+          # puts "#{prop} #{prop.account == @member.account} #{MemberPropertyAccess.find_by_member_id_and_property_id(@member.id, prop.id).blank?}"
           if prop.account == @member.account and MemberPropertyAccess.find_by_member_id_and_property_id(@member.id, prop.id).blank?
             MemberPropertyAccess.create(:member_id => @member.id, :property_id => prop.id)
           end

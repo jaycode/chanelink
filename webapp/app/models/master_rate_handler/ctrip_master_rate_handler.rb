@@ -1,6 +1,6 @@
 require 'net/https'
 
-# handler to push XML to Agoda because of master rate changes
+# handler to push XML to Ctrip from master rate changes
 class CtripMasterRateHandler < MasterRateHandler
 
   def run(change_set_channel)

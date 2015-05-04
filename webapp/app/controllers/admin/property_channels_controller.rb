@@ -21,8 +21,6 @@ class Admin::PropertyChannelsController < Admin::AdminController
 
     if @property_channel.update_attributes(params[:property_channel])
 
-      puts "#{old_disabled} #{@property_channel.disabled}"
-
       # notify member about disabled status changes
       create_disabled_changed_alert if old_disabled != @property_channel.disabled
 
@@ -40,7 +38,6 @@ class Admin::PropertyChannelsController < Admin::AdminController
     old_disabled = @property_channel.disabled?
 
     if @property_channel.update_attributes(params[:property_channel])
-      puts "#{old_disabled} #{@property_channel.disabled}"
       # notify member about disabled status changes
       create_disabled_changed_alert if old_disabled != @property_channel.disabled and @property_channel.approved?
 
