@@ -22,4 +22,10 @@ describe CtripChannel, :type => :model do
     expect(error).to eq 1
   end
 
+  scenario 'updating availabilities - success' do
+  end
+
+  scenario 'updating availabilities - failed' do
+  end
+
 end
