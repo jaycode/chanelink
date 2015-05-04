@@ -15,6 +15,7 @@ class RoomTypeChannelMappingsController < ApplicationController
     session[:room_type_channel_mapping_params][:channel_id] = property_channel.channel_id
     session[:room_type_channel_mapping_params][:room_type_id] = RoomType.find(params[:room_type_id]).id
 
+
     session[:room_type_master_rate_channel_mapping_params] = {}
     
     redirect_to new_wizard_channel_room_room_type_channel_mappings_path
@@ -28,6 +29,8 @@ class RoomTypeChannelMappingsController < ApplicationController
 
   # room type mapping wizard - step 2
   def new_wizard_channel_settings
+    puts "room type channel mapping params: #{params[:room_type_channel_mapping].inspect}"
+
     init_variables_from_sessions
     set_extra_room_type_info
     
@@ -135,7 +138,7 @@ class RoomTypeChannelMappingsController < ApplicationController
 
     all_channel_room_types.each do |crt|
       if crt.id == @room_type_channel_mapping.channel_room_type_id
-        @channel_room_types.insert(0, ["#{crt.name} - #{crt.id}", crt.id])
+        @channel_room_types.insert(0, [@channel.room_type_name(crt), @channel.room_type_id(crt)])
       end
     end
   end
@@ -154,7 +157,7 @@ class RoomTypeChannelMappingsController < ApplicationController
     @channel_room_types = Array.new
     
     room_types.each do |crt|
-      @channel_room_types << ["#{crt.name} - #{crt.id}", crt.id]
+      @channel_room_types << [@channel.room_type_name(crt), @channel.room_type_id(crt)]
     end
 
     @room_types = Array.new
@@ -219,11 +222,12 @@ class RoomTypeChannelMappingsController < ApplicationController
     session[:room_type_channel_mapping_params].deep_merge!(params[:room_type_channel_mapping]) if params[:room_type_channel_mapping]
     session[:room_type_master_rate_channel_mapping_params].deep_merge!(params[:room_type_master_rate_channel_mapping]) if params[:room_type_master_rate_channel_mapping]
 
-    @room_type_channel_mapping = RoomTypeChannelMapping.new(session[:room_type_channel_mapping_params])
-    @channel = Channel.find(@room_type_channel_mapping.channel_id)
+    @channel = Channel.find(session[:room_type_channel_mapping_params][:channel_id])
+
+    @room_type_channel_mapping = RoomTypeChannelMapping.new(@channel.process_mapping_params(session[:room_type_channel_mapping_params]))
     @room_type = RoomType.find(@room_type_channel_mapping.room_type_id)
 
-    @room_type_master_rate_channel_mapping = RoomTypeMasterRateChannelMapping.new(session[:room_type_master_rate_channel_mapping_params])
+    @room_type_master_rate_channel_mapping = RoomTypeMasterRateChannelMapping.new(@channel.process_mapping_params(session[:room_type_master_rate_channel_mapping_params]))
     @room_type_master_rate_channel_mapping.channel = @channel
     @room_type_master_rate_channel_mapping.room_type = @room_type
   end
@@ -275,11 +279,13 @@ class RoomTypeChannelMappingsController < ApplicationController
       elsif @room_type_channel_mapping.channel_id == CtripChannel.first.id
         ert = CtripChannel.first.room_type_fetcher.retrieve(current_property, false)
         ert.each do |rt|
-          puts "COMPARE #{rt.id} #{rt.name}"
-          if @room_type_channel_mapping.ctrip_room_rate_plan_code == rt.id
-            @room_type_channel_mapping.ctrip_room_type_name = rt.name
-            @room_type_channel_mapping.ctrip_room_rate_plan_code = rt.id
-            @room_type_channel_mapping.ctrip_room_rate_plan_category = rt.rate_plan_category
+          if @room_type_channel_mapping.settings(:ctrip_room_rate_plan_code) == rt.id and
+            @room_type_channel_mapping.settings(:ctrip_room_rate_plan_category) == rt.rate_plan_category
+            @room_type_channel_mapping.settings = {
+              :ctrip_room_type_name => rt.name,
+              :ctrip_room_rate_plan_code => rt.id,
+              :ctrip_room_rate_plan_category => rt.rate_plan_category
+            }
             session[:room_type_channel_mapping_params].deep_merge!(@room_type_channel_mapping.attributes) unless skip_session
           end
         end

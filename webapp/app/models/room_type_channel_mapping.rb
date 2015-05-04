@@ -34,9 +34,9 @@ class RoomTypeChannelMapping < ActiveRecord::Base
   validates :gta_travel_rate_type, :presence => true, :if => :is_channel_gta_travel_validate_extra?
   validates :gta_travel_rate_margin, :presence => true, :if => :is_gta_rate_margin?
 
-  validates :ctrip_room_type_name, :presence => true, :if => :is_channel_ctrip?
-  validates :ctrip_room_rate_plan_category, :presence => true, :if => :is_channel_ctrip?
-  validates :ctrip_room_rate_plan_code, :presence => true, :if => :is_channel_ctrip?
+  # validates :ctrip_room_type_name, :presence => true, :if => :is_channel_ctrip?
+  # validates :ctrip_room_rate_plan_category, :presence => true, :if => :is_channel_ctrip?
+  # validates :ctrip_room_rate_plan_code, :presence => true, :if => :is_channel_ctrip?
 
   attr_accessor :skip_extra_validation
   attr_accessor :skip_rate_configuration

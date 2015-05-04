@@ -48,7 +48,7 @@ class CtripMasterRateHandler < MasterRateHandler
                     rate_pushed = true
 
                     xml.RateAmountMessage {
-                      xml.StatusApplicationControl(:RatePlanCategory => rtcm.ctrip_room_rate_plan_category, :RatePlanCode => rtcm.ctrip_room_rate_plan_code)
+                      xml.StatusApplicationControl(:RatePlanCategory => rtcm.settings(:ctrip_room_rate_plan_category), :RatePlanCode => rtcm.settings(:ctrip_room_rate_plan_code))
                       xml.Rates {
                         xml.Rate(:End => date_to_key(master_rate.date), :Start => date_to_key(master_rate.date)) {
                           xml.BaseByGuestAmts {
@@ -75,22 +75,22 @@ class CtripMasterRateHandler < MasterRateHandler
   end
 
   def create_job(change_set)
-   # all room types id in this change set
-   room_type_ids = change_set.room_type_ids
-   pool = change_set.pool
+    # all room types id in this change set
+    room_type_ids = change_set.room_type_ids
+    pool = change_set.pool
 
-   room_type_ids.each do |rt_id|
-     # check channel mapping for room type exist
-     # and check at least one master rate mapping exist
-     # channel_mapping = RoomTypeChannelMapping.find_by_room_type_id_and_channel_id(rt_id, self.channel.id)
-     master_rate_mapping = RoomTypeMasterRateChannelMapping.pool_id(pool.id).master_room_type_id(rt_id).find_by_channel_id(self.channel.id)
+    room_type_ids.each do |rt_id|
+      # check channel mapping for room type exist
+      # and check at least one master rate mapping exist
+      # channel_mapping = RoomTypeChannelMapping.find_by_room_type_id_and_channel_id(rt_id, self.channel.id)
+      master_rate_mapping = RoomTypeMasterRateChannelMapping.pool_id(pool.id).master_room_type_id(rt_id).find_by_channel_id(self.channel.id)
 
-     unless master_rate_mapping.blank?
-       cs = MasterRateChangeSetChannel.create(:change_set_id => change_set.id, :channel_id => self.channel.id)
-       cs.delay.run
-       return
-     end
-   end
+      unless master_rate_mapping.blank?
+        cs = MasterRateChangeSetChannel.create(:change_set_id => change_set.id, :channel_id => self.channel.id)
+        cs.delay.run
+        return
+      end
+    end
    
   end
 

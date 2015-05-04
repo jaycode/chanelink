@@ -253,3 +253,29 @@ When you find something you want to add later, write `# Todo` comment on it. Rub
 3. Connect to OTA through app by writing [Channel]RoomTypeFetcher class.
 Test out code `CtripChannel.first.room_type_fetcher.retrieve(current_property, false)` with Unit Testing.
 4. Setup endpoints in `app_config.yml`.
+
+For prices to be shown in inventories page, following tables must be filled:
+- properties
+- pools
+- room_types
+- room_type_master_rate_mappings - Needed so master rate inputs can be edited.
+  Todo: maybe make it so master rate inputs can be edited without having to create an
+        entry in this table?
+- room_type_master_rate_channel_mappings - children of room_type_master_rate_mappings.
+  Todo: room_type_id seems redundant here.
+
+With above tables, prices and availabilities for rooms should already be shown,
+and now we link them to channels by filling in following tables:
+- channels
+- room_type_channel_mappings - In here we include room related data from OTAs.
+- property_channels
+
+Room linked with another room, i.e. similar Superior rooms, but one with breakfast,
+can be added by adding data to this table:
+- room_type_inventory_links 
+
+Data is entered at table inventories.
+
+**Sending Rates Data to OTA**
+When saving rates, data is sent to OTA via [master or channel]_rate_handler. See
+`master_rates_controller.rb`, the part where the code shows `MasterRateChangeSet.create_job(logs, @pool)`.

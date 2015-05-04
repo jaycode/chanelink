@@ -17,6 +17,11 @@ class CtripChannel < Channel
   API_VERSION = "2.2"
   PRIMARY_LANG = 'en-us'
 
+  CATEGORY_MAPPING = {
+    '501' => 'Prepay',
+    '16' => 'Pay at hotel'
+  }
+
   # These will be passed to Property's settings. The reason we put them here is
   # so it is easier if later the OTA should decide to make a setting dynamic, e.g.
   # what if Ctrip company code can be set differently per each user?
@@ -33,6 +38,28 @@ class CtripChannel < Channel
       # 10 is for individual hotel (see Ctrip Integration API Specification V2.2.pdf)
       :ctrip_user_category => 10
     }
+  end
+
+  def room_type_id(channel_room_type)
+    "#{channel_room_type.id}:#{channel_room_type.rate_plan_category}"
+  end
+
+  def room_type_name(channel_room_type)
+    pay_type = CtripChannel::CATEGORY_MAPPING[channel_room_type.rate_plan_category]
+    "#{channel_room_type.name.sub('(pay at hotel)', '').sub('pre-pay', '')} (#{pay_type}) - #{channel_room_type.id}"
+  end
+
+  def process_mapping_params(mapping_params)
+    mapping_params = mapping_params.with_indifferent_access
+    if (mapping_params[:ctrip_room_rate_plan_code])
+      values = mapping_params[:ctrip_room_rate_plan_code].split(':')
+      mapping_params.delete(:ctrip_room_rate_plan_code)
+      mapping_params[:settings] = {
+        :ctrip_room_rate_plan_code => values[0],
+        :ctrip_room_rate_plan_category => values[1]
+      }
+    end
+    mapping_params
   end
 
   def cname

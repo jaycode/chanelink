@@ -1,4 +1,4 @@
 <p>
   <label><%= t('room_type_channel_mappings.new.label.channel_room_label', :channel => @channel.name) %></label>
-  <%= @room_type_channel_mapping.ctrip_room_type_name %>
+  <%= @room_type_channel_mapping.settings(:ctrip_room_type_name) %>
 </p>

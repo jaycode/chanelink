@@ -259,9 +259,11 @@ class Admin::RoomTypeChannelMappingsController < Admin::AdminController
         ert = CtripChannel.first.room_type_fetcher.retrieve(current_property, false)
         ert.each do |rt|
           if @room_type_channel_mapping.settings(:ctrip_rate_plan_code) == rt.rate_plan_code and @room_type_channel_mapping.settings(:ctrip_rate_plan_category) == rt.rate_plan_category
-            @room_type_channel_mapping.ctrip_room_type_name = rt.name
-            @room_type_channel_mapping.ctrip_rate_plan_code = rt.rate_plan_code
-            @room_type_channel_mapping.ctrip_rate_plan_category = rt.rate_plan_category
+            @room_type_channel_mapping.settings = {
+              :ctrip_room_type_name => rt.name,
+              :ctrip_rate_plan_code => rt.rate_plan_code
+              :ctrip_rate_plan_category => rt.rate_plan_category
+            }
             session[:room_type_channel_mapping_params].deep_merge!(@room_type_channel_mapping.attributes) unless skip_session
           end
         end

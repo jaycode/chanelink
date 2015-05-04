@@ -8,6 +8,25 @@ class Channel < ActiveRecord::Base
   def default_settings
   end
 
+  # Room type id used when mapping Channelink room types to OTA's.
+  # Override this in child classes when needed.
+  # Reference from channel_room_type can be seen from room_type_xml classes
+  # e.g. for ctrip in class CtripRoomTypeXml.
+  def room_type_id(channel_room_type)
+    channel_room_type.id
+  end
+
+  # Same as above, but used for name.
+  def room_type_name(channel_room_type)
+    "#{channel_room_type.name} - #{channel_room_type.id}"
+  end
+
+  # Proces mapping params before being used as parameter in
+  # RoomTypeChannelMapping.new.
+  def process_mapping_params(mapping_params)
+    mapping_params
+  end
+
   # Get all channels.
   # self.descendants is already used in ActiveRecord::Base, and using that
   # would break [something]Channel.first
