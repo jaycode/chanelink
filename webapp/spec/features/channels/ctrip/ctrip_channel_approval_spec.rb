@@ -1,16 +1,16 @@
-require 'rails_helpers'
+require 'rails_helper'
 
-class CtripChannelApprovalTest < ActionDispatch::IntegrationTest
-  include IntegrationTestHelper::WithCapybara
+describe 'Ctrip Channel Approval Spec' do
+  include IntegrationTestHelper
   include Capybara::DSL
-  setup do
+  before(:each) do
     user = users(:super_admin)
     login_backend user.email, 'testpass'
     select_property_backend properties(:big_hotel_2).id
   end
 
   # Todo: Finish this method.
-  test "Approving a channel" do
+  scenario "Approving a channel" do
     property_channel = property_channels(:unapproved)
     visit("/backoffic3/property_channels/#{property_channel.id}/approve")
     assert page.has_content?(I18n.t('admin.properties.approve.message.success'))

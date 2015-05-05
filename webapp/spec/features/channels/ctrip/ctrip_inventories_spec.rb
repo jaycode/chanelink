@@ -16,6 +16,7 @@
       #----------------------------------
       @pool_id = pools(:default_big_hotel_1).id
       @channel_id = channels(:ctrip).id
+      @channel_code = 'ctrip'
       #----------------------------------
     end
     describe 'update rates' do
@@ -34,13 +35,16 @@
         14.times do |i|
             find(:css, "#master_rates-form [name=\"[#{room_type.id}][#{(today + i).to_s}][amount]\"]").set(300000)
         end
-        save_and_open_page
+        
         click_button "master_rates-save"
 
+        save_and_open_page
         # The next page should have all associated channel room prices changed.
-        14.times do |i|
-          price_cell = find(:css, "#channel_rates-form-#{@channel_id} .dateTableRow .smallColumn:nth-child(#{i+2})")
-          expect(price_cell.native.text.strip.to_f).to eq(300000.0)
+        within "##{@channel_code}_room_type-#{room_type.id}" do
+          14.times do |i|
+            price_cell = find(:css, ".smallColumn:nth-child(#{i+2})")
+            expect(price_cell.native.text.strip.to_f).to eq(300000.0)
+          end
         end
 
         # From here xml is being passed to delayed job. We can see if it is properly entered here, but to

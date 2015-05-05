@@ -77,5 +77,5 @@ describe 'Ctrip Room Type Channel Mapping Spec', :type => :feature do
   #     expect(page).to have_content('Room type has already been taken')
   #   end
 
-  end
+  # end
 end
