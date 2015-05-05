@@ -7,7 +7,3 @@ superior_ctrip_room_a:
   room_type: superior
   channel: ctrip
   settings: '{"ctrip_room_type_name": "Superior(CNY Promo)", "ctrip_room_rate_plan_category": "Prepay", "ctrip_room_rate_plan_code": "1251431"}'
-superior_ctrip_room_b:
-  room_type: superior
-  channel: ctrip
-  settings: '{"ctrip_room_type_name": "Superior(pay at hotel)", "ctrip_room_rate_plan_category": "Pay at hotel", "ctrip_room_rate_plan_code": "280236"}'

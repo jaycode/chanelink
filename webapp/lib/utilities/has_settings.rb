@@ -27,9 +27,16 @@ module HasSettings
   # test case.
   def settings=(params)
     # HashWithIndifferentAccess is created when settings field was made from update_attributes
+    if params.class == String
+      begin
+        params = JSON.parse(params)
+      rescue Exception => e
+        # do nothing
+      end
+    end
     if params.class == Hash or params.class == ActiveSupport::HashWithIndifferentAccess # this also covers not nil.
-      settings_json = settings.merge(params)
-      write_attribute(:settings, ActiveSupport::JSON.encode(settings_json))
+      settings_hash = settings.merge(params)
+      write_attribute(:settings, ActiveSupport::JSON.encode(settings_hash))
     end
   end
 
@@ -42,6 +49,13 @@ module HasSettings
       settings_json = {}
     else
       settings_json = settings
+    end
+    if params.class == String
+      begin
+        params = JSON.parse(params)
+      rescue Exception => e
+        # do nothing
+      end
     end
     if params.class == Hash or params.class == ActiveSupport::HashWithIndifferentAccess
       params.each do |k, v|

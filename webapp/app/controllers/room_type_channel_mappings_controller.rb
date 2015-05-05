@@ -29,8 +29,6 @@ class RoomTypeChannelMappingsController < ApplicationController
 
   # room type mapping wizard - step 2
   def new_wizard_channel_settings
-    puts "room type channel mapping params: #{params[:room_type_channel_mapping].inspect}"
-
     init_variables_from_sessions
     set_extra_room_type_info
     
@@ -88,7 +86,7 @@ class RoomTypeChannelMappingsController < ApplicationController
   # room type mapping wizard - last step to store the mapping
   def create
     init_variables_from_sessions
-    
+
     if params[:back_button]
       redirect_to new_wizard_rate_room_type_channel_mappings_path
     else
@@ -187,7 +185,6 @@ class RoomTypeChannelMappingsController < ApplicationController
       # if mapping enabled then sync data
       if previously_disabled and !@room_type_channel_mapping.disabled?
         @room_type_channel_mapping.sync_all_data
-        puts 'enabled'
       end
 
       flash[:notice] = t('room_type_channel_mappings.update.message.success')
@@ -282,7 +279,7 @@ class RoomTypeChannelMappingsController < ApplicationController
           if @room_type_channel_mapping.settings(:ctrip_room_rate_plan_code) == rt.id and
             @room_type_channel_mapping.settings(:ctrip_room_rate_plan_category) == rt.rate_plan_category
             @room_type_channel_mapping.settings = {
-              :ctrip_room_type_name => rt.name,
+              :ctrip_room_type_name => CtripChannel.first.room_type_name(rt),
               :ctrip_room_rate_plan_code => rt.id,
               :ctrip_room_rate_plan_category => rt.rate_plan_category
             }
@@ -310,7 +307,6 @@ class RoomTypeChannelMappingsController < ApplicationController
       # do nothing
     else
       rate_to_use = @room_type_channel_mapping.is_configuration_new_rate? ? @room_type_channel_mapping.new_rate : @room_type_channel_mapping.room_type.basic_rack_rate
-      puts rate_to_use
       RateUtils.delay.populate_rate_until_day_limit(rate_to_use, @room_type_channel_mapping.room_type, @room_type_channel_mapping.channel, PropertyChannel.find_by_channel_id(@channel.id).pool, current_property)
     end
   end

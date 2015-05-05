@@ -28,7 +28,6 @@ class InventoriesController < ApplicationController
     current_property.room_types.each do |rt|
       if params["#{rt.id}"]
         params["#{rt.id}"].each do |date_inv|
-          puts date_inv.inspect
           total_rooms = date_inv[1]
           existing_inv = Inventory.find_by_date_and_property_id_and_pool_id_and_room_type_id(date_inv[0], current_property.id, params[:pool_id], rt.id)
 

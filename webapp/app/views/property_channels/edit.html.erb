@@ -87,7 +87,7 @@
       <% end %>
       <% if !channel_not_mapped.blank? %>
         <% channel_not_mapped.each do |crt| %>
-          <p>&nbsp;&nbsp;&nbsp;&nbsp;<%= "#{crt.name} - #{crt.id}" %> </p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;<%= @property_channel.channel.room_type_name(crt) %> </p>
         <% end %>
       <% else %>
         <p>

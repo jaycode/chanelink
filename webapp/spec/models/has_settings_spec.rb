@@ -14,15 +14,18 @@ describe 'HasSettings', :type => :model do
     property_channel.skip_channel_specific = true
     property_channel.skip_rate_conversion_multiplier = true
 
+    # Various ways you can set settings up.
     property_channel.settings = {:something => {:is => 'nothing'}}
     property_channel.settings = {:something_else => 'none'}
     property_channel.settings = nil
     property_channel.settings = ""
+    property_channel.settings = {:json_value => true}.to_json
     property_channel.save
 
     saved_property_channel = PropertyChannel.find_by_id(property_channel.id)
     assert_equal 'nothing', saved_property_channel.settings(:something, :is)
     assert_equal 'none', saved_property_channel.settings(:something_else)
+    assert_equal true, saved_property_channel.settings(:json_value)
 
     saved_property_channel.destroy_settings
     # puts 'settings is #{saved_property_channel.settings().inspect}'

@@ -243,9 +243,7 @@ module InventoriesHelper
     if flash[channel_key] and flash[channel_key][room_type.id.to_s]
       amount = flash[channel_key][room_type.id.to_s][DateUtils.date_to_key(date)]['amount']
     else
-      puts "#{date} #{current_property.id} #{pool_id} #{room_type.id} #{channel.id}"
       rate = ChannelRate.find_by_date_and_property_id_and_pool_id_and_room_type_id_and_channel_id(date, current_property.id, pool_id, room_type.id, channel.id)
-      puts rate
       amount = rate.amount unless rate.blank?
     end
     amount

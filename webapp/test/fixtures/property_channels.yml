@@ -19,6 +19,7 @@ unapproved:
   approved: 0
 
 # For testing master rate mappings:
+# (both of these do not have room_type_channel_mapping yet.)
 master_rate_mappings_tester_agoda:
   property: big_hotel_1
   pool: test_big_hotel_1_for_testing_master_rate_mapping

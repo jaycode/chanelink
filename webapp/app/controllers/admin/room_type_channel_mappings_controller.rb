@@ -175,7 +175,6 @@ class Admin::RoomTypeChannelMappingsController < Admin::AdminController
 
       if old_disabled != @room_type_channel_mapping.disabled and !@room_type_channel_mapping.disabled
         @room_type_channel_mapping.sync_all_data
-        puts 'enabled'
       end
 
       flash[:notice] = t('room_type_channel_mappings.update.message.success')
@@ -279,7 +278,6 @@ class Admin::RoomTypeChannelMappingsController < Admin::AdminController
 
     else
       rate_to_use = @room_type_channel_mapping.is_configuration_new_rate? ? @room_type_channel_mapping.new_rate : @room_type_channel_mapping.room_type.basic_rack_rate
-      puts rate_to_use
       RateUtils.delay.populate_rate_until_day_limit(rate_to_use, @room_type_channel_mapping.room_type, @room_type_channel_mapping.channel, PropertyChannel.find_by_channel_id(@channel.id).pool, current_admin_property)
     end
   end
