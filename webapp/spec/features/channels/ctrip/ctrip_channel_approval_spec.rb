@@ -1,6 +1,4 @@
-require 'test_helper'
-require 'integration/integration_test_helper'
-require 'capybara/rails'
+require 'rails_helpers'
 
 class CtripChannelApprovalTest < ActionDispatch::IntegrationTest
   include IntegrationTestHelper::WithCapybara
