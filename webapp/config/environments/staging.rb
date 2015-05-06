@@ -62,13 +62,24 @@ Chanelinkweb::Application.configure do
   ActionMailer::Base.delivery_method = :smtp
   ActionMailer::Base.smtp_settings = {
     :address => "smtp.zoho.com",
-    :enable_starttls_auto => true,
-    :port => 587,
+    :port => 465,
+    :user_name => "application@chanelink.com",
+    :password => 'Chan3l1nkApp'
     :authentication => :login,
     :ssl => true,
     :tls => true,
-    :user_name => "application@chanelink.com",
-    :password => 'Chan3l1nkApp'
+    :enable_starttls_auto => true,
   }
+
+  # ActionMailer::Base.smtp_settings = {
+  #   :address => "smtp.zoho.com",
+  #   :enable_starttls_auto => true,
+  #   :port => 587,
+  #   :authentication => :login,
+  #   :ssl => true,
+  #   :tls => true,
+  #   :user_name => "application@chanelink.com",
+  #   :password => 'Chan3l1nkApp'
+  # }
 end
 
