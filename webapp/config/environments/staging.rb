@@ -64,11 +64,11 @@ Chanelinkweb::Application.configure do
     :address => "smtp.zoho.com",
     :port => 465,
     :user_name => "application@chanelink.com",
-    :password => 'Chan3l1nkApp'
+    :password => 'Chan3l1nkApp',
     :authentication => :login,
     :ssl => true,
     :tls => true,
-    :enable_starttls_auto => true,
+    :enable_starttls_auto => true
   }
 
   # ActionMailer::Base.smtp_settings = {
