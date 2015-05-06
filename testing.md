@@ -125,7 +125,7 @@ We do not run seeds.rb in testing. Instead, we add required data in `fixtures/*.
 
 ```
 member = Member.find_by_email('email@example.com')
-Notifier.email_member_password('testpass', member)
+Notifier.email_member_password('testpass', member).deliver
 ```
 
 ## References

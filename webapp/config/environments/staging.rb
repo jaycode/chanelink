@@ -62,7 +62,7 @@ Chanelinkweb::Application.configure do
   ActionMailer::Base.delivery_method = :smtp
   ActionMailer::Base.smtp_settings = {
     :address => "smtp.zoho.com",
-    :port => 465,
+    :port => 587,
     :user_name => "application@chanelink.com",
     :password => 'Chan3l1nkApp',
     :authentication => :login,
