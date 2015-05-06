@@ -1,6 +1,7 @@
 <% page_title t('login.label.title') %>
 <div id="login">
   <div class="col6">
+    <div><%= APP_CONFIG['noreply_email'] %></div>
     <h2><%= raw t('login.label.heading') %></h2>
     <%= form_tag session_path do %>
       <p>
