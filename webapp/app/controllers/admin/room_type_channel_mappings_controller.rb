@@ -260,7 +260,7 @@ class Admin::RoomTypeChannelMappingsController < Admin::AdminController
           if @room_type_channel_mapping.settings(:ctrip_rate_plan_code) == rt.rate_plan_code and @room_type_channel_mapping.settings(:ctrip_rate_plan_category) == rt.rate_plan_category
             @room_type_channel_mapping.settings = {
               :ctrip_room_type_name => rt.name,
-              :ctrip_rate_plan_code => rt.rate_plan_code
+              :ctrip_rate_plan_code => rt.rate_plan_code,
               :ctrip_rate_plan_category => rt.rate_plan_category
             }
             session[:room_type_channel_mapping_params].deep_merge!(@room_type_channel_mapping.attributes) unless skip_session
