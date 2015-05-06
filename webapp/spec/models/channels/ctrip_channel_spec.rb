@@ -139,6 +139,7 @@ describe CtripChannel, :type => :model do
       @channel.master_rate_handler.create_job(change_set)
 
       # But we don't want to use delayed jobs, so...
+      @channel.master_rate_handler.
 
     end
 

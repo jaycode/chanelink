@@ -79,6 +79,13 @@ class CtripMasterRateHandler < MasterRateHandler
   end
 
   def create_job(change_set)
+    update_rates_from_change_set(change_set) do
+      
+    end
+  end
+
+
+  def update_rates_from_change_set(change_set)
     # all room types id in this change set
     room_type_ids = change_set.room_type_ids
     pool = change_set.pool
@@ -95,11 +102,9 @@ class CtripMasterRateHandler < MasterRateHandler
         return
       end
     end
-
-   
   end
 
-  def stuff(change_set)
+  def update_rates()
   end
 
   def channel

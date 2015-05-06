@@ -49,13 +49,26 @@ Chanelinkweb::Application.configure do
   config.active_support.deprecation = :notify
 
   # Gmail SMTP server setup
+  # ActionMailer::Base.smtp_settings = {
+  #   :address => "smtp.sendgrid.net",
+  #   :enable_starttls_auto => true,
+  #   :port => 587,
+  #   :authentication => :plain,
+  #   :user_name => "chanelink",
+  #   :password => 'chanel1nk'
+  # }
+
+  # ZOHO SMTP server setup
+  ActionMailer::Base.delivery_method = :smtp
   ActionMailer::Base.smtp_settings = {
-    :address => "smtp.sendgrid.net",
+    :address => "smtp.zoho.com",
     :enable_starttls_auto => true,
     :port => 587,
-    :authentication => :plain,
-    :user_name => "chanelink",
-    :password => 'chanel1nk'
+    :authentication => :login,
+    :ssl => true,
+    :tls => true,
+    :user_name => "application@chanelink.com",
+    :password => 'Chan3l1nkApp'
   }
 end
 
