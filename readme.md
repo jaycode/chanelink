@@ -83,7 +83,11 @@ Feel free to update this document as you found new things worth documenting.
     bundle install && bundle exec rake db:migrate && bundle exec rake db:seed
 
     # Run delayed jobs
-    ruby script/delayed_job start
+    chmod 655 script/delayed_job
+    script/delayed_job start
+
+    # OR for different environment:
+    # RAILS_ENV=production script/delayed_job start
     ```
 
     Or in Production:
@@ -221,6 +225,24 @@ If anything goes wrong, consult the log files in /var/log. The following log fil
 - /var/log/nginx/error.log
 - /var/log/syslog
 - Your app's log file in /home/app.
+
+### Delayed Jobs
+Delayed jobs are used to move app-related tasks to background process. We need this in this project to work with
+emails and xml passing to OTAs.
+
+Before running delayed job script, make sure to `chmod 655 script/delayed_job`.
+
+Some commands:
+
+```
+# To check if delayed job is running:
+script/delayed_job status
+
+# To destroy delayed job:
+script/delayed_job stop
+```
+
+Additionally, you can check the database in table `delayed_jobs` for queued jobs.
 
 ## Pushing to production
 
