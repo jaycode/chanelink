@@ -1,7 +1,7 @@
 # send email for general use
 class Notifier < ActionMailer::Base
   
-  default :from => "Chanelink <#{APP_CONFIG[:noreply_email]}>"
+  default :from => "#{APP_CONFIG[:noreply_email]}"
 
   def email_member_password(password, member)
     @password = password

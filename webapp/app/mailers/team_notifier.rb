@@ -1,7 +1,7 @@
 # send email to chanelink team
 class TeamNotifier < ActionMailer::Base
   
-  default :from => "Chanelink <#{APP_CONFIG[:noreply_email]}>"
+  default :from => "#{APP_CONFIG[:noreply_email]}"
 
   def email_failed_xml_push(change_set_channel_log)
     @change_set_channel_log = change_set_channel_log
