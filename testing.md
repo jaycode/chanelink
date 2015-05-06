@@ -121,11 +121,6 @@ cookies = Capybara.current_session.driver.request.cookies
 
 We do not run seeds.rb in testing. Instead, we add required data in `fixtures/*.yml` files.
 
-## Testing emails from console
-
-```
-Notifier.email_member_password('testpass', Member.find_by_email('email@example.com')).deliver
-```
 
 ## References
 

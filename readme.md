@@ -142,6 +142,24 @@ its own page:
 
 [READ THIS PAGE TO LEARN ABOUT TESTING CHANELINK APP](https://github.com/jaycode/chanelink/blob/master/testing.md)
 
+### Testing Emails
+
+Testing if app's emailing feature is working can be done by:
+
+**1. Running rails console app.**
+
+```
+bundle exec rails console
+
+# for staging:
+bundle exec rails console staging
+```
+
+**2. Then send a test message from that console.**
+```
+Notifier.email_member_password('testpass', Member.find_by_email('email@example.com')).deliver
+```
+
 ### Routing
 
 All routes must be defined at `config/routes.rb`.

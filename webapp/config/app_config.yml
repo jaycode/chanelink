@@ -1,5 +1,6 @@
 development:
-  noreply_email: 'no-reply@chanelink.com'
+  noreply_email: 'application@chanelink.com'
+#  noreply_email: 'no-reply@chanelink.com'
   agoda_endpoint: 'http://sandbox.xml-ycs.agoda.com/xmlservice.aspx'
   expedia_ar_endpoint: 'https://simulator.expediaquickconnect.com/connect/ar'
   expedia_br_endpoint: 'https://simulator.expediaquickconnect.com/connect/br'
@@ -9,7 +10,8 @@ development:
   gta_travel_qualifier: 'JNBPAL2'
   gta_travel_username: 'CHANELINK'
   gta_travel_password: 'LINK14'
-  support_email: 'support-dev@chanelink.com'
+  # support_email: 'support-dev@chanelink.com'
+  support_email: 'application@chanelink.com'
 
   # Always make this part similar to urls listed in /channel_api_tests directory.
   # Todo: Unsure if this should be put here, or define them within channel classes,
@@ -40,15 +42,17 @@ staging:
   orbitz_other: 'https://ws.owweasyconnect.com/xml/service'
 
 production:
-  noreply_email: 'no-reply@chanelink.com'
+  # noreply_email: 'no-reply@chanelink.com'
+  noreply_email: 'application@chanelink.com'
   agoda_endpoint: 'https://xml-ycs.agoda.com/xmlservice.aspx'
   expedia_ar_endpoint: 'https://ws.expediaquickconnect.com/connect/ar'
   expedia_br_endpoint: 'https://ws.expediaquickconnect.com/connect/br'
   expedia_bc_endpoint: 'https://ws.expediaquickconnect.com/connect/bc'
   expedia_parr_endpoint: 'https://ws.expediaquickconnect.com/connect/parr'
   gta_travel_endpoint: 'https://hotels.gta-travel.com'
-  support_email: 'support@chanelink.com'
-
+  # support_email: 'support@chanelink.com'
+  support_email: 'application@chanelink.com'
+  
   ctrip_rates_get_endpoint: 'https://vendor.ctrip.com/Hotel/OTAReceive/HotelRatePlan.asmx'
   ctrip_inventories_update_endpoint: 'http://vendor.ctrip.com/Hotel/OTAReceive/HotelAvailNotif.asmx'
 
@@ -66,7 +70,7 @@ staging2:
   gta_travel_qualifier: 'JNBPAL2'
   gta_travel_username: 'CHANELINK'
   gta_travel_password: 'LINK14'
-  support_email: 'support-dev@chanelink.com'
+  support_email: 'application@chanelink.com'
 
   ctrip_rates_get_endpoint: 'http://58.221.127.196:8090/Hotel/OTAReceive/HotelRatePlan.asmx'
   ctrip_inventories_update_endpoint: 'http://58.221.127.196:8090/Hotel/OTAReceive/HotelAvailNotif.asmx'
@@ -85,7 +89,7 @@ test:
   gta_travel_qualifier: 'JNBPAL2'
   gta_travel_username: 'CHANELINK'
   gta_travel_password: 'LINK14'
-  support_email: 'support-dev@chanelink.com'
+  support_email: 'application@chanelink.com'
 
   ctrip_rates_get_endpoint: 'http://58.221.127.196:8090/Hotel/OTAReceive/HotelRatePlan.asmx'
   ctrip_inventories_update_endpoint: 'http://58.221.127.196:8090/Hotel/OTAReceive/HotelAvailNotif.asmx'
