@@ -3,6 +3,10 @@ require 'net/https'
 # handler to push XML to Ctrip from master rate changes
 class CtripMasterRateHandler < MasterRateHandler
 
+  # Better run method with less dependency to other components
+  def run(property_id, pool_id, new_rate, start_date, end_date)
+  end
+
   def run(change_set_channel)
     change_set = change_set_channel.change_set
 
@@ -91,7 +95,11 @@ class CtripMasterRateHandler < MasterRateHandler
         return
       end
     end
+
    
+  end
+
+  def stuff(change_set)
   end
 
   def channel

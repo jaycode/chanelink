@@ -4,7 +4,44 @@ require 'net/https'
 class CtripRoomTypeFetcher < RoomTypeFetcher
 
   def retrieve(property, exclude_mapped_room = false, start_date = '', end_date = '')
+    room_types = Array.new
+    retrieve_xml(property, exclude_mapped_room = false, start_date = '', end_date = '') do |xml_doc|
+      ctrip_room_types        = xml_doc.xpath('//RatePlan')
+      ctrip_room_types.each do |rt|
 
+        temp_rates            = Array.new
+        ctrip_room_type_rates = rt.xpath('Rates/Rate')
+
+        if ctrip_room_type_rates.count > 0
+          ctrip_room_type_rates.each do |rate|
+
+            temp_base_by_guest_amts = Array.new
+            base_by_guest_amts      = rate.xpath('BaseByGuestAmts/BaseByGuestAmt')
+
+            if base_by_guest_amts.count > 0
+              base_by_guest_amts.each do |base_by_guest_amt|
+                temp_base_by_guest_amts << CtripRoomTypeXmlRateAmt.new(base_by_guest_amt['AmountAfterTax'], base_by_guest_amt['CurrencyCode'], base_by_guest_amt['Code'])
+              end
+            end #end base_by_guest_amts.count
+
+            temp_rates << CtripRoomTypeXmlRate.new(rate['Start'], rate['End'], rate['NumberOfUnits'], rate['Status'], temp_base_by_guest_amts)
+          end
+        end #end ctrip_room_type_rates.count
+
+        rt_model = CtripRoomTypeXml.new(rt['RatePlanCode'], rt.xpath('./Description').first['Name'], rt['RatePlanCategory'], temp_rates)
+        if exclude_mapped_room
+          room_types << rt_model if RoomTypeChannelMapping.room_type_ids(property.room_type_ids).where(:ctrip_room_rate_plan_code => rt_model.id, :channel_id => CtripChannel.first.id).blank?
+        else
+          room_types << rt_model
+        end
+      end #end each ctrip_room_types
+    end
+
+    room_types
+  end
+
+  # Retrieve but in xml format
+  def retrieve_xml(property, exclude_mapped_room = false, start_date = '', end_date = '', &block)
     if start_date.empty?
       start_date  = DateTime.now.to_date.strftime('%Y-%m-%d')
     end
@@ -52,37 +89,7 @@ class CtripRoomTypeFetcher < RoomTypeFetcher
     success = xml_doc.xpath("//Success")
 
     if success.count > 0
-
-      ctrip_room_types        = xml_doc.xpath('//RatePlan')
-      ctrip_room_types.each do |rt|
-
-        temp_rates            = Array.new
-        ctrip_room_type_rates = rt.xpath('Rates/Rate')
-
-        if ctrip_room_type_rates.count > 0
-          ctrip_room_type_rates.each do |rate|
-
-            temp_base_by_guest_amts = Array.new
-            base_by_guest_amts      = rate.xpath('BaseByGuestAmts/BaseByGuestAmt')
-
-            if base_by_guest_amts.count > 0
-              base_by_guest_amts.each do |base_by_guest_amt|
-                temp_base_by_guest_amts << CtripRoomTypeXmlRateAmt.new(base_by_guest_amt['AmountAfterTax'], base_by_guest_amt['CurrencyCode'], base_by_guest_amt['Code'])
-              end
-            end #end base_by_guest_amts.count
-
-            temp_rates << CtripRoomTypeXmlRate.new(rate['Start'], rate['End'], rate['NumberOfUnits'], rate['Status'], temp_base_by_guest_amts)
-          end
-        end #end ctrip_room_type_rates.count
-
-        rt_model = CtripRoomTypeXml.new(rt['RatePlanCode'], rt.xpath('./Description').first['Name'], rt['RatePlanCategory'], temp_rates)
-        if exclude_mapped_room
-          room_types << rt_model if RoomTypeChannelMapping.room_type_ids(property.room_type_ids).where(:ctrip_room_rate_plan_code => rt_model.id, :channel_id => CtripChannel.first.id).blank?
-        else
-          room_types << rt_model
-        end
-      end #end each ctrip_room_types
-
+      block.call xml_doc
     else
 
       api_logger = Logger.new("#{Rails.root}/log/api_errors.log")
@@ -104,8 +111,6 @@ xml retrieved:\n#{xml_doc.to_xhtml(indent: 3)}")
       })
 
     end
-
-    room_types
   end
 
 end

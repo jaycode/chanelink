@@ -1,5 +1,6 @@
 # module to handle rates change
 # old module, currently not used
+# Todo: Perhaps later work on this to allow rates update on single property channel.
 class RatesController < ApplicationController
 
   def update

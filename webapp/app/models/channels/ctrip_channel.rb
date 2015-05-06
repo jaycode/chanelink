@@ -114,15 +114,15 @@ class CtripChannel < Channel
     CtripSuccessResponseChecker.instance
   end
 
-  def self.post_xml_change_set_channel(request_xml, change_set_channel, type)
-    res = post_xml(request_xml, type)
+  def self.post_xml_change_set_channel(request_xml, change_set_channel, uri)
+    res = post_xml(request_xml, uri)
     ChangeSetChannelLog.create(:change_set_channel_id => change_set_channel.id, :request_xml => request_xml, :response_xml => res)
     res
   end
 
   # helper class to post xml
-  def self.post_xml(request_xml, type)
-    uri = URI.parse(APP_CONFIG[:ctrip_rates_get_endpoint])
+  def self.post_xml(request_xml, uri)
+    uri = URI.parse(uri)
     https = Net::HTTP.new(uri.host,uri.port)
     https.use_ssl = false
 

@@ -58,7 +58,7 @@ class CtripChannelRateHandler < ChannelRateHandler
     end
 
     request_xml = builder.to_xml
-    CtripChannel.post_xml_change_set_channel(request_xml, change_set_channel, CtripChannel::RATE_AMOUNT_NOTIF)
+    CtripChannel.post_xml_change_set_channel(request_xml, change_set_channel, APP_CONFIG[:ctrip_rates_update_endpoint])
 
   end
 

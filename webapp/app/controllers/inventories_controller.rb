@@ -164,7 +164,7 @@ class InventoriesController < ApplicationController
       # set the date in ctrip
       @ctrip_rates_start = Date.strptime(params[:ctrip_rates_start]) unless params[:ctrip_rates_start].blank?
       @ctrip_rates_start = today if @ctrip_rates_start < today
-      @ctrip_rates_start = @max_end if @orbitz_rates_start > @max_end
+      @ctrip_rates_start = @max_end if @ctrip_rates_start > @max_end
     
     rescue => ex
       flash[:alert] = ex.message
