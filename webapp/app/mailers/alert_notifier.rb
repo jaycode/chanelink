@@ -1,7 +1,7 @@
 # sending email for alert
 class AlertNotifier < ActionMailer::Base
   
-  default :from => "#{APP_CONFIG[:noreply_email]}"
+  default :from => "Chanelink <#{APP_CONFIG[:noreply_email]}>"
 
   def email_zero_inventory(alert)
     @alert = alert
