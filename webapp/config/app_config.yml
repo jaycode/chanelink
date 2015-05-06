@@ -21,7 +21,7 @@ development:
   orbitz_other: 'https://ws.owweasyconnect.com/xml/service'
 
 staging:
-  noreply_email: 'no-reply@chanelink.com'
+  noreply_email: 'application@chanelink.com'
   agoda_endpoint: 'http://sandbox.xml-ycs.agoda.com/xmlservice.aspx'
   expedia_ar_endpoint: 'https://simulator.expediaquickconnect.com/connect/ar'
   expedia_br_endpoint: 'https://simulator.expediaquickconnect.com/connect/br'
@@ -31,7 +31,7 @@ staging:
   gta_travel_qualifier: 'JNBPAL2'
   gta_travel_username: 'CHANELINK'
   gta_travel_password: 'LINK14'
-  support_email: 'support-dev@chanelink.com'
+  support_email: 'application@chanelink.com'
 
   ctrip_rates_get_endpoint: 'http://58.221.127.196:8090/Hotel/OTAReceive/HotelRatePlan.asmx'
   ctrip_inventories_update_endpoint: 'http://58.221.127.196:8090/Hotel/OTAReceive/HotelAvailNotif.asmx'

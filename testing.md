@@ -124,8 +124,7 @@ We do not run seeds.rb in testing. Instead, we add required data in `fixtures/*.
 ## Testing emails from console
 
 ```
-member = Member.find_by_email('email@example.com')
-Notifier.email_member_password('testpass', member).deliver
+Notifier.email_member_password('testpass', Member.find_by_email('email@example.com')).deliver
 ```
 
 ## References
