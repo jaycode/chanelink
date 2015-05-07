@@ -37,6 +37,11 @@ And in another:
 rspec --drb
 ```
 
+To kill hanging spork processes
+```
+pkill -f spork
+```
+
 Keep in mind that with this technique you will need to restart Spork server when you do any of the following:
 
 1. Updated the fixtures.

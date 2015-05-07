@@ -35,7 +35,8 @@ class CtripChannel < Channel
 
       :ctrip_company_code => 'C',
 
-      # 10 is for individual hotel (see Ctrip Integration API Specification V2.2.pdf)
+      # 10 is for Channel Manager (see Ctrip Integration API Specification V2.2.pdf)
+      # While 1 is for indifidual hotel.
       :ctrip_user_category => 10
     }
   end

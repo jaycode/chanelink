@@ -25,7 +25,7 @@ class ExpediaMasterRateHandler < MasterRateHandler
 
   end
 
-  def create_job(change_set)
+  def create_job(change_set, delay = true)
    # all room types id in this change set
    room_type_ids = change_set.room_type_ids
    pool = change_set.pool
@@ -37,9 +37,13 @@ class ExpediaMasterRateHandler < MasterRateHandler
      master_rate_mapping = RoomTypeMasterRateChannelMapping.pool_id(pool.id).master_room_type_id(rt_id).find_by_channel_id(self.channel.id)
 
      unless master_rate_mapping.blank?
-       cs = MasterRateChangeSetChannel.create(:change_set_id => change_set.id, :channel_id => self.channel.id)
-       cs.delay.run
-       return
+        cs = MasterRateChangeSetChannel.create(:change_set_id => change_set.id, :channel_id => self.channel.id)
+        if delay
+          cs.delay.run
+        else
+          cs.run
+        end
+        return
      end
    end
    

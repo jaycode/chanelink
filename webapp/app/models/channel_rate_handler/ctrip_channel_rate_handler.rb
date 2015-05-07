@@ -58,8 +58,8 @@ class CtripChannelRateHandler < ChannelRateHandler
     end
 
     request_xml = builder.to_xml
-    CtripChannel.post_xml_change_set_channel(request_xml, change_set_channel, APP_CONFIG[:ctrip_rates_update_endpoint])
-
+    response = CtripChannel.post_xml_change_set_channel(request_xml, change_set_channel, APP_CONFIG[:ctrip_rates_update_endpoint])
+    # puts "response: #{response.to_xhtml(indent: 3)}"
   end
 
   def create_job(change_set)

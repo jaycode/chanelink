@@ -6,4 +6,10 @@ superior_agoda:
 superior_ctrip_room_a:
   room_type: superior
   channel: ctrip
-  settings: '{"ctrip_room_type_name": "Superior(CNY Promo)", "ctrip_room_rate_plan_category": "Prepay", "ctrip_room_rate_plan_code": "1251431"}'
+  settings: >
+    {"ctrip_room_type_name": "Superior(CNY Promo)",
+    "ctrip_room_rate_plan_code": "1251431",
+    "ctrip_room_rate_plan_category": "501",
+    "ctrip_breakfast_inclusion": 1,
+    "ctrip_number_of_breakfast": 2,
+    "ctrip_rate_multiplier": 1}

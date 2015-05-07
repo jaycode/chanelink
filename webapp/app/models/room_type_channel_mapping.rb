@@ -48,6 +48,23 @@ class RoomTypeChannelMapping < ActiveRecord::Base
 
   validate :new_rate_must_be_greater_than_minimum
 
+  after_initialize :setup_default_settings
+
+  def setup_default_settings
+    self.update_empty_settings(default_settings)
+  end
+
+  def default_settings
+    {
+      "ctrip_room_type_name": nil,
+      "ctrip_room_rate_plan_code": nil,
+      "ctrip_room_rate_plan_category": nil,
+      "ctrip_breakfast_inclusion": 0,
+      "ctrip_number_of_breakfast": 1,
+      "ctrip_rate_multiplier": 1
+    }
+  end
+
   # new rate push must be over minimum
   def new_rate_must_be_greater_than_minimum
     if self.is_configuration_new_rate?
