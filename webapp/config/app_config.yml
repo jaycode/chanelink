@@ -17,6 +17,7 @@ development:
   # Todo: Unsure if this should be put here, or define them within channel classes,
   #       but let us keep them here for now until further arguments arise.
   ctrip_rates_get_endpoint: 'http://58.221.127.196:8090/Hotel/OTAReceive/HotelRatePlan.asmx'
+  ctrip_rates_update_endpoint: 'http://58.221.127.196:8090/Hotel/OTAReceive/HotelRateAmountNotif.asmx'
   ctrip_inventories_update_endpoint: 'http://58.221.127.196:8090/Hotel/OTAReceive/HotelAvailNotif.asmx'
 
   orbitz_room_rate_fetch: 'https://ws.owweasyconnect.com/easyconnect/service/midtier/roomratetypefetch'
@@ -38,6 +39,7 @@ staging:
   # support_email: 'application@chanelink.com'
 
   ctrip_rates_get_endpoint: 'http://58.221.127.196:8090/Hotel/OTAReceive/HotelRatePlan.asmx'
+  ctrip_rates_update_endpoint: 'http://58.221.127.196:8090/Hotel/OTAReceive/HotelRateAmountNotif.asmx'
   ctrip_inventories_update_endpoint: 'http://58.221.127.196:8090/Hotel/OTAReceive/HotelAvailNotif.asmx'
 
   orbitz_room_rate_fetch: 'https://ws.owweasyconnect.com/easyconnect/service/midtier/roomratetypefetch'
@@ -55,6 +57,7 @@ production:
   support_email: 'support@chanelink.com'
   # support_email: 'application@chanelink.com'
   ctrip_rates_get_endpoint: 'https://vendor.ctrip.com/Hotel/OTAReceive/HotelRatePlan.asmx'
+  ctrip_rates_update_endpoint: 'http://vendor.ctrip.com/Hotel/OTAReceive/HotelRateAmountNotif.asmx'
   ctrip_inventories_update_endpoint: 'http://vendor.ctrip.com/Hotel/OTAReceive/HotelAvailNotif.asmx'
 
   orbitz_room_rate_fetch: 'https://ws.owweasyconnect.com/easyconnect/service/midtier/roomratetypefetch'
@@ -74,6 +77,7 @@ staging2:
   support_email: 'application@chanelink.com'
 
   ctrip_rates_get_endpoint: 'http://58.221.127.196:8090/Hotel/OTAReceive/HotelRatePlan.asmx'
+  ctrip_rates_update_endpoint: 'http://58.221.127.196:8090/Hotel/OTAReceive/HotelRateAmountNotif.asmx'
   ctrip_inventories_update_endpoint: 'http://58.221.127.196:8090/Hotel/OTAReceive/HotelAvailNotif.asmx'
 
   orbitz_room_rate_fetch: 'https://ws.owweasyconnect.com/easyconnect/service/midtier/roomratetypefetch'
@@ -93,6 +97,7 @@ test:
   support_email: 'application@chanelink.com'
 
   ctrip_rates_get_endpoint: 'http://58.221.127.196:8090/Hotel/OTAReceive/HotelRatePlan.asmx'
+  ctrip_rates_update_endpoint: 'http://58.221.127.196:8090/Hotel/OTAReceive/HotelRateAmountNotif.asmx'
   ctrip_inventories_update_endpoint: 'http://58.221.127.196:8090/Hotel/OTAReceive/HotelAvailNotif.asmx'
 
   orbitz_room_rate_fetch: 'https://ws.owweasyconnect.com/easyconnect/service/midtier/roomratetypefetch'

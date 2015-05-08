@@ -12,4 +12,5 @@ superior_ctrip_room_a:
     "ctrip_room_rate_plan_category": "501",
     "ctrip_breakfast_inclusion": 1,
     "ctrip_number_of_breakfast": 2,
-    "ctrip_rate_multiplier": 1}
+    "ctrip_rate_multiplier": 1,
+    "ctrip_currency_code": "SGD"}

@@ -31,24 +31,30 @@ describe CtripChannel, :type => :model do
       @pool = pools(:default_big_hotel_1)
       @property = properties(:big_hotel_1)
       @room_type = room_types(:superior)
+      @sleep_time = 30
     end
 
     it 'updates successfully' do
       date_start = Date.today + 2.weeks
       date_end = Date.today + 3.weeks
       rates_before = get_rates(@channel, @room_type, date_start.to_s, date_end.to_s)
-      puts rates_before.inspect
       rate_alternatives = [100.0, 200.0]
       change_set = MasterRateChangeSet.create
       if float_equal(rates_before[1], rate_alternatives[0])
         update_rates(@channel, @property, @pool, @room_type, rate_alternatives[1], date_start.to_s, date_end.to_s)
         rates_after = get_rates(@channel, @room_type, date_start.to_s, date_end.to_s)
+        puts "Waiting #{@sleep_time} seconds before getting rates again..."
+        sleep(@sleep_time)
+        puts "done!"
         rates_after.each do |rate|
           expect(rate).to be_within(0.00001).of(rate_alternatives[1])
         end
       else
         update_rates(@channel, @property, @pool, @room_type, rate_alternatives[0], date_start.to_s, date_end.to_s)
         rates_after = get_rates(@channel, @room_type, date_start.to_s, date_end.to_s)
+        puts "Waiting #{@sleep_time} seconds before getting rates again..."
+        sleep(@sleep_time)
+        puts "done!"
         rates_after.each do |rate|
           expect(rate).to be_within(0.00001).of(rate_alternatives[0])
         end
@@ -95,7 +101,6 @@ describe CtripChannel, :type => :model do
     # room_type: Room type which rates we about to update.
     def update_rates(channel, property, pool, room_type, amount, date_start, date_end)
       logs = Array.new
-      puts date_start
       date_start = Date.parse(date_start)
       date_end = Date.parse(date_end)
 

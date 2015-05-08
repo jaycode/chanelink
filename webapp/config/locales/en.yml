@@ -530,6 +530,8 @@ en:
         ctrip_breakfast_inclusion: 'Breakfast Inclusion'
         ctrip_number_of_breakfast: 'Number of Breakfast'
         ctrip_rate_multiplier: 'Rate Multiplayer'
+        ctrip_tax_calculation_method: "Tax Calculation Method"
+        ctrip_tax_value: "Tax Value"
         expedia_rate_conversion_multiplier: 'Rate Conversion Multiplier'
         bookingcom_single_rate_discount: 'Single Rate Discount'
         rate_configuration: 'Please select Rate Configuration'

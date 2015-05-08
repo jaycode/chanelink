@@ -10,3 +10,11 @@
   <label><%= t('room_type_channel_mappings.new.label.ctrip_breakfast_inclusion') %></label>
   <%= @room_type_channel_mapping.settings(:ctrip_breakfast_inclusion) ? t('general.yes_label') : t('general.no_label') %>&nbsp;
 </p>
+<p>
+  <label><%= t('room_type_channel_mappings.new.label.ctrip_tax_calculation_method') %><%= required %></label>
+  <%= @room_type_channel_mapping.settings(:ctrip_tax_calculation_method) ? t('room_type_master_rate_channel_mappings.edit.label.percentage') : t('room_type_master_rate_channel_mappings.edit.label.amount') %>&nbsp;
+</p>
+<p>
+  <label><%= t('room_type_channel_mappings.new.label.ctrip_tax_value') %></label>
+  <%= @room_type_channel_mapping.settings(:ctrip_tax_value) ? t('general.yes_label') : t('general.no_label') %>&nbsp;
+</p>

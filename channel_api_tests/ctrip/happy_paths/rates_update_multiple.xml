@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SOAP-ENV:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+  <SOAP-ENV:Header/>
+  <SOAP-ENV:Body>
+    <OTA_HotelRateAmountNotifRQ Version="2.2" PrimaryLangID="en-us" xmlns="http://www.opentravel.org/OTA/2003/05">
+      <POS>
+        <Source>
+          <RequestorID ID="54394" Type="1" MessagePassword="qaz123">
+            <CompanyName Code="C" CodeContext="4085" />
+          </RequestorID>
+        </Source>
+      </POS>
+      <RateAmountMessages HotelCode="54394">
+        <RateAmountMessage>
+          <StatusApplicationControl RatePlanCode="1251431" RatePlanCategory="16" />
+          <Rates>
+            <Rate Start="2015-05-22" End="2015-05-22">
+              <BaseByGuestAmts>
+                <BaseByGuestAmt Code="Sell" AmountAfterTax="100.0" CurrencyCode="SGD"/>
+              </BaseByGuestAmts>
+              <MealsIncluded Breakfast="1" NumberOfBreakfast="2"/>
+            </Rate>
+            <Rate Start="2015-05-23" End="2015-05-23">
+              <BaseByGuestAmts>
+                <BaseByGuestAmt Code="Sell" AmountAfterTax="100.0" CurrencyCode="SGD"/>
+              </BaseByGuestAmts>
+              <MealsIncluded Breakfast="1" NumberOfBreakfast="2"/>
+            </Rate>
+          </Rates>
+        </RateAmountMessage>
+      </RateAmountMessages>
+    </OTA_HotelRateAmountNotifRQ>
+  </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
+
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<SOAP-ENV:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+  <SOAP-ENV:Header/>
+  <SOAP-ENV:Body>
+    <OTA_HotelRateAmountNotifRQ xmlns="http://www.opentravel.org/OTA/2003/05" Version="2.2" PrimaryLangID="en-us">
+      <POS>
+        <Source>
+          <RequestorID ID="54394" MessagePassword="qaz123" Type="10">
+            <CompanyName Code="C" CodeContext="4085"/>
+          </RequestorID>
+        </Source>
+      </POS>
+      <RateAmountMessages HotelCode="54394">
+        <RateAmountMessage>
+          <StatusApplicationControl RatePlanCategory="501" RatePlanCode="1251431"/>
+          <Rates>
+            <Rate Start="2015-05-22" End="2015-05-22">
+              <BaseByGuestAmts>
+                <BaseByGuestAmt Code="Sell" AmountAfterTax="100.0" CurrencyCode="SGD"/>
+              </BaseByGuestAmts>
+              <MealsIncluded Breakfast="1" NumberOfBreakfast="2"/>
+            </Rate>
+            <Rate Start="2015-05-23" End="2015-05-23">
+              <BaseByGuestAmts>
+                <BaseByGuestAmt Code="Sell" AmountAfterTax="100.0" CurrencyCode="SGD"/>
+              </BaseByGuestAmts>
+              <MealsIncluded Breakfast="1" NumberOfBreakfast="2"/>
+            </Rate>
+            <Rate Start="2015-05-24" End="2015-05-24">
+              <BaseByGuestAmts>
+                <BaseByGuestAmt Code="Sell" AmountAfterTax="100.0" CurrencyCode="SGD"/>
+              </BaseByGuestAmts>
+              <MealsIncluded Breakfast="1" NumberOfBreakfast="2"/>
+            </Rate>
+            <Rate Start="2015-05-25" End="2015-05-25">
+              <BaseByGuestAmts>
+                <BaseByGuestAmt Code="Sell" AmountAfterTax="100.0" CurrencyCode="SGD"/>
+              </BaseByGuestAmts>
+              <MealsIncluded Breakfast="1" NumberOfBreakfast="2"/>
+            </Rate>
+            <Rate Start="2015-05-26" End="2015-05-26">
+              <BaseByGuestAmts>
+                <BaseByGuestAmt Code="Sell" AmountAfterTax="100.0" CurrencyCode="SGD"/>
+              </BaseByGuestAmts>
+              <MealsIncluded Breakfast="1" NumberOfBreakfast="2"/>
+            </Rate>
+            <Rate Start="2015-05-27" End="2015-05-27">
+              <BaseByGuestAmts>
+                <BaseByGuestAmt Code="Sell" AmountAfterTax="100.0" CurrencyCode="SGD"/>
+              </BaseByGuestAmts>
+              <MealsIncluded Breakfast="1" NumberOfBreakfast="2"/>
+            </Rate>
+            <Rate Start="2015-05-28" End="2015-05-28">
+              <BaseByGuestAmts>
+                <BaseByGuestAmt Code="Sell" AmountAfterTax="100.0" CurrencyCode="SGD"/>
+              </BaseByGuestAmts>
+              <MealsIncluded Breakfast="1" NumberOfBreakfast="2"/>
+            </Rate>
+            <Rate Start="2015-05-29" End="2015-05-29">
+              <BaseByGuestAmts>
+                <BaseByGuestAmt Code="Sell" AmountAfterTax="100.0" CurrencyCode="SGD"/>
+              </BaseByGuestAmts>
+              <MealsIncluded Breakfast="1" NumberOfBreakfast="2"/>
+            </Rate>
+          </Rates>
+        </RateAmountMessage>
+      </RateAmountMessages>
+    </OTA_HotelRateAmountNotifRQ>
+  </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

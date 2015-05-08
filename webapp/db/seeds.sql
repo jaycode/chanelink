@@ -2223,7 +2223,7 @@ INSERT INTO `members` (`id`, `email`, `name`, `hashed_password`, `salt`, `role_i
 	(2, 'payamsafa@gmail.com', 'Payam Safa', '05a12d1a34f1af819e0b083f66a22956c66c6420', 'd8081a7a-896c-11e3-bdf1-bc764e11230d', 1, 2, 0, 0, 0, 1, '2014-01-30 05:10:32', '2015-02-17 08:16:48'),
 	(3, 'ecommerce@rhotelrancamaya.com', 'Prayoga Handayaprana', NULL, '4580e4de-1300-11e4-b16d-bc764e11230d', 1, 3, 1, 0, 0, 1, '2014-07-24 07:01:01', '2014-07-24 07:01:01'),
 	(4, 'payam@chanelink.com', 'Payam Safa', '77be0ab17e56cd2b5e83c2e44b753c406bdae767', '84b8c0c0-a1eb-11e4-8290-bc764e11230d', 1, 2, 1, 0, 1, 0, '2015-01-22 04:02:44', '2015-01-22 18:53:52'),
-	(5, 'wekasalim@gmail.com', 'Willy', NULL, '00d9c648-a248-11e4-ae32-bc764e11230d', 1, 1, 1, 0, 0, 0, '2015-01-22 15:04:46', '2015-01-22 15:04:46'),
+	(5, 'jay@tgitriodesign.com', 'Willy', NULL, '00d9c648-a248-11e4-ae32-bc764e11230d', 1, 1, 1, 0, 0, 0, '2015-01-22 15:04:46', '2015-01-22 15:04:46'),
 	(6, 'orlando.valiantino@suryainternusahotels.com', 'Orlando Valiantino', '3c43aee9cf2018fd0954acb13d8b67d353190a82', 'a3ceb5c6-a693-11e4-ab62-bc764e11230d', 1, 2, 1, 0, 0, 0, '2015-01-28 02:16:16', '2015-01-28 02:16:16'),
 	(7, 'direccion@yourspainhostel.com', 'Soledad', NULL, 'af83e84e-beaa-11e4-8730-bc764e11230d', 3, 1, 1, 0, 0, 0, '2015-02-27 18:01:43', '2015-02-27 18:01:43'),
 	(8, 'skyfood.indo@gmail.com', 'Testing', NULL, 'b37b2f36-c286-11e4-a74f-bc764e11230d', 3, 1, 1, 0, 0, 0, '2015-03-04 15:54:12', '2015-03-04 15:54:12');
@@ -2291,7 +2291,7 @@ INSERT INTO `room_type_master_rate_mappings` (`id`, `pool_id`, `room_type_id`, `
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_validation_key`, `hashed_password`, `reset_password_key`, `salt`, `created_at`, `updated_at`, `prompt_password_change`, `super`, `deleted`) VALUES
 	(1, 'Admin', 'admin@chanelink.com', NULL, '0aa21ff9543fe2f25d484ec398d36bcdde008c06', NULL, '4440427e-8424-11e3-a4ce-bc764e11230d', '2014-01-23 11:48:25', '2014-07-23 04:23:37', 0, 1, 0),
-	(2, 'willy ekasalim', 'wekasalim@gmail.com', NULL, 'fd2bc661a6a12a6dc376851e0779fe6906f31bce', NULL, 'f13099b6-133f-11e4-b75f-bc764e11230d', '2014-07-24 14:36:48', '2014-07-24 14:36:48', 1, 1, 0),
+	(2, 'willy ekasalim', 'jay@tgitriodesign.com', NULL, 'fd2bc661a6a12a6dc376851e0779fe6906f31bce', NULL, 'f13099b6-133f-11e4-b75f-bc764e11230d', '2014-07-24 14:36:48', '2014-07-24 14:36:48', 1, 1, 0),
 	(3, 'Payam Safa', 'payamsafa@gmail.com', NULL, '05a12d1a34f1af819e0b083f66a22956c66c6420', NULL, '64e775b6-a1e6-11e4-8290-bc764e11230d', '2015-01-22 03:26:03', '2015-01-22 18:44:21', 0, 1, 0),
-	(4, 'Testing', 'willy@chanelink.com', NULL, 'f327e420bc10e28248d8c3d1afa36ba75c6d636d', NULL, '8198aafe-a245-11e4-ae32-bc764e11230d', '2015-01-22 14:46:54', '2015-01-22 15:09:38', 1, 1, 0),
+	(4, 'Testing', 'jay@tgitriodesign.com', NULL, 'f327e420bc10e28248d8c3d1afa36ba75c6d636d', NULL, '8198aafe-a245-11e4-ae32-bc764e11230d', '2015-01-22 14:46:54', '2015-01-22 15:09:38', 1, 1, 0),
 	(5, 'Testing', 'skyfood.indo@gmail.com', NULL, NULL, NULL, '2d91f012-c286-11e4-a74f-bc764e11230d', '2015-03-04 15:50:27', '2015-03-04 15:50:27', 1, 1, 0);

@@ -56,12 +56,12 @@ class RoomTypeChannelMapping < ActiveRecord::Base
 
   def default_settings
     {
-      "ctrip_room_type_name": nil,
-      "ctrip_room_rate_plan_code": nil,
-      "ctrip_room_rate_plan_category": nil,
-      "ctrip_breakfast_inclusion": 0,
-      "ctrip_number_of_breakfast": 1,
-      "ctrip_rate_multiplier": 1
+      ctrip_room_type_name: nil,
+      ctrip_room_rate_plan_code: nil,
+      ctrip_room_rate_plan_category: nil,
+      ctrip_breakfast_inclusion: 0,
+      ctrip_number_of_breakfast: 1,
+      ctrip_rate_multiplier: 1
     }
   end
 
