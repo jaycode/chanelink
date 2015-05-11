@@ -31,7 +31,7 @@ describe CtripChannel, :type => :model do
       @pool = pools(:default_big_hotel_1)
       @property = properties(:big_hotel_1)
       @room_type = room_types(:superior)
-      @sleep_time = 30
+      @sleep_time = 60
     end
 
     it 'updates successfully' do
