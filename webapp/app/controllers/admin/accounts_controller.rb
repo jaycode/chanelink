@@ -123,6 +123,12 @@ class Admin::AccountsController < Admin::AdminController
 
   # helper for new account wizard
   def init_variables_from_sessions
+    if session[:account_params].nil?
+      session[:account_params] = {}
+    end
+    if session[:member_params].nil?
+      session[:member_params] = {}
+    end
     session[:account_params].deep_merge!(params[:account]) if params[:account]
     session[:member_params].deep_merge!(params[:member]) if params[:member]
     @account = Account.new(session[:account_params])
