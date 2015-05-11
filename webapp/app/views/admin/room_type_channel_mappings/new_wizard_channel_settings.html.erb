@@ -6,10 +6,10 @@
 
     <%= form_for @room_type_channel_mapping, :url => {:controller => 'room_type_channel_mappings', :action => 'new_wizard_rate'} do |f| %>
       <%= f.hidden_field :channel_id, :value => @room_type_channel_mapping.channel.id %>
-      <%= render "#{@channel.cname}_room_settings", :f => f %>
+      <%= render "#{@channel.cname}_room_settings", :f => f rescue render "/room_type_channel_mappings/#{@channel.cname}_room_settings", :f => f %>
       <br/>
       <p>
-        <%= f.submit t("button.back"), :name => "back_button" %><%= f.submit t("button.continue") %>
+        <%= f.submit t("button.back"), :name => "back_button", :id =>"room_type_channel_mapping_back" %><%= f.submit t("button.continue") %>
       </p>
     <% end %>
   </div>

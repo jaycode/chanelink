@@ -1,0 +1,9 @@
+idr:
+  code: IDR
+  name: Indonesia Rupiah
+sgd:
+  code: SGD
+  name: Singapore Dollar
+usd:
+  code: USD
+  name: United States Dollar

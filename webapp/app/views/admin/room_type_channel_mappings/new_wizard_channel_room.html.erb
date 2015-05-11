@@ -12,7 +12,7 @@
       </p>
       <p>
         <label><%= t('room_type_channel_mappings.new.label.channel_room_label', :channel => @channel.name) %></label>
-        <%= render "#{@channel.cname}_room_types", :f => f %>
+        <%= render "#{@channel.cname}_room_types", :f => f rescue render "/room_type_channel_mappings/#{@channel.cname}_room_types", :f => f %>
       </p>
       <br/>
       <% pc = PropertyChannel.find_by_property_id_and_channel_id(current_admin_property.id, @room_type_channel_mapping.channel.id) %>
