@@ -6,7 +6,7 @@ describe "Ctrip update rates spec", :type => :model do
     @pool = pools(:default_big_hotel_1)
     @property = properties(:big_hotel_1)
     @room_type = room_types(:superior)
-    @sleep_time = 60
+    @sleep_time = 20
   end
 
   it 'updates successfully' do
@@ -17,18 +17,18 @@ describe "Ctrip update rates spec", :type => :model do
     change_set = MasterRateChangeSet.create
     if float_equal(rates_before[1], rate_alternatives[0])
       update_rates(@channel, @property, @pool, @room_type, rate_alternatives[1], date_start.to_s, date_end.to_s)
-      rates_after = get_rates(@channel, @room_type, date_start.to_s, date_end.to_s)
       puts "Waiting #{@sleep_time} seconds before getting rates again..."
-      sleep(@sleep_time)
+      # sleep(@sleep_time)
+      # rates_after = get_rates(@channel, @room_type, date_start.to_s, date_end.to_s)
       puts "done!"
       rates_after.each do |rate|
         expect(rate).to be_within(0.00001).of(rate_alternatives[1])
       end
     else
       update_rates(@channel, @property, @pool, @room_type, rate_alternatives[0], date_start.to_s, date_end.to_s)
-      rates_after = get_rates(@channel, @room_type, date_start.to_s, date_end.to_s)
       puts "Waiting #{@sleep_time} seconds before getting rates again..."
       sleep(@sleep_time)
+      rates_after = get_rates(@channel, @room_type, date_start.to_s, date_end.to_s)
       puts "done!"
       rates_after.each do |rate|
         expect(rate).to be_within(0.00001).of(rate_alternatives[0])
@@ -44,10 +44,10 @@ describe "Ctrip update rates spec", :type => :model do
       
       ctrip_rate_plan_code = room_type_channel_mapping.settings(:ctrip_room_rate_plan_code)
       ctrip_rate_plan_category = room_type_channel_mapping.settings(:ctrip_room_rate_plan_category)
-      # @logger = Logger.new("#{Rails.root}/log/custom.log")
+      @logger = Logger.new("#{Rails.root}/log/custom.log")
 
       ctrip_room_types        = xml_doc.xpath('//RatePlan')
-      # @logger.error("#{xml_doc.to_xhtml(indent: 3)}")
+      @logger.error("#{xml_doc.to_xhtml(indent: 3)}")
       ctrip_room_types.each do |rt|
         # @logger.error("#{rt.to_xhtml(indent: 3)}")
         if rt['RatePlanCode'] == ctrip_rate_plan_code and rt['RatePlanCategory'] == ctrip_rate_plan_category
@@ -138,40 +138,4 @@ describe "Ctrip update rates spec", :type => :model do
   def create_master_rate_log(master_rate)
     MasterRateLog.create(:master_rate_id => master_rate.id, :amount => master_rate.amount)
   end
-
-  # describe 'updating inventory availabilities' do
-  #   it 'updates successfully' do
-
-  #   end
-  #   it 'fails to update' do
-  #   end
-  #   def update_inventories(new_rate, date_start, date_end)
-  #     # Code from inventories_controller
-  #     logs = Array.new
-  #     pool = Pool.find(params[:pool_id])
-
-  #     date_start..date_end do |date|
-  #       inventory = Inventory.new
-  #       inventory.date = date
-  #       inventory.total_rooms = date_inv[1]
-  #       inventory.room_type_id = rt.id
-  #       inventory.property = current_property
-  #       inventory.pool_id = params[:pool_id]
-  #     end
-
-  #     change_set = InventoryChangeSet.create
-  #     logs.each do |log|
-  #       log.update_attribute(:change_set_id, change_set.id)
-  #     end
-
-  #     # determine xml channel job that want to be created
-  #     property_channels = PropertyChannel.find_all_by_pool_id(pool.id)
-
-  #     # go through each channel inventory handler and ask them to create push xml job
-  #     property_channels.each do |pc|
-  #       channel = pc.channel
-  #       channel.inventory_handler.create_job(change_set) unless pc.disabled?
-  #     end
-  #   end
-  # end
 end

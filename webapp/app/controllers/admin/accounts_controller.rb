@@ -127,6 +127,7 @@ class Admin::AccountsController < Admin::AdminController
     session[:member_params].deep_merge!(params[:member]) if params[:member]
     @account = Account.new(session[:account_params])
     @super_member = Member.new(session[:member_params])
+    @super_member.account = @account
     @super_member.role = MemberRole.super_role
     @super_member.skip_password_validation = true
   end
