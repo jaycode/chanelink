@@ -1,7 +1,8 @@
 # admin module to manage properties
 class Admin::PropertiesController < Admin::AdminController
 
-  before_filter :user_authenticate_and_account_property_selected
+  # before_filter :user_authenticate_and_account_property_selected
+  before_filter :user_authenticate
 
   # new property
   def new

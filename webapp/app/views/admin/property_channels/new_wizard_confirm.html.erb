@@ -11,7 +11,7 @@
           <label><%= raw t('property_channels.new.label.channel_to_connect') %></label>
           <%= @property_channel.channel.name %>
         </p>
-        <%= render "#{@channel.cname}_confirm", :f => f  %>
+        <%= render "#{@channel.cname}_confirm", :f => f rescue render "default_confirm", :f => f %>
         <p>
           <label><%= raw t('property_channels.new.label.currency_conversion') %></label>
           <% if !current_admin_property.currency_conversion_disabled? and @currency_conversion.valid? %>

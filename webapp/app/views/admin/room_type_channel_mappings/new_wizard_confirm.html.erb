@@ -11,7 +11,7 @@
           <label><%= t('room_type_channel_mappings.new.label.chanelink_room') %></label>
           <%= @room_type_channel_mapping.room_type.name %>
         </p>
-        <%= render "#{@channel.cname}_room_confirm", :f => f %>
+        <%= render "#{@channel.cname}_room_confirm", :f => f rescue render "/room_type_channel_mappings/#{@channel.cname}_room_confirm", :f => f %>
         <p>
           <label><%= t('room_type_channel_mappings.new.label.rate_configuration_short') %></label>
           <% if @room_type_channel_mapping.is_configuration_new_rate? %>
@@ -36,7 +36,7 @@
         </p>
       </div>
       <p>
-        <%= f.submit t("button.back"), :name => "back_button" %><%= f.submit t("button.save") %>
+        <%= f.submit t("button.back"), :name => "back_button", :id =>"room_type_channel_mapping_back" %><%= f.submit t("button.save") %>
       </p>
     <% end %>
   </div>

@@ -547,7 +547,7 @@ id:
     edit:
       link: 'Ubah'
       message:
-        timeout: 'Problem communicating with %{channel}. %{channel} room types can not be listed. Please retry again later.'
+        timeout: 'Problem communicating with %{channel}. %{channel} room types can not be listed. Please check if the username and password for this is correct, or try again later.'
     create:
       message:
         success: 'Pemetaan kanal terbuat'

@@ -12,7 +12,7 @@
           <span class="green"><%= t("general.enabled") %></span>
         <% end %>
       </p>
-      <%= render "#{@property_channel.channel.cname}_read" %>
+      <%= render "#{@property_channel.channel.cname}_read" rescue render "default_read" %>
     <% end %>
     <br/>
     <h4><%= t('property_channels.edit.label.rooms_mapped') %></h4>
