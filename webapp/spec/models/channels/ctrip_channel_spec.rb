@@ -25,40 +25,4 @@ describe CtripChannel, :type => :model do
       expect(error).to eq 1
     end
   end
-
-  describe 'updating inventory availabilities' do
-    it 'updates successfully' do
-
-    end
-    it 'fails to update' do
-    end
-    def update_inventories(new_rate, date_start, date_end)
-      # Code from inventories_controller
-      logs = Array.new
-      pool = Pool.find(params[:pool_id])
-
-      date_start..date_end do |date|
-        inventory = Inventory.new
-        inventory.date = date
-        inventory.total_rooms = date_inv[1]
-        inventory.room_type_id = rt.id
-        inventory.property = current_property
-        inventory.pool_id = params[:pool_id]
-      end
-
-      change_set = InventoryChangeSet.create
-      logs.each do |log|
-        log.update_attribute(:change_set_id, change_set.id)
-      end
-
-      # determine xml channel job that want to be created
-      property_channels = PropertyChannel.find_all_by_pool_id(pool.id)
-
-      # go through each channel inventory handler and ask them to create push xml job
-      property_channels.each do |pc|
-        channel = pc.channel
-        channel.inventory_handler.create_job(change_set) unless pc.disabled?
-      end
-    end
-  end
 end
