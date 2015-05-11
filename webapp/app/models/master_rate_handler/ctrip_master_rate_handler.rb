@@ -25,12 +25,31 @@ class CtripMasterRateHandler < MasterRateHandler
 
     return if room_type_ids.blank?
 
+    logger = Logger.new("#{Rails.root}/log/custom.log")
+    
     prepare_rates_update_xml(room_type_ids, change_set, property, pool) do |rates_sent, builder|
       if rates_sent
         request_xml = builder.to_xml
         response = CtripChannel.post_xml_change_set_channel(request_xml, change_set_channel, APP_CONFIG[:ctrip_rates_update_endpoint])
       else
         # Todo: logs the error here
+        pi_logger = Logger.new("#{Rails.root}/log/api_errors.log")
+        api_logger.error("[#{Time.now}] Fetching room types failed.\n
+PropertyChannel ID: #{property_channel.id}
+Channel: #{CtripChannel.first.name}
+Property: #{property.id} - #{property.name}
+SOAP XML sent to #{APP_CONFIG[:ctrip_rates_get_endpoint]}\n
+xml sent:\n#{request_xml}\n
+xml retrieved:\n#{xml_doc.to_xhtml(indent: 3)}")
+
+        raise Exception, I18n.t('activemodel.errors.models.room_type_fetcher.fetch_failed', {
+          :channel => CtripChannel.name,
+          :contact_us_link => ActionController::Base.helpers.link_to(I18n.t('activemodel.errors.models.room_type_fetcher.contact_us'),
+            "mailto:#{APP_CONFIG[:support_email]}?Subject=#{I18n.t('activemodel.errors.models.room_type_fetcher.email_subject', :property_id => property.id)}",
+            {
+              :target => '_blank'
+          })
+        })
       end
     end
 

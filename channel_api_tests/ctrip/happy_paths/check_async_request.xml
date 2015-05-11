@@ -1,0 +1,5 @@
+URL: http://58.221.127.196:8090/Hotel/OTAReceive/NotifReport.asmx
+
+<OTA_NotifReportRQ Version="2.1" PrimaryLangID="en-us" TimeStamp="2001-12-17T09:30:47Z">
+ <UniqueID ID="12345" Type="505"/>
+</OTA_NotifReportRQ>

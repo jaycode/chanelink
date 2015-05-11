@@ -30,6 +30,60 @@ Request:
   </soap:Body>
 </soap:Envelope>
 
+
+<OTA_HotelRateAmountNotifRQ Version="2.1" PrimaryLangID="en-us" TimeStamp="201-12-17T09:30:47Z" xmlns="http://www.opentravel.org/OTA/2003/05">
+  <POS>
+    <Source>
+      <RequestorID ID="HG" MessagePassword="SamplePW" Type="1">
+        <CompanyName Code="C" CodeContext="600"></CompanyName>
+      </RequestorID>
+    </Source>
+  </POS>
+  <RateAmountMessages HotelCode="29087">
+    <RateAmountMessage>
+      <StatusApplicationControl RatePlanCategory="16" RatePlanCode="12345" InvTypeCode="AlQQ"/>
+      <Rates>
+        <Rate Start="2016-08-13" End="2016-09-10">
+          <BaseByGuestAmts>
+            <BaseByGuestAmt Code="Sell" AmountBeforeTax="500" AmountAfterTax="600" CurrencyCode="CNY">
+              <Taxes>
+                <Tax Type="Exclusive" Code="28" Percent="20" CurrencyCode="CNY" ChargeUnit="19"/>
+              </Taxes>
+            </BaseByGuestAmt>
+          </BaseByGuestAmts>
+          <MealsIncluded Breakfast="true" NumberOfBreakfast="1"/>
+        </Rate>
+        <Rate Start="2016-09-11" End="2016-10-14">
+          <BaseByGuestAmts>
+            <BaseByGuestAmt Code="Sell" AmountBeforeTax="720" AmountAfterTax="720" CurrencyCode="CNY">
+              <Taxes>
+                <Tax Type="Inclusive" Code="28" Percent="15" CurrencyCode="CNY" ChargeUnit="19"/>
+              </Taxes>
+            </BaseByGuestAmt>
+          </BaseByGuestAmts>
+          <MealsIncluded Breakfast="true" NumberOfBreakfast="1"/>
+        </Rate>
+      </Rates>
+    </RateAmountMessage>
+    <RateAmountMessage>
+      <StatusApplicationControl RatePlanCategory="501" RatePlanCode="12345" InvTypeCode="AlQQ"/>
+      <Rates>
+        <Rate End="2016-08-13" Start="2016-08-13">
+          <BaseByGuestAmts>
+            <BaseByGuestAmt Code="Sell" AmountBeforeTax="550" AmountAfterTax="550" CurrencyCode="CNY"/>
+          </BaseByGuestAmts>
+          <MealsIncluded Breakfast="false" />
+        </Rate>
+        <Rate End="2016-08-14" Start="2016-08-14">
+          <BaseByGuestAmts>
+            <BaseByGuestAmt Code="Sell" AmountBeforeTax="540" AmountAfterTax="540" CurrencyCode="CNY"/>
+          </BaseByGuestAmts>
+          <MealsIncluded Breakfast="false" />
+        </Rate>
+      </Rates>
+    </RateAmountMessage>
+  </RateAmountMessages>
+</OTA_HotelRateAmountNotifRQ>
 Response:
 
 <?xml version="1.0" encoding="utf-8"?>
