@@ -2,7 +2,7 @@ Chanelinkweb::Application.routes.draw do
 
   # home route
   root :to => "sessions#new"
-  
+
   resources :properties do
     member do
       get 'show_embed'
@@ -255,8 +255,18 @@ Chanelinkweb::Application.routes.draw do
     match '/setup' => "setup#index", :as => "setup"
   end
 
+  wash_out :soap
+
+  namespace :api do
+    wash_out :soap do
+      collection do
+        get 'book'
+      end
+    end
+  end
+
    # match everything else and route to render error
-  match '*a', :to => 'errors#render_error'
+  # match '*a', :to => 'errors#render_error'
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
