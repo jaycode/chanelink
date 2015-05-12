@@ -21,7 +21,8 @@ class CtripInventoryHandler < InventoryHandler
     prepare_availabilities_update_xml(room_type_ids, change_set, property) do |availabilities_sent, builder|
       if availabilities_sent
         request_xml = builder.to_xml
-        response = CtripChannel.post_xml_change_set_channel(request_xml, change_set_channel, APP_CONFIG[:ctrip_rates_update_endpoint])
+        response = CtripChannel.post_xml_change_set_channel(request_xml, change_set_channel, APP_CONFIG[:ctrip_inventories_update_endpoint])
+        # puts YAML::dump(response)
       else
         # Todo: logs the error here
         pi_logger = Logger.new("#{Rails.root}/log/api_errors.log")
@@ -29,7 +30,7 @@ class CtripInventoryHandler < InventoryHandler
 PropertyChannel ID: #{property_channel.id}
 Channel: #{CtripChannel.first.name}
 Property: #{property.id} - #{property.name}
-SOAP XML sent to #{APP_CONFIG[:ctrip_rates_get_endpoint]}\n
+SOAP XML sent to #{APP_CONFIG[:ctrip_inventories_update_endpoint]}\n
 xml sent:\n#{request_xml}\n
 xml retrieved:\n#{xml_doc.to_xhtml(indent: 3)}")
 
