@@ -24,16 +24,6 @@ RUN rm /etc/nginx/sites-enabled/default && \
 COPY container_config/nginx/webapp.conf /etc/nginx/sites-enabled/webapp.conf
 #---------------------
 
-# Email Setup
-#---------------------
-
-# RUN sudo apt-get -y --no-install-recommends install telnet-ssl
-
-# Port 587 must be opened to enable mail services.
-# EXPOSE 587
-
-#---------------------
-
 # Bundle Install
 #---------------------
 ADD webapp/Gemfile .
