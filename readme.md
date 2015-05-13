@@ -244,9 +244,33 @@ script/delayed_job stop
 
 Additionally, you can check the database in table `delayed_jobs` for queued jobs.
 
-## Pushing to production
+## Pushing to production / staging
 
 Going outside the development realm and to actually putting things into production does introduce additional complexities e.g. how do we pull the data, What if we have additional rows in the database, among other issues.
+
+### How to pull data in production / staging server.
+
+SSH connect to server, then:
+
+```
+cd /apps/ChanelinkProduction
+git pull origin master
+touch webapp/tmp/restart.txt
+```
+
+If there are files (accidentally) changed on server, you could either commit the changes and pull in local, or remove those changes.
+You would usually notice this when the server is unable to do `git pull origin master`.
+
+To review uncommitted changed, run:
+```
+git status
+```
+
+Then when you are sure the changes were accidental and wish to revert back, run:
+```
+git reset --hard
+```
+
 
 ### How to update table schema and adding new rows.
 
