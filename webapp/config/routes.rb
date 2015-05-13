@@ -255,18 +255,17 @@ Chanelinkweb::Application.routes.draw do
     match '/setup' => "setup#index", :as => "setup"
   end
 
-  wash_out :soap
-
+  wash_out :api
   namespace :api do
-    wash_out :soap do
+    resources :json do
       collection do
-        get 'book'
+        get 'index'
       end
     end
   end
 
-   # match everything else and route to render error
-  # match '*a', :to => 'errors#render_error'
+  # match everything else and route to render error
+  match '*a', :to => 'errors#render_error'
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

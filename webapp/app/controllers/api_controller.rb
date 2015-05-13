@@ -1,4 +1,4 @@
-class Api::SoapController < ApplicationController
+class ApiController < ApplicationController
   soap_service namespace: 'API:Chanelink'
   # Simple case
   soap_action "book",
