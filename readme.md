@@ -248,6 +248,13 @@ Additionally, you can check the database in table `delayed_jobs` for queued jobs
 
 Going outside the development realm and to actually putting things into production does introduce additional complexities e.g. how do we pull the data, What if we have additional rows in the database, among other issues.
 
+There are a couple of things you need to do when pushing to production / staging:
+
+1. Pull data in production / staging server with `git pull origin master`.
+2. Compress css and javascripts with Jammit compression i.e. run `jammit` on server.
+3. Restart the app by running `touch /apps/ChanelinkProduction/webapp/tmp/restart.txt`.
+4. (Only initially) make sure delayed_job is running with `script/delayed_job status`.
+
 ### How to pull data in production / staging server.
 
 SSH connect to server, then:
