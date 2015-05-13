@@ -206,25 +206,15 @@ docker exec ID bash -c "jammit"
 ```
 ---
 
-### Inspecting the status of your web app
-
----
-*This note and everything underneath were shamelessly taken from https://github.com/phusion/passenger-docker.*
-
----
-
-If you use Passenger to deploy your web app, run:
-```
-passenger-status
-passenger-memory-stats
-```
-
-### Logs
+### Logging
 If anything goes wrong, consult the log files in /var/log. The following log files are especially important:
 
 - /var/log/nginx/error.log
 - /var/log/syslog
-- Your app's log file in /home/app.
+- Your app's log file in `/apps/ChanelinkProduction/webapp`.
+
+When error not found, sometimes you need to restart your web server by running `service restart nginx` then
+try accessing your app from browser again, then consult the log files.
 
 ### Delayed Jobs
 Delayed jobs are used to move app-related tasks to background process. We need this in this project to work with
@@ -251,9 +241,11 @@ Going outside the development realm and to actually putting things into producti
 There are a couple of things you need to do when pushing to production / staging:
 
 1. Pull data in production / staging server with `git pull origin master`.
-2. Compress css and javascripts with Jammit compression i.e. run `jammit` on server.
-3. Restart the app by running `touch /apps/ChanelinkProduction/webapp/tmp/restart.txt`.
-4. (Only initially) make sure delayed_job is running with `script/delayed_job status`.
+2. (Only when you have changed Gemfile) `bundle install`.
+3. `rake db:migrate && rake db:seed`.
+4. Compress css and javascripts with Jammit compression i.e. run `jammit` on server.
+5. Restart the app by running `touch /apps/ChanelinkProduction/webapp/tmp/restart.txt`.
+6. (Only initially) make sure delayed_job is running with `script/delayed_job status`.
 
 ### How to pull data in production / staging server.
 
@@ -277,7 +269,6 @@ Then when you are sure the changes were accidental and wish to revert back, run:
 ```
 git reset --hard
 ```
-
 
 ### How to update table schema and adding new rows.
 
