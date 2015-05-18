@@ -1,0 +1,25 @@
+URL: http://58.221.127.196:8090/Hotel/OTAReceive/NotifReport.asmx
+
+Request:
+
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Header />
+  <soap:Body>
+    <OTA_NotifReportRQ Version="2.1" PrimaryLangID="en-us" TimeStamp="2014-04-25T05:08:31.1386718Z" xmlns="http://www.opentravel.org/OTA/2003/05">
+      <UniqueID ID="260120351" Type="505" />
+    </OTA_NotifReportRQ>
+  </soap:Body>
+</soap:Envelope>
+
+Response:
+
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <soap:Body>
+    <OTA_NotifReportRS TimeStamp="2015-05-18T16:41:59.3539273+08:00" Version="2.1" PrimaryLangID="en-us" xmlns="http://www.opentravel.org/OTA/2003/05">
+      <Success />
+      <UniqueID ID="260120351" Type="505" />
+    </OTA_NotifReportRS>
+  </soap:Body>
+</soap:Envelope>

@@ -14,22 +14,35 @@ describe "Ctrip update availabilities spec", :type => :model do
     date_start                = Date.today + 1.weeks
     date_end                  = Date.today + 2.weeks
     total_rooms_alternatives  = [6, 7]
-    total_rooms_before        = get_inventories(@channel, @property, @pool, @room_type, date_start.to_s, date_end.to_s)
+    total_rooms_before        = get_inventories(@channel, @property, @pool, @room_type, date_start, date_end)
 
-    if total_rooms_before[0] == total_rooms_alternatives[0]
-      update_inventories(@channel, @property, @pool, @room_type, total_rooms_alternatives[1], date_start.to_s, date_end.to_s)
-      total_rooms_after = get_inventories(@channel, @property, @pool, @room_type, date_start.to_s, date_end.to_s)
-      total_rooms_after.each do |total_rooms|
-        expect(total_rooms).to eq total_rooms_alternatives[1]
-      end
-    else
-      update_inventories(@channel, @property, @pool, @room_type, total_rooms_alternatives[0], date_start.to_s, date_end.to_s)
-      total_rooms_after = get_inventories(@channel, @property, @pool, @room_type, date_start.to_s, date_end.to_s)
-      total_rooms_after.each do |total_rooms|
-        expect(total_rooms).to eq total_rooms_alternatives[0]
-      end
+    # puts check_asynchronous(@channel, '260120351', '505');
+
+    # if total_rooms_before[0] == total_rooms_alternatives[0]
+    #   update_inventories(@channel, @property, @pool, @room_type, total_rooms_alternatives[1], date_start, date_end)
+    #   total_rooms_after = get_inventories(@channel, @property, @pool, @room_type, date_start, date_end)
+    #   total_rooms_after.each do |total_rooms|
+    #     expect(total_rooms).to eq total_rooms_alternatives[1]
+    #   end
+    # else
+    #   update_inventories(@channel, @property, @pool, @room_type, total_rooms_alternatives[0], date_start, date_end)
+    #   total_rooms_after = get_inventories(@channel, @property, @pool, @room_type, date_start, date_end)
+    #   total_rooms_after.each do |total_rooms|
+    #     expect(total_rooms).to eq total_rooms_alternatives[0]
+    #   end
+    # end
+
+  end
+
+  def check_asynchronous(channel, unique_id, type)
+    flag_result = false
+    flag_processing = true
+    while flag_processing  do
+      channel.asynchronous_handler.run(unique_id, type)
+      flag_result = true
+      flag_processing = false
     end
-
+    return flag_result
   end
 
   # from ctrip server
@@ -52,7 +65,7 @@ describe "Ctrip update availabilities spec", :type => :model do
   # end
 
   # from local db
-  def get_inventories_from(channel, property, pool, room_type, date_start, date_end)
+  def get_inventories(channel, property, pool, room_type, date_start, date_end)
     total_rooms = Array.new
 
     #To do: get total rooms via xml

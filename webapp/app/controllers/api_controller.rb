@@ -9,7 +9,7 @@ class ApiController < ApplicationController
                 :nights => :int},
               :return => :string
   def book
-    render :soap => params[:value].to_s
+    # render :soap => "hello world"
   end
 
 end

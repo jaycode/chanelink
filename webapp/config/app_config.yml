@@ -19,6 +19,7 @@ development:
   ctrip_rates_get_endpoint: 'http://58.221.127.196:8090/Hotel/OTAReceive/HotelRatePlan.asmx'
   ctrip_rates_update_endpoint: 'http://58.221.127.196:8090/Hotel/OTAReceive/HotelRateAmountNotif.asmx'
   ctrip_inventories_update_endpoint: 'http://58.221.127.196:8090/Hotel/OTAReceive/HotelAvailNotif.asmx'
+  ctrip_asynchronous_endpoint: 'http://58.221.127.196:8090/Hotel/OTAReceive/NotifReport.asmx'
 
   orbitz_room_rate_fetch: 'https://ws.owweasyconnect.com/easyconnect/service/midtier/roomratetypefetch'
   orbitz_other: 'https://ws.owweasyconnect.com/xml/service'
@@ -41,6 +42,7 @@ staging:
   ctrip_rates_get_endpoint: 'http://58.221.127.196:8090/Hotel/OTAReceive/HotelRatePlan.asmx'
   ctrip_rates_update_endpoint: 'http://58.221.127.196:8090/Hotel/OTAReceive/HotelRateAmountNotif.asmx'
   ctrip_inventories_update_endpoint: 'http://58.221.127.196:8090/Hotel/OTAReceive/HotelAvailNotif.asmx'
+  ctrip_asynchronous_endpoint: 'http://58.221.127.196:8090/Hotel/OTAReceive/NotifReport.asmx'
 
   orbitz_room_rate_fetch: 'https://ws.owweasyconnect.com/easyconnect/service/midtier/roomratetypefetch'
   orbitz_other: 'https://ws.owweasyconnect.com/xml/service'
@@ -59,6 +61,7 @@ production:
   ctrip_rates_get_endpoint: 'https://vendor.ctrip.com/Hotel/OTAReceive/HotelRatePlan.asmx'
   ctrip_rates_update_endpoint: 'http://vendor.ctrip.com/Hotel/OTAReceive/HotelRateAmountNotif.asmx'
   ctrip_inventories_update_endpoint: 'http://vendor.ctrip.com/Hotel/OTAReceive/HotelAvailNotif.asmx'
+  ctrip_asynchronous_endpoint: 'https://vendor.ctrip.com/Hotel/OTAReceive/NotifReport.asmx'
 
   orbitz_room_rate_fetch: 'https://ws.owweasyconnect.com/easyconnect/service/midtier/roomratetypefetch'
   orbitz_other: 'https://ws.owweasyconnect.com/xml/service'
@@ -79,6 +82,7 @@ staging2:
   ctrip_rates_get_endpoint: 'http://58.221.127.196:8090/Hotel/OTAReceive/HotelRatePlan.asmx'
   ctrip_rates_update_endpoint: 'http://58.221.127.196:8090/Hotel/OTAReceive/HotelRateAmountNotif.asmx'
   ctrip_inventories_update_endpoint: 'http://58.221.127.196:8090/Hotel/OTAReceive/HotelAvailNotif.asmx'
+  ctrip_asynchronous_endpoint: 'http://58.221.127.196:8090/Hotel/OTAReceive/NotifReport.asmx'
 
   orbitz_room_rate_fetch: 'https://ws.owweasyconnect.com/easyconnect/service/midtier/roomratetypefetch'
   orbitz_other: 'https://ws.owweasyconnect.com/xml/service'
@@ -99,6 +103,7 @@ test:
   ctrip_rates_get_endpoint: 'http://58.221.127.196:8090/Hotel/OTAReceive/HotelRatePlan.asmx'
   ctrip_rates_update_endpoint: 'http://58.221.127.196:8090/Hotel/OTAReceive/HotelRateAmountNotif.asmx'
   ctrip_inventories_update_endpoint: 'http://58.221.127.196:8090/Hotel/OTAReceive/HotelAvailNotif.asmx'
+  ctrip_asynchronous_endpoint: 'http://58.221.127.196:8090/Hotel/OTAReceive/NotifReport.asmx'
 
   orbitz_room_rate_fetch: 'https://ws.owweasyconnect.com/easyconnect/service/midtier/roomratetypefetch'
   orbitz_other: 'https://ws.owweasyconnect.com/xml/service'
