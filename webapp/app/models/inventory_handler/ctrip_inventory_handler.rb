@@ -4,14 +4,14 @@ require 'net/https'
 class CtripInventoryHandler < InventoryHandler
 
   def run(change_set_channel)
-    change_set = change_set_channel.change_set
+    change_set        = change_set_channel.change_set
 
     # get the property of this change set
-    property = change_set.logs.first.inventory.property
-    property_channel = property.channels.find_by_channel_id(channel.id)
+    property          = change_set.logs.first.inventory.property
+    property_channel  = property.channels.find_by_channel_id(channel.id)
 
     # property room type that has mapping to this channel
-    room_type_ids = Array.new
+    room_type_ids     = Array.new
     property.room_types.each do |rt|
       room_type_ids << rt.id if rt.has_active_mapping_to_channel?(channel)
     end
@@ -20,9 +20,13 @@ class CtripInventoryHandler < InventoryHandler
 
     prepare_availabilities_update_xml(room_type_ids, change_set, property) do |availabilities_sent, builder|
       if availabilities_sent
-        request_xml = builder.to_xml
-        response = CtripChannel.post_xml_change_set_channel(request_xml, change_set_channel, APP_CONFIG[:ctrip_inventories_update_endpoint])
-        # puts YAML::dump(response)
+        request_xml   = builder.to_xml
+        response      = CtripChannel.post_xml_change_set_channel(request_xml, change_set_channel, APP_CONFIG[:ctrip_inventories_update_endpoint])
+        response_xml  = response.gsub(/xmlns=\"([^\"]*)\"/, "")
+        xml_doc       = Nokogiri::XML(response_xml)
+        unique_id     = xml_doc.xpath("//UniqueID")
+        
+        return {:unique_id => unique_id.first.attr('ID'), :type => unique_id.first.attr('Type')}
       else
         # Todo: logs the error here
         pi_logger = Logger.new("#{Rails.root}/log/api_errors.log")
@@ -101,7 +105,7 @@ xml retrieved:\n#{xml_doc.to_xhtml(indent: 3)}")
     if delay
       cs.delay.run
     else
-      cs.run
+      return cs.run
     end
   end
 

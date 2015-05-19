@@ -16,21 +16,21 @@ describe "Ctrip update availabilities spec", :type => :model do
     total_rooms_alternatives  = [6, 7]
     total_rooms_before        = get_inventories(@channel, @property, @pool, @room_type, date_start, date_end)
 
-    # puts check_asynchronous(@channel, '260120351', '505');
-
-    # if total_rooms_before[0] == total_rooms_alternatives[0]
-    #   update_inventories(@channel, @property, @pool, @room_type, total_rooms_alternatives[1], date_start, date_end)
-    #   total_rooms_after = get_inventories(@channel, @property, @pool, @room_type, date_start, date_end)
-    #   total_rooms_after.each do |total_rooms|
-    #     expect(total_rooms).to eq total_rooms_alternatives[1]
-    #   end
-    # else
-    #   update_inventories(@channel, @property, @pool, @room_type, total_rooms_alternatives[0], date_start, date_end)
-    #   total_rooms_after = get_inventories(@channel, @property, @pool, @room_type, date_start, date_end)
-    #   total_rooms_after.each do |total_rooms|
-    #     expect(total_rooms).to eq total_rooms_alternatives[0]
-    #   end
-    # end
+    if total_rooms_before[0] == total_rooms_alternatives[0]
+      update            = update_inventories(@channel, @property, @pool, @room_type, total_rooms_alternatives[1], date_start, date_end)
+      check_asynchronous(@channel, update[:unique_id], update[:type]);
+      total_rooms_after = get_inventories(@channel, @property, @pool, @room_type, date_start, date_end)
+      total_rooms_after.each do |total_rooms|
+        expect(total_rooms).to eq total_rooms_alternatives[1]
+      end
+    else
+      update            = update_inventories(@channel, @property, @pool, @room_type, total_rooms_alternatives[0], date_start, date_end)
+      check_asynchronous(@channel, update[:unique_id], update[:type]);
+      total_rooms_after = get_inventories(@channel, @property, @pool, @room_type, date_start, date_end)
+      total_rooms_after.each do |total_rooms|
+        expect(total_rooms).to eq total_rooms_alternatives[0]
+      end
+    end
 
   end
 
@@ -38,49 +38,51 @@ describe "Ctrip update availabilities spec", :type => :model do
     flag_result = false
     flag_processing = true
     while flag_processing  do
-      channel.asynchronous_handler.run(unique_id, type)
-      flag_result = true
-      flag_processing = false
+      flag_result = channel.asynchronous_handler.run(unique_id, type)
+      if flag_result[:success] || flag_result[:errors]
+        flag_processing = false
+      else
+        puts YAML::dump(flag_result)
+        puts 'sleep'
+        sleep(@sleep_time)
+      end
     end
     return flag_result
   end
 
   # from ctrip server
-  # def get_inventories(channel, property, pool, room_type, date_start, date_end)
-  #   total_rooms               = Array.new
-  #   room_type_channel_mapping = RoomTypeChannelMapping.find_by_room_type_id_and_channel_id(room_type.id, channel.id)
-  #   room_types                = channel.room_type_fetcher.retrieve_by_rate_plan_code(property, room_type_channel_mapping.settings(:ctrip_room_rate_plan_code), date_start, date_end)
-
-  #   room_type = nil
-  #   room_types.each do |room_type|
-  #     if room_type.rate_plan_category == room_type_channel_mapping.settings(:ctrip_room_rate_plan_category)
-  #       room_type.rates.each do |rate|
-  #         total_rooms << rate.number_of_units.to_i
-  #         # puts YAML::dump(rate.number_of_units.to_i)
-  #       end
-  #     end
-  #   end
-    
-  #   total_rooms
-  # end
-
-  # from local db
   def get_inventories(channel, property, pool, room_type, date_start, date_end)
-    total_rooms = Array.new
+    total_rooms               = Array.new
+    room_type_channel_mapping = RoomTypeChannelMapping.find_by_room_type_id_and_channel_id(room_type.id, channel.id)
+    room_types                = channel.room_type_fetcher.retrieve_by_rate_plan_code(property, room_type_channel_mapping.settings(:ctrip_room_rate_plan_code), date_start, date_end)
 
-    #To do: get total rooms via xml
-
-    date_start.upto(date_end) do |date|
-      inventory = Inventory.find_by_date_and_property_id_and_pool_id_and_room_type_id(date, property.id, pool.id, room_type.id)
-      if inventory.blank?
-        total_rooms << 0
-      else
-        total_rooms << inventory.total_rooms
+    room_type = nil
+    room_types.each do |room_type|
+      if room_type.rate_plan_category == room_type_channel_mapping.settings(:ctrip_room_rate_plan_category)
+        room_type.rates.each do |rate|
+          total_rooms << rate.number_of_units.to_i
+        end
       end
     end
-
+    
     total_rooms
   end
+
+  # from local db
+  # def get_inventories(channel, property, pool, room_type, date_start, date_end)
+  #   total_rooms = Array.new
+
+  #   date_start.upto(date_end) do |date|
+  #     inventory = Inventory.find_by_date_and_property_id_and_pool_id_and_room_type_id(date, property.id, pool.id, room_type.id)
+  #     if inventory.blank?
+  #       total_rooms << 0
+  #     else
+  #       total_rooms << inventory.total_rooms
+  #     end
+  #   end
+
+  #   total_rooms
+  # end
 
   def update_inventories(channel, property, pool, room_type, total_rooms, date_start, date_end)
     # Code from inventories_controller
