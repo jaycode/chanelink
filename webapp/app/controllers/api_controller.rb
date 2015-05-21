@@ -14,38 +14,67 @@ class ApiController < ApplicationController
   # def book
   #   render :soap => params[:channel]
   # end
+  
 
-  # Bookings
-  soap_action "Bookings",
-    :args => {
-      :channel    => {
-        :code     => :integer,
-        :username => :string,
-        :password => :string
+  # CtripBookings
+  soap_action "CtripBookings",
+    :args   => {
+      :channel     => {
+        :username     => :string,
+        :password     => :string,
+        :hotel_id     => :string,
+        :code_context => :string
       },
-      :hotels     => [
-        :hotel => {
-          :code           => :string,
-          :category       => :string,
-          :rate           => :double,
-          :currency_code  => :string,
-          :start_date     => :string,
-          :end_date       => :string,
-          :rooms          => :integer
-        }
-      ]
+      :bookings => [{
+        :rate_plan_code     => :string,
+        :rate_plan_category => :string,
+        :guest_name         => :string,
+        :date_start         => :string,
+        :date_end           => :string,
+        :booking_date       => :string,
+        :total_rooms        => :integer,
+        :amount             => :double,
+        :ctrip_booking_id   => :string
+      }]
     },
     :return => {
-      :status     => :string,
-      :trans_code => :string,
-      :date       => :string
+      :response => {
+        :status   => :string,
+        :message  => :string
+      },
     },
-    :to     => :bookings
-  def bookings
+    :to     => :ctrip_bookings
+
+  def ctrip_bookings
+    # render :soap => params[:bookings][1][:rate_plan_code]
+    status        = 'failed'
+    message       = 'Invalid channel data!'
+
+    # get ctrip property by :channel params
+    Property.active_only.each do |property|
+      settings = property.settings
+      if settings['ctrip_username'] == params[:channel][:username] && settings['ctrip_password'] == params[:channel][:password] && settings['ctrip_hotel_id'] == params[:channel][:hotel_id] && settings['ctrip_code_context'] == params[:channel][:code_context]
+        status  = 'success'
+        message = 'Chanelink inventory updated!'
+
+        #step 1, validate data from ctrip
+        validate = true
+
+        #step 2, process all data with booking handler and inventory handler
+        if validate
+          property.channels.each do |pc|
+            pc.channel.booking_handler.retrieve_and_process_by_bookings_data(params[:bookings], property) if pc.channel == CtripChannel.first
+          end
+        end
+
+      end
+    end
+
     render :soap => {
-      :status     => 'success',
-      :trans_code => 'IA123POK',
-      :date       => '19/05/2015 18:04 WIB'  
+      :response => {
+        :status   => status,
+        :message  => message,
+      }
     }
   end
 
