@@ -1,20 +1,5 @@
 class ApiController < ApplicationController
   soap_service namespace: 'API:Chanelink'
-  
-  # # Simple case
-  # soap_action "book",
-  #   :args => {
-  #     :channel    => :string,
-  #     :hotel_id   => :string,
-  #     :rate_plan  => :string,
-  #     :nights     => :integer
-  #   },
-  #   :return => :string
-
-  # def book
-  #   render :soap => params[:channel]
-  # end
-  
 
   # CtripBookings
   soap_action "CtripBookings",
@@ -46,36 +31,43 @@ class ApiController < ApplicationController
     :to     => :ctrip_bookings
 
   def ctrip_bookings
-    # render :soap => params[:bookings][1][:rate_plan_code]
-    status        = 'failed'
-    message       = 'Invalid channel data!'
+    result  = {
+      :status   => 'failed',
+      :message  => 'Invalid channel data!'
+    }
 
     # get ctrip property by :channel params
     Property.active_only.each do |property|
       settings = property.settings
       if settings['ctrip_username'] == params[:channel][:username] && settings['ctrip_password'] == params[:channel][:password] && settings['ctrip_hotel_id'] == params[:channel][:hotel_id] && settings['ctrip_code_context'] == params[:channel][:code_context]
-        status  = 'success'
-        message = 'Chanelink inventory updated!'
 
         #step 1, validate data from ctrip
-        validate = true
+        validate  = true
 
         #step 2, process all data with booking handler and inventory handler
         if validate
+
           property.channels.each do |pc|
             pc.channel.booking_handler.retrieve_and_process_by_bookings_data(params[:bookings], property) if pc.channel == CtripChannel.first
           end
+
+          result  = {
+            :status   => 'success',
+            :message  => 'Chanelink inventory updated!'
+          }
+          
         end
 
       end
     end
 
     render :soap => {
-      :response => {
-        :status   => status,
-        :message  => message,
-      }
+      :response => result
     }
+  end
+
+  def ctrip_validate_inventory
+
   end
 
 end

@@ -81,13 +81,18 @@ class CtripBookingHandler < BookingHandler
       # set pool that this current channel currently belongs to
       new_booking.pool      = PropertyChannel.find_by_property_id_and_channel_id(property.id, channel.id).pool
 
-      # # find the chanelink room type that this booking correspond to
-      # room_type_map = RoomTypeChannelMapping.where(["settings LIKE '%?%' AND settings LIKE '%?%'", bookings_data[:ctrip_room_rate_plan_code], bookings_data[:ctrip_room_rate_plan_category]])
-      # room_type_map         = RoomTypeChannelMapping.where(["settings LIKE '%?%' AND settings LIKE '%?%'", '"ctrip_room_rate_plan_code": "' + bookings_data[:ctrip_room_rate_plan_code] + '"', '"ctrip_room_rate_plan_category": "' + bookings_data[:ctrip_room_rate_plan_category] + '"'])
-
-      # if room_type_map and room_type_map.active?
-      #   new_booking.room_type = room_type_map.room_type
-      # end
+      # find the chanelink room type that this booking correspond to
+      room_type_map         = RoomTypeChannelMapping.find(:first, 
+        :conditions => [
+          "(settings LIKE ? AND settings LIKE ?) OR (ctrip_room_rate_plan_code = ? AND ctrip_room_rate_plan_category = ?)", 
+          '%"ctrip_room_rate_plan_code": "' + booking_data[:rate_plan_code].to_s + '"%', 
+          '%"ctrip_room_rate_plan_category": "' + booking_data[:rate_plan_category].to_s + '"%',
+          booking_data[:rate_plan_code].to_s,
+          booking_data[:rate_plan_category].to_s
+      ])
+      if room_type_map and room_type_map.active?
+        new_booking.room_type = room_type_map.room_type
+      end
 
       # set all the data into our own booking object
       new_booking.guest_name        = booking_data[:guest_name]
@@ -100,7 +105,7 @@ class CtripBookingHandler < BookingHandler
 
       # new_booking.ctrip_booking_id  = booking_data[:ctrip_booking_id]
 
-      # new_booking.save
+      new_booking.save
     end
   end
 
