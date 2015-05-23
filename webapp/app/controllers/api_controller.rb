@@ -41,21 +41,8 @@ class ApiController < ApplicationController
       settings = property.settings
       if settings['ctrip_username'] == params[:channel][:username] && settings['ctrip_password'] == params[:channel][:password] && settings['ctrip_hotel_id'] == params[:channel][:hotel_id] && settings['ctrip_code_context'] == params[:channel][:code_context]
 
-        #step 1, validate data from ctrip
-        validate  = true
-
-        #step 2, process all data with booking handler and inventory handler
-        if validate
-
-          property.channels.each do |pc|
-            pc.channel.booking_handler.retrieve_and_process_by_bookings_data(params[:bookings], property) if pc.channel == CtripChannel.first
-          end
-
-          result  = {
-            :status   => 'success',
-            :message  => 'Chanelink inventory updated!'
-          }
-          
+        property.channels.each do |pc|
+          result = pc.channel.booking_handler.retrieve_and_process_by_bookings_data(params[:bookings], property) if pc.channel == CtripChannel.first
         end
 
       end
@@ -64,10 +51,6 @@ class ApiController < ApplicationController
     render :soap => {
       :response => result
     }
-  end
-
-  def ctrip_validate_inventory
-
   end
 
 end

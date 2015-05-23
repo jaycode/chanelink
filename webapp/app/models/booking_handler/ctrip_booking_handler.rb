@@ -70,19 +70,78 @@ class CtripBookingHandler < BookingHandler
   #   puts new_booking.errors
   # end
 
+  # validate the bookings_data
+  def validate(property, channel, room_type, total_rooms, date_start, date_end)
+    pc      = PropertyChannel.find_by_property_id_and_channel_id(property.id, channel.id)
+    result  = {
+      :is_error => false,
+      :message  => ''
+    }
+
+    if room_type.blank?
+      # we dont have the room type for this booking? just ignore
+      result  = {
+        :is_error => true,
+        :message  => 'We dont have the room type for this booking.'
+      }
+    elsif pc.blank?
+      # check if channel belong to a pool
+      # if channel does not belong to a pool for this property, just ignore
+      result  = {
+        :is_error => true,
+        :message  => 'Channel does not belong to a pool.'
+      }
+    else
+      pool        = pc.pool
+      date_start  = date_start.to_date
+      date_end    = date_end.to_date
+      is_error    = false
+      message     = ''
+
+      while date_start <= date_end
+        inv       = Inventory.find_by_date_and_room_type_id_and_pool_id(date_start, room_type.id, pool.id)
+
+        if inv.blank?
+          # rooms not enough, send warning
+          # puts 'inventory is blank'
+          is_error  = true
+          message   = message + 'Inventory date ' + date_start.to_s + ' is blank. '
+        elsif inv.total_rooms >= total_rooms
+
+        else
+          # rooms not enough, send warning
+          # puts 'inventory not enough'
+          is_error  = true
+          message   = message + 'Inventory date ' + date_start.to_s + ' not enough. '
+        end
+        date_start = date_start + 1.day
+      end
+
+      if is_error
+        result  = {
+          :is_error => true,
+          :message  => message
+        }
+      end
+    end
+
+    return result
+  end
+
   # store into our own booking object
   def retrieve_and_process_by_bookings_data(bookings_data, property)
+    validate      = true
+    temp_message  = ''
+    result        = {
+      :status   => 'success',
+      :message  => 'Chanelink inventory updated!'
+    }
+
+    #validate data
     bookings_data.each do |booking_data|
 
-      new_booking           = CtripBooking.new
-      new_booking.property  = property
-      new_booking.channel   = channel
-
-      # set pool that this current channel currently belongs to
-      new_booking.pool      = PropertyChannel.find_by_property_id_and_channel_id(property.id, channel.id).pool
-
-      # find the chanelink room type that this booking correspond to
-      room_type_map         = RoomTypeChannelMapping.find(:first, 
+      room_type     = nil
+      room_type_map = RoomTypeChannelMapping.find(:first, 
         :conditions => [
           "(settings LIKE ? AND settings LIKE ?) OR (ctrip_room_rate_plan_code = ? AND ctrip_room_rate_plan_category = ?)", 
           '%"ctrip_room_rate_plan_code": "' + booking_data[:rate_plan_code].to_s + '"%', 
@@ -91,22 +150,61 @@ class CtripBookingHandler < BookingHandler
           booking_data[:rate_plan_category].to_s
       ])
       if room_type_map and room_type_map.active?
-        new_booking.room_type = room_type_map.room_type
+        room_type = room_type_map.room_type
       end
 
-      # set all the data into our own booking object
-      new_booking.guest_name        = booking_data[:guest_name]
-      new_booking.date_start        = booking_data[:date_start]
-      new_booking.date_end          = booking_data[:date_end]
-      new_booking.booking_date      = booking_data[:booking_date]
 
-      new_booking.total_rooms       = booking_data[:total_rooms]
-      new_booking.amount            = booking_data[:amount]
+      temp_validate = validate(property, channel, room_type, booking_data[:total_rooms], booking_data[:date_start], booking_data[:date_end])
+      validate      = false if temp_validate[:is_error]
+      temp_message  = temp_message + ' ' + temp_validate[:message]
 
-      # new_booking.ctrip_booking_id  = booking_data[:ctrip_booking_id]
-
-      new_booking.save
     end
+
+    #store data
+    if validate
+      bookings_data.each do |booking_data|
+
+        new_booking           = CtripBooking.new
+        new_booking.property  = property
+        new_booking.channel   = channel
+
+        # set pool that this current channel currently belongs to
+        new_booking.pool      = PropertyChannel.find_by_property_id_and_channel_id(property.id, channel.id).pool
+
+        # find the chanelink room type that this booking correspond to
+        room_type_map         = RoomTypeChannelMapping.find(:first, 
+          :conditions => [
+            "(settings LIKE ? AND settings LIKE ?) OR (ctrip_room_rate_plan_code = ? AND ctrip_room_rate_plan_category = ?)", 
+            '%"ctrip_room_rate_plan_code": "' + booking_data[:rate_plan_code].to_s + '"%', 
+            '%"ctrip_room_rate_plan_category": "' + booking_data[:rate_plan_category].to_s + '"%',
+            booking_data[:rate_plan_code].to_s,
+            booking_data[:rate_plan_category].to_s
+        ])
+        if room_type_map and room_type_map.active?
+          new_booking.room_type = room_type_map.room_type
+        end
+
+        # set all the data into our own booking object
+        new_booking.guest_name        = booking_data[:guest_name]
+        new_booking.date_start        = booking_data[:date_start]
+        new_booking.date_end          = booking_data[:date_end]
+        new_booking.booking_date      = booking_data[:booking_date]
+
+        new_booking.total_rooms       = booking_data[:total_rooms]
+        new_booking.amount            = booking_data[:amount]
+
+        # new_booking.ctrip_booking_id  = booking_data[:ctrip_booking_id]
+
+        new_booking.save
+      end
+    else
+      result        = {
+        :status   => 'failed',
+        :message  => temp_message
+      }
+    end
+
+    return result
   end
 
   def channel
