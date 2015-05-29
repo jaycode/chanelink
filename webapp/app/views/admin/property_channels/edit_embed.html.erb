@@ -10,7 +10,7 @@
         &nbsp;&nbsp;
         <%= f.radio_button(:disabled, true) %>&nbsp;<span class="red"><%= t("general.disabled") %></span>
       </p>
-      <%= render "#{@property_channel.channel.cname}_setting", :f => f %>
+      <%= render "#{@property_channel.channel.cname}_setting", :f => f rescue nil %>
       <br/>
       <p>
         <%= f.submit t("button.save") %>
