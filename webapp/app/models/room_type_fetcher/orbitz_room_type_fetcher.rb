@@ -24,7 +24,6 @@ class OrbitzRoomTypeFetcher < RoomTypeFetcher
 
     xml_doc  = Nokogiri::XML(response_xml)
     orbitz_room_types = xml_doc.xpath("//orbitz:RoomTypes/orbitz:RoomType", 'orbitz' => OrbitzChannel::XMLNS)
-    puts 'herehreh'
     orbitz_room_types.each do |rt|
       description = rt.xpath(".//orbitz:Description", 'orbitz' => OrbitzChannel::XMLNS).text()
       puts rt["RoomTypeCode"]

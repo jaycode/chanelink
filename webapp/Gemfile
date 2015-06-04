@@ -53,6 +53,7 @@ gem 'fastercsv', "1.5.5"
 
 gem 'cancan', "1.6.10"
 
+# For cron job
 gem 'whenever', '0.9.0'
 
 gem "equivalent-xml", "~> 0.4.0"

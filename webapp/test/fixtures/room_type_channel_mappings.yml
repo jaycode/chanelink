@@ -3,6 +3,8 @@ superior_agoda:
   channel: agoda
   agoda_room_type_id: 827874
   agoda_room_type_name: Superior
+  settings: >
+    {"agoda_room_rate_plan_code": 1}
 superior_ctrip_room_a:
   room_type: superior
   channel: ctrip

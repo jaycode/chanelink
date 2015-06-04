@@ -20,7 +20,7 @@ describe "InventoriesController", :type => :controller do
         room_types(:superior).id)
       expect(mapping).not_to be_nil
       visit "/inventories?pool_id=#{pools(:test_big_hotel_1_for_testing_master_rate_mapping).id}"
-      price_cell = find(:css, "#channel_rates-form-#{channels(:agoda).id} .dateTableRow .smallColumn:nth-child(#{2})")
+      price_cell = find(:css, "#channel_rates-form-#{channels(:agoda).id} #agoda_room_type-#{room_types(:superior).id} .smallColumn:nth-child(#{2})")
       expect(price_cell.text).to eq("0.0")
     end
     it "should show input boxes under each room type when master rate not connected to room type." do
@@ -30,7 +30,7 @@ describe "InventoriesController", :type => :controller do
         room_types(:superior).id)
       expect(mapping).to be_nil
       visit "/inventories?pool_id=#{pools(:test_big_hotel_1_for_testing_master_rate_mapping).id}"
-      price_cell = find(:css, "#channel_rates-form-#{channels(:ctrip).id} .dateTableRow .smallColumn:nth-child(#{2}) > input")
+      price_cell = find(:css, "#channel_rates-form-#{channels(:ctrip).id} #ctrip_room_type-#{room_types(:superior).id} .smallColumn:nth-child(#{2}) > input")
       expect(price_cell.value).to eq("0")
     end
   end

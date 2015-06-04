@@ -2,6 +2,7 @@ require 'net/https'
 
 # class to retrieve ctrip room types
 class CtripRoomTypeFetcher < RoomTypeFetcher
+  include ChannelsHelper
 
   def retrieve(property, exclude_mapped_room = false, start_date = '', end_date = '')
     room_types = Array.new
@@ -125,25 +126,7 @@ class CtripRoomTypeFetcher < RoomTypeFetcher
     if success.count > 0
       block.call xml_doc
     else
-
-      api_logger = Logger.new("#{Rails.root}/log/api_errors.log")
-      api_logger.error("[#{Time.now}] Fetching room types failed.\n
-PropertyChannel ID: #{property_channel.id}
-Channel: #{CtripChannel.first.name}
-Property: #{property.id} - #{property.name}
-SOAP XML sent to #{APP_CONFIG[:ctrip_rates_get_endpoint]}\n
-xml sent:\n#{request_xml}\n
-xml retrieved:\n#{xml_doc.to_xhtml(indent: 3)}")
-
-      raise Exception, I18n.t('activemodel.errors.models.room_type_fetcher.fetch_failed', {
-        :channel => CtripChannel.name,
-        :contact_us_link => ActionController::Base.helpers.link_to(I18n.t('activemodel.errors.models.room_type_fetcher.contact_us'),
-          "mailto:#{APP_CONFIG[:support_email]}?Subject=#{I18n.t('activemodel.errors.models.room_type_fetcher.email_subject', :property_id => property.id)}",
-          {
-            :target => '_blank'
-        })
-      })
-
+      logs_fetching_failure CtripChannel.first.name, property, property_channel, APP_CONFIG[:ctrip_rates_get_endpoint]
     end
   end
 
@@ -193,23 +176,7 @@ xml retrieved:\n#{xml_doc.to_xhtml(indent: 3)}")
       block.call xml_doc
     else
 
-      api_logger = Logger.new("#{Rails.root}/log/api_errors.log")
-      api_logger.error("[#{Time.now}] Fetching room types failed.\n
-PropertyChannel ID: #{property_channel.id}
-Channel: #{CtripChannel.first.name}
-Property: #{property.id} - #{property.name}
-SOAP XML sent to #{APP_CONFIG[:ctrip_rates_get_endpoint]}\n
-xml sent:\n#{request_xml}\n
-xml retrieved:\n#{xml_doc.to_xhtml(indent: 3)}")
-
-      raise Exception, I18n.t('activemodel.errors.models.room_type_fetcher.fetch_failed', {
-        :channel => CtripChannel.name,
-        :contact_us_link => ActionController::Base.helpers.link_to(I18n.t('activemodel.errors.models.room_type_fetcher.contact_us'),
-          "mailto:#{APP_CONFIG[:support_email]}?Subject=#{I18n.t('activemodel.errors.models.room_type_fetcher.email_subject', :property_id => property.id)}",
-          {
-            :target => '_blank'
-        })
-      })
+      logs_fetching_failure CtripChannel.first.name, request_xml, xml_doc, property, property_channel, APP_CONFIG[:ctrip_rates_get_endpoint]
 
     end
   end
