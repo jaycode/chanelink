@@ -165,9 +165,9 @@ class CtripRoomTypeFetcher < RoomTypeFetcher
     response_xml  = CtripChannel.post_xml(request_xml, APP_CONFIG[:ctrip_rates_get_endpoint])
     response_xml  = response_xml.gsub(/xmlns=\"([^\"]*)\"/, "")
 
-    puts '============'
-    puts YAML::dump(response_xml)
-    puts '============'
+    # puts '============'
+    # puts YAML::dump(response_xml)
+    # puts '============'
 
     xml_doc = Nokogiri::XML(response_xml)
     success = xml_doc.xpath("//Success")

@@ -8,4 +8,7 @@ class BookingHandler
     # do nothing, to be overridden by sub class
   end
 
+  def retrieve_and_process_by_bookings_data(bookings_data, property)
+  	# do nothing, to be overridden by sub class
+  end
 end

@@ -67,6 +67,10 @@ class CtripChannel < Channel
     CNAME
   end
 
+  def asynchronous_handler
+    CtripChannelAsynchronousHandler.instance
+  end
+
   def inventory_handler
     CtripInventoryHandler.instance
   end
