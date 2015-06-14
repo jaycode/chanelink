@@ -512,6 +512,8 @@ ActiveRecord::Schema.define(:version => 20150611192857) do
   create_table "rate_type_property_channels", :force => true do |t|
     t.integer  "property_channel_id"
     t.integer  "rate_type_id"
+    t.string   "ota_rate_type_name"
+    t.string   "ota_rate_type_id"
     t.string   "settings",            :default => "{}"
     t.datetime "created_at"
     t.datetime "updated_at"

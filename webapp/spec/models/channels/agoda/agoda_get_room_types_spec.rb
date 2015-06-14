@@ -1,8 +1,8 @@
-require "rails_helper"
-require "models/channels/agoda/agoda_spec_helper"
+require 'rails_helper'
+require 'connectors/connector'
+require 'connectors/agoda_connector'
 
 describe "Agoda get room types spec", :type => :model do
-  include AgodaConnector
   before(:each) do
     @channel    = AgodaChannel.first
     @pool       = pools(:default_big_hotel_1)
@@ -11,7 +11,8 @@ describe "Agoda get room types spec", :type => :model do
   end
 
   it 'gets room types successfully' do
-    room_types = @channel.room_type_fetcher.retrieve(properties(:big_hotel_1))
+    connector = AgodaConnector.new(@property)
+    room_types = connector.get_room_types
     puts '============'
     puts YAML::dump(room_types)
     puts '============'

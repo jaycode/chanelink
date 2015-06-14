@@ -1,6 +1,6 @@
 require 'net/https'
 
-# class to retrieve agoda room types
+# Room Type in Agoda is called Rate Plan.
 class AgodaRoomTypeFetcher < RoomTypeFetcher
   include ChannelsHelper
   def retrieve(property, exclude_mapped_room = false)

@@ -1,5 +1,5 @@
 class AgodaConnector < Connector
-  def get_rate_types()
+  def get_rate_types
     rate_types = AgodaChannel.first.rate_type_fetcher.retrieve(@property)
     puts '============'
     puts YAML::dump(rate_types)
@@ -16,11 +16,11 @@ class AgodaConnector < Connector
   end
 
     # from channel server
-  def get_inventories(channel, property, pool, room_type, date_start, date_end)
+  def get_inventories(channel, pool, room_type, date_start, date_end)
     total_rooms               = Array.new
     room_type_channel_mapping = RoomTypeChannelMapping.find_by_room_type_id_and_channel_id(room_type.id, channel.id)
     rooms                = channel.inventory_handler.retrieve_by_room_type_channel_mapping(
-      property,
+      @property,
       room_type_channel_mapping,
       date_start,
       date_end)
@@ -32,13 +32,14 @@ class AgodaConnector < Connector
     total_rooms
   end
 
-  def update_inventories(channel, property, pool, room_type, total_rooms, date_start, date_end)
+  def update_inventories(pool, room_type, total_rooms, date_start, date_end)
+    channel = AgodaChannel.first
     # Code from inventories_controller
     logs = Array.new
 
     date_start.upto(date_end) do |date|
 
-      existing_inv = Inventory.find_by_date_and_property_id_and_pool_id_and_room_type_id(date, property.id, pool.id, room_type.id)
+      existing_inv = Inventory.find_by_date_and_property_id_and_pool_id_and_room_type_id(date, @property.id, pool.id, room_type.id)
 
       # create new inventory object
       if existing_inv.blank?
@@ -50,7 +51,7 @@ class AgodaConnector < Connector
           inventory.date          = date
           inventory.total_rooms   = total_rooms
           inventory.room_type_id  = room_type.id
-          inventory.property      = property
+          inventory.property      = @property
           inventory.pool_id       = pool.id
 
           inventory.save

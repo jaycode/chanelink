@@ -10,7 +10,9 @@ class MultiRateStuff < ActiveRecord::Migration
     create_table "rate_type_property_channels", :force => true, :options => "ENGINE=MyISAM" do |t|
       t.integer  "property_channel_id"
       t.integer  "rate_type_id"
-      t.string     "settings", :default => ActiveSupport::JSON.encode({})
+      t.string   "ota_rate_type_name"
+      t.string   "ota_rate_type_id"
+      t.string   "settings", :default => ActiveSupport::JSON.encode({})
       t.datetime "created_at"
       t.datetime "updated_at"
     end
