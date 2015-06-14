@@ -2,7 +2,6 @@
 # pools may share the same property but not the other way around).
 # A pool can have multiple channels.
 # Basically pool is used to group together a set of channels.
-# Todo: This calls for optimization, i.e. maybe auto create default property?
 #       
 default_big_hotel_1:
   name: Default
@@ -29,3 +28,7 @@ default_big_hotel_3:
 test_big_hotel_3:
   name: Test
   property: big_hotel_3
+
+default_another_hotel_1:
+  name: Default
+  property: another_hotel_1

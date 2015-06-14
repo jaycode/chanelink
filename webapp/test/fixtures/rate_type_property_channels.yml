@@ -1,0 +1,40 @@
+default_big_hotel_1_default_agoda:
+  property_channel: big_hotel_1_default_agoda
+  rate_type: default
+  settings: >
+    '{"agoda_rate_plan_id": 1}'
+pay_at_hotel_big_hotel_1_default_agoda:
+  property_channel: big_hotel_1_default_agoda
+  rate_type: pay_at_hotel
+  settings: >
+    '{"agoda_rate_plan_id": 2}'
+default_big_hotel_1_default_ctrip:
+  property_channel: big_hotel_1_default_ctrip
+  rate_type: default
+  settings: >
+    '{"ctrip_room_rate_plan_category": 501}'
+pay_at_hotel_big_hotel_1_default_ctrip:
+  property_channel: big_hotel_1_default_ctrip
+  rate_type: pay_at_hotel
+  settings: >
+    '{"ctrip_room_rate_plan_category": 16}'
+default_master_rate_mappings_tester_agoda:
+  property_channel: master_rate_mappings_tester_agoda
+  rate_type: default
+  settings: >
+    '{"agoda_rate_plan_id": 1}'
+default_master_rate_mappings_tester_ctrip:
+  property_channel: master_rate_mappings_tester_ctrip
+  rate_type: default
+  settings: >
+    '{"ctrip_room_rate_plan_category": 501}'
+pay_at_hotel_master_rate_mappings_tester_ctrip:
+  property_channel: master_rate_mappings_tester_ctrip
+  rate_type: pay_at_hotel
+  settings: >
+    '{"ctrip_room_rate_plan_category": 16}'
+default_another_hotel_1_default_agoda:
+  property_channel: another_hotel_1_default_agoda
+  rate_type: default
+  settings: >
+    '{"agoda_rate_plan_id": 1}'

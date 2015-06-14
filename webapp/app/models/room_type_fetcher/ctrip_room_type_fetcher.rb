@@ -41,6 +41,7 @@ class CtripRoomTypeFetcher < RoomTypeFetcher
     room_types
   end
 
+  # Can also be used to check inventory availabilities
   def retrieve_by_rate_plan_code(property, rate_plan_code, date_start, date_end)
     room_types = Array.new
     retrieve_xml_by_rate_plan_code(property, rate_plan_code, date_start, date_end) do |xml_doc|

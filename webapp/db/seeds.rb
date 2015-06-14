@@ -114,6 +114,16 @@ def production_seeds
     end
   end
   setup_default_settings_to_all_properties
+  add_default_rate_type
+end
+
+def add_default_rate_type
+  default_rate_type = RateType.first(:conditions => {
+                                       :account_id => nil
+                                     })
+  if default_rate_type.nil?
+    RateType.create(:name => 'Default')
+  end
 end
 
 def setup_default_settings_to_all_properties

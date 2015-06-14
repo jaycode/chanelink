@@ -1,3 +1,11 @@
+all:
+  rate_plans:
+    agoda: 
+      default: 1
+    ctrip:
+      prepay: 501
+      pay_at_hotel: 16
+
 development:
   noreply_email: 'application@chanelink.com'
 #  noreply_email: 'noreply@chanelink.com'

@@ -3,3 +3,8 @@ big_hotel_chain:
   address: HQ of Big Hotel Chain
   approved: 1
   contact_email: jay@chanelink.com
+another_hotel_chain:
+  name: Another Hotel Chain
+  address: HQ of Another Hotel Chain
+  approved: 1
+  contact_email: another@chanelink.com

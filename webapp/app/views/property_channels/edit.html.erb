@@ -66,9 +66,23 @@
     <% count_not_mapped = 0 %>
     <% if !current_property.room_types.blank? %>
       <% current_property.room_types.each do |rt| %>
-        <% if RoomTypeChannelMapping.where(:room_type_id => rt.id, :channel_id => @property_channel.channel.id).blank? %>
-          <p>&nbsp;&nbsp;&nbsp;&nbsp;<%= rt.name %> - <%= link_to t('room_type_channel_mappings.new.label.link_set'), new_room_type_channel_mapping_path(:room_type_id => rt.id, :property_channel_id => @property_channel.id) %> </p>
-          <% count_not_mapped = count_not_mapped + 1 %>
+        <% if RoomTypeChannelMapping.where(
+          :room_type_id => rt.id,
+          :channel_id => @property_channel.channel.id
+        ).blank? %>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;<%= rt.name %></p>
+          <% current_member.account.rate_types.each do |acc_rate_type| %>
+            <%
+             #   associated_rate_type = RateTypePropertyChannel.first(
+             #   :conditions => {
+             #     :property_channel_id => @property_channel.id,
+             #     :rate_type_id => acc_rate_type.id
+             #   }
+             # )
+            %>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= acc_rate_type.name %> - <%= link_to t('room_type_channel_mappings.new.label.link_set'), new_room_type_channel_mapping_path(:room_type_id => rt.id, :property_channel_id => @property_channel.id) %> </p>
+            <% count_not_mapped = count_not_mapped + 1 %>
+          <% end %>
         <% end %>
       <% end %>
     <% end %>

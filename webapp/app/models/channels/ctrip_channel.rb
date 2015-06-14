@@ -111,6 +111,10 @@ class CtripChannel < Channel
     CtripBookingHandler.instance
   end
 
+  def rate_type_fetcher
+    CtripRateTypeFetcher.instance
+  end
+
   def room_type_fetcher
     CtripRoomTypeFetcher.instance
   end

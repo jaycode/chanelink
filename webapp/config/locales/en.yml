@@ -163,6 +163,7 @@ en:
         prices: 'Prices'
         rate_multiplier: 'You have set a Rate Multiplier for this channel. All room rates send to this channel will be multiplied by %{rate_multiplier}.'
         nothing_mapped: 'No room mapped for this pool, go to <a href="%{link}">%{channel_name} Channel Settings</a> to map a room.'
+        no_rate_type: 'No rate type mapped. <a href="%{link}">Click here</a> to map a rate type.'
     update:
       message:
         nothing_saved: 'There was no availability change to be saved'
@@ -193,6 +194,9 @@ en:
       error_min_stay_not_a_number: '%{channel} Min Stay: %{room_type} %{date} - not a valid number'
       error_min_stay_negative_number: '%{channel} Min Stay: %{room_type} %{date} - must be a positive number'
 
+  rate_types:
+    validate:
+      error_account_similarity: 'must have the same account id with room rate.'
   reports:
     too_big: 'Report is too big for browser viewing, please view the report data as CSV.'
     checkin:
@@ -517,6 +521,7 @@ en:
         done_creating: 'Finish'
         chanelink_room: 'Chanelink Room'
         channel_room_label: '%{channel} Room'
+        channel_rate_type_label: '%{channel} Rate Type'
         agoda_single_rate_modifier: 'Single Rate Modifier'
         agoda_double_rate_modifier: 'Double Rate Modifier'
         agoda_full_rate_modifier: 'Full Rate Modifier'

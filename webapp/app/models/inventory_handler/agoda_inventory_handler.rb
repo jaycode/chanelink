@@ -63,6 +63,61 @@ class AgodaInventoryHandler < InventoryHandler
     date.strftime('%F')
   end
 
+  # Get inventory (to see if room is available at certain dates)
+  def retrieve_by_room_type_channel_mapping(property, room_type_channel_mapping, date_start, date_end)
+    room_types = Array.new
+    retrieve_xml_by_room_type_channel_mapping(property, room_type_channel_mapping, date_start, date_end) do |xml_doc|
+      
+    end
+
+    room_types
+  end
+
+  # Retrieve but in xml format
+  def retrieve_xml_by_room_type_channel_mapping(property, room_type_channel_mapping, date_start, date_end, &block)
+
+    property_channel  = PropertyChannel.find_by_property_id_and_channel_id(property.id, AgodaChannel.first.id)
+    room_types        = Array.new
+
+    # construct xml to request room type list
+    builder = Nokogiri::XML::Builder.new do |xml|
+      xml.GetHotelInventoryRequest('xmlns' => AgodaChannel::XMLNS) {
+        xml.Authentication(:APIKey => AgodaChannel::API_KEY, :HotelID => property.agoda_hotel_id)
+        xml.RoomType(
+          :RoomTypeID => room_type_channel_mapping.agoda_room_type_id,
+          :RatePlanID => room_type_channel_mapping.settings(:agoda_room_rate_plan_code)
+        )
+        xml.DateRange(
+          :Type => 'Stay',
+          :Start => date_start.to_s,
+          :End => date_end.to_s
+        )
+        # todo: Multi-language
+        xml.RequestedLanguage 'en'
+      }
+    end
+
+    request_xml   = builder.to_xml
+    response_xml  = AgodaChannel.post_xml(request_xml)
+    response_xml  = response_xml.gsub(/xmlns=\"([^\"]*)\"/, "")
+
+    debugger
+    # puts '============'
+    # puts YAML::dump(response_xml)
+    # puts '============'
+
+    xml_doc = Nokogiri::XML(response_xml)
+    success = xml_doc.xpath("//Success")
+
+    if success.count > 0
+      block.call xml_doc
+    else
+
+      logs_fetching_failure CtripChannel.first.name, request_xml, xml_doc, property, property_channel, APP_CONFIG[:ctrip_rates_get_endpoint]
+
+    end
+  end
+
   private
 
   # helper to build XML push

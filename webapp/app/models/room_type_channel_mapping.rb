@@ -1,4 +1,5 @@
 # represent room type mapping
+# Todo: RoomTypeMasterRateChannelMapping may need to be combined with this.
 class RoomTypeChannelMapping < ActiveRecord::Base
   include HasSettings
 
@@ -12,6 +13,7 @@ class RoomTypeChannelMapping < ActiveRecord::Base
   scope :expedia_type, :conditions => "expedia_room_type_id is not null and expedia_room_type_name is not null and expedia_rate_plan_id is not null"
   scope :bookingcom_type, :conditions => "bookingcom_room_type_id is not null and bookingcom_room_type_name is not null and bookingcom_rate_plan_id is not null"
   scope :gta_travel_type, :conditions => "gta_travel_room_type_id is not null"
+  belongs_to :rate_type_property_channel
 
   # validates :room_type_id, :uniqueness => { :scope => :channel_id, :message => 'is in use'}, :if => lambda {{:conditions => ["deleted = ?", false]}}
   # validates_uniqueness_of :room_type_id, :scope => :channel_id, :if => Proc.new { |ex| !ex.deleted}

@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "Ctrip update availabilities spec", :type => :model do
+describe "Ctrip update inventory spec", :type => :model do
 
   before(:each) do
     @channel    = CtripChannel.first

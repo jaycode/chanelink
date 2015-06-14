@@ -13,6 +13,8 @@ class Account < ActiveRecord::Base
   
   has_many :members
   has_many :properties
+  has_many :rate_types
+  alias_method :original_rate_types, :rate_types
 
   validates :name,
     :length => {:minimum => NAME_MINIMUM_LENGTH, :maximum => NAME_MAXIMUM_LENGTH}
@@ -70,6 +72,16 @@ class Account < ActiveRecord::Base
   # equality for account
   def ==(other)
     return self.id == other.id
+  end
+
+  # Get rate_types + default rate type.
+  def rate_types
+    default_rate_type = RateType.first(:conditions => {
+                                         :account_id => nil
+                                       })
+    arr = Array.new
+    arr = arr + self.original_rate_types
+    arr << default_rate_type
   end
 
   # get all super member in this account

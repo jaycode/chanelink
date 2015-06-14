@@ -1,6 +1,6 @@
 class SetupSchema < ActiveRecord::Migration
   def self.up
-  	  create_table "accounts", :force => true, :options => "ENGINE=MyISAM" do |t|
+  	create_table "accounts", :force => true, :options => "ENGINE=MyISAM" do |t|
 	    t.string   "name"
 	    t.text     "address"
 	    t.string   "telephone"

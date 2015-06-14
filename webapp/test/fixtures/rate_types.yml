@@ -1,0 +1,8 @@
+# The default rate type can be owned by any account.
+default:
+  name: Default
+# Other than default rate type, we allow each account to define their own rate types.
+# For example accounts connecting to ctrip may want to have "Pay at Hotel" rate type.
+pay_at_hotel:
+  name: Pay At Hotel
+  account: big_hotel_chain

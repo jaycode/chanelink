@@ -53,6 +53,10 @@ class AgodaChannel < Channel
     AgodaBookingHandler.instance
   end
 
+  def rate_type_fetcher
+    AgodaRateTypeFetcher.instance
+  end
+
   def room_type_fetcher
     AgodaRoomTypeFetcher.instance
   end
