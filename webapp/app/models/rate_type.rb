@@ -1,4 +1,4 @@
 class RateType < ActiveRecord::Base
   belongs_to :account
-  has_many :rate_type_property_channels
+  has_many :room_type_channel_mappings
 end

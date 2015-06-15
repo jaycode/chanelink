@@ -33,7 +33,7 @@ class CtripChannelMinStayHandler < ChannelMinStayHandler
 
             xml.RateAmountMessage {
               xml.StatusApplicationControl(
-                :RatePlanCategory => channel_room_type_map.rate_type_property_channel.ota_rate_type_id,
+                :RatePlanCategory => channel_room_type_map.ota_rate_type_id,
                 :RatePlanCode => channel_room_type_map.ota_room_type_id)
               xml.Rates {
                 room_type_logs.each do |log|

@@ -7,23 +7,15 @@ class MultiRateStuff < ActiveRecord::Migration
       t.datetime "updated_at"
     end
 
-    create_table "rate_type_property_channels", :force => true, :options => "ENGINE=MyISAM" do |t|
-      t.integer  "property_channel_id"
-      t.integer  "rate_type_id"
-      t.string   "ota_rate_type_name"
-      t.string   "ota_rate_type_id"
-      t.string   "settings", :default => ActiveSupport::JSON.encode({})
-      t.datetime "created_at"
-      t.datetime "updated_at"
-    end
-
     # Todo: These two tables need to be joined as one.
-    add_column :room_type_channel_mappings, :rate_type_property_channel_id, :integer
-    add_column :room_type_master_rate_channel_mappings, :rate_type_property_channel_id, :integer
+    add_column :room_type_channel_mappings, :rate_type_id, :integer
+    add_column :room_type_master_rate_channel_mappings, :rate_type_id, :integer
     add_column :room_type_channel_mappings, :ota_room_type_id, :string
     add_column :room_type_channel_mappings, :ota_room_type_name, :string
-    remove_column :room_type_channel_mappings, :ota_room_type_id
-    remove_column :room_type_channel_mappings, :ota_room_type_name
+    add_column :room_type_channel_mappings, :ota_rate_type_id, :string
+    add_column :room_type_channel_mappings, :ota_rate_type_name, :string
+    remove_column :room_type_channel_mappings, :agoda_room_type_id
+    remove_column :room_type_channel_mappings, :agoda_room_type_name
     remove_column :room_type_channel_mappings, :ctrip_room_type_name
     remove_column :room_type_channel_mappings, :ctrip_room_rate_plan_code
     remove_column :room_type_channel_mappings, :ctrip_room_rate_plan_category
@@ -36,8 +28,10 @@ class MultiRateStuff < ActiveRecord::Migration
     remove_column :room_type_master_rate_channel_mappings, :rate_type_property_channel_id
     remove_column :room_type_channel_mappings, :ota_room_type_id
     remove_column :room_type_channel_mappings, :ota_room_type_name
-    add_column :room_type_channel_mappings, :ota_room_type_id, :string
-    add_column :room_type_channel_mappings, :ota_room_type_name, :string
+    remove_column :room_type_channel_mappings, :ota_rate_type_id
+    remove_column :room_type_channel_mappings, :ota_rate_type_name
+    add_column :room_type_channel_mappings, :agoda_room_type_id, :string
+    add_column :room_type_channel_mappings, :agoda_room_type_name, :string
     add_column :room_type_channel_mappings, :ctrip_room_type_name, :string
     add_column :room_type_channel_mappings, :ctrip_room_rate_plan_code, :string
     add_column :room_type_channel_mappings, :ctrip_room_rate_plan_category, :string

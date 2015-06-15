@@ -85,7 +85,7 @@ class AgodaInventoryHandler < InventoryHandler
         xml.Authentication(:APIKey => AgodaChannel::API_KEY, :HotelID => property.agoda_hotel_id)
         xml.RoomType(
           :RoomTypeID => room_type_channel_mapping.ota_room_type_id,
-          :RatePlanID => room_type_channel_mapping.rate_type_property_channel.ota_rate_type_id
+          :RatePlanID => room_type_channel_mapping.ota_rate_type_id
         )
         xml.DateRange(
           :Type => 'Stay',

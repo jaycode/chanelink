@@ -25,8 +25,8 @@ describe 'Multi Rates Spec' do
     save_and_open_page
   end
 
-  # scenario 'When room_type_master_rate_channel_mapping does not have rate_type_property_channel, ask to create one.' do
-  #   Begin by removing rate_type_property_channel from a room_type_master_rate_channel_mapping
+  # scenario 'When room_type_master_rate_channel_mapping does not have rate_type, ask to create one.' do
+  #   Begin by removing rate_type association from a room_type_master_rate_channel_mapping
   #   mapping = room_type_master_rate_channel_mappings(:default_big_hotel_1_pool_to_superior_room_in_agoda)
   #
   #   visit "/inventories?pool_id=#{@pool.id}"
@@ -57,7 +57,7 @@ describe 'Multi Rates Spec' do
                                                        :room_type_master_rate_mapping_id => room_type_master_rate_mappings(:default_big_hotel_1_pool_to_superior_room).id,
                                                        :channel_id => channels(:agoda).id
                                                      })
-    mapping.rate_type_property_channel_id = nil
+    mapping.rate_type_id = nil
     mapping.save
     expect(mapping.valid?).to eq(true)
     mapping = RoomTypeMasterRateChannelMapping.first(:conditions => {
@@ -65,7 +65,7 @@ describe 'Multi Rates Spec' do
                                                        :channel_id => channels(:agoda).id
                                                      })
 
-    expect(mapping.rate_type_property_channel_id).to be_nil
+    expect(mapping.rate_type_id).to be_nil
   end
 
 end

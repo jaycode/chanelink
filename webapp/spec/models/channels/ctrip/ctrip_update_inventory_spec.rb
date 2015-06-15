@@ -60,7 +60,7 @@ describe "Ctrip update inventory spec", :type => :model do
 
     room_type = nil
     room_types.each do |room_type|
-      if room_type.rate_plan_category == room_type_channel_mapping.rate_type_property_channel.ota_rate_type_id
+      if room_type.rate_plan_category == room_type_channel_mapping.ota_rate_type_id
         room_type.rates.each do |rate|
           total_rooms << rate.number_of_units.to_i
         end

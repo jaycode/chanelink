@@ -54,3 +54,12 @@ another_hotel_1:
   country: indonesia
   account: another_hotel_chain
   approved: 1
+  agoda_hotel_id: 148832
+  expedia_hotel_id: 4397866
+  expedia_username: EQC4397866CHA
+  expedia_password: ke9uwUsE
+  settings: >
+    {"ctrip_username": "54394",
+    "ctrip_hotel_id": "54394",
+    "ctrip_password": "qaz123",
+    "ctrip_code_context": "4085"}

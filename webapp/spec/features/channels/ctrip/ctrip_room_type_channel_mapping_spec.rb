@@ -43,7 +43,7 @@ describe 'Ctrip Room Type Channel Mapping Spec', :type => :feature do
       expect(RoomTypeChannelMapping.find_by_room_type_id_and_channel_id(
         @room_type.id, @channel.id).room_type_id).to eq(room_types[1].id)
       expect(RoomTypeChannelMapping.find_by_room_type_id_and_channel_id(
-        @room_type.id, @channel.id).rate_type_property_channel.ota_rate_type_id).to eq(room_types[1].rate_plan_category)
+        @room_type.id, @channel.id).ota_rate_type_id).to eq(room_types[1].rate_plan_category)
 
     end
 

@@ -9,7 +9,6 @@ class PropertyChannel < ActiveRecord::Base
   belongs_to :channel
   belongs_to :pool
   has_one :currency_conversion
-  has_many :rate_type_property_channels
 
   unscope :property, :pool
 

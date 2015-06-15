@@ -37,7 +37,7 @@ class CtripChannelRateHandler < ChannelRateHandler
                 room_type_logs = logs_by_room_type[rt_id]
 
                 xml.RateAmountMessage {
-                  xml.StatusApplicationControl(:RatePlanCategory => channel_room_type_map.rate_type_property_channels.ota_rate_type_id,
+                  xml.StatusApplicationControl(:RatePlanCategory => channel_room_type_map.ota_rate_type_id,
                                                :RatePlanCode => channel_room_type_map.ota_room_type_id)
                   xml.Rates {
                     room_type_logs.each do |log|

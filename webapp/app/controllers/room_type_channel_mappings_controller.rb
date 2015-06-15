@@ -223,7 +223,6 @@ class RoomTypeChannelMappingsController < ApplicationController
 
     @room_type_channel_mapping = RoomTypeChannelMapping.new(@channel.process_mapping_params(session[:room_type_channel_mapping_params]))
     @room_type = RoomType.find(@room_type_channel_mapping.room_type_id)
-    @room_type_channel_mapping.rate_type_property_channel = RateTypePropertyChannel.new(@channel.process_mapping_params(session[:rate_type_property_channel_params]))
 
     @room_type_master_rate_channel_mapping = RoomTypeMasterRateChannelMapping.new(@channel.process_mapping_params(session[:room_type_master_rate_channel_mapping_params]))
     @room_type_master_rate_channel_mapping.channel = @channel
@@ -277,11 +276,10 @@ class RoomTypeChannelMappingsController < ApplicationController
         room_types = @room_type_channel_mapping.channel.room_type_fetcher.retrieve(current_property, false)
         room_types.each do |rt|
           if @room_type_channel_mapping.ota_room_type_id == rt.id and
-            @room_type_channel_mapping.rate_type_property_channel.ota_rate_type_id == rt.rate_type_id
+            @room_type_channel_mapping.ota_rate_type_id == rt.rate_type_id
             @room_type_channel_mapping.ota_room_type_name = rt.name
-            @room_type_channel_mapping.rate_type_property_channel.ota_rate_type_name = rt.rate_type_name
+            @room_type_channel_mapping.ota_rate_type_name = rt.rate_type_name
             session[:room_type_channel_mapping_params].deep_merge!(@room_type_channel_mapping.attributes) unless skip_session
-            session[:rate_type_property_channel_params].deep_merge!(@room_type_channel_mapping.rate_type_property_channel.attributes) unless skip_session
           end
         end
       end

@@ -39,7 +39,7 @@ class CtripMasterRateNewRoomHandler < MasterRateNewRoomHandler
                   rate_pushed = true
 
                   xml.RateAmountMessage {
-                    xml.StatusApplicationControl(:RatePlanCategory => rtcm.rate_type_property_channel.ota_rate_type_id,
+                    xml.StatusApplicationControl(:RatePlanCategory => rtcm.ota_rate_type_id,
                                                  :RatePlanCode => rtcm.ota_room_type_id)
                     xml.Rates {
                       xml.Rate(:End => date_to_key(master_rate.date), :Start => date_to_key(master_rate.date)) {

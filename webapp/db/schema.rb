@@ -509,16 +509,6 @@ ActiveRecord::Schema.define(:version => 20150611192857) do
     t.string   "settings",                                                             :default => "{}"
   end
 
-  create_table "rate_type_property_channels", :force => true do |t|
-    t.integer  "property_channel_id"
-    t.integer  "rate_type_id"
-    t.string   "ota_rate_type_name"
-    t.string   "ota_rate_type_id"
-    t.string   "settings",            :default => "{}"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "rate_types", :force => true do |t|
     t.string   "name"
     t.integer  "account_id"
@@ -576,9 +566,11 @@ ActiveRecord::Schema.define(:version => 20150611192857) do
     t.decimal  "orbitz_triple_rate_multiplier",        :precision => 30, :scale => 20
     t.decimal  "orbitz_quad_rate_multiplier",          :precision => 30, :scale => 20
     t.string   "settings",                                                             :default => "{}"
-    t.integer  "rate_type_property_channel_id"
     t.string   "ota_room_type_id"
     t.string   "ota_room_type_name"
+    t.integer  "rate_type_id"
+    t.string   "ota_rate_type_id"
+    t.string   "ota_rate_type_name"
   end
 
   create_table "room_type_inventory_links", :force => true do |t|
@@ -601,7 +593,7 @@ ActiveRecord::Schema.define(:version => 20150611192857) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "deleted",                                                          :default => false
-    t.integer  "rate_type_property_channel_id"
+    t.integer  "rate_type_id"
   end
 
   create_table "room_type_master_rate_mappings", :force => true do |t|

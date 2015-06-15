@@ -4,33 +4,33 @@ default_big_hotel_1_pool_to_superior_room_in_agoda:
   room_type: superior
   channel: agoda
   method: amount
-  rate_type_property_channel: default_big_hotel_1_default_agoda
+  rate_type: default
   value: 0
 default_big_hotel_1_pool_to_superior_room_in_agoda_for_rate_type_pay_at_hotel:
   master_rate_mapping: default_big_hotel_1_pool_to_superior_room
   room_type: superior
   channel: agoda
   method: amount
-  rate_type_property_channel: pay_at_hotel_big_hotel_1_default_agoda
+  rate_type: pay_at_hotel
   value: 0
 default_big_hotel_1_pool_to_superior_room_in_ctrip:
   master_rate_mapping: default_big_hotel_1_pool_to_superior_room
   room_type: superior
   channel: ctrip
   method: amount
-  rate_type_property_channel: default_big_hotel_1_default_agoda
+  rate_type: default
   value: 0
 default_big_hotel_1_pool_to_superior_room_in_agoda_for_rate_type_pay_at_hotel:
   master_rate_mapping: default_big_hotel_1_pool_to_superior_room
   room_type: superior
   channel: agoda
   method: amount
-  rate_type_property_channel: pay_at_hotel_big_hotel_1_default_agoda
+  rate_type: pay_at_hotel
   value: 0
 room_type_to_channel_mapping_tester_with_agoda:
   master_rate_mapping: room_type_to_channel_mapping_tester
   room_type: superior
   channel: agoda
   method: amount
-  rate_type_property_channel: default
+  rate_type: default
   value: 0

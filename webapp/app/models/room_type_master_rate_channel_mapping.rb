@@ -7,7 +7,7 @@ class RoomTypeMasterRateChannelMapping < ActiveRecord::Base
   belongs_to :master_rate_mapping, :class_name => 'RoomTypeMasterRateMapping', :foreign_key => 'room_type_master_rate_mapping_id'
   belongs_to :channel
   belongs_to :room_type
-  belongs_to :rate_type_property_channel
+  belongs_to :rate_type
 
   scope :room_type_ids_in, lambda { |room_type_ids| {:conditions => ["room_type_master_rate_channel_mappings.room_type_id IN (?)", room_type_ids]} }
   scope :master_room_type_id, lambda { |room_type_id| {:conditions => ["room_type_master_rate_mappings.room_type_id = ?", room_type_id], :include => [:master_rate_mapping]} }

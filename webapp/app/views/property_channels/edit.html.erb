@@ -56,7 +56,7 @@
         <% rooms_mapped.each do |mapping| %>
           <p class="property_rooms-mapped-item">&nbsp;&nbsp;&nbsp;&nbsp;
             <%= mapping.room_type.name %>
-            (<%= mapping.rate_type_property_channel.rate_type.name %>)
+            (<%= mapping.rate_type.name %>)
             <%= t('property_channels.edit.label.mapped_to') %>
             <%=  @property_channel.channel.room_type_name(mapping) %>
             <% if mapping.disabled? %>

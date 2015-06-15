@@ -24,8 +24,8 @@ class Channel < ActiveRecord::Base
   # Same as above, but used for name.
   def room_type_name(channel_room_type)
     if channel_room_type.kind_of?(RoomTypeChannelMapping)
-      "#{channel_room_type.ota_room_type_name} (#{channel_room_type.rate_type_property_channel.ota_rate_type_name}) "+
-        "- #{channel_room_type.ota_room_type_id}(#{channel_room_type.rate_type_property_channel.ota_rate_type_id})"
+      "#{channel_room_type.ota_room_type_name} (#{channel_room_type.ota_rate_type_name}) "+
+        "- #{channel_room_type.ota_room_type_id}(#{channel_room_type.ota_rate_type_id})"
     else
       "#{channel_room_type.name} (#{channel_room_type.rate_type_name})"+
         " - #{channel_room_type.id}(#{channel_room_type.rate_type_id})"

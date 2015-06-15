@@ -7,10 +7,9 @@ module PropertyChannelsHelper
     property.room_types.each do |rt|
       property.account.rate_types.each do |acc_rate_type|
         mapping = RoomTypeChannelMapping.first(
-          :conditions => ['room_type_id = ? AND ota_room_type_id IS NOT NULL AND rate_type_property_channels.rate_type_id = ? '+
-                            'AND rate_type_property_channels.ota_rate_type_id IS NOT NULL',
-                          rt.id, acc_rate_type.id],
-          :joins => :rate_type_property_channel
+          :conditions => ['room_type_id = ? AND ota_room_type_id IS NOT NULL AND rate_type_id = ? '+
+                            'AND ota_rate_type_id IS NOT NULL',
+                          rt.id, acc_rate_type.id]
         )
         if mapping.blank?
           rooms << {:text => "#{rt.name} (#{acc_rate_type.name})", :id => rt.id}

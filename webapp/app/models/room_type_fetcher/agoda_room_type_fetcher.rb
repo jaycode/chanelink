@@ -8,15 +8,6 @@ class AgodaRoomTypeFetcher < RoomTypeFetcher
       rate_types = AgodaChannel.first.rate_type_fetcher.retrieve(property)
       agoda_room_types = xml_doc.xpath('//agoda:RoomType', 'agoda' => AgodaChannel::XMLNS)
       agoda_room_types.each do |room_type|
-        if exclude_mapped_rooms
-          all_mappings = RoomTypeChannelMapping.all(
-            :conditions => {
-              :ota_room_type_id => room_type['RoomTypeID'],
-              :channel_id => AgodaChannel.first.id
-            },
-            :include => :rate_type_property_channel
-          )
-        end
 
         rate_types.each do |rate_type|
           rt = RoomTypeXml.new(
@@ -27,13 +18,14 @@ class AgodaRoomTypeFetcher < RoomTypeFetcher
             room_type.to_s,
             rate_type.content)
           if exclude_mapped_rooms and defined?(all_mappings)
-            add = true
-            all_mappings.each do |mapping|
-              if !mapping.rate_type_property_channel.blank? and mapping.rate_type_property_channel.ota_rate_type_id == rate_type.id
-                add = false
+              if RoomTypeChannelMapping.first(
+                :conditions => {
+                  :ota_room_type_id => room_type['RoomTypeID'],
+                  :ota_rate_type_id => rate_type.id,
+                  :channel_id => AgodaChannel.first.id
+                }).blank?
+                room_types << rt if add
               end
-            end
-            room_types << rt if add
           else
             room_types << rt
           end

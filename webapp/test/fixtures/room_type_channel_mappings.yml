@@ -4,12 +4,18 @@ superior_agoda:
   channel: agoda
   ota_room_type_id: 461004
   ota_room_type_name: Room B - Double Executive
+  rate_type: default
+  ota_rate_type_id: 1
+  ota_rate_type_name: Retail
   rate_type_property_channel: default_big_hotel_1_default_agoda
 superior_agoda_pay_at_hotel:
   room_type: superior
   channel: agoda
   ota_room_type_id: 863881
   ota_room_type_name: Room B - Double Executive
+  rate_type: pay_at_hotel
+  ota_rate_type_id: 6
+  ota_rate_type_name: Domestic
   rate_type_property_channel: pay_at_hotel_big_hotel_1_default_agoda
 superior_ctrip_room_a:
   room_type: superior
@@ -17,6 +23,9 @@ superior_ctrip_room_a:
   rate_type_property_channel: default_big_hotel_1_default_ctrip
   ota_room_type_id: 1251431
   ota_room_type_name: Superior(CNY Promo)
+  rate_type: default
+  ota_rate_type_id: 501
+  ota_rate_type_name: Prepaid
   settings: >
     {
     "ctrip_breakfast_inclusion": 1,
@@ -28,6 +37,9 @@ superior_ctrip_room_a_pay_at_hotel:
   channel: ctrip
   ota_room_type_id: 1251431
   ota_room_type_name: Superior(CNY Promo)
+  rate_type: default
+  ota_rate_type_id: 16
+  ota_rate_type_name: Pay at Hotel
   rate_type_property_channel: pay_at_hotel_big_hotel_1_default_ctrip
   settings: >
     {
