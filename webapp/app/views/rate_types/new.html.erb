@@ -1,0 +1,12 @@
+<%= page_title t('rate_types.new.label.heading') %>
+<div id="newRateType">
+  <div class="col9">
+    <h2><%= raw t('rate_types.new.label.heading') %></h2>
+    <div class="infoBox">
+      <h4><%= t('rate_types.new.label.info_heading') %></h4>
+      <p><%= t('rate_types.new.label.info_body_1') %></p>
+      <p><%= t('rate_types.new.label.info_body_2') %></p>
+    </div>
+    <%= render 'form', :action => 'create' %>
+  </div>
+</div>

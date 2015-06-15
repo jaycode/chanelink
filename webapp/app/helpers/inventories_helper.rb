@@ -11,8 +11,8 @@ module InventoriesHelper
   end
 
   # generate rates field name
-  def generate_rates_field_name(date, room_type, field)
-    "[#{room_type.id}][#{date.strftime('%F')}][#{field}]"
+  def generate_rates_field_name(date, room_type, rate_type, field)
+    "[#{room_type.id}][#{rate_type.id}][#{date.strftime('%F')}][#{field}]"
   end
 
   # generate rates field name
@@ -172,6 +172,46 @@ module InventoriesHelper
             name = last_selected.attr('name');
             splitted = name.split(']')
 
+            if (splitted.length > 3) {
+              rt_name = splitted[0] + ']';
+              min_stay = splitted[3] + ']';
+
+              value_to_copy = last_selected.val();
+
+              form.find(\"input[name^='\" + rt_name + \"']\" + \"[name$='\" + min_stay + \"']\").each(function() {
+                if (!$(this).is(':disabled')) {
+                  $(this).val(value_to_copy);
+                }
+              });
+            } else {
+              rt_name = splitted[0] + ']';
+
+              value_to_copy = last_selected.val();
+
+              form.find(\"input[name^='\" + rt_name + \"']\").each(function() {
+                if (!$(this).is(':disabled')) {
+                  $(this).val(value_to_copy);
+                }
+              });
+            }
+          }
+          return false;
+        });
+      });"
+  end
+
+  def copy_across_inventories_js
+    javascript_tag "$(function() {
+
+        $(\"\.copyAcrossInventories\" ).click(function(){
+
+          form = $(this).closest('form');
+          last_selected = form.data('lastSelected');
+
+          if (last_selected !== undefined) {
+            name = last_selected.attr('name');
+            splitted = name.split(']')
+
             if (splitted.length > 2) {
               rt_name = splitted[0] + ']';
               min_stay = splitted[2] + ']';
@@ -211,6 +251,31 @@ module InventoriesHelper
 
           if (last_selected !== undefined) {
             name = last_selected.attr('name');
+            date_name = name.split(']')[2] + ']';
+
+            value_to_copy = last_selected.val();
+
+            form.find(\"input[name$='\" + date_name + \"']\").each(function() {
+              if (!$(this).is(':disabled')) {
+                $(this).val(value_to_copy);
+              }
+            });
+          }
+          return false;
+        });
+      });"
+  end
+
+  def copy_up_down_inventories_js
+    javascript_tag "$(function() {
+
+        $(\"\.copyUpdownInventories\" ).click(function(){
+
+          form = $(this).closest('form');
+          last_selected = form.data('lastSelected');
+
+          if (last_selected !== undefined) {
+            name = last_selected.attr('name');
             date_name = name.split(']')[1] + ']';
 
             value_to_copy = last_selected.val();
@@ -226,36 +291,39 @@ module InventoriesHelper
       });"
   end
 
-  def determine_master_rate_amount(date, room_type, pool_id, flash)
+  def determine_master_rate_amount(date, room_type, rate_type, pool_id, flash)
     amount = 0
     if flash[:master_rates] and flash[:master_rates][room_type.id.to_s]
       amount = flash[:master_rates][room_type.id.to_s][DateUtils.date_to_key(date)]['amount']
     else
-      rate = MasterRate.find_by_date_and_property_id_and_pool_id_and_room_type_id(date, current_property.id, pool_id, room_type.id)
+      rate = MasterRate.find_by_date_and_property_id_and_pool_id_and_room_type_id_and_rate_type_id(
+        date, current_property.id, pool_id, room_type.id, rate_type.id)
       amount = rate.amount unless rate.blank?
     end
     amount
   end
 
-  def determine_channel_rate_amount(date, room_type, channel, pool_id, flash)
+  def determine_channel_rate_amount(date, room_type, rate_type, channel, pool_id, flash)
     amount = 0
     channel_key = "#{channel.cname}_rates"
-    if flash[channel_key] and flash[channel_key][room_type.id.to_s]
-      amount = flash[channel_key][room_type.id.to_s][DateUtils.date_to_key(date)]['amount']
+    if flash[channel_key] and flash[channel_key][room_type.id.to_s][rate_type.id.to_s]
+      amount = flash[channel_key][room_type.id.to_s][rate_type.id.to_s][DateUtils.date_to_key(date)]['amount']
     else
-      rate = ChannelRate.find_by_date_and_property_id_and_pool_id_and_room_type_id_and_channel_id(date, current_property.id, pool_id, room_type.id, channel.id)
+      rate = ChannelRate.find_by_date_and_property_id_and_pool_id_and_room_type_id_and_rate_type_id_and_channel_id(
+        date, current_property.id, pool_id, room_type.id, rate_type.id, channel.id)
       amount = rate.amount unless rate.blank?
     end
     amount
   end
 
-  def determine_channel_rate_min_stay(date, room_type, channel, pool_id, flash)
+  def determine_channel_rate_min_stay(date, room_type, rate_type, channel, pool_id, flash)
     min_stay = 0
     channel_key = "#{channel.cname}_rates"
-    if flash[channel_key] and flash[channel_key][room_type.id.to_s]
-      min_stay = flash[channel_key][room_type.id.to_s][DateUtils.date_to_key(date)]['min_stay']
+    if flash[channel_key] and flash[channel_key][room_type.id.to_s][rate_type.id.to_s]
+      min_stay = flash[channel_key][room_type.id.to_s][rate_type.id.to_s][DateUtils.date_to_key(date)]['min_stay']
     else
-      rate = ChannelMinStay.find_by_date_and_property_id_and_pool_id_and_room_type_id_and_channel_id(date, current_property.id, pool_id, room_type.id, channel.id)
+      rate = ChannelMinStay.find_by_date_and_property_id_and_pool_id_and_room_type_id_and_rate_type_id_and_channel_id(
+        date, current_property.id, pool_id, room_type.id, rate_type.id, channel.id)
       min_stay = rate.min_stay unless rate.blank?
     end
     min_stay

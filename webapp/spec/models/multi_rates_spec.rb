@@ -33,7 +33,7 @@ describe 'Multi Rates Spec' do
   end
 
   scenario 'In Agoda channel, get room types from their server, then set room_type_channel_mapping.' do
-    rate_type = rate_types(:pay_at_hotel)
+    rate_type = rate_types(:default)
     property = properties(:another_hotel_1)
     connector = AgodaConnector.new(property)
     room_type_xmls = connector.get_room_types
@@ -44,9 +44,12 @@ describe 'Multi Rates Spec' do
       :ota_room_type_id => room_type_xmls[0].id,
       :ota_room_type_name => room_type_xmls[0].name,
       :ota_rate_type_id => room_type_xmls[0].rate_type_id,
-      :ota_rate_type_name => room_type_xmls[0].rate_type_name
+      :ota_rate_type_name => room_type_xmls[0].rate_type_name,
+      :agoda_single_rate_multiplier => 1
     )
+    room_type_channel_mapping.skip_rate_configuration = true
     room_type_channel_mapping.save
+    puts room_type_channel_mapping.errors.inspect
     expect(room_type_channel_mapping.valid?).to eq(true)
   end
 
@@ -57,16 +60,27 @@ describe 'Multi Rates Spec' do
     expect(rate_plans[1].id).to eq('16')
   end
 
-  scenario "RateTypePropertyChannel should not be able to connect property channel with rate type if they don't belong to same account" do
+  scenario "RoomRateChannelMapping should not be able to connect property with rate type if they don't belong to same account" do
     # In this scenario, rate plan "pay at hotel" and property channel "another_hotel_1_default_agoda"
     # do not belong under the same account.
     rate_type = rate_types(:pay_at_hotel)
-    property_channel = property_channels(:another_hotel_1_default_agoda)
-    rate_type_property_channel = RateTypePropertyChannel.new(
+    property = properties(:another_hotel_1)
+    connector = AgodaConnector.new(property)
+    room_type_xmls = connector.get_room_types
+    room_type_channel_mapping = RoomTypeChannelMapping.new(
+      :room_type => room_types(:another_superior),
       :rate_type => rate_type,
-      :property_channel => property_channel
+      :channel => channels(:agoda),
+      :ota_room_type_id => room_type_xmls[0].id,
+      :ota_room_type_name => room_type_xmls[0].name,
+      :ota_rate_type_id => room_type_xmls[0].rate_type_id,
+      :ota_rate_type_name => room_type_xmls[0].rate_type_name,
+      :agoda_single_rate_multiplier => 1
     )
-    expect(rate_type_property_channel.valid?).to eq(false)
+    room_type_channel_mapping.skip_rate_configuration = true
+    room_type_channel_mapping.save
+    puts room_type_channel_mapping.errors.inspect
+    expect(room_type_channel_mapping.valid?).to eq(false)
   end
 
   scenario 'Getting rates from account must include default rate' do

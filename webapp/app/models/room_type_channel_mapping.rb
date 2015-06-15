@@ -48,6 +48,17 @@ class RoomTypeChannelMapping < ActiveRecord::Base
 
   after_initialize :setup_default_settings
 
+  validate :account_similarities
+
+  # Room rate and mapping and property must have the same account
+  def account_similarities
+    unless rate_type.blank? or room_type.blank?
+      unless rate_type.account_id == room_type.property.account_id or rate_type.account_id.blank?
+        errors.add(:rate_type, I18n.t('rate_types.validate.error_account_similarity_with_room_type'))
+      end
+    end
+  end
+
   def setup_default_settings
     self.update_empty_settings(default_settings)
   end

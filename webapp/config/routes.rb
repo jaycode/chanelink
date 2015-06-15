@@ -22,6 +22,12 @@ Chanelinkweb::Application.routes.draw do
     end
   end
 
+  resources :rate_types do
+    member do
+      get 'delete'
+    end
+  end
+
   resources :pools do
     member do
       get 'delete'

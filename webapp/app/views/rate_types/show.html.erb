@@ -1,0 +1,26 @@
+<%= page_title t('rate_types.show.label.heading') %>
+<div id="showRateType">
+  <div class="col9">
+    <h2><%= raw t('rate_types.show.label.heading') %></h2>
+    <p>
+      <label><%= t('rate_types.new.label.name') %><%= required %></label>
+      <%= @rate_type.name %>
+    </p>
+    <p>
+      <label><%= t('rate_types.new.label.rack_rate') %><%= required %></label>
+      <%= @rate_type.rack_rate %>
+    </p>
+    <p>
+      <label><%= t('rate_types.new.label.minimum_rate') %></label>
+      <%= @rate_type.minimum_rate %>&nbsp;
+    </p>
+    <p>
+      <label><%= t('rate_types.new.label.minimum_stay') %></label>
+      <%= @rate_type.minimum_stay %>&nbsp;
+    </p>
+    <br/>
+    <p>
+      <%= link_to t('rate_types.show.label.back_to_index'), rate_types_path %>
+    </p>
+  </div>
+</div>

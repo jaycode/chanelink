@@ -103,6 +103,11 @@
       <% end %>
     </div>
     <div class="subMenu" style="<%= check_selected_sub_menu(activity_paths) ? '' : 'display: none' %>">
+      <%= link_to rate_types_path do %>
+        <%= t('menu.rate_types') %>
+      <% end %>
+    </div>
+    <div class="subMenu" style="<%= check_selected_sub_menu(activity_paths) ? '' : 'display: none' %>">
       <%= link_to room_type_master_rate_mappings_path do %>
         <%= t('menu.master_rates') %>
       <% end %>

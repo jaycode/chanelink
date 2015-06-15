@@ -140,7 +140,7 @@ end
 # You may add any sample data here.
 def development_seeds
   # Lets use Plaza Hotel Glodok as our sample account.
-  property = Property.first(:conditions => {:name => 'Plaza Hotel Glodok'})
+  property = Property.first(:conditions => {:name => 'YCS Togo Hotel'})
   property.settings = {:ctrip_username => '54394'}
   property.settings = {:ctrip_password => 'qaz123'}
   property.settings = {:ctrip_hotel_id => '54394'}

@@ -33,6 +33,7 @@ en:
     new_property: '+ New Hotel'
     setup: 'Setup'
     room_types: 'Room Types'
+    rate_types: 'Rate Types'
     channel: 'Channels'
     pools: 'Pools'
     inventory_grid: 'Inventory Grid'
@@ -196,7 +197,7 @@ en:
 
   rate_types:
     validate:
-      error_account_similarity: 'must have the same account id with room rate.'
+      error_account_similarity_with_room_type: 'must have the same account id with room type.'
   reports:
     too_big: 'Report is too big for browser viewing, please view the report data as CSV.'
     checkin:
@@ -504,6 +505,53 @@ en:
     validate:
       rack_rate_must_be_over_minimum: 'must be equal or greater than %{minimum}'
       minimum_rate_must_be_over_minimum: 'must be equal or greater than %{minimum}'
+
+  rate_types:
+    index:
+      label:
+        heading: 'Rate Types'
+        blank: 'No rate types for this hotel yet'
+        name: 'Rate Type'
+        no_channels: '# of channels'
+        channels_connected: 'connected to %{count} channels'
+    new:
+      label:
+        heading: 'New Rate Type'
+        name: 'Name'
+        rack_rate: 'Rack Rate'
+        minimum_rate: 'Minimum Rate'
+        minimum_stay: 'Minimum Stay'
+        info_heading: 'Information on creating new rate types'
+        info_body_1: "Once you have created new rate type it will need to be mapped to each Channel on which it is required. When a rate is mapped to a Channel, the rate's rate and min stay values will default to the values of the Rack Rate and Min Stay entered below."
+        info_body_2: "Generally, the Rack Rate should be a value much higher than the rate's normal sell rate."
+    create:
+      message:
+        success: 'Finish creating new rate type'
+    edit:
+      link: 'Modify'
+      label:
+        heading: 'Modify %{rate_type}'
+        channels_already_mapped: 'Already Mapped to the following channels:'
+        no_channels_mapped: 'No channels mapped yet.'
+        channels_not_mapped: 'Not Mapped to the following channels:'
+        no_more_channels: 'No more channels to be mapped'
+    show:
+      label:
+        heading: 'View Rate Type'
+        back_to_index: '<< back to rate types'
+    update:
+      message:
+        success: 'Rate type updated'
+        diff_account: 'This rate type does not belong to your account.'
+    delete:
+      link: 'Delete'
+      dialog:
+        title: 'Rate Type Deletion Warning'
+        no_channel: 'No Channel mapping found for this rate type.'
+        permanent: 'You are about to delete Rate Type %{rate_type} which is permanent.'
+        all_data: 'All data entered in Chanelink relating to this rate type such as rates and availability will be permanently deleted. Rate type %{rate_type} is currently mapped to the respective channels, and these mappings will be deleted from Chanelink:'
+        does_not_delete: 'Please note that deleting this rate type from Chanelink will not automatically delete the rate on the Channel which it was mapped to. You will need to log on to the Channel and delete the rate manually, if required.'
+        confirm_delete: 'I understand then consequences of deleting Rate Type %{rate_type} and wish to proceed.'
 
   channels:
     placeholder: 'Select a channel'

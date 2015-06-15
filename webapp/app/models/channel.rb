@@ -13,11 +13,11 @@ class Channel < ActiveRecord::Base
   # Reference from channel_room_type can be seen from room_type_xml classes
   # e.g. normally RoomTypeXml, for ctrip in class CtripRoomTypeXml.
   # OR RoomTypeChannelMapping
-  def room_type_id(channel_room_type)
+  def room_and_rate_type_id(channel_room_type)
     if channel_room_type.kind_of?(RoomTypeChannelMapping)
-      channel_room_type.ota_room_type_id
+      "#{channel_room_type.ota_room_type_id}:#{channel_room_type.ota_rate_type_id}"
     else
-      channel_room_type.id
+      "#{channel_room_type.id}:#{channel_room_type.rate_type_id}"
     end
   end
 
@@ -33,8 +33,17 @@ class Channel < ActiveRecord::Base
   end
 
   # Proces mapping params before being used as parameter in
-  # RoomTypeChannelMapping.new.
+  # RoomTypeChannelMapping.new and RoomTypeMasterRateChannelMapping.new
+  # override as needed.
   def process_mapping_params(mapping_params)
+    mapping_params = ActiveSupport::HashWithIndifferentAccess.new(mapping_params)
+    if mapping_params.has_key?(:ota_room_type_id)
+      processed = mapping_params[:ota_room_type_id].split(':')
+      if processed.count == 2
+        mapping_params[:ota_room_type_id] = processed[0]
+        mapping_params[:ota_rate_type_id] = processed[1]
+      end
+    end
     mapping_params
   end
 

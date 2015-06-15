@@ -18,8 +18,12 @@ class MasterRatesController < ApplicationController
     logs = Array.new
     current_property.room_types.each do |rt|
       if params["#{rt.id}"]
-        params["#{rt.id}"].each do |date_rate|
-          handle_amount(date_rate, rt, logs)
+        current_property.account.rate_types.each do |rate_type|
+          if params["#{rt.id}"]["#{rate_type.id}"]
+            params["#{rt.id}"]["#{rate_type.id}"].each do |date_rate|
+              handle_amount(date_rate, rt, rate_type, logs)
+            end
+          end
         end
       end
     end
@@ -39,16 +43,20 @@ class MasterRatesController < ApplicationController
 
     current_property.room_types.each do |rt|
       if params["#{rt.id}"]
-        params["#{rt.id}"].each do |date_rate|
-          if date_rate[1]["amount"]
-            amount = date_rate[1]["amount"]
-            # rates must be positive integer and greater then minimum
-            if !(amount =~ /\A[-+]?[0-9]*\.?[0-9]+\Z/)
-              errors << t('master_rates.validate.error_not_a_number', :room_type => rt.name, :date => date_rate[0])
-            elsif amount.to_f < 0
-              errors << t('master_rates.validate.error_negative_number', :room_type => rt.name, :date => date_rate[0])
-            elsif amount.to_f < rt.final_minimum_rate
-              errors << t('master_rates.validate.error_less_than_minimum', :room_type => rt.name, :date => date_rate[0], :minimum => rt.final_minimum_rate)
+        current_property.account.rate_types.each do |rate_type|
+          if params["#{rt.id}"]["#{rate_type.id}"]
+            params["#{rt.id}"]["#{rate_type.id}"].each do |date_rate|
+              if date_rate[1]["amount"]
+                amount = date_rate[1]["amount"]
+                # rates must be positive integer and greater then minimum
+                if !(amount =~ /\A[-+]?[0-9]*\.?[0-9]+\Z/)
+                  errors << t('master_rates.validate.error_not_a_number', :room_type => rt.name, :date => date_rate[0])
+                elsif amount.to_f < 0
+                  errors << t('master_rates.validate.error_negative_number', :room_type => rt.name, :date => date_rate[0])
+                elsif amount.to_f < rt.final_minimum_rate
+                  errors << t('master_rates.validate.error_less_than_minimum', :room_type => rt.name, :date => date_rate[0], :minimum => rt.final_minimum_rate)
+                end
+              end
             end
           end
         end
@@ -66,11 +74,12 @@ class MasterRatesController < ApplicationController
   private
 
   # handle storing of the master rate
-  def handle_amount(date_rate, rt, logs)
+  def handle_amount(date_rate, rt, rate_type, logs)
     
     if date_rate[1]["amount"]
       amount = date_rate[1]["amount"]
-      existing_rate = MasterRate.find_by_date_and_property_id_and_pool_id_and_room_type_id(date_rate[0], current_property.id, params[:pool_id], rt.id)
+      existing_rate = MasterRate.find_by_date_and_property_id_and_pool_id_and_room_type_id_and_rate_type_id(
+        date_rate[0], current_property.id, params[:pool_id], rt.id, rate_type.id)
 
       # no existing, create new master rate object
       if existing_rate.blank?
@@ -81,6 +90,7 @@ class MasterRatesController < ApplicationController
           rate.date = date_rate[0]
           rate.amount = amount
           rate.room_type_id = rt.id
+          rate.rate_type_id = rate_type.id
           rate.property = current_property
           rate.pool_id = @pool.id
 

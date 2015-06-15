@@ -8,7 +8,13 @@ class AgodaRateTypeFetcher < RateTypeFetcher
     retrieve_xml(property) do |xml_doc|
       agoda_rate_types = xml_doc.xpath('//agoda:RatePlan', 'agoda' => AgodaChannel::XMLNS)
       agoda_rate_types.each do |rt|
-        rate_type = RateTypeXml.new(rt.at('ID').content, rt.at('Name').content, rt.to_s)
+        # Weird exception: Name 'Nett' does not show.
+        if rt.at('Name').content == '' and rt.at('ID').content == '3'
+          name = 'Nett'
+        else
+          name = rt.at('Name').content
+        end
+        rate_type = RateTypeXml.new(rt.at('ID').content, name, rt.to_s)
         rate_types << rate_type
       end
     end

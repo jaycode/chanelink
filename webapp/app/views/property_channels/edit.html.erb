@@ -50,7 +50,7 @@
       <h4><%= t('property_channels.edit.label.rooms_mapped') %></h4>
       <br/>
       <% rooms_mapped = RoomTypeChannelMapping.room_type_ids(
-        current_property.room_type_ids).where(["channel_id = ? AND rate_type_property_channel_id IS NOT NULL",
+        current_property.room_type_ids).where(["channel_id = ? AND rate_type_id IS NOT NULL AND ota_room_type_id IS NOT NULL AND ota_rate_type_id IS NOT NULL",
                                                @property_channel.channel.id]) %>
       <% if !rooms_mapped.blank? %>
         <% rooms_mapped.each do |mapping| %>

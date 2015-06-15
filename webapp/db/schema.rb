@@ -176,6 +176,7 @@ ActiveRecord::Schema.define(:version => 20150611192857) do
     t.boolean  "cta"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "rate_type_id"
   end
 
   create_table "channel_ctbs", :force => true do |t|
@@ -187,6 +188,7 @@ ActiveRecord::Schema.define(:version => 20150611192857) do
     t.boolean  "ctb"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "rate_type_id"
   end
 
   create_table "channel_ctd_logs", :force => true do |t|
@@ -206,6 +208,7 @@ ActiveRecord::Schema.define(:version => 20150611192857) do
     t.boolean  "ctd"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "rate_type_id"
   end
 
   create_table "channel_min_stay_logs", :force => true do |t|
@@ -225,6 +228,7 @@ ActiveRecord::Schema.define(:version => 20150611192857) do
     t.integer  "min_stay"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "rate_type_id"
   end
 
   create_table "channel_rate_logs", :force => true do |t|
@@ -244,6 +248,7 @@ ActiveRecord::Schema.define(:version => 20150611192857) do
     t.decimal  "amount",       :precision => 30, :scale => 20
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "rate_type_id"
   end
 
   create_table "channel_stop_sell_logs", :force => true do |t|
@@ -263,6 +268,7 @@ ActiveRecord::Schema.define(:version => 20150611192857) do
     t.boolean  "stop_sell"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "rate_type_id"
   end
 
   create_table "channels", :force => true do |t|
@@ -400,6 +406,7 @@ ActiveRecord::Schema.define(:version => 20150611192857) do
     t.decimal  "amount",       :precision => 30, :scale => 20
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "rate_type_id"
   end
 
   create_table "member_logins", :force => true do |t|
@@ -512,6 +519,7 @@ ActiveRecord::Schema.define(:version => 20150611192857) do
   create_table "rate_types", :force => true do |t|
     t.string   "name"
     t.integer  "account_id"
+    t.boolean  "deleted",    :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -566,9 +574,9 @@ ActiveRecord::Schema.define(:version => 20150611192857) do
     t.decimal  "orbitz_triple_rate_multiplier",        :precision => 30, :scale => 20
     t.decimal  "orbitz_quad_rate_multiplier",          :precision => 30, :scale => 20
     t.string   "settings",                                                             :default => "{}"
+    t.integer  "rate_type_id"
     t.string   "ota_room_type_id"
     t.string   "ota_room_type_name"
-    t.integer  "rate_type_id"
     t.string   "ota_rate_type_id"
     t.string   "ota_rate_type_name"
   end
@@ -602,6 +610,7 @@ ActiveRecord::Schema.define(:version => 20150611192857) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "deleted",      :default => false
+    t.integer  "rate_type_id"
   end
 
   create_table "room_types", :force => true do |t|

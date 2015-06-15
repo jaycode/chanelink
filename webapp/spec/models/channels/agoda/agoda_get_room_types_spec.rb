@@ -43,12 +43,10 @@ describe "Agoda get room types spec", :type => :model do
     room_types.each do |room_type|
       mapping = RoomTypeChannelMapping.all(
         :conditions => {
-          :room_type_id => room_type.id,
-          :rate_type_property_channels => {
-            :ota_rate_type_id => room_type.rate_type_id
-          }
-        },
-        :joins => :rate_type_property_channel
+          :ota_room_type_id => room_type.id,
+          :ota_rate_type_id => room_type.rate_type_id,
+          :channel_id => channels(:agoda).id
+        }
       )
       unless mapping.empty?
         mapped_room_exists = true
@@ -59,7 +57,7 @@ describe "Agoda get room types spec", :type => :model do
 
   # This demonstrates the procedure to get unmapped rooms
   # in views/properties/edit.html.erb.
-  scenario 'Showing only unmapped rooms.' do
+  scenario "Showing only chanelink's unmapped rooms." do
     rooms = Array.new
     mapped_rooms = Array.new
     property = properties(:big_hotel_1)
@@ -68,10 +66,9 @@ describe "Agoda get room types spec", :type => :model do
     property.room_types.each do |rt|
       property.account.rate_types.each do |acc_rate_type|
         mapping = RoomTypeChannelMapping.first(
-          :conditions => ['room_type_id = ? AND ota_room_type_id IS NOT NULL AND rate_type_property_channels.rate_type_id = ? '+
-                            'AND rate_type_property_channels.ota_rate_type_id IS NOT NULL',
-                          rt.id, acc_rate_type.id],
-          :joins => :rate_type_property_channel
+          :conditions => ['room_type_id = ? AND ota_room_type_id IS NOT NULL AND rate_type_id = ? '+
+                            'AND ota_rate_type_id IS NOT NULL',
+                          rt.id, acc_rate_type.id]
         )
         if mapping.blank?
           rooms << "#{rt.name} (#{acc_rate_type.name})"

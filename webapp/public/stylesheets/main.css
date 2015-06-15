@@ -910,7 +910,7 @@ footer .plc .left nav a:hover, footer .plc .right nav a:hover {
 #setPoolInventory .bigColumn {
     width: 180px;
     float: left;
-    overflow: hidden;
+    /* overflow: hidden; */
     padding-left: 5px;
 }
 

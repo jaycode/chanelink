@@ -1,0 +1,44 @@
+<%= page_title t('rate_types.index.label.heading') %>
+<div id="indexRateType">
+  <div class="col9">
+    <h2><%= raw t('rate_types.index.label.heading') %></h2>
+    <div class="table">
+      <div class="tableRowHeader grey">
+        <div class="bigColumn"><%= t('rate_types.index.label.name') %></div>
+        <div class="smallColumn"><%= t('rate_types.index.label.no_channels') %></div>
+        <div class="smallColumn">&nbsp;</div>
+      </div>
+      <% if @rate_types.blank?  %>
+        <div class="tableRow">
+          <div class="bigColumn">
+            <%= t('rate_types.index.label.blank') %>
+          </div>
+        </div>
+      <% else %>
+        <% @rate_types.each do |rt| %>
+          <div class="tableRow">
+            <div class="bigColumn">
+              <% if can? :update, RateType %>
+                <%= link_to rt.name, edit_rate_type_path(rt) %>
+              <% else %>
+                <%= link_to rt.name, rate_type_path(rt) %>
+              <% end %>
+            </div>
+            <div class="smallColumn green"><%= t('rate_types.index.label.channels_connected',
+                                                 :count => RoomTypeChannelMapping.find_all_by_rate_type_id(rt.id).count) %></div>
+            <div class="smallColumn">
+              <% if can? :delete, RateType %>
+                <%= link_to t('rate_types.delete.link'), '', :onclick => "javascript: deleteRoomTypeDialog('#{t('rate_types.delete.dialog.title')}', '#{delete_rate_type_dialog_body(rt)}', '#{delete_rate_type_path(rt)}'); return false;" %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+    <br/>
+    <br/>
+    <% if can? :create, RateType %>
+      <%= link_to 'New Rate Type', new_rate_type_path, :class => 'btnActionGrey' %>
+    <% end %>
+  </div>
+</div>

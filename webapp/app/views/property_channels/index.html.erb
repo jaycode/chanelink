@@ -29,7 +29,12 @@
               <% end %>
             </span>
           </p>
-          <p>&nbsp;&nbsp;<%= t('property_channels.index.label.total_rooms_mapped', :count => RoomTypeChannelMapping.room_type_ids(current_property.room_type_ids).where(:channel_id => pc.channel.id).count) %></p>
+          <p>&nbsp;&nbsp;
+            <%= t('property_channels.index.label.total_rooms_mapped',
+                  :count => RoomTypeChannelMapping.room_type_ids(current_property.room_type_ids).
+                    where(
+                      ["channel_id = ? AND rate_type_id IS NOT NULL AND ota_rate_type_id IS NOT NULL AND ota_room_type_id IS NOT NULL", pc.channel.id]
+                    ).count) %></p>
           
         <% end %>
       </div>

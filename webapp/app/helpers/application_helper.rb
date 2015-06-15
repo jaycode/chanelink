@@ -1,5 +1,4 @@
 module ApplicationHelper
-
   # used to render page heading but will set title page too
   def page_title(title = nil)
     if title

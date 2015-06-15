@@ -1,0 +1,2 @@
+<%= f.select :ota_room_type_id,
+             options_for_select(@channel_room_types, @channel.room_and_rate_type_id(@room_type_channel_mapping))%>

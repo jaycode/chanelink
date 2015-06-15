@@ -155,7 +155,7 @@ class RoomTypeChannelMappingsController < ApplicationController
     @channel_room_types = Array.new
     
     room_types.each do |crt|
-      @channel_room_types << [@channel.room_type_name(crt), @channel.room_type_id(crt)]
+      @channel_room_types << [@channel.room_type_name(crt), "#{@channel.room_and_rate_type_id(crt)}"]
     end
 
     @room_types = Array.new
@@ -224,7 +224,8 @@ class RoomTypeChannelMappingsController < ApplicationController
     @room_type_channel_mapping = RoomTypeChannelMapping.new(@channel.process_mapping_params(session[:room_type_channel_mapping_params]))
     @room_type = RoomType.find(@room_type_channel_mapping.room_type_id)
 
-    @room_type_master_rate_channel_mapping = RoomTypeMasterRateChannelMapping.new(@channel.process_mapping_params(session[:room_type_master_rate_channel_mapping_params]))
+    @room_type_master_rate_channel_mapping = RoomTypeMasterRateChannelMapping.new(
+      @channel.process_mapping_params(session[:room_type_master_rate_channel_mapping_params]))
     @room_type_master_rate_channel_mapping.channel = @channel
     @room_type_master_rate_channel_mapping.room_type = @room_type
   end

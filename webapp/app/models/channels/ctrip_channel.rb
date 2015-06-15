@@ -41,10 +41,6 @@ class CtripChannel < Channel
     }
   end
 
-  def room_type_id(channel_room_type)
-    "#{channel_room_type.id}:#{channel_room_type.rate_plan_category}"
-  end
-
   def room_type_name(channel_room_type)
     pay_type = CtripChannel::CATEGORY_MAPPING[channel_room_type.rate_plan_category]
     "#{channel_room_type.name.sub('(pay at hotel)', '').sub('pre-pay', '')} (#{pay_type}) - #{channel_room_type.id}"

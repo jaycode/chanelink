@@ -4,14 +4,16 @@
 <div id="setPoolInventory">
   <%= render 'pools/generic_select', :path_to_go => grid_inventories_path %>
   <%= store_previously_selected_js %>
+  <%= copy_across_inventories_js %>
+  <%= copy_up_down_inventories_js %>
   <%= copy_across_js %>
   <%= copy_up_down_js %>
   <%= form_tag(:action => 'update', :controller => 'inventories') do %>
     <div class="gridHeader">
       <div class="left"><h2><%= t('inventories.grid.label.availability') %></h2></div>
       <div class="right">
-        <%= link_to t('inventories.grid.label.copy_across'), '#', :class => 'btnActionTool copyAcross' %>
-        <%= link_to t('inventories.grid.label.copy_up_down'), '#', :class => 'btnActionTool copyUpdown' %>
+        <%= link_to t('inventories.grid.label.copy_across'), '#', :class => 'btnActionTool copyAcrossInventories' %>
+        <%= link_to t('inventories.grid.label.copy_up_down'), '#', :class => 'btnActionTool copyUpdownInventories' %>
         <%= submit_tag t('button.save') %>
       </div>
     </div>

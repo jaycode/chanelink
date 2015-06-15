@@ -17,14 +17,14 @@ class AgodaRoomTypeFetcher < RoomTypeFetcher
             rate_type.name,
             room_type.to_s,
             rate_type.content)
-          if exclude_mapped_rooms and defined?(all_mappings)
+          if exclude_mapped_rooms
               if RoomTypeChannelMapping.first(
                 :conditions => {
                   :ota_room_type_id => room_type['RoomTypeID'],
                   :ota_rate_type_id => rate_type.id,
                   :channel_id => AgodaChannel.first.id
                 }).blank?
-                room_types << rt if add
+                room_types << rt
               end
           else
             room_types << rt
