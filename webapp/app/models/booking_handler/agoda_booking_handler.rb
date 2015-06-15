@@ -71,7 +71,7 @@ class AgodaBookingHandler < BookingHandler
       room_type_data = booking_data.xpath('./agoda:RoomType', 'agoda' => AgodaChannel::XMLNS)
 
       # find the chanelink room type that this booking correspond to
-      room_type_map = RoomTypeChannelMapping.find_by_agoda_room_type_id(room_type_data.attr('RoomTypeID').value)
+      room_type_map = RoomTypeChannelMapping.find_by_ota_room_type_id(room_type_data.attr('RoomTypeID').value)
 
       puts room_type_data.attr('RoomTypeID').value
       if room_type_map and room_type_map.active?

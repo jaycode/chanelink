@@ -1,6 +1,6 @@
 require 'net/https'
 
-# class to retrieve ctrip room types
+# In Ctrip, this is RatePlan.
 class CtripRoomTypeFetcher < RoomTypeFetcher
   include ChannelsHelper
 
@@ -31,7 +31,8 @@ class CtripRoomTypeFetcher < RoomTypeFetcher
 
         rt_model = CtripRoomTypeXml.new(rt['RatePlanCode'], rt.xpath('./Description').first['Name'], rt['RatePlanCategory'], temp_rates)
         if exclude_mapped_room
-          room_types << rt_model if RoomTypeChannelMapping.room_type_ids(property.room_type_ids).where(:ctrip_room_rate_plan_code => rt_model.id, :channel_id => CtripChannel.first.id).blank?
+          room_types << rt_model if RoomTypeChannelMapping.room_type_ids(property.room_type_ids).where(
+            :ota_room_type_id => rt_model.id, :channel_id => CtripChannel.first.id).blank?
         else
           room_types << rt_model
         end

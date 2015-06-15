@@ -4,8 +4,8 @@ class CreateRoomTypeChannelMappings < ActiveRecord::Migration
       t.belongs_to :room_type
       t.belongs_to :channel
       
-      t.string :agoda_room_type_id
-      t.string :agoda_room_type_name
+      t.string :ota_room_type_id
+      t.string :ota_room_type_name
       t.decimal :agoda_single_rate_modifier, :precision => 8, :scale => 2
       t.decimal :agoda_double_rate_modifier, :precision => 8, :scale => 2
       t.decimal :agoda_full_rate_modifier, :precision => 8, :scale => 2

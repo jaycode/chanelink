@@ -39,7 +39,7 @@ class AgodaMasterRateNewRoomHandler < MasterRateHandler
             rate_pushed = true
             
             xml.HotelInventory {
-              xml.RoomType(:RoomTypeID => room_type_channel_mapping.agoda_room_type_id, :RatePlanID => AgodaChannel::DEFAULT_RATE_PLAN_ID)
+              xml.RoomType(:RoomTypeID => room_type_channel_mapping.ota_room_type_id, :RatePlanID => AgodaChannel::DEFAULT_RATE_PLAN_ID)
               xml.DateRange(:Type => "Stay", :Start => date_to_key(master_rate.date), :End => date_to_key(master_rate.date))
               xml.InventoryRate(:Currency => AgodaChannel.get_currency(property_channel)) {
                 puts "#{log.amount} #{AgodaChannel.calculate_single_rate(room_type_channel_mapping, channel_mapping.apply_value(log.amount))} #{channel.rate_multiplier(property)}"

@@ -1,17 +1,17 @@
 class AgodaConnector < Connector
   def get_rate_types
     rate_types = AgodaChannel.first.rate_type_fetcher.retrieve(@property)
-    puts '============'
-    puts YAML::dump(rate_types)
-    puts '============'
+    # puts '============'
+    # puts YAML::dump(rate_types)
+    # puts '============'
     rate_types
   end
 
-  def get_room_types
-    room_types = AgodaChannel.first.room_type_fetcher.retrieve(@property)
-    puts '============'
-    puts YAML::dump(room_types)
-    puts '============'
+  def get_room_types(exclude_mapped_rooms = false)
+    room_types = AgodaChannel.first.room_type_fetcher.retrieve(@property, exclude_mapped_rooms)
+    # puts '============'
+    # puts YAML::dump(room_types)
+    # puts '============'
     room_types
   end
 

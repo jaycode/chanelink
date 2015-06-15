@@ -20,7 +20,7 @@
     <% rooms_mapped = RoomTypeChannelMapping.room_type_ids(current_admin_property.room_type_ids).where(:channel_id => @property_channel.channel.id) %>
     <% if !rooms_mapped.blank? %>
       <% rooms_mapped.each do |mapping| %>
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;<%= mapping.room_type.name %> <%= t('property_channels.edit.label.mapped_to') %> <%= mapping.agoda_room_type_id %></p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;<%= mapping.room_type.name %> <%= t('property_channels.edit.label.mapped_to') %> <%= mapping.ota_room_type_id %></p>
       <% end %>
     <% else %>
       <p>

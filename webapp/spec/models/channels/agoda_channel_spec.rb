@@ -5,7 +5,7 @@ describe 'AgodaChannel', :type => :model do
 		request_xml = '<?xml version="1.0" encoding="utf-8" ?>
 <GetHotelInventoryRequest xmlns="http://xml.ycs.agoda.com">
 <Authentication APIKey="' + AgodaChannel::API_KEY + '" HotelID="'+properties(:big_hotel_1).agoda_hotel_id+'"/>
-<RoomType RoomTypeID="' + room_type_channel_mappings(:superior_agoda).agoda_room_type_id + '" RatePlanID="22"/>
+<RoomType RoomTypeID="' + room_type_channel_mappings(:superior_agoda).ota_room_type_id + '" RatePlanID="22"/>
 <DateRange Type="Stay" Start="2012-01-01" End="2012-01-31"/>
 <RequestedLanguage>en</RequestedLanguage>
 </GetHotelInventoryRequest>'

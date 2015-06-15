@@ -498,8 +498,8 @@ class SetupSchema < ActiveRecord::Migration
 	  create_table "room_type_channel_mappings", :force => true, :options => "ENGINE=MyISAM" do |t|
 	    t.integer  "room_type_id"
 	    t.integer  "channel_id"
-	    t.string   "agoda_room_type_id"
-	    t.string   "agoda_room_type_name"
+	    t.string   "ota_room_type_id"
+	    t.string   "ota_room_type_name"
 	    t.decimal  "agoda_single_rate_modifier",           :precision => 30, :scale => 20
 	    t.decimal  "agoda_double_rate_modifier",           :precision => 30, :scale => 20
 	    t.decimal  "agoda_full_rate_modifier",             :precision => 30, :scale => 20

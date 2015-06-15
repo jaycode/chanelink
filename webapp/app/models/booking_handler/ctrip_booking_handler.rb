@@ -141,14 +141,15 @@ class CtripBookingHandler < BookingHandler
     bookings_data.each do |booking_data|
 
       room_type     = nil
-      room_type_map = RoomTypeChannelMapping.find(:first, 
+      room_type_map = RoomTypeChannelMapping.first(
         :conditions => [
-          "(settings LIKE ? AND settings LIKE ?) OR (ctrip_room_rate_plan_code = ? AND ctrip_room_rate_plan_category = ?)", 
-          '%"ctrip_room_rate_plan_code": "' + booking_data[:rate_plan_code].to_s + '"%', 
-          '%"ctrip_room_rate_plan_category": "' + booking_data[:rate_plan_category].to_s + '"%',
+          "ota_room_type_id = ? AND rate_type_property_channels.ota_rate_type_id = ?",
           booking_data[:rate_plan_code].to_s,
           booking_data[:rate_plan_category].to_s
-      ])
+        ],
+        :joins => ['LEFT JOIN rate_type_property_channels ON '+
+                     'rate_type_property_channel_id = rate_type_property_channels.id']
+      )
       if room_type_map and room_type_map.active?
         room_type = room_type_map.room_type
       end
@@ -172,14 +173,15 @@ class CtripBookingHandler < BookingHandler
         new_booking.pool      = PropertyChannel.find_by_property_id_and_channel_id(property.id, channel.id).pool
 
         # find the chanelink room type that this booking correspond to
-        room_type_map         = RoomTypeChannelMapping.find(:first, 
+        room_type_map         = RoomTypeChannelMapping.first(
           :conditions => [
-            "(settings LIKE ? AND settings LIKE ?) OR (ctrip_room_rate_plan_code = ? AND ctrip_room_rate_plan_category = ?)", 
-            '%"ctrip_room_rate_plan_code": "' + booking_data[:rate_plan_code].to_s + '"%', 
-            '%"ctrip_room_rate_plan_category": "' + booking_data[:rate_plan_category].to_s + '"%',
+            "ota_room_type_id = ? AND rate_type_property_channels.ota_rate_type_id = ?",
             booking_data[:rate_plan_code].to_s,
             booking_data[:rate_plan_category].to_s
-        ])
+          ],
+          :joins => ['LEFT JOIN rate_type_property_channels ON '+
+                       'rate_type_property_channel_id = rate_type_property_channels.id']
+        )
         if room_type_map and room_type_map.active?
           new_booking.room_type = room_type_map.room_type
         end

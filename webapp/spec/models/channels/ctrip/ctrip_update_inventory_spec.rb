@@ -55,11 +55,12 @@ describe "Ctrip update inventory spec", :type => :model do
   def get_inventories(channel, property, pool, room_type, date_start, date_end)
     total_rooms               = Array.new
     room_type_channel_mapping = RoomTypeChannelMapping.find_by_room_type_id_and_channel_id(room_type.id, channel.id)
-    room_types                = channel.room_type_fetcher.retrieve_by_rate_plan_code(property, room_type_channel_mapping.settings(:ctrip_room_rate_plan_code), date_start, date_end)
+    room_types                = channel.room_type_fetcher.retrieve_by_rate_plan_code(
+      property, room_type_channel_mapping.ota_room_type_id, date_start, date_end)
 
     room_type = nil
     room_types.each do |room_type|
-      if room_type.rate_plan_category == room_type_channel_mapping.settings(:ctrip_room_rate_plan_category)
+      if room_type.rate_plan_category == room_type_channel_mapping.rate_type_property_channel.ota_rate_type_id
         room_type.rates.each do |rate|
           total_rooms << rate.number_of_units.to_i
         end

@@ -11,14 +11,25 @@ class Channel < ActiveRecord::Base
   # Room type id used when mapping Channelink room types to OTA's.
   # Override this in child classes when needed.
   # Reference from channel_room_type can be seen from room_type_xml classes
-  # e.g. for ctrip in class CtripRoomTypeXml.
+  # e.g. normally RoomTypeXml, for ctrip in class CtripRoomTypeXml.
+  # OR RoomTypeChannelMapping
   def room_type_id(channel_room_type)
-    channel_room_type.id
+    if channel_room_type.kind_of?(RoomTypeChannelMapping)
+      channel_room_type.ota_room_type_id
+    else
+      channel_room_type.id
+    end
   end
 
   # Same as above, but used for name.
   def room_type_name(channel_room_type)
-    "#{channel_room_type.name} - #{channel_room_type.id}"
+    if channel_room_type.kind_of?(RoomTypeChannelMapping)
+      "#{channel_room_type.ota_room_type_name} (#{channel_room_type.rate_type_property_channel.ota_rate_type_name}) "+
+        "- #{channel_room_type.ota_room_type_id}(#{channel_room_type.rate_type_property_channel.ota_rate_type_id})"
+    else
+      "#{channel_room_type.name} (#{channel_room_type.rate_type_name})"+
+        " - #{channel_room_type.id}(#{channel_room_type.rate_type_id})"
+    end
   end
 
   # Proces mapping params before being used as parameter in

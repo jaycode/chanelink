@@ -1,64 +1,53 @@
 require 'net/https'
 
-# Room Type in Agoda is called Rate Plan.
 class AgodaRoomTypeFetcher < RoomTypeFetcher
   include ChannelsHelper
-  def retrieve(property, exclude_mapped_room = false)
+  def retrieve(property, exclude_mapped_rooms = false)
     room_types = Array.new
-    retrieve_xml(property, exclude_mapped_room) do |xml_doc|
-      agoda_room_types = xml_doc.xpath("//agoda:RoomType", 'agoda' => AgodaChannel::XMLNS)
-      agoda_room_types.each do |rt|
-        rt = AgodaRoomTypeXml.new(rt["RoomTypeID"], rt.text)
-        if exclude_mapped_room
-          room_types << rt if RoomTypeChannelMapping.room_type_ids(property.room_type_ids).where(:agoda_room_type_id => rt.id, :channel_id => AgodaChannel.first.id).blank?
-        else
-          room_types << rt
+    retrieve_xml(property) do |xml_doc|
+      rate_types = AgodaChannel.first.rate_type_fetcher.retrieve(property)
+      agoda_room_types = xml_doc.xpath('//agoda:RoomType', 'agoda' => AgodaChannel::XMLNS)
+      agoda_room_types.each do |room_type|
+        if exclude_mapped_rooms
+          all_mappings = RoomTypeChannelMapping.all(
+            :conditions => {
+              :ota_room_type_id => room_type['RoomTypeID'],
+              :channel_id => AgodaChannel.first.id
+            },
+            :include => :rate_type_property_channel
+          )
+        end
+
+        rate_types.each do |rate_type|
+          rt = RoomTypeXml.new(
+            room_type['RoomTypeID'],
+            room_type.text,
+            rate_type.id,
+            rate_type.name,
+            room_type.to_s,
+            rate_type.content)
+          if exclude_mapped_rooms and defined?(all_mappings)
+            add = true
+            all_mappings.each do |mapping|
+              if !mapping.rate_type_property_channel.blank? and mapping.rate_type_property_channel.ota_rate_type_id == rate_type.id
+                add = false
+              end
+            end
+            room_types << rt if add
+          else
+            room_types << rt
+          end
         end
       end
-
-      # get rate plan for each agoda room type
-      builder = Nokogiri::XML::Builder.new do |xml|
-        xml.GetHotelRatePlansRequest('xmlns' => AgodaChannel::XMLNS) {
-          # Todo: Change this to use settings i.e. property.settings(:hotel_id)
-          xml.Authentication(:APIKey => AgodaChannel::API_KEY, :HotelID => property.agoda_hotel_id)
-        }
-      end
-
-      request_xml = builder.to_xml
-      response_xml = AgodaChannel.post_xml(request_xml)
-
-      xml_doc = Nokogiri::XML(response_xml)
-      status_response = xml_doc.xpath("//agoda:StatusResponse", 'agoda' => AgodaChannel::XMLNS).attr('status').value
-
-      if status_response != '200'
-        property_channel  = PropertyChannel.find_by_property_id_and_channel_id(property.id, AgodaChannel.first.id)
-        logs_fetching_failure AgodaChannel.first.name, request_xml, xml_doc, property, property_channel, APP_CONFIG[:agoda_endpoint]
-      end
     end
-
     room_types
   end
-
-  # Retrieve but in xml format
-  def retrieve_xml(property, exclude_mapped_room = false, &block)
-    # construct xml to request room type list
-    builder = Nokogiri::XML::Builder.new do |xml|
-    xml.GetHotelRatePlansRequest('xmlns' => AgodaChannel::XMLNS) {
-      xml.Authentication(:APIKey => AgodaChannel::API_KEY, :HotelID => property.agoda_hotel_id)
-    }
-    end
-
-    request_xml = builder.to_xml
-    # puts '============'
-    # puts request_xml
-    # puts '============'
+  def retrieve_xml(property, &block)
+    request_xml = request(property).to_xml
     response_xml = AgodaChannel.post_xml(request_xml)
-    # puts response_xml
-
-    # process each room type and form it as our own object
     xml_doc  = Nokogiri::XML(response_xml)
 
-    status_response = xml_doc.xpath("//agoda:StatusResponse", 'agoda' => AgodaChannel::XMLNS).attr('status').value
+    status_response = xml_doc.xpath('//agoda:StatusResponse', 'agoda' => AgodaChannel::XMLNS).attr('status').value
 
     if status_response == '200'
       block.call xml_doc
@@ -66,7 +55,13 @@ class AgodaRoomTypeFetcher < RoomTypeFetcher
       property_channel  = PropertyChannel.find_by_property_id_and_channel_id(property.id, AgodaChannel.first.id)
       logs_fetching_failure AgodaChannel.first.name, request_xml, xml_doc, property, property_channel, APP_CONFIG[:agoda_endpoint]
     end
-
   end
 
+  def request(property)
+    Nokogiri::XML::Builder.new do |xml|
+      xml.GetHotelRoomTypesRequest('xmlns' => AgodaChannel::XMLNS) {
+        xml.Authentication(:APIKey => AgodaChannel::API_KEY, :HotelID => property.agoda_hotel_id)
+      }
+    end
+  end
 end

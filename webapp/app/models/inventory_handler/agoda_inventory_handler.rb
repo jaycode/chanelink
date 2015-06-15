@@ -28,7 +28,7 @@ class AgodaInventoryHandler < InventoryHandler
             channel_room_type_map = RoomTypeChannelMapping.find_by_room_type_id_and_channel_id(room_type.id, channel.id)
 
             if !channel_room_type_map.blank? and room_type_ids.include?(room_type.id)
-              create_hotel_inventory_xml(xml, channel_room_type_map.agoda_room_type_id, inv.date, log.total_rooms, channel_room_type_map, property_channel)
+              create_hotel_inventory_xml(xml, channel_room_type_map.ota_room_type_id, inv.date, log.total_rooms, channel_room_type_map, property_channel)
             end
             
             # now send to linked room type
@@ -37,7 +37,7 @@ class AgodaInventoryHandler < InventoryHandler
                 channel_room_type_map = RoomTypeChannelMapping.find_by_room_type_id_and_channel_id(consumer_room_type.id, channel.id)
                   
                 if !channel_room_type_map.blank?
-                  create_hotel_inventory_xml(xml, channel_room_type_map.agoda_room_type_id, inv.date, log.total_rooms, channel_room_type_map, property_channel)
+                  create_hotel_inventory_xml(xml, channel_room_type_map.ota_room_type_id, inv.date, log.total_rooms, channel_room_type_map, property_channel)
                 end
               end
             end
@@ -84,8 +84,8 @@ class AgodaInventoryHandler < InventoryHandler
       xml.GetHotelInventoryRequest('xmlns' => AgodaChannel::XMLNS) {
         xml.Authentication(:APIKey => AgodaChannel::API_KEY, :HotelID => property.agoda_hotel_id)
         xml.RoomType(
-          :RoomTypeID => room_type_channel_mapping.agoda_room_type_id,
-          :RatePlanID => room_type_channel_mapping.settings(:agoda_room_rate_plan_code)
+          :RoomTypeID => room_type_channel_mapping.ota_room_type_id,
+          :RatePlanID => room_type_channel_mapping.rate_type_property_channel.ota_rate_type_id
         )
         xml.DateRange(
           :Type => 'Stay',
@@ -101,7 +101,6 @@ class AgodaInventoryHandler < InventoryHandler
     response_xml  = AgodaChannel.post_xml(request_xml)
     response_xml  = response_xml.gsub(/xmlns=\"([^\"]*)\"/, "")
 
-    debugger
     # puts '============'
     # puts YAML::dump(response_xml)
     # puts '============'

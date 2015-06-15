@@ -123,7 +123,8 @@ xml retrieved:\n#{xml_doc.to_xhtml(indent: 3)}")
   def create_hotel_inventory_xml(xml, room_type_logs, channel_room_type_map)
     room_type_logs.each do |log|
       xml.AvailStatusMessage(:BookingLimit => log.total_rooms, :BookingLimitMessageType => "SetLimit") {
-        xml.StatusApplicationControl(:RatePlanCategory => channel_room_type_map.settings(:ctrip_room_rate_plan_category), :RatePlanCode => channel_room_type_map.settings(:ctrip_room_rate_plan_code), :Start => date_to_key(log.inventory.date), :End => date_to_key(log.inventory.date)) {
+        xml.StatusApplicationControl(:RatePlanCategory => channel_room_type_map.rate_type_property_channel.ota_rate_type_id,
+                                     :RatePlanCode => channel_room_type_map.ota_room_type_id, :Start => date_to_key(log.inventory.date), :End => date_to_key(log.inventory.date)) {
           xml.RestrictionStatus(:Status => "Open")
         }
       }

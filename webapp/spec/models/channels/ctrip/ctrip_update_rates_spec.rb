@@ -43,8 +43,8 @@ describe "Ctrip update rates spec", :type => :model do
 
       room_type_channel_mapping = RoomTypeChannelMapping.find_by_room_type_id_and_channel_id(room_type.id, channel.id)
       
-      ctrip_rate_plan_code = room_type_channel_mapping.settings(:ctrip_room_rate_plan_code)
-      ctrip_rate_plan_category = room_type_channel_mapping.settings(:ctrip_room_rate_plan_category)
+      ctrip_rate_plan_code = room_type_channel_mapping.ota_room_type_id
+      ctrip_rate_plan_category = room_type_channel_mapping.rate_type_property_channel.ota_rate_type_id
       @logger = Logger.new("#{Rails.root}/log/custom.log")
 
       ctrip_room_types        = xml_doc.xpath('//RatePlan')

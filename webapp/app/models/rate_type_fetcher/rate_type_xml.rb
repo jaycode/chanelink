@@ -1,8 +1,8 @@
 # class to hold information of returned rate type xml.
 class RateTypeXml
-  attr_reader :id
-  attr_reader :name
-  attr_reader :content
+  attr_accessor :id
+  attr_accessor :name
+  attr_accessor :content
 
   def initialize(id, name, response_str = nil)
     @id = id

@@ -212,15 +212,7 @@ class Admin::RoomTypeChannelMappingsController < Admin::AdminController
   # helper to set channel/OTA room type info
   def set_extra_room_type_info
     begin
-      if @room_type_channel_mapping.channel_id == AgodaChannel.first.id
-        art = AgodaChannel.first.room_type_fetcher.retrieve(current_admin_property, false)
-        art.each do |rt|
-          if @room_type_channel_mapping.agoda_room_type_id == rt.id
-            @room_type_channel_mapping.agoda_room_type_name = rt.name
-            session[:room_type_channel_mapping_params].deep_merge!(@room_type_channel_mapping.attributes)
-          end
-        end
-      elsif @room_type_channel_mapping.channel_id == ExpediaChannel.first.id
+      if @room_type_channel_mapping.channel_id == ExpediaChannel.first.id
         ert = ExpediaChannel.first.room_type_fetcher.retrieve(current_admin_property, false)
         ert.each do |rt|
           if @room_type_channel_mapping.expedia_room_type_id == rt.id
@@ -249,17 +241,15 @@ class Admin::RoomTypeChannelMappingsController < Admin::AdminController
             session[:room_type_channel_mapping_params].deep_merge!(@room_type_channel_mapping.attributes) unless skip_session
           end
         end
-      # Ctrip travel room type
-      elsif @room_type_channel_mapping.channel_id == CtripChannel.first.id
-        ert = CtripChannel.first.room_type_fetcher.retrieve(current_property, false)
-        ert.each do |rt|
-          if @room_type_channel_mapping.settings(:ctrip_rate_plan_code) == rt.rate_plan_code and @room_type_channel_mapping.settings(:ctrip_rate_plan_category) == rt.rate_plan_category
-            @room_type_channel_mapping.settings = {
-              :ctrip_room_type_name => rt.name,
-              :ctrip_rate_plan_code => rt.rate_plan_code,
-              :ctrip_rate_plan_category => rt.rate_plan_category
-            }
+      else
+        room_types = @room_type_channel_mapping.channel.room_type_fetcher.retrieve(current_property, false)
+        room_types.each do |rt|
+          if @room_type_channel_mapping.ota_room_type_id == rt.id and
+            @room_type_channel_mapping.rate_type_property_channel.ota_rate_type_id == rt.rate_type_id
+            @room_type_channel_mapping.ota_room_type_name = rt.name
+            @room_type_channel_mapping.rate_type_property_channel.ota_rate_type_name = rt.rate_type_name
             session[:room_type_channel_mapping_params].deep_merge!(@room_type_channel_mapping.attributes) unless skip_session
+            session[:rate_type_property_channel_params].deep_merge!(@room_type_channel_mapping.rate_type_property_channel.attributes) unless skip_session
           end
         end
       end

@@ -1,3 +1,4 @@
+# In Ctrip, this is RatePlanCategory
 class CtripRateTypeFetcher < RateTypeFetcher
   def retrieve
     rate_types = Array.new

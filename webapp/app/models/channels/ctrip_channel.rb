@@ -50,19 +50,6 @@ class CtripChannel < Channel
     "#{channel_room_type.name.sub('(pay at hotel)', '').sub('pre-pay', '')} (#{pay_type}) - #{channel_room_type.id}"
   end
 
-  def process_mapping_params(mapping_params)
-    mapping_params = mapping_params.with_indifferent_access
-    if (mapping_params[:ctrip_room_rate_plan_code])
-      values = mapping_params[:ctrip_room_rate_plan_code].split(':')
-      mapping_params.delete(:ctrip_room_rate_plan_code)
-      mapping_params[:settings] = {
-        :ctrip_room_rate_plan_code => values[0],
-        :ctrip_room_rate_plan_category => values[1]
-      }
-    end
-    mapping_params
-  end
-
   def cname
     CNAME
   end

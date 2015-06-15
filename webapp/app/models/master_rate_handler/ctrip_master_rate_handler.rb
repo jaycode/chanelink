@@ -72,7 +72,8 @@ xml retrieved:\n#{xml_doc.to_xhtml(indent: 3)}")
                 RoomTypeMasterRateChannelMapping.find_all_by_room_type_master_rate_mapping_id_and_channel_id(master_rate_mapping.id, self.channel.id).each do |channel_mapping|
                   rtcm = RoomTypeChannelMapping.find_by_room_type_id_and_channel_id(room_type_id, channel.id)
                   xml.RateAmountMessage() {
-                    xml.StatusApplicationControl(:RatePlanCategory => rtcm.settings(:ctrip_room_rate_plan_category), :RatePlanCode => rtcm.settings(:ctrip_room_rate_plan_code))
+                    xml.StatusApplicationControl(:RatePlanCategory => rtcm.rate_type_property_channel.ota_rate_type_id,
+                                                 :RatePlanCode => rtcm.ota_room_type_id)
                     xml.Rates {
                       change_set.logs.each do |log|
                         master_rate = log.master_rate

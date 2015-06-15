@@ -529,8 +529,6 @@ ActiveRecord::Schema.define(:version => 20150611192857) do
   create_table "room_type_channel_mappings", :force => true do |t|
     t.integer  "room_type_id"
     t.integer  "channel_id"
-    t.string   "agoda_room_type_id"
-    t.string   "agoda_room_type_name"
     t.decimal  "agoda_single_rate_modifier",           :precision => 30, :scale => 20
     t.decimal  "agoda_double_rate_modifier",           :precision => 30, :scale => 20
     t.decimal  "agoda_full_rate_modifier",             :precision => 30, :scale => 20
@@ -577,11 +575,10 @@ ActiveRecord::Schema.define(:version => 20150611192857) do
     t.decimal  "orbitz_additional_guest_amount",       :precision => 30, :scale => 20
     t.decimal  "orbitz_triple_rate_multiplier",        :precision => 30, :scale => 20
     t.decimal  "orbitz_quad_rate_multiplier",          :precision => 30, :scale => 20
-    t.string   "ctrip_room_type_name"
-    t.string   "ctrip_room_rate_plan_category"
-    t.string   "ctrip_room_rate_plan_code"
     t.string   "settings",                                                             :default => "{}"
     t.integer  "rate_type_property_channel_id"
+    t.string   "ota_room_type_id"
+    t.string   "ota_room_type_name"
   end
 
   create_table "room_type_inventory_links", :force => true do |t|

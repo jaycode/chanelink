@@ -16,8 +16,13 @@ describe 'Multi Rates Spec' do
 
   scenario 'Property Channel edit page must show unmapped rooms' do
     visit "property_channels/#{property_channels(:master_rate_mappings_tester_agoda).id}/edit"
+    expect(all(:css, ".property_rooms-unmapped-item").count).to eq(2)
+  end
+
+  scenario 'Linking channelink room to channel room and rate' do
+    visit "property_channels/#{property_channels(:master_rate_mappings_tester_agoda).id}/edit"
+    find(:css, ".property_rooms-unmapped-item a").click
     save_and_open_page
-    expect(find(:css, ".property_rooms-unmapped-item").count).to eq(2)
   end
 
   # scenario 'When room_type_master_rate_channel_mapping does not have rate_type_property_channel, ask to create one.' do

@@ -6,8 +6,8 @@ default_big_hotel_1_default_agoda:
 pay_at_hotel_big_hotel_1_default_agoda:
   property_channel: big_hotel_1_default_agoda
   rate_type: pay_at_hotel
-  ota_rate_type_id: 1
-  ota_rate_type_name: Unknown
+  ota_rate_type_id: 6
+  ota_rate_type_name: Domestic
 default_big_hotel_1_default_ctrip:
   property_channel: big_hotel_1_default_ctrip
   rate_type: default

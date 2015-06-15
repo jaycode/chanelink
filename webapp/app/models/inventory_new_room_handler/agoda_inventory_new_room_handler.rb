@@ -28,7 +28,7 @@ class AgodaInventoryNewRoomHandler < InventoryNewRoomHandler
             channel_room_type_map = RoomTypeChannelMapping.find_by_room_type_id_and_channel_id(room_type.id, channel.id)
 
             if !channel_room_type_map.blank? and room_type_ids.include?(room_type.id)
-              create_hotel_inventory_xml(xml, channel_room_type_map.agoda_room_type_id, inv.date, log.total_rooms, channel_room_type_map, property_channel)
+              create_hotel_inventory_xml(xml, channel_room_type_map.ota_room_type_id, inv.date, log.total_rooms, channel_room_type_map, property_channel)
             end
             
           end

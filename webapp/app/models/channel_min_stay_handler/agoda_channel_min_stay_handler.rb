@@ -28,7 +28,7 @@ class AgodaChannelMinStayHandler < ChannelMinStayHandler
             # make sure room type is allowed (has mapping)
             if room_type_ids.include?(room_type.id)
               xml.HotelInventory {
-                xml.RoomType(:RoomTypeID => RoomTypeChannelMapping.find_by_room_type_id_and_channel_id(room_type.id, channel.id).agoda_room_type_id, :RatePlanID => AgodaChannel::DEFAULT_RATE_PLAN_ID)
+                xml.RoomType(:RoomTypeID => RoomTypeChannelMapping.find_by_room_type_id_and_channel_id(room_type.id, channel.id).ota_room_type_id, :RatePlanID => AgodaChannel::DEFAULT_RATE_PLAN_ID)
                 xml.DateRange(:Type => "Stay", :Start => date_to_key(channel_min_stay.date), :End => date_to_key(channel_min_stay.date))
                 xml.InventoryAllotment {
                   xml.MinLOS log.min_stay

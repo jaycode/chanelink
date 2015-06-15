@@ -58,13 +58,7 @@
             <%= mapping.room_type.name %>
             (<%= mapping.rate_type_property_channel.rate_type.name %>)
             <%= t('property_channels.edit.label.mapped_to') %>
-            <%= mapping.agoda_room_type_name -%>
-            <%= mapping.expedia_room_type_name -%>
-            <%= mapping.bookingcom_room_type_name -%>
-            <%= mapping.gta_travel_room_type_name -%>
-            <%= mapping.orbitz_room_type_name -%>
-            <%= mapping.settings(:ctrip_room_type_name) -%>
-            (<%= mapping.rate_type_property_channel.ota_rate_type_name -%>)
+            <%=  @property_channel.channel.room_type_name(mapping) %>
             <% if mapping.disabled? %>
               - <span class="red"><%= t("general.disabled") %></span>
             <% end %> -
@@ -82,30 +76,15 @@
     <div id="property_rooms-unmapped">
       <h4><%= t('property_channels.edit.label.rooms_not_mapped') %></h4>
       <br/>
-      <% count_not_mapped = 0 %>
-      <% if !current_property.room_types.blank? %>
-        <% current_property.room_types.each do |rt| %>
-          <% if RoomTypeChannelMapping.where(
-            :room_type_id => rt.id,
-            :channel_id => @property_channel.channel.id
-          ).blank? %>
-            <p class="property_rooms-unmapped-item">&nbsp;&nbsp;&nbsp;&nbsp;<%= rt.name %></p>
-            <% current_member.account.rate_types.each do |acc_rate_type| %>
-              <%
-                 #   associated_rate_type = RateTypePropertyChannel.first(
-                 #   :conditions => {
-                 #     :property_channel_id => @property_channel.id,
-                 #     :rate_type_id => acc_rate_type.id
-                 #   }
-                 # )
-              %>
-              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= acc_rate_type.name %> - <%= link_to t('room_type_channel_mappings.new.label.link_set'), new_room_type_channel_mapping_path(:room_type_id => rt.id, :property_channel_id => @property_channel.id) %> </p>
-              <% count_not_mapped = count_not_mapped + 1 %>
-            <% end %>
-          <% end %>
-        <% end %>
+      <% unmapped_rooms = get_unmapped_rooms(current_property) %>
+      <% unmapped_rooms.each do |room| %>
+        <p class="property_rooms-unmapped-item">&nbsp;&nbsp;&nbsp;&nbsp;<%= room[:text] %>
+          - <%= link_to t('room_type_channel_mappings.new.label.link_set'),
+                        new_room_type_channel_mapping_path(
+                          :room_type_id => room[:id], :property_channel_id => @property_channel.id) %>
+        </p>
       <% end %>
-      <% if count_not_mapped == 0 %>
+      <% if unmapped_rooms.count == 0 %>
         <p>
           <%= t('property_channels.edit.label.all_rooms_mapped') %>
         </p>
@@ -122,7 +101,8 @@
       <% end %>
       <% if !channel_not_mapped.blank? %>
         <% channel_not_mapped.each do |crt| %>
-          <p class="channel_rooms-mapped-item">&nbsp;&nbsp;&nbsp;&nbsp;<%= @property_channel.channel.room_type_name(crt) %> </p>
+          <p class="channel_rooms-mapped-item">&nbsp;&nbsp;&nbsp;&nbsp;
+            <%= @property_channel.channel.room_type_name(crt) %> </p>
         <% end %>
       <% else %>
         <p>

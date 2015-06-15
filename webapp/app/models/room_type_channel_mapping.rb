@@ -9,7 +9,7 @@ class RoomTypeChannelMapping < ActiveRecord::Base
   default_scope lambda {{ :conditions => ["deleted = ?", false] }}
   scope :room_type_ids, lambda{ |room_type_ids| {:conditions => ["room_type_id IN (?)", room_type_ids]}}
   scope :channel_ids, lambda{ |channel_ids| {:conditions => ["channel_id IN (?)", channel_ids]}}
-  scope :agoda_type, :conditions => "agoda_room_type_id is not null and agoda_room_type_name is not null"
+  scope :agoda_type, :conditions => "ota_room_type_id is not null and ota_room_type_name is not null"
   scope :expedia_type, :conditions => "expedia_room_type_id is not null and expedia_room_type_name is not null and expedia_rate_plan_id is not null"
   scope :bookingcom_type, :conditions => "bookingcom_room_type_id is not null and bookingcom_room_type_name is not null and bookingcom_rate_plan_id is not null"
   scope :gta_travel_type, :conditions => "gta_travel_room_type_id is not null"
@@ -23,8 +23,8 @@ class RoomTypeChannelMapping < ActiveRecord::Base
   validates :rate_configuration, :presence => true, :if => :is_rate_configuration_needed?
   validates :new_rate, :presence => true, :numericality => {:greater_than => 0, :less_than => 1000000000000}, :if => :is_configuration_new_rate?
 
-  validates :agoda_room_type_id, :presence => true, :if => :is_channel_agoda?
-  validates :agoda_room_type_name, :presence => true, :if => :is_channel_agoda?
+  validates :ota_room_type_id, :presence => true
+  validates :ota_room_type_name, :presence => true
   validates :agoda_single_rate_multiplier, :presence => true, :if => :is_channel_agoda_validate_extra?
 
   validates :expedia_room_type_id, :presence => true, :if => :is_channel_expedia?
@@ -38,10 +38,6 @@ class RoomTypeChannelMapping < ActiveRecord::Base
   validates :gta_travel_room_type_id, :presence => true, :if => :is_channel_gta_travel?
   validates :gta_travel_rate_type, :presence => true, :if => :is_channel_gta_travel_validate_extra?
   validates :gta_travel_rate_margin, :presence => true, :if => :is_gta_rate_margin?
-
-  # validates :ctrip_room_type_name, :presence => true, :if => :is_channel_ctrip?
-  # validates :ctrip_room_rate_plan_category, :presence => true, :if => :is_channel_ctrip?
-  # validates :ctrip_room_rate_plan_code, :presence => true, :if => :is_channel_ctrip?
 
   attr_accessor :skip_extra_validation
   attr_accessor :skip_rate_configuration
@@ -58,9 +54,6 @@ class RoomTypeChannelMapping < ActiveRecord::Base
 
   def default_settings
     {
-      ctrip_room_type_name: nil,
-      ctrip_room_rate_plan_code: nil,
-      ctrip_room_rate_plan_category: nil,
       ctrip_breakfast_inclusion: 0,
       ctrip_number_of_breakfast: 1,
       ctrip_rate_multiplier: 1
@@ -77,9 +70,7 @@ class RoomTypeChannelMapping < ActiveRecord::Base
 
   # return channel room type id
   def channel_room_type_id
-    if self.agoda_room_type_id
-      self.agoda_room_type_id
-    elsif self.expedia_room_type_id
+    if self.expedia_room_type_id
       self.expedia_room_type_id
     elsif self.bookingcom_room_type_id
       self.bookingcom_room_type_id
@@ -87,6 +78,8 @@ class RoomTypeChannelMapping < ActiveRecord::Base
       self.gta_travel_room_type_id
     elsif self.orbitz_room_type_id
       self.orbitz_room_type_id
+    else
+      self.ota_room_type_id
     end
   end
 

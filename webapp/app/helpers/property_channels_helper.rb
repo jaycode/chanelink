@@ -2,7 +2,23 @@
 # and open the template in the editor.
 
 module PropertyChannelsHelper
-
+  def get_unmapped_rooms(property)
+    rooms = Array.new
+    property.room_types.each do |rt|
+      property.account.rate_types.each do |acc_rate_type|
+        mapping = RoomTypeChannelMapping.first(
+          :conditions => ['room_type_id = ? AND ota_room_type_id IS NOT NULL AND rate_type_property_channels.rate_type_id = ? '+
+                            'AND rate_type_property_channels.ota_rate_type_id IS NOT NULL',
+                          rt.id, acc_rate_type.id],
+          :joins => :rate_type_property_channel
+        )
+        if mapping.blank?
+          rooms << {:text => "#{rt.name} (#{acc_rate_type.name})", :id => rt.id}
+        end
+      end
+    end
+    rooms
+  end
   # use for currency conversion to update value according to exchange rate
   def update_currency_calculation_js
     javascript_tag "

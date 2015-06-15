@@ -1,1 +1,1 @@
-<%= f.select :ctrip_room_rate_plan_code, options_for_select(@channel_room_types, "#{@room_type_channel_mapping.settings(:ctrip_room_rate_plan_code)}:#{@room_type_channel_mapping.settings(:ctrip_room_rate_plan_category)}")%>
+<%= f.select :ota_room_type_id, options_for_select(@channel_room_types, "#{@room_type_channel_mapping.ota_room_type_id}:#{@room_type_channel_mapping.rate_type_property_channel.ota_rate_type_id}")%>
