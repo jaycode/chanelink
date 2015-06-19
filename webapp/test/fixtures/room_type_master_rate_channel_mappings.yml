@@ -6,26 +6,22 @@ default_big_hotel_1_pool_to_superior_room_in_agoda:
   method: amount
   rate_type: default
   value: 0
-default_big_hotel_1_pool_to_superior_room_in_agoda_for_rate_type_pay_at_hotel:
-  master_rate_mapping: default_big_hotel_1_pool_to_superior_room
-  room_type: superior
+
+# 10% discount for private sales.
+default_big_hotel_1_pool_to_deluxe_room_in_agoda_for_rate_type_private_sale:
+  master_rate_mapping: default_big_hotel_1_pool_to_deluxe_room
+  room_type: deluxe
   channel: agoda
-  method: amount
-  rate_type: pay_at_hotel
-  value: 0
+  method: percentage
+  rate_type: private_sale
+  value: -10
+
 default_big_hotel_1_pool_to_superior_room_in_ctrip:
   master_rate_mapping: default_big_hotel_1_pool_to_superior_room
   room_type: superior
   channel: ctrip
   method: amount
   rate_type: default
-  value: 0
-default_big_hotel_1_pool_to_superior_room_in_agoda_for_rate_type_pay_at_hotel:
-  master_rate_mapping: default_big_hotel_1_pool_to_superior_room
-  room_type: superior
-  channel: agoda
-  method: amount
-  rate_type: pay_at_hotel
   value: 0
 room_type_to_channel_mapping_tester_with_agoda:
   master_rate_mapping: room_type_to_channel_mapping_tester

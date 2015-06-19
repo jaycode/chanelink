@@ -6,53 +6,54 @@ class AgodaInventoryHandler < InventoryHandler
   def run(change_set_channel)
     change_set = change_set_channel.change_set
 
-    # get the property of this change set
-    property = change_set.logs.first.inventory.property
-    property_channel = property.channels.find_by_channel_id(channel.id)
+    logs = change_set.logs
+    if logs.blank?
+      # This means change_set is invalid, delete it.
+      change_set.destroy
+    else
+      # get the property of this change set
+      property = logs.first.inventory.property
+      property_channel = property.channels.find_by_channel_id(channel.id)
 
-    # property room type that has mapping to this channel
-    room_type_ids = Array.new
-    property.room_types.each do |rt|
-      room_type_ids << rt.id if rt.has_active_mapping_to_channel?(channel)
-    end
+      # property room type that has mapping to this channel
+      room_type_ids = Array.new
+      property.room_types.each do |rt|
+        room_type_ids << rt.id if rt.has_active_mapping_to_channel?(channel)
+      end
 
-    return if room_type_ids.blank?
+      return if room_type_ids.blank?
 
-    builder = Nokogiri::XML::Builder.new do |xml|
-      xml.SetHotelInventoryRequest('xmlns' => AgodaChannel::XMLNS) {
-        xml.Authentication(:APIKey => AgodaChannel::API_KEY, :HotelID => property.agoda_hotel_id)
-        xml.HotelInventoryList {
-          change_set.logs.each do |log|
-            inv = log.inventory
-            room_type = inv.room_type
-            channel_room_type_map = RoomTypeChannelMapping.find_by_room_type_id_and_channel_id(room_type.id, channel.id)
+      builder = Nokogiri::XML::Builder.new do |xml|
+        xml.SetHotelInventoryRequest('xmlns' => AgodaChannel::XMLNS) {
+          xml.Authentication(:APIKey => AgodaChannel::API_KEY, :HotelID => property.agoda_hotel_id)
+          xml.HotelInventoryList {
+            change_set.logs.each do |log|
+              inv = log.inventory
+              room_type = inv.room_type
+              channel_room_type_map = RoomTypeChannelMapping.find_by_room_type_id_and_channel_id(room_type.id, channel.id)
 
-            if !channel_room_type_map.blank? and room_type_ids.include?(room_type.id)
-              create_hotel_inventory_xml(xml, channel_room_type_map.ota_room_type_id, inv.date, log.total_rooms, channel_room_type_map, property_channel)
-            end
-            
-            # now send to linked room type
-            if room_type.is_inventory_feeder?
-              room_type.consumer_room_types.each do |consumer_room_type|
-                channel_room_type_map = RoomTypeChannelMapping.find_by_room_type_id_and_channel_id(consumer_room_type.id, channel.id)
-                  
-                if !channel_room_type_map.blank?
-                  create_hotel_inventory_xml(xml, channel_room_type_map.ota_room_type_id, inv.date, log.total_rooms, channel_room_type_map, property_channel)
+              if !channel_room_type_map.blank? and room_type_ids.include?(room_type.id)
+                create_hotel_inventory_xml(xml, channel_room_type_map.ota_room_type_id, inv.date, log.total_rooms, channel_room_type_map, property_channel)
+              end
+
+              # now send to linked room type
+              if room_type.is_inventory_feeder?
+                room_type.consumer_room_types.each do |consumer_room_type|
+                  channel_room_type_map = RoomTypeChannelMapping.find_by_room_type_id_and_channel_id(consumer_room_type.id, channel.id)
+
+                  if !channel_room_type_map.blank?
+                    create_hotel_inventory_xml(xml, channel_room_type_map.ota_room_type_id, inv.date, log.total_rooms, channel_room_type_map, property_channel)
+                  end
                 end
               end
             end
-          end
+          }
         }
-      }
+      end
+
+      request_xml = builder.to_xml
+      AgodaChannel.post_xml_change_set_channel(request_xml, change_set_channel)
     end
-
-    request_xml = builder.to_xml
-    AgodaChannel.post_xml_change_set_channel(request_xml, change_set_channel)
-  end
-
-  def create_job(change_set)
-   cs = InventoryChangeSetChannel.create(:change_set_id => change_set.id, :channel_id => self.channel.id)
-   cs.delay.run
   end
 
   def channel
@@ -63,21 +64,61 @@ class AgodaInventoryHandler < InventoryHandler
     date.strftime('%F')
   end
 
-  # Get inventory (to see if room is available at certain dates)
-  def retrieve_by_room_type_channel_mapping(property, room_type_channel_mapping, date_start, date_end)
-    room_types = Array.new
-    retrieve_xml_by_room_type_channel_mapping(property, room_type_channel_mapping, date_start, date_end) do |xml_doc|
-      
+  def get_inventories(property, room_type, date_start, date_end, rate_type)
+    inventories = Array.new
+    get_inventories_xml(property, room_type, date_start, date_end, rate_type) do |xml_doc|
+      # Each inventory_xml is allotments available at given date that looks as follows:
+      #       <HotelInventory>
+      #         <RoomType RoomTypeID="461004" RatePlanID="1" />
+      #         <DateRange Type="Stay" Start="2012-11-22" End="2012-11-22" />
+      #         <InventoryRate Currency="USD">
+      #           <SingleRate>100.00</SingleRate><DoubleRate>100.00</DoubleRate><FullRate>0.00</FullRate>
+      #           <ExtraPerson>50.00</ExtraPerson>
+      #           <ExtraAdult>50.00</ExtraAdult>
+      #           <ExtraChild>0.00</ExtraChild>
+      #           <ExtraBed>10.00</ExtraBed>
+      #         </InventoryRate>
+      #         <InventoryAllotment>
+      #           <RegularAllotment>10</RegularAllotment>
+      #           <RegularAllotmentUsed>0</RegularAllotmentUsed>
+      #           <GuaranteedAllotment>0</GuaranteedAllotment>
+      #           <GuaranteedAllotmentUsed>0</GuaranteedAllotmentUsed>
+      #           <CutOffDayNormal>0</CutOffDayNormal>
+      #           <CutOffDayGuaranteed>0</CutOffDayGuaranteed>
+      #           <CloseOutRegularAllotment>False</CloseOutRegularAllotment>
+      #           <ClosedToArrival>False</ClosedToArrival>
+      #           <ClosedToDeparture>False</ClosedToDeparture>
+      #           <BreakfastIncluded>False</BreakfastIncluded>
+      #           <PromotionBlackout>False</PromotionBlackout>
+      #           <MinLOS>1</MinLOS>
+      #           <MaxLOS>0</MaxLOS>
+      #         </InventoryAllotment>
+      #       </HotelInventory>
+      # From it, at least for now we only need number of rooms available at given date
+      xml_doc.xpath('//HotelInventory').each do |inventory_xml|
+        inventories << InventoryXml.new(
+          :room_type_id => inventory_xml.xpath('RoomType').attr('RoomTypeID').value,
+          :rate_type_id => inventory_xml.xpath('RoomType').attr('RatePlanID').value,
+          :date => inventory_xml.xpath('DateRange').attr('Start').value,
+          :total_rooms => inventory_xml.xpath('InventoryAllotment/RegularAllotment').text.to_i -
+            inventory_xml.xpath('InventoryAllotment/RegularAllotmentUsed').text.to_i
+        )
+      end
     end
-
-    room_types
+    inventories
   end
 
-  # Retrieve but in xml format
-  def retrieve_xml_by_room_type_channel_mapping(property, room_type_channel_mapping, date_start, date_end, &block)
+  def get_inventories_xml(property, room_type, date_start, date_end, rate_type, &block)
+    channel = AgodaChannel.first
 
-    property_channel  = PropertyChannel.find_by_property_id_and_channel_id(property.id, AgodaChannel.first.id)
-    room_types        = Array.new
+    # Need to get ota room type and rate type:
+    room_type_channel_mapping = RoomTypeChannelMapping.first(
+      :conditions => {
+        :room_type_id => room_type.id,
+        :rate_type_id => rate_type.id,
+        :channel_id => channel.id
+      }
+    )
 
     # construct xml to request room type list
     builder = Nokogiri::XML::Builder.new do |xml|
@@ -85,6 +126,7 @@ class AgodaInventoryHandler < InventoryHandler
         xml.Authentication(:APIKey => AgodaChannel::API_KEY, :HotelID => property.agoda_hotel_id)
         xml.RoomType(
           :RoomTypeID => room_type_channel_mapping.ota_room_type_id,
+          # :RoomTypeID => '0',
           :RatePlanID => room_type_channel_mapping.ota_rate_type_id
         )
         xml.DateRange(
@@ -101,19 +143,26 @@ class AgodaInventoryHandler < InventoryHandler
     response_xml  = AgodaChannel.post_xml(request_xml)
     response_xml  = response_xml.gsub(/xmlns=\"([^\"]*)\"/, "")
 
-    # puts '============'
-    # puts YAML::dump(response_xml)
-    # puts '============'
+    puts '============'
+    puts 'REQUEST:'
+    puts YAML::dump(request_xml)
+    puts '============'
+    puts YAML::dump(response_xml)[0...200]
+    puts '============'
 
     xml_doc = Nokogiri::XML(response_xml)
-    success = xml_doc.xpath("//Success")
-
-    if success.count > 0
-      block.call xml_doc
-    else
-
-      logs_fetching_failure CtripChannel.first.name, request_xml, xml_doc, property, property_channel, APP_CONFIG[:ctrip_rates_get_endpoint]
-
+    begin
+      success = xml_doc.xpath('//StatusResponse').attr('status').value
+      # 204 is when no inventory returned.
+      if success == '200' or success == '204'
+        block.call xml_doc
+      else
+        property_channel  = PropertyChannel.find_by_property_id_and_channel_id(property.id, channel.id)
+        logs_fetching_failure channel.name, request_xml, xml_doc, property, property_channel, APP_CONFIG[:agoda_endpoint]
+      end
+    rescue
+      property_channel  = PropertyChannel.find_by_property_id_and_channel_id(property.id, channel.id)
+      logs_fetching_failure channel.name, request_xml, xml_doc, property, property_channel, APP_CONFIG[:agoda_endpoint]
     end
   end
 

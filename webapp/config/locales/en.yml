@@ -179,9 +179,9 @@ en:
         nothing_saved: 'There was no rate change to be saved'
         success: 'Your rate change has been saved'
     validate:
-      error_not_a_number: 'Master Rates: %{room_type} %{date} - not a valid number'
-      error_negative_number: 'Master Rates: %{room_type} %{date} - must be a positive number'
-      error_less_than_minimum: 'Master Rates: %{room_type} %{date} - can not be less than %{minimum}'
+      error_not_a_number: 'Master Rates: %{room_type} (%{rate_type}) %{date} - not a valid number'
+      error_negative_number: 'Master Rates: %{room_type} (%{rate_type}) %{date} - must be a positive number'
+      error_less_than_minimum: 'Master Rates: %{room_type} (%{rate_type}) %{date} - can not be less than %{minimum}'
 
   channel_rates:
     update:
@@ -189,11 +189,11 @@ en:
         nothing_saved: 'There was no change to be saved for %{channel}'
         success: 'Changes for %{channel} has been saved.'
     validate:
-      error_not_a_number: '%{channel} Rates: %{room_type} %{date} - not a valid number'
-      error_negative_number: '%{channel} Rates: %{room_type} %{date} - must be a positive number'
-      error_less_than_minimum: '%{channel} Rates: %{room_type} %{date} - can not be less than %{minimum}'
-      error_min_stay_not_a_number: '%{channel} Min Stay: %{room_type} %{date} - not a valid number'
-      error_min_stay_negative_number: '%{channel} Min Stay: %{room_type} %{date} - must be a positive number'
+      error_not_a_number: '%{channel} Rates: %{room_type} (%{rate_type}) %{date} - not a valid number'
+      error_negative_number: '%{channel} Rates: %{room_type} (%{rate_type}) %{date} - must be a positive number'
+      error_less_than_minimum: '%{channel} Rates: %{room_type} (%{rate_type}) %{date} - can not be less than %{minimum}'
+      error_min_stay_not_a_number: '%{channel} Min Stay: %{room_type} (%{rate_type}) %{date} - not a valid number'
+      error_min_stay_negative_number: '%{channel} Min Stay: %{room_type} (%{rate_type}) %{date} - must be a positive number'
 
   rate_types:
     validate:
@@ -861,6 +861,8 @@ en:
   activemodel:
     errors:
       models:
+        inventory_handler:
+          room_type_mapping_not_found: "Room Type Channel Mapping not found. Make sure given room type, channel, and rate type have been mapped."
         room_type_fetcher:
           fetch_failed: "Fetching room types from channel %{channel} failed. We have been notified about this, but if you'd like to add additional details, please %{contact_us_link}."
           contact_us: "contact us"

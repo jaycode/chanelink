@@ -49,11 +49,6 @@ class ExpediaInventoryHandler < InventoryHandler
 
   end
 
-  def create_job(change_set)
-   cs = InventoryChangeSetChannel.create(:change_set_id => change_set.id, :channel_id => self.channel.id)
-   cs.delay.run
-  end
-
   def channel
     ExpediaChannel.first
   end

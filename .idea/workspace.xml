@@ -2,42 +2,46 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="33d08885-ccff-47e8-9e62-7ba051a8d6f6" name="Default" comment="">
-      <change type="DELETED" beforePath="C:\Users\Jay\Docker\chanelink\webapp\app\views\room_type_channel_mappings\_agoda_rate_types.html.erb" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Jay\Docker\chanelink\webapp\app\views\room_type_channel_mappings\_ctrip_room_types.html.erb" afterPath="" />
-      <change type="MOVED" beforePath="C:\Users\Jay\Docker\chanelink\webapp\app\views\room_type_channel_mappings\_agoda_room_types.html.erb" afterPath="$PROJECT_DIR$/webapp/app/views/room_type_channel_mappings/_default_room_types.html.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/db/migrate/20150611192857_multi_rate_stuff.rb" afterPath="$PROJECT_DIR$/webapp/db/migrate/20150611192857_multi_rate_stuff.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/app/views/inventories/_master_rates.html.erb" afterPath="$PROJECT_DIR$/webapp/app/views/inventories/_master_rates.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/app/views/layouts/_menu.html.erb" afterPath="$PROJECT_DIR$/webapp/app/views/layouts/_menu.html.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/app/views/inventories/_rates_default_textboxes.html.erb" afterPath="$PROJECT_DIR$/webapp/app/views/inventories/_rates_default_textboxes.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/spec/models/channels/agoda/agoda_get_room_types_spec.rb" afterPath="$PROJECT_DIR$/webapp/spec/models/channels/agoda/agoda_get_room_types_spec.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/app/models/rate_type_fetcher/agoda_rate_type_fetcher.rb" afterPath="$PROJECT_DIR$/webapp/app/models/rate_type_fetcher/agoda_rate_type_fetcher.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/app/models/room_type_fetcher/agoda_room_type_fetcher.rb" afterPath="$PROJECT_DIR$/webapp/app/models/room_type_fetcher/agoda_room_type_fetcher.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/app/helpers/application_helper.rb" afterPath="$PROJECT_DIR$/webapp/app/helpers/application_helper.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/chanelink.iml" afterPath="$PROJECT_DIR$/.idea/chanelink.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/app/models/channel.rb" afterPath="$PROJECT_DIR$/webapp/app/models/channel.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" afterPath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/app/models/booking_handler/ctrip_booking_handler.rb" afterPath="$PROJECT_DIR$/webapp/app/models/booking_handler/ctrip_booking_handler.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/spec/connectors/agoda_connector.rb" afterPath="$PROJECT_DIR$/webapp/spec/connectors/agoda_connector.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/spec/models/channels/agoda/agoda_get_inventory_spec.rb" afterPath="$PROJECT_DIR$/webapp/spec/models/channels/agoda/agoda_get_inventory_spec.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/app/models/inventory_handler/agoda_inventory_handler.rb" afterPath="$PROJECT_DIR$/webapp/app/models/inventory_handler/agoda_inventory_handler.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/spec/features/channels/agoda/agoda_sync_spec.rb" afterPath="$PROJECT_DIR$/webapp/spec/features/channels/agoda/agoda_sync_spec.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/spec/models/channels/agoda/agoda_update_inventory_spec.rb" afterPath="$PROJECT_DIR$/webapp/spec/models/channels/agoda/agoda_update_inventory_spec.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/app/models/inventory_handler/bookingcom_inventory_handler.rb" afterPath="$PROJECT_DIR$/webapp/app/models/inventory_handler/bookingcom_inventory_handler.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/app/controllers/channel_rates_controller.rb" afterPath="$PROJECT_DIR$/webapp/app/controllers/channel_rates_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/app/helpers/channels_helper.rb" afterPath="$PROJECT_DIR$/webapp/app/helpers/channels_helper.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/spec/connectors/connector.rb" afterPath="$PROJECT_DIR$/webapp/spec/connectors/connector.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/spec/models/channels/ctrip/ctrip_booking_handler_spec.rb" afterPath="$PROJECT_DIR$/webapp/spec/models/channels/ctrip/ctrip_booking_handler_spec.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/app/models/channels/ctrip_channel.rb" afterPath="$PROJECT_DIR$/webapp/app/models/channels/ctrip_channel.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/app/views/property_channels/edit.html.erb" afterPath="$PROJECT_DIR$/webapp/app/views/property_channels/edit.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/app/models/channel_asynchronous_handler/ctrip_channel_asynchronous_handler.rb" afterPath="$PROJECT_DIR$/webapp/app/models/channel_asynchronous_handler/ctrip_channel_asynchronous_handler.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/spec/connectors/ctrip_connector.rb" afterPath="$PROJECT_DIR$/webapp/spec/connectors/ctrip_connector.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/app/models/inventory_handler/ctrip_inventory_handler.rb" afterPath="$PROJECT_DIR$/webapp/app/models/inventory_handler/ctrip_inventory_handler.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/app/models/inventory_new_room_handler/ctrip_inventory_new_room_handler.rb" afterPath="$PROJECT_DIR$/webapp/app/models/inventory_new_room_handler/ctrip_inventory_new_room_handler.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/app/models/room_type_fetcher/ctrip_room_type_fetcher.rb" afterPath="$PROJECT_DIR$/webapp/app/models/room_type_fetcher/ctrip_room_type_fetcher.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/spec/models/channels/ctrip/ctrip_update_inventory_spec.rb" afterPath="$PROJECT_DIR$/webapp/spec/models/channels/ctrip/ctrip_update_inventory_spec.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/config/locales/en.yml" afterPath="$PROJECT_DIR$/webapp/config/locales/en.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/app/models/inventory_handler/expedia_inventory_handler.rb" afterPath="$PROJECT_DIR$/webapp/app/models/inventory_handler/expedia_inventory_handler.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/app/views/inventories/grid.html.erb" afterPath="$PROJECT_DIR$/webapp/app/views/inventories/grid.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/app/views/property_channels/index.html.erb" afterPath="$PROJECT_DIR$/webapp/app/views/property_channels/index.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/app/models/inventory_handler/gta_travel_inventory_handler.rb" afterPath="$PROJECT_DIR$/webapp/app/models/inventory_handler/gta_travel_inventory_handler.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/spec/integration_test_helper.rb" afterPath="$PROJECT_DIR$/webapp/spec/integration_test_helper.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/app/controllers/inventories_controller.rb" afterPath="$PROJECT_DIR$/webapp/app/controllers/inventories_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/spec/controllers/inventories_controller_spec.rb" afterPath="$PROJECT_DIR$/webapp/spec/controllers/inventories_controller_spec.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/app/helpers/inventories_helper.rb" afterPath="$PROJECT_DIR$/webapp/app/helpers/inventories_helper.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/public/stylesheets/main.css" afterPath="$PROJECT_DIR$/webapp/public/stylesheets/main.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/app/models/inventory.rb" afterPath="$PROJECT_DIR$/webapp/app/models/inventory.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/app/models/inventory_handler/inventory_handler.rb" afterPath="$PROJECT_DIR$/webapp/app/models/inventory_handler/inventory_handler.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/app/controllers/master_rates_controller.rb" afterPath="$PROJECT_DIR$/webapp/app/controllers/master_rates_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/spec/features/multi_rates_spec.rb" afterPath="$PROJECT_DIR$/webapp/spec/features/multi_rates_spec.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/spec/models/multi_rates_spec.rb" afterPath="$PROJECT_DIR$/webapp/spec/models/multi_rates_spec.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/app/views/room_type_channel_mappings/new_wizard_channel_room.html.erb" afterPath="$PROJECT_DIR$/webapp/app/views/room_type_channel_mappings/new_wizard_channel_room.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/app/models/rate_type.rb" afterPath="$PROJECT_DIR$/webapp/app/models/rate_type.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/app/models/room_type_channel_mapping.rb" afterPath="$PROJECT_DIR$/webapp/app/models/room_type_channel_mapping.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/app/models/inventory_handler/orbitz_inventory_handler.rb" afterPath="$PROJECT_DIR$/webapp/app/models/inventory_handler/orbitz_inventory_handler.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/app/controllers/populate_rack_rate_controller.rb" afterPath="$PROJECT_DIR$/webapp/app/controllers/populate_rack_rate_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/test/fixtures/rate_types.yml" afterPath="$PROJECT_DIR$/webapp/test/fixtures/rate_types.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/app/models/room_type.rb" afterPath="$PROJECT_DIR$/webapp/app/models/room_type.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/test/fixtures/room_type_channel_mappings.yml" afterPath="$PROJECT_DIR$/webapp/test/fixtures/room_type_channel_mappings.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/app/controllers/room_type_channel_mappings_controller.rb" afterPath="$PROJECT_DIR$/webapp/app/controllers/room_type_channel_mappings_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/test/fixtures/room_type_master_rate_channel_mappings.yml" afterPath="$PROJECT_DIR$/webapp/test/fixtures/room_type_master_rate_channel_mappings.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/test/fixtures/room_type_master_rate_mappings.yml" afterPath="$PROJECT_DIR$/webapp/test/fixtures/room_type_master_rate_mappings.yml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/test/fixtures/room_types.yml" afterPath="$PROJECT_DIR$/webapp/test/fixtures/room_types.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/config/routes.rb" afterPath="$PROJECT_DIR$/webapp/config/routes.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/db/schema.rb" afterPath="$PROJECT_DIR$/webapp/db/schema.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/db/seeds.rb" afterPath="$PROJECT_DIR$/webapp/db/seeds.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/db/seeds.sql" afterPath="$PROJECT_DIR$/webapp/db/seeds.sql" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="chanelink.iws" />
@@ -60,34 +64,72 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
+      <file leaf-file-name="inventories_controller_spec.rb" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/webapp/spec/controllers/inventories_controller_spec.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="1.4655173">
+              <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="grid.html.erb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/webapp/app/views/inventories/grid.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-5.230769">
+              <caret line="50" column="50" selection-start-line="50" selection-start-column="30" selection-end-line="50" selection-end-column="50" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="room_type.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/webapp/app/models/room_type.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="137" column="16" selection-start-line="137" selection-start-column="16" selection-end-line="137" selection-end-column="16" />
+              <caret line="121" column="73" selection-start-line="121" selection-start-column="73" selection-end-line="121" selection-end-column="73" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="rate_type.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/webapp/app/models/rate_type.rb">
+      <file leaf-file-name="_master_rates.html.erb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/webapp/app/views/inventories/_master_rates.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-2.6153846">
+              <caret line="4" column="58" selection-start-line="4" selection-start-column="57" selection-end-line="4" selection-end-column="58" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="_agoda_rates.html.erb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/webapp/app/views/inventories/_agoda_rates.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-2.6153846">
+              <caret line="4" column="84" selection-start-line="4" selection-start-column="84" selection-end-line="4" selection-end-column="84" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="_rates_default_textboxes.html.erb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/webapp/app/views/inventories/_rates_default_textboxes.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-7.1538463">
+              <caret line="39" column="39" selection-start-line="39" selection-start-column="39" selection-end-line="39" selection-end-column="39" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pool.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/webapp/app/models/pool.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="17" column="9" selection-start-line="17" selection-start-column="9" selection-end-line="17" selection-end-column="9" />
+              <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="20150611192857_multi_rate_stuff.rb" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/webapp/db/migrate/20150611192857_multi_rate_stuff.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.81040895">
-              <caret line="35" column="70" selection-start-line="35" selection-start-column="70" selection-end-line="35" selection-end-column="70" />
-              <folding>
-                <marker date="1434411858249" expanded="true" signature="1796:1808" placeholder="..." />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -96,59 +138,27 @@
         <entry file="file://$PROJECT_DIR$/webapp/app/helpers/inventories_helper.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="174" column="0" selection-start-line="174" selection-start-column="0" selection-end-line="174" selection-end-column="0" />
+              <caret line="177" column="0" selection-start-line="177" selection-start-column="0" selection-end-line="177" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="rate_types_controller.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/webapp/app/controllers/rate_types_controller.rb">
+      <file leaf-file-name="channel_rates_controller.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/webapp/app/controllers/channel_rates_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="20" column="51" selection-start-line="20" selection-start-column="51" selection-end-line="20" selection-end-column="51" />
+              <caret line="33" column="72" selection-start-line="33" selection-start-column="54" selection-end-line="33" selection-end-column="72" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="application.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/webapp/public/javascripts/application.js">
+      <file leaf-file-name="master_rates_controller.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/webapp/app/controllers/master_rates_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="262" column="2" selection-start-line="262" selection-start-column="2" selection-end-line="262" selection-end-column="2" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html.erb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/webapp/app/views/room_types/index.html.erb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.269231">
-              <caret line="29" column="106" selection-start-line="29" selection-start-column="86" selection-end-line="29" selection-end-column="106" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html.erb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/webapp/app/views/rate_types/index.html.erb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.269231">
-              <caret line="30" column="106" selection-start-line="30" selection-start-column="106" selection-end-line="30" selection-end-column="106" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="en.yml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/webapp/config/locales/en.yml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="544" column="70" selection-start-line="544" selection-start-column="70" selection-end-line="544" selection-end-column="70" />
+              <caret line="49" column="47" selection-start-line="49" selection-start-column="47" selection-end-line="49" selection-end-column="47" />
               <folding />
             </state>
           </provider>
@@ -169,57 +179,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/webapp/app/helpers/property_channels_helper.rb" />
-        <option value="$PROJECT_DIR$/webapp/app/models/room_type_master_rate_channel_mapping.rb" />
-        <option value="$PROJECT_DIR$/webapp/test/fixtures/room_type_master_rate_channel_mappings.yml" />
-        <option value="$PROJECT_DIR$/webapp/app/models/channel_min_stay_handler/ctrip_channel_min_stay_handler.rb" />
-        <option value="$PROJECT_DIR$/webapp/app/models/channel_rate_handler/ctrip_channel_rate_handler.rb" />
-        <option value="$PROJECT_DIR$/webapp/test/fixtures/properties.yml" />
-        <option value="$PROJECT_DIR$/webapp/app/models/booking_handler/ctrip_booking_handler.rb" />
-        <option value="$PROJECT_DIR$/webapp/spec/models/channels/ctrip/ctrip_booking_handler_spec.rb" />
-        <option value="$PROJECT_DIR$/webapp/test/fixtures/room_types.yml" />
-        <option value="$PROJECT_DIR$/webapp/spec/models/multi_rates_spec.rb" />
-        <option value="$PROJECT_DIR$/webapp/app/views/room_type_channel_mappings/_agoda_rate_types.html.erb" />
-        <option value="$PROJECT_DIR$/webapp/app/helpers/application_helper.rb" />
-        <option value="$PROJECT_DIR$/webapp/app/views/room_type_channel_mappings/_default_rate_types.html.erb" />
-        <option value="$PROJECT_DIR$/webapp/app/models/channels/ctrip_channel.rb" />
-        <option value="$PROJECT_DIR$/webapp/app/views/room_type_channel_mappings/new_wizard_channel_room.html.erb" />
-        <option value="$PROJECT_DIR$/webapp/app/views/room_type_channel_mappings/_default_room_types.html.erb" />
-        <option value="$PROJECT_DIR$/webapp/app/models/room_type_channel_mapping.rb" />
-        <option value="$PROJECT_DIR$/webapp/test/fixtures/room_type_channel_mappings.yml" />
-        <option value="$PROJECT_DIR$/webapp/lib/utilities/has_settings.rb" />
-        <option value="$PROJECT_DIR$/webapp/app/models/channel.rb" />
-        <option value="$PROJECT_DIR$/webapp/app/controllers/room_type_channel_mappings_controller.rb" />
-        <option value="$PROJECT_DIR$/webapp/db/seeds.rb" />
-        <option value="$PROJECT_DIR$/webapp/app/views/property_channels/edit.html.erb" />
-        <option value="$PROJECT_DIR$/webapp/app/views/property_channels/index.html.erb" />
-        <option value="$PROJECT_DIR$/webapp/spec/models/channels/agoda/agoda_get_room_types_spec.rb" />
-        <option value="$PROJECT_DIR$/webapp/app/models/room_type_fetcher/agoda_room_type_fetcher.rb" />
-        <option value="$PROJECT_DIR$/webapp/app/models/rate_type_fetcher/agoda_rate_type_fetcher.rb" />
-        <option value="$PROJECT_DIR$/webapp/public/stylesheets/main.css" />
-        <option value="$PROJECT_DIR$/webapp/spec/features/multi_rates_spec.rb" />
-        <option value="$PROJECT_DIR$/webapp/app/views/inventories/_rates_default_textboxes.html.erb" />
-        <option value="$PROJECT_DIR$/webapp/app/views/layouts/_menu.html.erb" />
-        <option value="$PROJECT_DIR$/webapp/config/routes.rb" />
-        <option value="$PROJECT_DIR$/webapp/app/views/rate_types/show.html.erb" />
-        <option value="$PROJECT_DIR$/webapp/app/views/rate_types/new.html.erb" />
-        <option value="$PROJECT_DIR$/webapp/app/views/inventories/_master_rates.html.erb" />
         <option value="$PROJECT_DIR$/webapp/app/helpers/rate_types_helper.rb" />
-        <option value="$PROJECT_DIR$/webapp/app/controllers/inventories_controller.rb" />
         <option value="$PROJECT_DIR$/webapp/db/seeds.sql" />
         <option value="$PROJECT_DIR$/webapp/app/views/rate_types/_form.html.erb" />
-        <option value="$PROJECT_DIR$/webapp/app/controllers/master_rates_controller.rb" />
         <option value="$PROJECT_DIR$/webapp/app/views/rate_types/edit.html.erb" />
-        <option value="$PROJECT_DIR$/webapp/app/views/inventories/grid.html.erb" />
-        <option value="$PROJECT_DIR$/webapp/app/helpers/inventories_helper.rb" />
         <option value="$PROJECT_DIR$/webapp/app/controllers/rates_controller.rb" />
-        <option value="$PROJECT_DIR$/webapp/config/locales/en.yml" />
         <option value="$PROJECT_DIR$/webapp/public/javascripts/application.js" />
         <option value="$PROJECT_DIR$/webapp/app/views/room_types/index.html.erb" />
         <option value="$PROJECT_DIR$/webapp/app/views/rate_types/index.html.erb" />
         <option value="$PROJECT_DIR$/webapp/app/models/rate_type.rb" />
         <option value="$PROJECT_DIR$/webapp/app/controllers/rate_types_controller.rb" />
         <option value="$PROJECT_DIR$/webapp/db/migrate/20150611192857_multi_rate_stuff.rb" />
+        <option value="$PROJECT_DIR$/webapp/app/models/inventory_handler/inventory_xml.rb" />
+        <option value="$PROJECT_DIR$/webapp/test/fixtures/room_type_master_rate_mappings.yml" />
+        <option value="$PROJECT_DIR$/webapp/test/fixtures/room_types.yml" />
+        <option value="$PROJECT_DIR$/webapp/test/fixtures/room_type_master_rate_channel_mappings.yml" />
+        <option value="$PROJECT_DIR$/webapp/test/fixtures/rate_types.yml" />
+        <option value="$PROJECT_DIR$/webapp/spec/models/channels/agoda/agoda_get_inventory_spec.rb" />
+        <option value="$PROJECT_DIR$/webapp/app/models/inventory.rb" />
+        <option value="$PROJECT_DIR$/webapp/app/models/channels/ctrip_channel.rb" />
+        <option value="$PROJECT_DIR$/webapp/test/fixtures/room_type_channel_mappings.yml" />
+        <option value="$PROJECT_DIR$/webapp/spec/models/channels/ctrip/ctrip_get_inventory_spec.rb" />
+        <option value="$PROJECT_DIR$/webapp/app/helpers/channels_helper.rb" />
+        <option value="$PROJECT_DIR$/webapp/app/models/inventory_handler/ctrip_inventory_handler.rb" />
+        <option value="$PROJECT_DIR$/webapp/app/models/inventory_new_room_handler/ctrip_inventory_new_room_handler.rb" />
+        <option value="$PROJECT_DIR$/webapp/app/models/inventory_handler/orbitz_inventory_handler.rb" />
+        <option value="$PROJECT_DIR$/webapp/app/models/inventory_handler/gta_travel_inventory_handler.rb" />
+        <option value="$PROJECT_DIR$/webapp/app/models/inventory_handler/expedia_inventory_handler.rb" />
+        <option value="$PROJECT_DIR$/webapp/app/models/inventory_handler/bookingcom_inventory_handler.rb" />
+        <option value="$PROJECT_DIR$/webapp/app/models/inventory_handler/agoda_inventory_handler.rb" />
+        <option value="$PROJECT_DIR$/webapp/spec/models/channels/agoda/agoda_update_inventory_spec.rb" />
+        <option value="$PROJECT_DIR$/webapp/spec/connectors/agoda_connector.rb" />
+        <option value="$PROJECT_DIR$/webapp/spec/connectors/connector.rb" />
+        <option value="$PROJECT_DIR$/webapp/spec/features/channels/agoda/agoda_sync_spec.rb" />
+        <option value="$PROJECT_DIR$/webapp/app/models/room_type_fetcher/ctrip_room_type_fetcher.rb" />
+        <option value="$PROJECT_DIR$/webapp/app/models/inventory_handler/inventory_handler.rb" />
+        <option value="$PROJECT_DIR$/webapp/spec/models/channels/ctrip/ctrip_update_inventory_spec.rb" />
+        <option value="$PROJECT_DIR$/webapp/spec/connectors/ctrip_connector.rb" />
+        <option value="$PROJECT_DIR$/webapp/app/models/channel_asynchronous_handler/ctrip_channel_asynchronous_handler.rb" />
+        <option value="$PROJECT_DIR$/webapp/spec/models/multi_rates_spec.rb" />
+        <option value="$PROJECT_DIR$/webapp/spec/models/channels/ctrip/ctrip_booking_handler_spec.rb" />
+        <option value="$PROJECT_DIR$/webapp/app/controllers/populate_rack_rate_controller.rb" />
+        <option value="$PROJECT_DIR$/webapp/spec/integration_test_helper.rb" />
+        <option value="$PROJECT_DIR$/webapp/app/controllers/inventories_controller.rb" />
+        <option value="$PROJECT_DIR$/webapp/app/controllers/channel_rates_controller.rb" />
+        <option value="$PROJECT_DIR$/webapp/config/locales/en.yml" />
+        <option value="$PROJECT_DIR$/webapp/app/controllers/master_rates_controller.rb" />
+        <option value="$PROJECT_DIR$/webapp/app/helpers/inventories_helper.rb" />
+        <option value="$PROJECT_DIR$/webapp/app/views/inventories/grid.html.erb" />
+        <option value="$PROJECT_DIR$/webapp/app/models/room_type.rb" />
+        <option value="$PROJECT_DIR$/webapp/app/views/inventories/_rates_default_textboxes.html.erb" />
+        <option value="$PROJECT_DIR$/webapp/spec/controllers/inventories_controller_spec.rb" />
       </list>
     </option>
   </component>
@@ -233,7 +243,7 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1382" />
+    <option name="width" value="1370" />
     <option name="height" value="744" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -512,6 +522,36 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="ctrip" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="chanelink" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="chanelink" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spec" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="models" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="channels" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="agoda" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -563,6 +603,10 @@
               <option name="myItemId" value="channels" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ctrip" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -591,6 +635,28 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="agoda" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="chanelink" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="chanelink" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spec" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controllers" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -688,11 +754,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
+              <option name="myItemId" value="config" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -715,10 +777,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="room_types" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -745,32 +803,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="rate_types" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="chanelink" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="chanelink" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="property_channels" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -844,7 +876,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="rate_type_fetcher" />
+              <option name="myItemId" value="room_type_fetcher" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -865,6 +897,14 @@
               <option name="myItemId" value="app" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="models" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="inventory_handler" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -884,7 +924,55 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="helpers" />
+              <option name="myItemId" value="models" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="channel_asynchronous_handler" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="chanelink" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="chanelink" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="models" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="change_sets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="chanelink" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="chanelink" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -921,6 +1009,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
+    <property name="FullScreen" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -1054,27 +1143,27 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1370" height="744" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14372164" sideWeight="0.46193266" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3197492" sideWeight="0.46193266" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19399707" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27480915" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32526475" sideWeight="0.53806734" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -1089,364 +1178,268 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="5" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/webapp/app/views/room_type_channel_mappings/new_wizard_channel_room.html.erb">
+    <entry file="file://$PROJECT_DIR$/webapp/app/models/inventory_handler/bookingcom_inventory_handler.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.0">
-          <caret line="20" column="10" selection-start-line="20" selection-start-column="10" selection-end-line="20" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webapp/test/fixtures/properties.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5165877">
-          <caret line="52" column="26" selection-start-line="52" selection-start-column="26" selection-end-line="52" selection-end-column="26" />
-          <folding />
+        <state vertical-scroll-proportion="0.24623115">
+          <caret line="54" column="5" selection-start-line="54" selection-start-column="5" selection-end-line="54" selection-end-column="5" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/webapp/app/models/channels/agoda_channel.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="82" column="12" selection-start-line="82" selection-start-column="12" selection-end-line="82" selection-end-column="12" />
-          <folding />
+          <caret line="16" column="20" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webapp/lib/utilities/has_settings.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="39" column="7" selection-start-line="39" selection-start-column="7" selection-end-line="39" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webapp/app/models/channel.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.9310346">
-          <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webapp/test/fixtures/room_type_channel_mappings.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="4" column="26" selection-start-line="4" selection-start-column="20" selection-end-line="4" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webapp/db/seeds.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="142" column="68" selection-start-line="142" selection-start-column="68" selection-end-line="142" selection-end-column="68" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webapp/app/views/property_channels/index.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.9615384">
-          <caret line="14" column="24" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webapp/app/models/room_type_channel_mapping.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.2890996">
-          <caret line="83" column="12" selection-start-line="83" selection-start-column="12" selection-end-line="83" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webapp/app/models/room_type_fetcher/room_type_fetcher.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webapp/spec/features/channels/agoda/agoda_sync_spec.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.18799368">
-          <caret line="7" column="35" selection-start-line="7" selection-start-column="35" selection-end-line="7" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webapp/app/models/room_type_fetcher/agoda_room_type_fetcher.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="4" column="6" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webapp/spec/models/channels/agoda/agoda_get_room_types_spec.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="47" column="33" selection-start-line="47" selection-start-column="33" selection-end-line="47" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webapp/app/models/rate_type_fetcher/agoda_rate_type_fetcher.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="12" column="23" selection-start-line="12" selection-start-column="23" selection-end-line="12" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webapp/app/views/room_type_channel_mappings/edit.html.erb">
+    <entry file="file://$PROJECT_DIR$/webapp/app/models/change_set_channels/change_set_channel.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webapp/app/views/property_channels/edit.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.576923">
-          <caret line="101" column="37" selection-start-line="101" selection-start-column="37" selection-end-line="101" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webapp/app/views/inventories/_channel_rates.html.erb">
+    <entry file="file://$PROJECT_DIR$/webapp/app/models/change_sets/change_set.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webapp/public/stylesheets/main.css">
+    <entry file="file://$PROJECT_DIR$/webapp/app/models/change_sets/master_rate_change_set.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="909" column="30" selection-start-line="909" selection-start-column="30" selection-end-line="909" selection-end-column="30" />
-          <folding />
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webapp/app/views/inventories/_agoda_rates.html.erb">
+    <entry file="file://$PROJECT_DIR$/webapp/app/models/change_sets/inventory_change_set.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.230769">
-          <caret line="8" column="28" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
-          <folding />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webapp/app/models/inventory_logs/member_set_inventory_log.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.042713568">
+          <caret line="1" column="6" selection-start-line="1" selection-start-column="6" selection-end-line="1" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webapp/app/models/change_sets/inventory_new_room_change_set.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.89698493">
+          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webapp/app/models/inventory_handler/agoda_inventory_handler.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.2413793">
+          <caret line="110" column="25" selection-start-line="110" selection-start-column="6" selection-end-line="110" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webapp/spec/models/channels/agoda/agoda_get_inventory_spec.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="18" column="34" selection-start-line="18" selection-start-column="34" selection-end-line="18" selection-end-column="34" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/webapp/spec/features/multi_rates_spec.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="52" column="0" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
-          <folding />
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webapp/app/views/inventories/_tiketcom_rates.html.erb">
+    <entry file="file://$PROJECT_DIR$/webapp/spec/features/channels/agoda/agoda_sync_spec.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <caret line="31" column="50" selection-start-line="31" selection-start-column="27" selection-end-line="31" selection-end-column="50" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/readme.md">
+    <entry file="file://$PROJECT_DIR$/webapp/config/app_config.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.357143">
-          <caret line="198" column="3" selection-start-line="198" selection-start-column="3" selection-end-line="198" selection-end-column="3" />
-          <folding />
+        <state vertical-scroll-proportion="0.085427135">
+          <caret line="29" column="29" selection-start-line="29" selection-start-column="2" selection-end-line="29" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webapp/spec/connectors/connector.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="96" column="4" selection-start-line="96" selection-start-column="4" selection-end-line="96" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webapp/app/models/change_set_channels/inventory_change_set_channel.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.042713568">
+          <caret line="1" column="6" selection-start-line="1" selection-start-column="6" selection-end-line="1" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webapp/app/models/room_type_fetcher/ctrip_room_type_fetcher.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="97" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webapp/app/models/inventory_handler/inventory_handler.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="21" column="25" selection-start-line="21" selection-start-column="25" selection-end-line="21" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webapp/spec/connectors/agoda_connector.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.1281407">
+          <caret line="3" column="5" selection-start-line="3" selection-start-column="5" selection-end-line="3" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webapp/app/models/inventory_handler/ctrip_inventory_handler.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="3" column="41" selection-start-line="3" selection-start-column="41" selection-end-line="3" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webapp/app/models/channels/ctrip_channel.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.37437186">
+          <caret line="54" column="36" selection-start-line="54" selection-start-column="36" selection-end-line="54" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webapp/spec/connectors/ctrip_connector.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="6" column="73" selection-start-line="6" selection-start-column="45" selection-end-line="6" selection-end-column="73" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webapp/app/models/channel_asynchronous_handler/ctrip_channel_asynchronous_handler.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="52" column="0" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webapp/spec/models/channels/ctrip/ctrip_get_inventory_spec.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="33" column="10" selection-start-line="33" selection-start-column="10" selection-end-line="33" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webapp/spec/models/channels/agoda/agoda_update_inventory_spec.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="6" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="32" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webapp/spec/models/channels/ctrip/ctrip_update_inventory_spec.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/webapp/spec/models/multi_rates_spec.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="81" column="45" selection-start-line="81" selection-start-column="45" selection-end-line="81" selection-end-column="45" />
-          <folding />
+        <state vertical-scroll-proportion="0.81155777">
+          <caret line="19" column="2" selection-start-line="19" selection-start-column="2" selection-end-line="19" selection-end-column="2" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webapp/app/views/layouts/_menu.html.erb">
+    <entry file="file://$PROJECT_DIR$/webapp/spec/models/channels/ctrip/ctrip_update_rates_spec.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.653846">
-          <caret line="115" column="0" selection-start-line="115" selection-start-column="0" selection-end-line="115" selection-end-column="0" />
-          <folding>
-            <element signature="n#style#0;n#div#2;n#div#2;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#3;n#div#6;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#4;n#div#6;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#5;n#div#6;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#6;n#div#6;n#div#0;n#!!top" expanded="false" />
-          </folding>
+        <state vertical-scroll-proportion="1.7894737">
+          <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webapp/app/views/rate_types/show.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.20238096">
-          <caret line="1" column="17" selection-start-line="1" selection-start-column="17" selection-end-line="1" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webapp/app/views/rate_types/new.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.08457711">
-          <caret line="1" column="16" selection-start-line="1" selection-start-column="16" selection-end-line="1" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webapp/config/routes.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3359375">
-          <caret line="20" column="18" selection-start-line="20" selection-start-column="18" selection-end-line="20" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webapp/app/views/inventories/_rates_default_textboxes.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.3818182">
-          <caret line="79" column="114" selection-start-line="79" selection-start-column="109" selection-end-line="79" selection-end-column="114" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webapp/app/controllers/room_types_controller.rb">
+    <entry file="file://$PROJECT_DIR$/webapp/app/controllers/populate_rack_rate_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
-          <folding />
+          <caret line="14" column="10" selection-start-line="14" selection-start-column="10" selection-end-line="14" selection-end-column="10" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webapp/app/views/inventories/_master_rates.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.15384616">
-          <caret line="44" column="80" selection-start-line="44" selection-start-column="80" selection-end-line="44" selection-end-column="80" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webapp/app/helpers/rate_types_helper.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2982456">
-          <caret line="5" column="8" selection-start-line="5" selection-start-column="8" selection-end-line="5" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webapp/app/helpers/room_types_helper.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.11929824">
-          <caret line="2" column="48" selection-start-line="2" selection-start-column="48" selection-end-line="2" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webapp/app/controllers/channel_rates_controller.rb">
+    <entry file="file://$PROJECT_DIR$/webapp/config/schedule.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webapp/app/controllers/bookings_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="102" column="6" selection-start-line="102" selection-start-column="6" selection-end-line="102" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webapp/app/models/bookings/booking.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.2375">
+          <caret line="1" column="6" selection-start-line="1" selection-start-column="6" selection-end-line="1" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webapp/spec/models/channels/ctrip/ctrip_booking_handler_spec.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webapp/app/models/booking_handler/agoda_booking_handler.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="77" column="55" selection-start-line="77" selection-start-column="55" selection-end-line="77" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webapp/spec/integration_test_helper.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="3" column="26" selection-start-line="3" selection-start-column="26" selection-end-line="3" selection-end-column="26" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/webapp/db/seeds.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="5.0">
-          <caret line="2245" column="66" selection-start-line="2245" selection-start-column="66" selection-end-line="2245" selection-end-column="66" />
-          <folding />
+        <state vertical-scroll-proportion="0.3888889">
+          <caret line="2274" column="31" selection-start-line="2274" selection-start-column="31" selection-end-line="2274" selection-end-column="31" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webapp/app/controllers/master_rates_controller.rb">
+    <entry file="file://$PROJECT_DIR$/webapp/spec/features/channels/agoda/agoda_room_type_channel_mapping_spec.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.448276">
-          <caret line="27" column="6" selection-start-line="27" selection-start-column="6" selection-end-line="27" selection-end-column="6" />
-          <folding />
+        <state vertical-scroll-proportion="-0.5606557">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webapp/app/views/rate_types/edit.html.erb">
+    <entry file="file://$PROJECT_DIR$/webapp/spec/features/channels/ctrip/ctrip_inventories_spec.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.1923075">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webapp/app/views/inventories/grid.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.1636364">
-          <caret line="7" column="30" selection-start-line="7" selection-start-column="30" selection-end-line="7" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webapp/app/controllers/inventories_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="27" column="44" selection-start-line="27" selection-start-column="44" selection-end-line="27" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webapp/app/controllers/room_type_channel_mappings_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="4.8029737">
-          <caret line="224" column="0" selection-start-line="224" selection-start-column="0" selection-end-line="224" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webapp/app/views/rate_types/_form.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.16601562">
-          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webapp/app/controllers/rates_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.031598512">
-          <caret line="2" column="42" selection-start-line="2" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webapp/config/locales/en.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="544" column="70" selection-start-line="544" selection-start-column="70" selection-end-line="544" selection-end-column="70" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webapp/app/views/rate_types/index.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.269231">
-          <caret line="30" column="106" selection-start-line="30" selection-start-column="106" selection-end-line="30" selection-end-column="106" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webapp/app/views/room_types/index.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.269231">
-          <caret line="29" column="106" selection-start-line="29" selection-start-column="86" selection-end-line="29" selection-end-column="106" />
+        <state vertical-scroll-proportion="0.3321859">
+          <caret line="38" column="20" selection-start-line="38" selection-start-column="8" selection-end-line="38" selection-end-column="20" />
           <folding />
         </state>
       </provider>
@@ -1454,25 +1447,49 @@
     <entry file="file://$PROJECT_DIR$/webapp/public/javascripts/application.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="262" column="2" selection-start-line="262" selection-start-column="2" selection-end-line="262" selection-end-column="2" />
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <element signature="n#!!doc" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webapp/app/models/rate_type.rb">
+    <entry file="file://$PROJECT_DIR$/webapp/app/models/account.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="17" column="9" selection-start-line="17" selection-start-column="9" selection-end-line="17" selection-end-column="9" />
+          <caret line="15" column="22" selection-start-line="15" selection-start-column="12" selection-end-line="15" selection-end-column="22" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webapp/app/models/room_type.rb">
+    <entry file="file://$PROJECT_DIR$/webapp/app/controllers/inventories_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="137" column="16" selection-start-line="137" selection-start-column="16" selection-end-line="137" selection-end-column="16" />
+          <caret line="8" column="15" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webapp/config/locales/en.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="206" column="20" selection-start-line="206" selection-start-column="20" selection-end-line="206" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webapp/app/controllers/master_rates_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="49" column="47" selection-start-line="49" selection-start-column="47" selection-end-line="49" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webapp/app/controllers/channel_rates_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="33" column="72" selection-start-line="33" selection-start-column="54" selection-end-line="33" selection-end-column="72" />
           <folding />
         </state>
       </provider>
@@ -1480,34 +1497,64 @@
     <entry file="file://$PROJECT_DIR$/webapp/app/helpers/inventories_helper.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="174" column="0" selection-start-line="174" selection-start-column="0" selection-end-line="174" selection-end-column="0" />
+          <caret line="177" column="0" selection-start-line="177" selection-start-column="0" selection-end-line="177" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webapp/app/controllers/rate_types_controller.rb">
+    <entry file="file://$PROJECT_DIR$/webapp/app/models/pool.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="20" column="51" selection-start-line="20" selection-start-column="51" selection-end-line="20" selection-end-column="51" />
+          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webapp/db/migrate/20150119104234_setup_schema.rb">
+    <entry file="file://$PROJECT_DIR$/webapp/app/views/inventories/grid.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2527881">
-          <caret line="8" column="22" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
+        <state vertical-scroll-proportion="-5.230769">
+          <caret line="50" column="50" selection-start-line="50" selection-start-column="30" selection-end-line="50" selection-end-column="50" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webapp/db/migrate/20150611192857_multi_rate_stuff.rb">
+    <entry file="file://$PROJECT_DIR$/webapp/app/models/room_type.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.81040895">
-          <caret line="35" column="70" selection-start-line="35" selection-start-column="70" selection-end-line="35" selection-end-column="70" />
-          <folding>
-            <marker date="1434411858249" expanded="true" signature="1796:1808" placeholder="..." />
-          </folding>
+        <state vertical-scroll-proportion="0.0">
+          <caret line="121" column="73" selection-start-line="121" selection-start-column="73" selection-end-line="121" selection-end-column="73" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webapp/app/views/inventories/_master_rates.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.6153846">
+          <caret line="4" column="58" selection-start-line="4" selection-start-column="57" selection-end-line="4" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webapp/app/views/inventories/_agoda_rates.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.6153846">
+          <caret line="4" column="84" selection-start-line="4" selection-start-column="84" selection-end-line="4" selection-end-column="84" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webapp/app/views/inventories/_rates_default_textboxes.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.1538463">
+          <caret line="39" column="39" selection-start-line="39" selection-start-column="39" selection-end-line="39" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webapp/spec/controllers/inventories_controller_spec.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.4655173">
+          <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

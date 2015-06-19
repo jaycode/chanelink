@@ -370,6 +370,7 @@ ActiveRecord::Schema.define(:version => 20150611192857) do
     t.integer  "total_rooms"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "rate_type_id"
   end
 
   create_table "inventory_logs", :force => true do |t|

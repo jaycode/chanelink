@@ -7,6 +7,22 @@ superior_agoda:
   rate_type: default
   ota_rate_type_id: 1
   ota_rate_type_name: Retail
+deluxe_agoda:
+  room_type: deluxe
+  channel: agoda
+  ota_room_type_id: 461004
+  ota_room_type_name: Deluxe
+  rate_type: default
+  ota_rate_type_id: 1
+  ota_rate_type_name: Retail
+deluxe_agoda_private_sale:
+  room_type: deluxe
+  channel: agoda
+  ota_room_type_id: 461004
+  ota_room_type_name: Deluxe
+  rate_type: private_sale
+  ota_rate_type_id: 2
+  ota_rate_type_name: Agoda Private Sale
 superior_agoda_pay_at_hotel:
   room_type: superior
   channel: agoda
@@ -34,7 +50,7 @@ superior_ctrip_room_a_pay_at_hotel:
   channel: ctrip
   ota_room_type_id: 1251431
   ota_room_type_name: Superior(CNY Promo)
-  rate_type: default
+  rate_type: pay_at_hotel
   ota_rate_type_id: 16
   ota_rate_type_name: Pay at Hotel
   settings: >

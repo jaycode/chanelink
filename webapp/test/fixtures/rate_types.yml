@@ -1,6 +1,9 @@
 # The default rate type can be owned by any account.
 default:
   name: Default
+private_sale:
+  name: Private Sale
+  account: big_hotel_chain
 # Other than default rate type, we allow each account to define their own rate types.
 # For example accounts connecting to ctrip may want to have "Pay at Hotel" rate type.
 pay_at_hotel:

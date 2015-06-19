@@ -12,6 +12,7 @@ class CtripChannel < Channel
   XMLNS = 'http://www.opentravel.org/OTA/2003/05'
   XMLNS_XSI = 'http://www.w3.org/2001/XMLSchema-instance'
   XMLNS_XSD = 'http://www.w3.org/2001/XMLSchema'
+  SOAP_ACTION = 'http://www.opentravel.org/OTA/2003/05/Request'
   SOAP_ENV = 'http://schemas.xmlsoap.org/soap/envelope/'
 
   API_VERSION = "2.2"
@@ -121,6 +122,7 @@ class CtripChannel < Channel
     req = Net::HTTP::Post.new(uri.path)
     req["Content-Type"] = 'text/xml'
     req["Host"] = uri.host
+    req["SoapAction"] = self::SOAP_ACTION
 
     req.body = request_xml
     res = https.request(req)

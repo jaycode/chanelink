@@ -4,16 +4,14 @@
 <div id="setPoolInventory">
   <%= render 'pools/generic_select', :path_to_go => grid_inventories_path %>
   <%= store_previously_selected_js %>
-  <%= copy_across_inventories_js %>
-  <%= copy_up_down_inventories_js %>
   <%= copy_across_js %>
   <%= copy_up_down_js %>
-  <%= form_tag(:action => 'update', :controller => 'inventories') do %>
+  <%= form_tag(url_for(:action => 'update', :controller => 'inventories'), :id=> "inventories-form") do %>
     <div class="gridHeader">
       <div class="left"><h2><%= t('inventories.grid.label.availability') %></h2></div>
       <div class="right">
-        <%= link_to t('inventories.grid.label.copy_across'), '#', :class => 'btnActionTool copyAcrossInventories' %>
-        <%= link_to t('inventories.grid.label.copy_up_down'), '#', :class => 'btnActionTool copyUpdownInventories' %>
+        <%= link_to t('inventories.grid.label.copy_across'), '#', :class => 'btnActionTool copyAcross' %>
+        <%= link_to t('inventories.grid.label.copy_up_down'), '#', :class => 'btnActionTool copyUpdown' %>
         <%= submit_tag t('button.save') %>
       </div>
     </div>
@@ -43,23 +41,25 @@
         <% end %>
       </div>
       <% current_property.room_types.each do |rt| %>
-        <% not_mapped = (!rt.mapped? or !@pool.has_channel?) %>
-        <div class="dateTableRow">
-          <div class="bigColumn"><strong><%= rt.is_inventory_linked? ? "#{rt.name} >> #{rt.linked_room_type.name}" : rt.name %></strong></div>
-          <% loop_date = start_date %>
-          <% while loop_date <= end_date %>
-            <div class="smallColumn">
-              <% rooms = rt.calculated_inventory(loop_date, @pool, flash) %>
-              <% if rt.is_inventory_linked? %>
-                <%= rooms %>
-              <% else %>
-                <%= hidden_field_tag generate_original_inventory_field_value(loop_date, rt), rooms %>
-                <%= text_field_tag generate_inventory_field_name(loop_date, rt), rooms, :disabled => not_mapped, :class => 'numericOnly' %>
-              <% end %>
-              </div>
-            <% loop_date = loop_date + 1.day %>
-          <% end %>
-        </div>
+        <% current_property.account.rate_types.each do |rate_type| %>
+          <% not_mapped = (!rt.mapped? or !@pool.has_channel?) %>
+          <div class="dateTableRow">
+            <div class="bigColumn"><strong><%= rt.is_inventory_linked? ? "#{rt.name} >> #{rt.linked_room_type.name} (#{rate_type.name})" : "#{rt.name} (#{rate_type.name})" %></strong></div>
+            <% loop_date = start_date %>
+            <% while loop_date <= end_date %>
+              <div class="smallColumn">
+                <% rooms = rt.calculated_inventory(loop_date, @pool, flash, rate_type) %>
+                <% if rt.is_inventory_linked? %>
+                  <%= rooms %>
+                <% else %>
+                  <%= hidden_field_tag generate_original_inventory_field_value(loop_date, rt, rate_type), rooms %>
+                  <%= text_field_tag generate_inventory_field_name(loop_date, rt, rate_type), rooms, :disabled => not_mapped, :class => 'numericOnly' %>
+                <% end %>
+                </div>
+              <% loop_date = loop_date + 1.day %>
+            <% end %>
+          </div>
+        <% end %>
       <% end %>
     </div>
   <% end %>

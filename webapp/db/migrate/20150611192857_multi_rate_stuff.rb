@@ -28,10 +28,12 @@ class MultiRateStuff < ActiveRecord::Migration
     remove_column :room_type_channel_mappings, :ctrip_room_type_name
     remove_column :room_type_channel_mappings, :ctrip_room_rate_plan_code
     remove_column :room_type_channel_mappings, :ctrip_room_rate_plan_category
+
+    add_column :inventories, :rate_type_id, :integer
   end
 
   def self.down
-    # drop_table "rate_types"
+    drop_table "rate_types"
     remove_column :room_type_channel_mappings, :rate_type_id
     remove_column :room_type_master_rate_channel_mappings, :rate_type_id
     remove_column :room_type_channel_mappings, :ota_room_type_id
@@ -51,5 +53,7 @@ class MultiRateStuff < ActiveRecord::Migration
     add_column :room_type_channel_mappings, :ctrip_room_type_name, :string
     add_column :room_type_channel_mappings, :ctrip_room_rate_plan_code, :string
     add_column :room_type_channel_mappings, :ctrip_room_rate_plan_category, :string
+
+    remove_column :inventories, :rate_type_id
   end
 end

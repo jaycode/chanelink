@@ -50,14 +50,6 @@ class CtripInventoryNewRoomHandler < InventoryHandler
 
   end
 
-  def create_job(change_set)
-   # all room types id in this change set
-   # room_type_ids = change_set.room_type_ids
-
-   cs = InventoryChangeSetChannel.create(:change_set_id => change_set.id, :channel_id => self.channel.id)
-   cs.delay.run
-  end
-
   def channel
     CtripChannel.first
   end

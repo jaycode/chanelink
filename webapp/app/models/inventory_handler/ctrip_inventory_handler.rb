@@ -28,24 +28,7 @@ class CtripInventoryHandler < InventoryHandler
         
         return {:unique_id => unique_id.first.attr('ID'), :type => unique_id.first.attr('Type')}
       else
-        # Todo: logs the error here
-        pi_logger = Logger.new("#{Rails.root}/log/api_errors.log")
-        api_logger.error("[#{Time.now}] Update availabilities failed.\n
-PropertyChannel ID: #{property_channel.id}
-Channel: #{CtripChannel.first.name}
-Property: #{property.id} - #{property.name}
-SOAP XML sent to #{APP_CONFIG[:ctrip_inventories_update_endpoint]}\n
-xml sent:\n#{request_xml}\n
-xml retrieved:\n#{xml_doc.to_xhtml(indent: 3)}")
-
-        raise Exception, I18n.t('activemodel.errors.models.room_type_fetcher.fetch_failed', {
-          :channel => CtripChannel.name,
-          :contact_us_link => ActionController::Base.helpers.link_to(I18n.t('activemodel.errors.models.room_type_fetcher.contact_us'),
-            "mailto:#{APP_CONFIG[:support_email]}?Subject=#{I18n.t('activemodel.errors.models.room_type_fetcher.email_subject', :property_id => property.id)}",
-            {
-              :target => '_blank'
-          })
-        })
+        logs_inventory_get_failure CtripChannel.first.name, property, property_channel, APP_CONFIG[:ctrip_inventories_update_endpoint]
       end
     end
 
@@ -97,24 +80,59 @@ xml retrieved:\n#{xml_doc.to_xhtml(indent: 3)}")
     block.call(availabilities_sent, builder)
   end
 
-  def create_job(change_set, delay = true)
-    # all room types id in this change set
-    # room_type_ids = change_set.room_type_ids
-
-    cs = InventoryChangeSetChannel.create(:change_set_id => change_set.id, :channel_id => self.channel.id)
-    if delay
-      cs.delay.run
-    else
-      return cs.run
-    end
-  end
-
   def channel
     CtripChannel.first
   end
 
   def date_to_key(date)
     date.strftime('%F')
+  end
+
+  def get_inventories(property, room_type, date_start, date_end, rate_type = nil)
+    inventories = Array.new
+    get_inventories_xml(property, room_type, date_start, date_end, rate_type) do |xml_doc|
+      xml_doc.xpath('//RatePlan').each do |rate_plan_xml|
+        rate_plan_xml.xpath('Rates/Rate').each do |rate_xml|
+          inventories << InventoryXml.new(
+            :room_type_id => rate_plan_xml.attr('RatePlanCode'),
+            :rate_type_id => rate_plan_xml.attr('RatePlanCategory'),
+            :date => rate_xml.attr('Start'),
+            :total_rooms => rate_xml.attr('NumberOfUnits').to_i
+          )
+        end
+      end
+    end
+    inventories
+  end
+
+  def get_inventories_xml(property, room_type, date_start, date_end, rate_type = nil, &block)
+    channel = CtripChannel.first
+
+    # Need to get ota room type and rate type:
+    if rate_type.nil?
+      room_type_channel_mapping = RoomTypeChannelMapping.first(
+        :conditions => {
+          :room_type_id => room_type.id,
+          :channel_id => channel.id
+        }
+      )
+    else
+      room_type_channel_mapping = RoomTypeChannelMapping.first(
+        :conditions => {
+          :room_type_id => room_type.id,
+          :rate_type_id => rate_type.id,
+          :channel_id => channel.id
+        }
+      )
+    end
+
+    if room_type_channel_mapping.nil?
+      raise I18n.t('activemodel.errors.models.inventory_handler.room_type_mapping_not_found')
+    else
+      CtripChannel.first.room_type_fetcher.retrieve_xml(property, date_start, date_end, room_type_channel_mapping.ota_room_type_id) do |xml_doc|
+        block.call(xml_doc)
+      end
+    end
   end
 
   private

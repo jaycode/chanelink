@@ -71,11 +71,6 @@ class OrbitzInventoryHandler < InventoryHandler
     OrbitzChannel.post_xml_change_set_channel(request_xml, change_set_channel, OrbitzChannel::OTHER)
   end
 
-  def create_job(change_set)
-   cs = InventoryChangeSetChannel.create(:change_set_id => change_set.id, :channel_id => self.channel.id)
-   cs.delay.run
-  end
-
   def channel
     OrbitzChannel.first
   end

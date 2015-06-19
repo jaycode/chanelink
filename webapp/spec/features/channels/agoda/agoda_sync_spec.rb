@@ -1,4 +1,7 @@
 require 'rails_helper'
+require 'connectors/connector'
+require 'connectors/agoda_connector'
+require 'connectors/ctrip_connector'
 
 describe 'Agoda Sync Spec', :type => :feature do
   include IntegrationTestHelper
@@ -6,27 +9,45 @@ describe 'Agoda Sync Spec', :type => :feature do
   scenario 'Should sync availabilities throughout other channels.' do
     date_start = Date.today + 1.weeks
     date_end = Date.today + 2.weeks
-    channel_to_update = AgodaChannel.first
-    channels_to_test_sync = [CtripChannel.first]
-    pool       = pools(:default_big_hotel_1)
     property   = properties(:big_hotel_1)
-    room_type  = room_types(:superior)
+
+    # Mapping of updated channel
+    updated_mapping = room_type_channel_mappings(:superior_agoda)
+    # Mapping of synced channels
+    ctrip_mapping = room_type_channel_mappings(:superior_ctrip_room_a)
+
+    # Mapping of updated channel
+    updated_connector = AgodaConnector.new(property)
+    # Mapping of synced channels
+    ctrip_connector = CtripConnector.new(property)
 
     # Set up availabilities in channels to 5 each.
-    date_start.upto(date_end) do |date|
-      existing_inv = Inventory.find_by_date_and_property_id_and_pool_id_and_room_type_id(date, property.id, pool.id, room_type.id)
-      existing_inv.update_attribute(:total_rooms, 5)
+    updated_connector.update_inventories updated_mapping, 5, date_start, date_end
+    ctrip_connector.update_inventories ctrip_mapping, 4, date_start, date_end
 
-      log = create_inventory_log(existing_inv)
-      change_set = InventoryChangeSet.create
-      log.update_attribute(:change_set_id, change_set.id)
-      channel_to_update.inventory_handler.create_job(change_set, false)
-    end
+    # Let's see if values properly updated.
+    inventories = updated_connector.get_inventories updated_mapping, date_start, date_end
+    expect(inventories[0].total_rooms).to eq(5)
+    # Ctrip has this method to test last update since they update things asynchronously.
+    expect(ctrip_connector.last_update_successful?).to eq(true)
 
     # Imagine that one room in Agoda channel updated to 4.
+    updated_connector.update_inventories updated_mapping, 4, date_start, date_end
 
     # Call the sync action (this should be similar to one inside config/schedule.rb)
+    sync
 
-    # Check if other channels' rooms updated.
+    # Check if other channels' rooms updated if they are in the same pool.
+    expect(updated_mapping.room_type.id).to eq(ctrip_mapping.room_type.id)
+    expect(PropertyChannel.first(
+             :property_id => updated_mapping.room_type.property_id,
+             :channel_id => updated_mapping.channel_id
+           ).pool_id).to eq(
+           PropertyChannel.first(
+             :property_id => ctrip_mapping.room_type.property_id,
+             :channel_id => ctrip_mapping.room_type.channel_id
+           ).pool_id)
+    ctrip_inventories = ctrip_connector.get_inventories(ctrip_mapping, date_start, date_end)
+    expect(ctrip_inventories[0].total_rooms).to eq(4)
   end
 end

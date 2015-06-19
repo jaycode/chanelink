@@ -34,7 +34,7 @@
   <% current_property.account.rate_types.each do |rate_type| %>
     <% not_mapped = !rt.has_active_mapping_to_channel?(channel) %>
     <% nothing_is_mapped = not_mapped if !not_mapped %>
-    <div class="dateTableRow" id="<%= channel_code %>_room_type-<%= rt.id %>">
+    <div class="dateTableRow" id="<%= channel_code %>_room_type-<%= rt.id %>_rate_type-<%= rate_type.id %>">
       <div class="bigColumn"><strong><%= rt.name %> (<%= rate_type.name %>)</strong></div>
       <% loop_date = start_date %>
       <% while loop_date <= end_date %>

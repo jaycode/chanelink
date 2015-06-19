@@ -1,18 +1,18 @@
 require "rails_helper"
 require "connectors/connector"
-require "connectors/agoda_connector"
+require "connectors/ctrip_connector"
 
-describe "Agoda get inventory spec", :type => :model do
+describe "Ctrip get inventory spec", :type => :model do
   before(:each) do
-    @channelClass = AgodaChannel
-    @connectorClass = AgodaConnector
+    @channelClass = CtripChannel
+    @connectorClass = CtripConnector
   end
   scenario 'xml test' do
     date_start = Date.today + 1.weeks
     date_end = Date.today + 2.weeks
 
     property = properties(:big_hotel_1)
-    room_type = room_types(:deluxe)
+    room_type = room_types(:superior)
     rate_type = rate_types(:default)
 
     @channelClass.first.inventory_handler.get_inventories_xml(property, room_type, date_start, date_end, rate_type) do |xml_doc|
@@ -26,7 +26,7 @@ describe "Agoda get inventory spec", :type => :model do
     date_end = Date.today + 2.weeks
 
     property = properties(:big_hotel_1)
-    room_type = room_types(:deluxe)
+    room_type = room_types(:superior)
     rate_type = rate_types(:default)
 
     connector = @connectorClass.new(property)
@@ -42,9 +42,9 @@ describe "Agoda get inventory spec", :type => :model do
     date_end = Date.today + 2.weeks
 
     property = properties(:big_hotel_1)
-    room_type = room_types(:deluxe)
+    room_type = room_types(:superior)
     rate_type1 = rate_types(:default)
-    rate_type2 = rate_types(:private_sale)
+    rate_type2 = rate_types(:pay_at_hotel)
 
     connector = @connectorClass.new(property)
     inventories1 = connector.get_inventories(room_type, date_start, date_end, rate_type1)

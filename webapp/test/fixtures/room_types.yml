@@ -3,6 +3,12 @@ superior:
   rack_rate: 100000
   property: big_hotel_1
 
+# Use Deluxe room for agoda testing
+deluxe:
+  name: Deluxe
+  rack_rate: 100000
+  property: big_hotel_1
+
 # For testing room_type_channel_mapping creation
 unassigned:
   name: Unassigned

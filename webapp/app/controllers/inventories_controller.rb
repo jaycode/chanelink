@@ -27,31 +27,35 @@ class InventoriesController < ApplicationController
     # go through each value specified and save it to database
     current_property.room_types.each do |rt|
       if params["#{rt.id}"]
-        params["#{rt.id}"].each do |date_inv|
-          total_rooms = date_inv[1]
-          existing_inv = Inventory.find_by_date_and_property_id_and_pool_id_and_room_type_id(date_inv[0], current_property.id, params[:pool_id], rt.id)
+        current_property.account.rate_types.each do |rate_type|
+          params["#{rt.id}"]["#{rate_type.id}"].each do |date_inv|
+            total_rooms = date_inv[1]
+            existing_inv = Inventory.find_by_date_and_property_id_and_pool_id_and_room_type_id_and_rate_type_id(
+              date_inv[0], current_property.id, params[:pool_id], rt.id, rate_type.id)
 
-          # create new inventory object
-          if existing_inv.blank?
-            if total_rooms.blank? or total_rooms == 0
-              # do nothing
-            elsif total_rooms.to_i > 0
-              inventory = Inventory.new
-              inventory.date = date_inv[0]
-              inventory.total_rooms = date_inv[1]
-              inventory.room_type_id = rt.id
-              inventory.property = current_property
-              inventory.pool_id = params[:pool_id]
+            # create new inventory object
+            if existing_inv.blank?
+              if total_rooms.blank? or total_rooms == 0
+                # do nothing
+              elsif total_rooms.to_i > 0
+                inventory = Inventory.new
+                inventory.date = date_inv[0]
+                inventory.total_rooms = date_inv[1]
+                inventory.room_type_id = rt.id
+                inventory.rate_type_id = rate_type.id
+                inventory.property = current_property
+                inventory.pool_id = params[:pool_id]
 
-              inventory.save
+                inventory.save
 
-              logs << create_inventory_log(inventory)
-            end
-          else
-            # if existing exist then do update if value is not 0
-            if total_rooms.to_i >= 0 and (total_rooms.to_i != existing_inv.total_rooms.to_i)
-              existing_inv.update_attribute(:total_rooms, total_rooms)
-              logs << create_inventory_log(existing_inv)
+                logs << create_inventory_log(inventory)
+              end
+            else
+              # if existing exist then do update if value is not 0
+              if total_rooms.to_i >= 0 and (total_rooms.to_i != existing_inv.total_rooms.to_i)
+                existing_inv.update_attribute(:total_rooms, total_rooms)
+                logs << create_inventory_log(existing_inv)
+              end
             end
           end
         end
@@ -92,13 +96,17 @@ class InventoriesController < ApplicationController
     errors = Array.new
     current_property.room_types.each do |rt|
       if params["#{rt.id}"]
-        params["#{rt.id}"].each do |date_inv|
-          total_rooms = date_inv[1]
-          # value must be positive number
-          if !(total_rooms =~ /\A[-+]?[0-9]*\.?[0-9]+\Z/)
-            errors << t('inventories.validate.error_not_a_number', :room_type => rt.name, :date => date_inv[0])
-          elsif total_rooms.to_i < 0
-            errors << t('inventories.validate.error_negative_number', :room_type => rt.name, :date => date_inv[0])
+        current_property.account.rate_types.each do |rate_type|
+          if params["#{rt.id}"]["#{rate_type.id}"]
+            params["#{rt.id}"]["#{rate_type.id}"].each do |date_inv|
+              total_rooms = date_inv[1]
+              # value must be positive number
+              if !(total_rooms =~ /\A[-+]?[0-9]*\.?[0-9]+\Z/)
+                errors << t('inventories.validate.error_not_a_number', :room_type => rt.name, :date => date_inv[0])
+              elsif total_rooms.to_i < 0
+                errors << t('inventories.validate.error_negative_number', :room_type => rt.name, :date => date_inv[0])
+              end
+            end
           end
         end
       end

@@ -1,9 +1,13 @@
 class CtripConnector < Connector
-  def get_rate_types()
-    rate_types = CtripChannel.first.rate_type_fetcher.retrieve
-    puts '============'
-    puts YAML::dump(rate_types)
-    puts '============'
-    rate_types
+  def channel_class
+    CtripChannel
+  end
+
+  def last_inventory_update_successful?(unique_id = '')
+    channel_class.first.asynchronous_handler.last_inventory_update_result(unique_id)[:success]
+  end
+
+  def last_rate_update_successful?(unique_id = '')
+    channel_class.first.asynchronous_handler.last_rate_update_result(unique_id)[:success]
   end
 end

@@ -1,5 +1,10 @@
 puts "Loaded integration test helper"
 module IntegrationTestHelper
+  def sync
+    # Things that need to happen when we need to synchronize inventories throughout all channels.
+
+  end
+
   def login(email, pass)
     unless logged_in?
       visit '/session/new'

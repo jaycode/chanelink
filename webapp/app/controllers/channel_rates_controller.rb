@@ -23,27 +23,31 @@ class ChannelRatesController < ApplicationController
     # go through all value submitted do validate them: must be a number and not less than the minimum
     current_property.room_types.each do |rt|
       if params["#{rt.id}"]
-        params["#{rt.id}"].each do |date_rate|
+        current_property.account.rate_types.each do |rate_type|
+          if params["#{rt.id}"]["#{rate_type.id}"]
+            params["#{rt.id}"]["#{rate_type.id}"].each do |date_rate|
 
-          # make sure min stay is positive integer and not less than minimum of the property/room-type
-          if date_rate[1]["amount"]
-            amount = date_rate[1]["amount"]
-            if !(amount =~ /\A[-+]?[0-9]*\.?[0-9]+\Z/)
-              errors << t('channel_rates.validate.error_not_a_number', :channel => @channel.name, :room_type => rt.name, :date => date_rate[0])
-            elsif amount.to_f < 0
-              errors << t('channel_rates.validate.error_negative_number', :channel => @channel.name, :room_type => rt.name, :date => date_rate[0])
-            elsif amount.to_f < rt.final_minimum_rate
-              errors << t('channel_rates.validate.error_less_than_minimum', :channel => @channel.name, :room_type => rt.name, :date => date_rate[0], :minimum => rt.final_minimum_rate)
-            end
-          end
+              # make sure min stay is positive integer and not less than minimum of the property/room-type
+              if date_rate[1]["amount"]
+                amount = date_rate[1]["amount"]
+                if !(amount =~ /\A[-+]?[0-9]*\.?[0-9]+\Z/)
+                  errors << t('channel_rates.validate.error_not_a_number', :channel => @channel.name, :room_type => rt.name, :rate_type => rate_type.name, :date => date_rate[0])
+                elsif amount.to_f < 0
+                  errors << t('channel_rates.validate.error_negative_number', :channel => @channel.name, :room_type => rt.name, :rate_type => rate_type.name, :date => date_rate[0])
+                elsif amount.to_f < rt.final_minimum_rate
+                  errors << t('channel_rates.validate.error_less_than_minimum', :channel => @channel.name, :room_type => rt.name, :rate_type => rate_type.name, :date => date_rate[0], :minimum => rt.final_minimum_rate)
+                end
+              end
 
-          # make sure min stay is positive integer
-          if date_rate[1]["min_stay"]
-            min_stay = date_rate[1]["min_stay"]
-            if !(min_stay =~ /\A[-+]?[0-9]*\.?[0-9]+\Z/)
-              errors << t('channel_rates.validate.error_min_stay_not_a_number', :channel => @channel.name, :room_type => rt.name, :date => date_rate[0])
-            elsif min_stay.to_i < 0
-              errors << t('channel_rates.validate.error_min_stay_negative_number', :channel => @channel.name, :room_type => rt.name, :date => date_rate[0])
+              # make sure min stay is positive integer
+              if date_rate[1]["min_stay"]
+                min_stay = date_rate[1]["min_stay"]
+                if !(min_stay =~ /\A[-+]?[0-9]*\.?[0-9]+\Z/)
+                  errors << t('channel_rates.validate.error_min_stay_not_a_number', :channel => @channel.name, :room_type => rt.name, :date => date_rate[0])
+                elsif min_stay.to_i < 0
+                  errors << t('channel_rates.validate.error_min_stay_negative_number', :channel => @channel.name, :room_type => rt.name, :date => date_rate[0])
+                end
+              end
             end
           end
         end

@@ -73,11 +73,6 @@ class GtaTravelInventoryHandler < InventoryHandler
     GtaTravelChannel.put_xml_change_set_channel(request_xml, change_set_channel, GtaTravelChannel::INVENTORY_UPDATE, fragment_id)
   end
 
-  def create_job(change_set)
-   cs = InventoryChangeSetChannel.create(:change_set_id => change_set.id, :channel_id => self.channel.id)
-   cs.delay.run
-  end
-
   def channel
     GtaTravelChannel.first
   end

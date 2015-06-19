@@ -1,4 +1,5 @@
 # represent inventory record
+# Todo: property is not needed since pool already contains it
 class Inventory < ActiveRecord::Base
 
   extend Unscoped

@@ -50,11 +50,11 @@ class MasterRatesController < ApplicationController
                 amount = date_rate[1]["amount"]
                 # rates must be positive integer and greater then minimum
                 if !(amount =~ /\A[-+]?[0-9]*\.?[0-9]+\Z/)
-                  errors << t('master_rates.validate.error_not_a_number', :room_type => rt.name, :date => date_rate[0])
+                  errors << t('master_rates.validate.error_not_a_number', :room_type => rt.name, :rate_type => rate_type.name, :date => date_rate[0])
                 elsif amount.to_f < 0
-                  errors << t('master_rates.validate.error_negative_number', :room_type => rt.name, :date => date_rate[0])
+                  errors << t('master_rates.validate.error_negative_number', :room_type => rt.name, :rate_type => rate_type.name, :date => date_rate[0])
                 elsif amount.to_f < rt.final_minimum_rate
-                  errors << t('master_rates.validate.error_less_than_minimum', :room_type => rt.name, :date => date_rate[0], :minimum => rt.final_minimum_rate)
+                  errors << t('master_rates.validate.error_less_than_minimum', :room_type => rt.name, :rate_type => rate_type.name, :date => date_rate[0], :minimum => rt.final_minimum_rate)
                 end
               end
             end
