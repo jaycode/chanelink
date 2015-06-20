@@ -23,6 +23,7 @@ class RoomTypeMasterRateMappingsController < ApplicationController
       params[:room_type_ids].each do |room_type_id|
         rtm = RoomTypeMasterRateMapping.new
         rtm.room_type_id = room_type_id
+        rtm.rate_type_id = rate_type_id
         rtm.pool_id = params[:pool_id]
 
         # after create then populate rate

@@ -10,7 +10,9 @@ class RoomTypeMasterRateChannelMapping < ActiveRecord::Base
   belongs_to :rate_type
 
   scope :room_type_ids_in, lambda { |room_type_ids| {:conditions => ["room_type_master_rate_channel_mappings.room_type_id IN (?)", room_type_ids]} }
+  scope :rate_type_ids_in, lambda { |rate_type_ids| {:conditions => ["room_type_master_rate_channel_mappings.rate_type_id IN (?)", rate_type_ids]} }
   scope :master_room_type_id, lambda { |room_type_id| {:conditions => ["room_type_master_rate_mappings.room_type_id = ?", room_type_id], :include => [:master_rate_mapping]} }
+  scope :master_rate_type_id, lambda { |rate_type_id| {:conditions => ["room_type_master_rate_mappings.rate_type_id = ?", rate_type_id], :include => [:master_rate_mapping]} }
   scope :pool_id, lambda { |pool_id| {:conditions => ["room_type_master_rate_mappings.pool_id = ?", pool_id], :include => [:master_rate_mapping]} }
 
   validates :master_rate_mapping, :presence => true

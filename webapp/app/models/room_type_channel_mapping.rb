@@ -4,16 +4,17 @@ class RoomTypeChannelMapping < ActiveRecord::Base
   include HasSettings
 
   belongs_to :room_type
+  belongs_to :rate_type
   belongs_to :channel
 
   default_scope lambda {{ :conditions => ["deleted = ?", false] }}
   scope :room_type_ids, lambda{ |room_type_ids| {:conditions => ["room_type_id IN (?)", room_type_ids]}}
+  scope :rate_type_ids, lambda{ |rate_type_ids| {:conditions => ["rate_type_id IN (?)", rate_type_ids]}}
   scope :channel_ids, lambda{ |channel_ids| {:conditions => ["channel_id IN (?)", channel_ids]}}
   scope :agoda_type, :conditions => "ota_room_type_id is not null and ota_room_type_name is not null"
   scope :expedia_type, :conditions => "expedia_room_type_id is not null and expedia_room_type_name is not null and expedia_rate_plan_id is not null"
   scope :bookingcom_type, :conditions => "bookingcom_room_type_id is not null and bookingcom_room_type_name is not null and bookingcom_rate_plan_id is not null"
   scope :gta_travel_type, :conditions => "gta_travel_room_type_id is not null"
-  belongs_to :rate_type
 
   # validates :room_type_id, :uniqueness => { :scope => :channel_id, :message => 'is in use'}, :if => lambda {{:conditions => ["deleted = ?", false]}}
   # validates_uniqueness_of :room_type_id, :scope => :channel_id, :if => Proc.new { |ex| !ex.deleted}

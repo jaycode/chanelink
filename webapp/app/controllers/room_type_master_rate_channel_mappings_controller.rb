@@ -9,6 +9,7 @@ class RoomTypeMasterRateChannelMappingsController < ApplicationController
     @room_type_master_rate_channel_mapping = RoomTypeMasterRateChannelMapping.new
     @room_type_master_rate_channel_mapping.channel = Channel.find_by_id(params[:channel_id])
     @room_type_master_rate_channel_mapping.room_type = RoomType.find_by_id(params[:room_type_id])
+    @room_type_master_rate_channel_mapping.rate_type = RateType.find_by_id(params[:rate_type_id])
   end
 
   # edit channel master rate
@@ -35,7 +36,8 @@ class RoomTypeMasterRateChannelMappingsController < ApplicationController
     # after save then run rate sync
     if @room_type_master_rate_channel_mapping.save
       @room_type_master_rate_channel_mapping.sync_rate
-      redirect_to room_type_master_rate_mappings_path(:pool_id => @room_type_master_rate_channel_mapping.master_rate_mapping.pool.id)
+      redirect_to room_type_master_rate_mappings_path(
+                    :pool_id => @room_type_master_rate_channel_mapping.master_rate_mapping.pool.id)
     else
       put_model_errors_to_flash(@room_type_master_rate_channel_mapping.errors)
       render 'new'
@@ -60,7 +62,8 @@ class RoomTypeMasterRateChannelMappingsController < ApplicationController
 
     if @room_type_master_rate_channel_mapping.save
       @room_type_master_rate_channel_mapping.sync_rate
-      redirect_to room_type_master_rate_mappings_path(:pool_id => @room_type_master_rate_channel_mapping.master_rate_mapping.pool.id)
+      redirect_to room_type_master_rate_mappings_path(
+                    :pool_id => @room_type_master_rate_channel_mapping.master_rate_mapping.pool.id)
     else
       put_model_errors_to_flash(@room_type_master_rate_channel_mapping.errors)
       render 'edit'
@@ -87,13 +90,16 @@ class RoomTypeMasterRateChannelMappingsController < ApplicationController
 
   def copy_master_rate_to_channel_rate(mapping)
     master_room_type = mapping.master_rate_mapping.room_type
+    master_rate_type = mapping.master_rate_mapping.rate_type
 
     loop_date = DateTime.now.in_time_zone.beginning_of_day
     while loop_date <= Constant.maximum_end_date
-      master_rate = MasterRate.find_by_date_and_room_type_id_and_pool_id(loop_date, master_room_type.id, mapping.master_rate_mapping.pool.id)
+      master_rate = MasterRate.find_by_date_and_room_type_id_and_rate_type_id_and_pool_id(
+        loop_date, master_room_type.id, master_rate_type.id, mapping.master_rate_mapping.pool.id)
 
       amount_to_use = master_rate.blank? ? 0 : master_rate.amount
-      channel_rate = ChannelRate.find_by_date_and_room_type_id_and_pool_id_and_channel_id(loop_date, mapping.room_type_id, mapping.master_rate_mapping.pool.id, mapping.channel.id)
+      channel_rate = ChannelRate.find_by_date_and_room_type_id_and_rate_type_id_and_pool_id_and_channel_id(
+        loop_date, mapping.room_type_id, mapping.rate_type_id, mapping.master_rate_mapping.pool.id, mapping.channel.id)
 
       if channel_rate.blank?
         channel_rate = ChannelRate.new
@@ -101,6 +107,7 @@ class RoomTypeMasterRateChannelMappingsController < ApplicationController
         channel_rate.date = loop_date
         channel_rate.amount = mapping.apply_value(amount_to_use)
         channel_rate.room_type_id = mapping.room_type_id
+        channel_rate.rate_type_id = mapping.rate_type_id
         channel_rate.property = master_room_type.property
         channel_rate.pool = mapping.master_rate_mapping.pool
         channel_rate.save

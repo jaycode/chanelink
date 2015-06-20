@@ -13,7 +13,7 @@
       <% else %>
         <% @pool.master_rate_mappings.each do |map| %>
           <p>
-            <%= map.room_type.name %> -
+            <%= map.room_type.name %> (<%= map.rate_type.name %>) -
             <% if map.channel_mappings.blank? %>
               <%= link_to t('room_type_master_rate_mappings.delete.link'), '#', :onmouseup => "javascript: deleteMasterRateMappingsDialog('#{t('room_type_master_rate_mappings.delete.label.heading')}', '#{delete_master_rate_mappings_dialog_body(map)}', '#{delete_room_type_master_rate_mapping_path(:id => map.id, :pool_id => @pool.id)}'); return false;"%>
             <% else %>
@@ -39,19 +39,28 @@
         <div class="channel">
           <h5><%= pc.channel.name %></h5>
           <% room_type_ids = current_property.room_type_ids %>
-          <% RoomTypeChannelMapping.room_type_ids(room_type_ids).where(:channel_id => pc.channel.id).each do |map| %>
+          <% rate_type_ids = current_property.account.rate_types.collect &:id %>
+          <% RoomTypeChannelMapping.room_type_ids(room_type_ids).rate_type_ids(rate_type_ids).
+            where(:channel_id => pc.channel.id).each do |map| %>
             <% room_type = map.room_type %>
-            <% master_rate_map = RoomTypeMasterRateChannelMapping.room_type_ids_in(room_type.id).pool_id(@pool.id).where(:channel_id => pc.channel.id).first %>
+            <% rate_type = map.rate_type %>
+            <% master_rate_map = RoomTypeMasterRateChannelMapping.room_type_ids_in(room_type.id).
+              rate_type_ids_in(rate_type.id).pool_id(@pool.id).where(:channel_id => pc.channel.id).first %>
             <div class="room">
-              <div class="name"><%= room_type.name %></div>
+              <div class="name"><%= room_type.name %> (<%= rate_type.name %>)</div>
               <% if master_rate_map.blank? %>
                 <div class="action">
                   <% if can? :create, RoomTypeMasterRateChannelMapping %>
-                    <%= link_to t('room_type_master_rate_mappings.index.label.update_channel_mapping'), new_room_type_master_rate_channel_mapping_path(:pool_id => @pool.id, :room_type_id => room_type.id, :channel_id => pc.channel.id) %>
+                    <%= link_to t('room_type_master_rate_mappings.index.label.update_channel_mapping'),
+                                new_room_type_master_rate_channel_mapping_path(
+                                  :pool_id => @pool.id,
+                                  :room_type_id => room_type.id,
+                                  :rate_type_id => rate_type.id,
+                                  :channel_id => pc.channel.id) %>
                   <% end %>
                 </div>
               <% else %>
-                <div class="masterRate"><%= master_rate_map.master_rate_mapping.room_type.name %></div>
+                <div class="masterRate"><%= master_rate_map.master_rate_mapping.room_type.name %> (<%= master_rate_map.rate_type.name %>)</div>
                 <div class="markup">
                   <% if master_rate_map.percentage.blank? and master_rate_map.value.blank? %>
                     <%= t('room_type_master_rate_mappings.index.label.no_markup_set') %>

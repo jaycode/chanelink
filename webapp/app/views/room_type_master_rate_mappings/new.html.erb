@@ -11,6 +11,9 @@
         <%= f.select :room_type_id, options_for_select(@room_types, @room_type_master_rate_mapping.room_type_id)%>
       </p>
       <p>
+        <%= f.select :rate_type_id, options_for_select(@rate_types, @room_type_master_rate_mapping.rate_type_id)%>
+      </p>
+      <p>
         <%= f.submit t("button.save") %>
       </p>
     <% end %>

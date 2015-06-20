@@ -42,7 +42,8 @@
       ).blank? %>
         <% while loop_date <= end_date %>
           <div class="smallColumn">
-            <% master_rate_map = RoomTypeMasterRateChannelMapping.pool_id(@pool.id).find_by_room_type_id_and_rate_type_id_and_channel_id(
+            <% master_rate_map = RoomTypeMasterRateChannelMapping.pool_id(@pool.id).
+              find_by_room_type_id_and_rate_type_id_and_channel_id(
               rt.id, rate_type.id, channel.id) %>
             <% if !master_rate_map.blank? %>
               <% amount = 0 %>

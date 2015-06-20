@@ -150,7 +150,7 @@ function newMasterRateMappingsDialog(title, message, urlToGo) {
         width: '550px', resizable: false,
         buttons: {
             Add: function () {
-                if ($('.room_type_ids_check:checked').length > 0) {
+                if ($('.room_rate_type_ids_check:checked').length > 0) {
                   $form = $('.new_master_rate_mappings');
                   $form.submit();
                   $(this).dialog("close");
@@ -239,7 +239,6 @@ function deletePropertyDialog(title, message, urlToGo){
         }
     });
 };
-
 function newRoomTypeInventoryLinkDialog(title, message){
   $('<div></div>').appendTo('body')
     .html('<div>' + message + '</div>')
@@ -261,7 +260,6 @@ function newRoomTypeInventoryLinkDialog(title, message){
         }
     });
 };
-
 jQuery(document).ready(function () {
   initTopMenuToggle();
 });

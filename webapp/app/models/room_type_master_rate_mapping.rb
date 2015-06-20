@@ -5,6 +5,7 @@ class RoomTypeMasterRateMapping < ActiveRecord::Base
   
   belongs_to :pool
   belongs_to :room_type
+  belongs_to :rate_type
   has_many :channel_mappings, :class_name => 'RoomTypeMasterRateChannelMapping', :foreign_key => 'room_type_master_rate_mapping_id'
 
   validates :room_type, :presence => true
@@ -23,7 +24,7 @@ class RoomTypeMasterRateMapping < ActiveRecord::Base
     result = Array.new
     result << [I18n.t('room_type_master_rate_mappings.placeholder'), nil]
     RoomTypeMasterRateMapping.find_all_by_pool_id(pool.id).each do |mapping|
-      result << [mapping.room_type.name, mapping.id]
+      result << ["#{mapping.room_type.name} (#{mapping.rate_type.name})", mapping.id]
     end
     result
   end

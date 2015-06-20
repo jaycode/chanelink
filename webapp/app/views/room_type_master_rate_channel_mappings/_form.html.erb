@@ -1,9 +1,10 @@
 <h2><%= raw t('room_type_master_rate_channel_mappings.edit.label.heading') %></h2>
 <p>Channel: <strong><%= @room_type_master_rate_channel_mapping.channel.name %> </strong></p>
-<p>Room Type: <strong><%= @room_type_master_rate_channel_mapping.room_type.name %> </strong></p>
+<p>Room Type: <strong><%= @room_type_master_rate_channel_mapping.room_type.name %> (<%= @room_type_master_rate_channel_mapping.rate_type.name %>)</strong></p>
 <%= form_for @room_type_master_rate_channel_mapping, :url => {:action => action, :pool_id => @pool.id} do |f| %>
   <%= f.hidden_field :channel_id, :value => @room_type_master_rate_channel_mapping.channel_id %>
   <%= f.hidden_field :room_type_id, :value => @room_type_master_rate_channel_mapping.room_type_id %>
+  <%= f.hidden_field :rate_type_id, :value => @room_type_master_rate_channel_mapping.rate_type_id %>
 
   <p>
     <label><%= t("room_type_master_rate_channel_mappings.edit.label.master_rate_room") %></label>
