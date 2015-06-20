@@ -3,10 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="33d08885-ccff-47e8-9e62-7ba051a8d6f6" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/app/views/inventories/_rates_default_textboxes.html.erb" afterPath="$PROJECT_DIR$/webapp/app/views/inventories/_rates_default_textboxes.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/app/views/property_channels/edit.html.erb" afterPath="$PROJECT_DIR$/webapp/app/views/property_channels/edit.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/app/helpers/property_channels_helper.rb" afterPath="$PROJECT_DIR$/webapp/app/helpers/property_channels_helper.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/app/controllers/room_type_channel_mappings_controller.rb" afterPath="$PROJECT_DIR$/webapp/app/controllers/room_type_channel_mappings_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="chanelink.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -38,13 +34,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="_rates_default_textboxes.html.erb" pinned="false" current-in-tab="false">
+      <file leaf-file-name="_rates_default_textboxes.html.erb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/webapp/app/views/inventories/_rates_default_textboxes.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.115385">
-              <caret line="65" column="15" selection-start-line="65" selection-start-column="15" selection-end-line="65" selection-end-column="15" />
+            <state vertical-scroll-proportion="0.7157895">
+              <caret line="64" column="81" selection-start-line="64" selection-start-column="81" selection-end-line="64" selection-end-column="81" />
               <folding>
-                <element signature="e#4164#4193#0#HTML" expanded="true" />
+                <element signature="e#4195#4224#0#HTML" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -60,10 +56,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="room_type_channel_mappings_controller.rb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="room_type_channel_mappings_controller.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/webapp/app/controllers/room_type_channel_mappings_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.2413793">
+            <state vertical-scroll-proportion="-3.137931">
               <caret line="14" column="46" selection-start-line="14" selection-start-column="46" selection-end-line="14" selection-end-column="46" />
               <folding />
             </state>
@@ -182,10 +178,10 @@
         <option value="$PROJECT_DIR$/webapp/db/seeds.rb" />
         <option value="$PROJECT_DIR$/webapp/db/seeds.sql" />
         <option value="$PROJECT_DIR$/protocols.md" />
-        <option value="$PROJECT_DIR$/webapp/app/views/inventories/_rates_default_textboxes.html.erb" />
         <option value="$PROJECT_DIR$/webapp/app/helpers/property_channels_helper.rb" />
         <option value="$PROJECT_DIR$/webapp/app/views/property_channels/edit.html.erb" />
         <option value="$PROJECT_DIR$/webapp/app/controllers/room_type_channel_mappings_controller.rb" />
+        <option value="$PROJECT_DIR$/webapp/app/views/inventories/_rates_default_textboxes.html.erb" />
       </list>
     </option>
   </component>
@@ -1532,16 +1528,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webapp/app/views/inventories/_rates_default_textboxes.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.115385">
-          <caret line="65" column="15" selection-start-line="65" selection-start-column="15" selection-end-line="65" selection-end-column="15" />
-          <folding>
-            <element signature="e#4164#4193#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/webapp/app/models/channel.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33251232">
@@ -1566,6 +1552,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/webapp/app/controllers/room_type_channel_mappings_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.137931">
+          <caret line="14" column="46" selection-start-line="14" selection-start-column="46" selection-end-line="14" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/webapp/app/views/property_channels/edit.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-11.692307">
@@ -1574,11 +1568,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webapp/app/controllers/room_type_channel_mappings_controller.rb">
+    <entry file="file://$PROJECT_DIR$/webapp/app/views/inventories/_rates_default_textboxes.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2413793">
-          <caret line="14" column="46" selection-start-line="14" selection-start-column="46" selection-end-line="14" selection-end-column="46" />
-          <folding />
+        <state vertical-scroll-proportion="0.7157895">
+          <caret line="64" column="81" selection-start-line="64" selection-start-column="81" selection-end-line="64" selection-end-column="81" />
+          <folding>
+            <element signature="e#4195#4224#0#HTML" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

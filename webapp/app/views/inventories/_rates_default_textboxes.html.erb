@@ -62,7 +62,7 @@
       <% else %>
         <div><%= link_to t('room_type_channel_mappings.new.label.link_set'),
                          new_room_type_channel_mapping_path(
-                           :room_type_id => rt.id, :property_channel_id => property_channel.id) %></div>
+                           :room_type_id => rt.id, :rate_type_id => rate_type.id, :property_channel_id => property_channel.id) %></div>
       <% end %>
     </div>
     <div class="dateTableRow stopSell" style="<%= 'display:none' %>">
