@@ -2,7 +2,7 @@ require 'net/https'
 
 # class to handle agoda push XML for inventory change
 class AgodaInventoryHandler < InventoryHandler
-
+  include ChannelsHelper
   def run(change_set_channel)
     change_set = change_set_channel.change_set
 
@@ -126,7 +126,6 @@ class AgodaInventoryHandler < InventoryHandler
         xml.Authentication(:APIKey => AgodaChannel::API_KEY, :HotelID => property.agoda_hotel_id)
         xml.RoomType(
           :RoomTypeID => room_type_channel_mapping.ota_room_type_id,
-          # :RoomTypeID => '0',
           :RatePlanID => room_type_channel_mapping.ota_rate_type_id
         )
         xml.DateRange(

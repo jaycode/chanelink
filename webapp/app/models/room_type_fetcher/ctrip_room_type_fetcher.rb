@@ -5,7 +5,7 @@ class CtripRoomTypeFetcher < RoomTypeFetcher
 
   def retrieve(property, exclude_mapped_room = false, start_date = '', end_date = '')
     room_types = Array.new
-    retrieve_xml(property, start_date = '', end_date = '') do |xml_doc|
+    retrieve_xml(property, start_date, end_date) do |xml_doc|
       ctrip_room_types        = xml_doc.xpath('//RatePlan')
       ctrip_room_types.each do |rt|
 
@@ -94,7 +94,7 @@ class CtripRoomTypeFetcher < RoomTypeFetcher
     if success.count > 0
       block.call xml_doc
     else
-      logs_fetching_failure CtripChannel.first.name, property, property_channel, APP_CONFIG[:ctrip_rates_get_endpoint]
+      logs_fetching_failure CtripChannel.first.name, request_xml, xml_doc, property, property_channel, APP_CONFIG[:ctrip_rates_get_endpoint]
     end
   end
 

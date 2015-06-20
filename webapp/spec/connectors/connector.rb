@@ -28,6 +28,10 @@ class Connector
       rate_type)
   end
 
+  def get_bookings(days)
+    channel_class.booking_handler.retrieve(days)
+  end
+
   def update_inventories(room_type, pool, total_rooms, date_start, date_end, rate_type = nil)
     if rate_type.nil?
       rate_type = RateType.where('account_id IS NULL').first

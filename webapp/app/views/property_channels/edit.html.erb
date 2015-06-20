@@ -76,7 +76,7 @@
     <div id="property_rooms-unmapped">
       <h4><%= t('property_channels.edit.label.rooms_not_mapped') %></h4>
       <br/>
-      <% unmapped_rooms = get_unmapped_rooms(current_property) %>
+      <% unmapped_rooms = get_unmapped_rooms(current_property, @property_channel.channel) %>
       <% unmapped_rooms.each do |room| %>
         <p class="property_rooms-unmapped-item">&nbsp;&nbsp;&nbsp;&nbsp;<%= room[:text] %>
           - <%= link_to t('room_type_channel_mappings.new.label.link_set'),

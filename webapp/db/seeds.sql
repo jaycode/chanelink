@@ -2248,7 +2248,7 @@ INSERT INTO `pools` (`id`, `name`, `property_id`, `created_at`, `updated_at`, `d
 
 INSERT INTO `properties` (`id`, `name`, `address`, `city`, `state`, `postcode`, `minimum_room_rate`, `country_id`, `account_id`, `agoda_hotel_id`, `expedia_hotel_id`, `expedia_username`, `expedia_password`, `bookingcom_hotel_id`, `bookingcom_username`, `bookingcom_password`, `approved`, `currency_id`, `created_at`, `updated_at`, `rejected`, `deleted`, `currency_conversion_enabled`) VALUES
 	(1, 'Big Ben Resort', 'Thames River 88', 'North London', 'Chelsea', '36339', 339.00000000000000000000, 76, 1, 'bigben', 'bigben', 'bigben', 'dunno', 'bigben', 'bigben', 'dunno', 1, NULL, '2014-01-23 15:23:01', '2014-01-23 15:23:01', 0, 0, 0),
-	(2, 'YCS Togo Hotel', 'Not Specified', 'Zimbabwe', 'Zimbabwe', '11180', 250000.00000000000000000000, 100, 2, '148832', '4397866', 'EQC4397866CHA', 'ke9uwUsE', '', '', '', 1, 61, '2014-01-30 05:12:42', '2015-01-22 03:58:42', 0, 0, 0),
+	(2, 'YCS Togo Hotel', 'Jl. Rancamaya Utama  ', 'Zimbabwe', 'Zimbabwe', '11180', 250000.00000000000000000000, 100, 2, '148832', '4397866', 'EQC4397866CHA', 'ke9uwUsE', '', '', '', 1, 61, '2014-01-30 05:12:42', '2015-01-22 03:58:42', 0, 0, 0),
 	(3, 'R Hotel Rancamaya', 'Jl. Rancamaya Utama ', 'Ciawi', 'Bogor', '16720', 1500000.00000000000000000000, 100, 3, '240462', '', '', '', '', NULL, NULL, 0, 61, '2014-07-24 16:07:33', '2014-07-24 16:07:33', 0, 0, 0),
 	(4, 'Batiqa Karawang', 'karawang timur\r\njalan jalan', 'Karawang', 'Karawang', '111111', 300000.00000000000000000000, 100, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, '2015-01-28 02:07:12', '2015-01-28 02:07:12', 0, 0, 0);
 

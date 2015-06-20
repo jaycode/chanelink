@@ -7,6 +7,10 @@ module ChannelsHelper
     logs_failure('Fetching room types failed', channel_name, request_xml, xml_doc, property, property_channel, endpoint)
   end
 
+  def logs_get_bookings_failure(channel_name, request_xml, xml_doc, property, property_channel, endpoint)
+    logs_failure('Get bookings failed', channel_name, request_xml, xml_doc, property, property_channel, endpoint)
+  end
+
   def logs_failure(message, channel_name, request_xml, xml_doc, property, property_channel, endpoint)
     api_logger = Logger.new("#{Rails.root}/log/api_errors.log")
     api_logger.error("[#{Time.now}] #{message}.\n

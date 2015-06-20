@@ -2,41 +2,20 @@ require 'net/https'
 
 # retrieve booking from agoda and store it
 class AgodaBookingHandler < BookingHandler
+  include ChannelsHelper
 
-  # retrieve booking
-  def retrieve_and_process(property)
-
-    # build xml request
-    builder = Nokogiri::XML::Builder.new do |xml|
-      xml.GetBookingListRequest('xmlns' => AgodaChannel::XMLNS) {
-        xml.Authentication(:APIKey => AgodaChannel::API_KEY, :HotelID => property.agoda_hotel_id)
-        xml.DateRange(:Type => "Stay", :Start => date_to_key(DateTime.now), :End => date_to_key(DateTime.now + 10.days))
-        xml.RequestType 'ConfirmBooking'
-        xml.RequestStatus 'Waiting'
-      }
+  # days: How many days in the past?
+  def get_bookings(property, days)
+    bookings = Array.new
+    get_bookings_xml(property, days) do |xml_doc|
+      bookings = parse_booking_details_and_store(xml_doc, property)
     end
-
-    request_xml = builder.to_xml
-    response_xml = AgodaChannel.post_xml(request_xml)
-
-    xml_doc  = Nokogiri::XML(response_xml)
-    BookingRetrieval.create(:request_xml => request_xml, :response_xml => response_xml, :property => property, :channel => AgodaChannel.first)
-
-    # after retrieving for the list, now must retrieve for more detailed
-    response = retrieve_all_booking_details(xml_doc, property)
-
-    # parse all booking data and store it
-    parse_booking_details_and_store(response, property)
+    bookings
   end
 
-  # retrieve more detailed booking data
-  def retrieve_all_booking_details(xml_doc, property)
-    bookings = xml_doc.xpath("//agoda:Booking/agoda:BookingID", 'agoda' => AgodaChannel::XMLNS)
-    booking_ids = Array.new
-    bookings.each do |booking|
-      booking_ids << booking.inner_text
-    end
-
+  # days: How many days in the past?
+  def get_bookings_xml(property, days, &block)
+    booking_ids = get_booking_ids(property, days)
     builder = Nokogiri::XML::Builder.new do |xml|
       xml.GetBookingDetailsRequest('xmlns' => AgodaChannel::XMLNS) {
         xml.Authentication(:APIKey => AgodaChannel::API_KEY, :HotelID => property.agoda_hotel_id)
@@ -51,11 +30,68 @@ class AgodaBookingHandler < BookingHandler
 
     request_xml = builder.to_xml
     response_xml = AgodaChannel.post_xml(request_xml)
-    puts response_xml
 
-    Nokogiri::XML(response_xml)
+    xml_doc  = Nokogiri::XML(response_xml)
+    begin
+      success = xml_doc.xpath('//StatusResponse').attr('status').value
+      # 204 is when no inventory returned.
+      if success == '200' or success == '204'
+        block.call xml_doc
+      else
+        property_channel  = PropertyChannel.find_by_property_id_and_channel_id(property.id, channel.id)
+        logs_get_bookings_failure channel.name, request_xml, xml_doc, property, property_channel, APP_CONFIG[:agoda_endpoint]
+      end
+    rescue
+      property_channel  = PropertyChannel.find_by_property_id_and_channel_id(property.id, channel.id)
+      logs_get_bookings_failure channel.name, request_xml, xml_doc, property, property_channel, APP_CONFIG[:agoda_endpoint]
+    end
   end
 
+  def get_booking_ids(property, days)
+    booking_ids = Array.new
+    get_booking_ids_xml(property, days) do |xml_doc|
+      bookings = xml_doc.xpath("//agoda:Booking/agoda:BookingID", 'agoda' => AgodaChannel::XMLNS)
+      bookings.each do |booking|
+        booking_ids << booking.inner_text
+      end
+    end
+    booking_ids
+  end
+  def get_booking_ids_xml(property, days, &block)
+    builder = Nokogiri::XML::Builder.new do |xml|
+      xml.GetBookingListRequest('xmlns' => AgodaChannel::XMLNS) {
+        xml.Authentication(:APIKey => AgodaChannel::API_KEY, :HotelID => property.agoda_hotel_id)
+        xml.DateRange(:Type => "Stay", :Start => date_to_key(Date.today - days.days), :End => date_to_key(Date.today))
+        xml.RequestType 'ConfirmBooking'
+      }
+    end
+    request_xml = builder.to_xml
+    response_xml = AgodaChannel.post_xml(request_xml)
+
+    BookingRetrieval.create(
+      :request_xml => request_xml,
+      :response_xml => response_xml,
+      :property => property,
+      :channel => AgodaChannel.first
+    )
+
+    xml_doc  = Nokogiri::XML(response_xml)
+    begin
+      success = xml_doc.xpath('//StatusResponse').attr('status').value
+      # 204 is when no inventory returned.
+      if success == '200' or success == '204'
+        block.call xml_doc
+      else
+        property_channel  = PropertyChannel.find_by_property_id_and_channel_id(property.id, channel.id)
+        logs_get_bookings_failure channel.name, request_xml, xml_doc, property, property_channel, APP_CONFIG[:agoda_endpoint]
+      end
+    rescue
+      property_channel  = PropertyChannel.find_by_property_id_and_channel_id(property.id, channel.id)
+      logs_get_bookings_failure channel.name, request_xml, xml_doc, property, property_channel, APP_CONFIG[:agoda_endpoint]
+    end
+  end
+
+  private
   # store into our own booking object
   def parse_booking_details_and_store(response, property)
     bookings_data = response.xpath("//agoda:BookingDetailData", 'agoda' => AgodaChannel::XMLNS)
