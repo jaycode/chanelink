@@ -12,7 +12,7 @@ module PropertyChannelsHelper
                           rt.id, acc_rate_type.id, channel.id]
         )
         if mapping.blank?
-          rooms << {:text => "#{rt.name} (#{acc_rate_type.name})", :id => rt.id}
+          rooms << {:text => "#{rt.name} (#{acc_rate_type.name})", :id => rt.id, :rate_type_id => acc_rate_type.id}
         end
       end
     end

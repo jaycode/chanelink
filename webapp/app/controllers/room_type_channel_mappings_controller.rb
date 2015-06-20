@@ -14,7 +14,7 @@ class RoomTypeChannelMappingsController < ApplicationController
     session[:room_type_channel_mapping_params] = {}
     session[:room_type_channel_mapping_params][:channel_id] = property_channel.channel_id
     session[:room_type_channel_mapping_params][:room_type_id] = RoomType.find(params[:room_type_id]).id
-
+    session[:room_type_channel_mapping_params][:rate_type_id] = RateType.find(params[:rate_type_id]).id
 
     session[:room_type_master_rate_channel_mapping_params] = {}
     
@@ -173,6 +173,7 @@ class RoomTypeChannelMappingsController < ApplicationController
 
     @channel = @room_type_channel_mapping.channel
     @room_type = RoomType.find(@room_type_channel_mapping.room_type_id)
+    @rate_type = RoomType.find(@room_type_channel_mapping.rate_type_id)
 
     set_extra_room_type_info(true)
 
@@ -221,13 +222,16 @@ class RoomTypeChannelMappingsController < ApplicationController
 
     @channel = Channel.find(session[:room_type_channel_mapping_params][:channel_id])
 
-    @room_type_channel_mapping = RoomTypeChannelMapping.new(@channel.process_mapping_params(session[:room_type_channel_mapping_params]))
+    @room_type_channel_mapping = RoomTypeChannelMapping.new(
+      @channel.process_mapping_params(session[:room_type_channel_mapping_params]))
     @room_type = RoomType.find(@room_type_channel_mapping.room_type_id)
+    @rate_type = RateType.find(@room_type_channel_mapping.rate_type_id)
 
     @room_type_master_rate_channel_mapping = RoomTypeMasterRateChannelMapping.new(
       @channel.process_mapping_params(session[:room_type_master_rate_channel_mapping_params]))
     @room_type_master_rate_channel_mapping.channel = @channel
     @room_type_master_rate_channel_mapping.room_type = @room_type
+    @room_type_master_rate_channel_mapping.rate_type = @rate_type
   end
 
   # helper for wizard, save channel/OTA room data

@@ -37,24 +37,32 @@
     <div class="dateTableRow" id="<%= channel_code %>_room_type-<%= rt.id %>_rate_type-<%= rate_type.id %>">
       <div class="bigColumn"><strong><%= rt.name %> (<%= rate_type.name %>)</strong></div>
       <% loop_date = start_date %>
-      <% while loop_date <= end_date %>
-        <div class="smallColumn">
-          <% master_rate_map = RoomTypeMasterRateChannelMapping.pool_id(@pool.id).find_by_room_type_id_and_rate_type_id_and_channel_id(
-            rt.id, rate_type.id, channel.id) %>
-          <% if !master_rate_map.blank? %>
-            <% amount = 0 %>
-            <% master_rate_room_type = master_rate_map.master_rate_mapping.room_type %>
-            <% rate = MasterRate.find_by_date_and_property_id_and_pool_id_and_room_type_id_and_rate_type_id(
-              loop_date, current_property.id, params[:pool_id], master_rate_room_type.id, master_rate_map.rate_type_id) %>
-            <% amount = rate.amount unless rate.blank? %>
-            <% markup_amount = master_rate_map.apply_value(amount) %>
-            <%= markup_amount %>
-          <% else %>
-            <% amount = determine_channel_rate_amount(loop_date, rt, rate_type, channel, params[:pool_id], flash) %>
-            <%= text_field_tag generate_rates_field_name(loop_date, rt, rate_type, 'amount'), amount, :disabled => not_mapped, :class => 'numericOnly' %>
-          <% end %>
-        </div>
-        <% loop_date = loop_date + 1.day %>
+      <% if !RoomTypeChannelMapping.find_by_room_type_id_and_rate_type_id_and_channel_id(
+        rt.id, rate_type.id, channel.id
+      ).blank? %>
+        <% while loop_date <= end_date %>
+          <div class="smallColumn">
+            <% master_rate_map = RoomTypeMasterRateChannelMapping.pool_id(@pool.id).find_by_room_type_id_and_rate_type_id_and_channel_id(
+              rt.id, rate_type.id, channel.id) %>
+            <% if !master_rate_map.blank? %>
+              <% amount = 0 %>
+              <% master_rate_room_type = master_rate_map.master_rate_mapping.room_type %>
+              <% rate = MasterRate.find_by_date_and_property_id_and_pool_id_and_room_type_id_and_rate_type_id(
+                loop_date, current_property.id, params[:pool_id], master_rate_room_type.id, master_rate_map.rate_type_id) %>
+              <% amount = rate.amount unless rate.blank? %>
+              <% markup_amount = master_rate_map.apply_value(amount) %>
+              <%= markup_amount %>
+            <% else %>
+                <% amount = determine_channel_rate_amount(loop_date, rt, rate_type, channel, params[:pool_id], flash) %>
+                <%= text_field_tag generate_rates_field_name(loop_date, rt, rate_type, 'amount'), amount, :disabled => not_mapped, :class => 'numericOnly' %>
+            <% end %>
+          </div>
+          <% loop_date = loop_date + 1.day %>
+        <% end %>
+      <% else %>
+        <div><%= link_to t('room_type_channel_mappings.new.label.link_set'),
+                         new_room_type_channel_mapping_path(
+                           :room_type_id => rt.id, :property_channel_id => property_channel.id) %></div>
       <% end %>
     </div>
     <div class="dateTableRow stopSell" style="<%= 'display:none' %>">

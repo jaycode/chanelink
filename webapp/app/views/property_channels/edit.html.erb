@@ -81,7 +81,7 @@
         <p class="property_rooms-unmapped-item">&nbsp;&nbsp;&nbsp;&nbsp;<%= room[:text] %>
           - <%= link_to t('room_type_channel_mappings.new.label.link_set'),
                         new_room_type_channel_mapping_path(
-                          :room_type_id => room[:id], :property_channel_id => @property_channel.id) %>
+                          :room_type_id => room[:id], :rate_type_id => room[:rate_type_id], :property_channel_id => @property_channel.id) %>
         </p>
       <% end %>
       <% if unmapped_rooms.count == 0 %>
