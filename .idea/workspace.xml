@@ -2,18 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="33d08885-ccff-47e8-9e62-7ba051a8d6f6" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/app/views/room_type_master_rate_channel_mappings/_form.html.erb" afterPath="$PROJECT_DIR$/webapp/app/views/room_type_master_rate_channel_mappings/_form.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/app/views/inventories/_rates_default_textboxes.html.erb" afterPath="$PROJECT_DIR$/webapp/app/views/inventories/_rates_default_textboxes.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/public/javascripts/application.js" afterPath="$PROJECT_DIR$/webapp/public/javascripts/application.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/app/views/room_type_master_rate_mappings/index.html.erb" afterPath="$PROJECT_DIR$/webapp/app/views/room_type_master_rate_mappings/index.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/app/views/room_type_master_rate_mappings/new.html.erb" afterPath="$PROJECT_DIR$/webapp/app/views/room_type_master_rate_mappings/new.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/app/models/room_type_channel_mapping.rb" afterPath="$PROJECT_DIR$/webapp/app/models/room_type_channel_mapping.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/app/models/room_type_master_rate_channel_mapping.rb" afterPath="$PROJECT_DIR$/webapp/app/models/room_type_master_rate_channel_mapping.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/app/controllers/room_type_master_rate_channel_mappings_controller.rb" afterPath="$PROJECT_DIR$/webapp/app/controllers/room_type_master_rate_channel_mappings_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/app/models/room_type_master_rate_mapping.rb" afterPath="$PROJECT_DIR$/webapp/app/models/room_type_master_rate_mapping.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/app/controllers/room_type_master_rate_mappings_controller.rb" afterPath="$PROJECT_DIR$/webapp/app/controllers/room_type_master_rate_mappings_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/app/helpers/room_type_master_rate_mappings_helper.rb" afterPath="$PROJECT_DIR$/webapp/app/helpers/room_type_master_rate_mappings_helper.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/public/stylesheets/main.css" afterPath="$PROJECT_DIR$/webapp/public/stylesheets/main.css" />
     </list>
     <ignored path="chanelink.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -35,16 +24,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.html.erb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/webapp/app/views/room_type_master_rate_mappings/index.html.erb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.8461537">
-              <caret line="15" column="62" selection-start-line="15" selection-start-column="62" selection-end-line="15" selection-end-column="62" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="room_type_master_rate_mapping.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/webapp/app/models/room_type_master_rate_mapping.rb">
           <provider selected="true" editor-type-id="text-editor">
@@ -105,11 +84,41 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="room_type_master_rate_channel_mappings_controller.rb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="room_type_master_rate_channel_mappings_controller.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/webapp/app/controllers/room_type_master_rate_channel_mappings_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.085995086">
+            <state vertical-scroll-proportion="0.0">
               <caret line="101" column="63" selection-start-line="101" selection-start-column="63" selection-end-line="101" selection-end-column="63" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main-datauri.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/webapp/public/assets/main-datauri.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="904" column="8" selection-start-line="904" selection-start-column="8" selection-end-line="904" selection-end-column="8" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/webapp/public/assets/main.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="904" column="8" selection-start-line="904" selection-start-column="8" selection-end-line="904" selection-end-column="8" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.css" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/webapp/public/stylesheets/main.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.4152334">
+              <caret line="904" column="8" selection-start-line="904" selection-start-column="8" selection-end-line="904" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -130,9 +139,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/webapp/spec/models/channels/ctrip/ctrip_get_inventory_spec.rb" />
-        <option value="$PROJECT_DIR$/webapp/app/models/inventory_handler/ctrip_inventory_handler.rb" />
-        <option value="$PROJECT_DIR$/webapp/app/models/inventory_new_room_handler/ctrip_inventory_new_room_handler.rb" />
         <option value="$PROJECT_DIR$/webapp/app/models/inventory_handler/orbitz_inventory_handler.rb" />
         <option value="$PROJECT_DIR$/webapp/app/models/inventory_handler/gta_travel_inventory_handler.rb" />
         <option value="$PROJECT_DIR$/webapp/app/models/inventory_handler/expedia_inventory_handler.rb" />
@@ -181,6 +187,9 @@
         <option value="$PROJECT_DIR$/webapp/app/views/room_type_master_rate_channel_mappings/_form.html.erb" />
         <option value="$PROJECT_DIR$/webapp/app/models/room_type_master_rate_mapping.rb" />
         <option value="$PROJECT_DIR$/webapp/app/controllers/room_type_master_rate_channel_mappings_controller.rb" />
+        <option value="$PROJECT_DIR$/webapp/public/assets/main-datauri.css" />
+        <option value="$PROJECT_DIR$/webapp/public/assets/main.css" />
+        <option value="$PROJECT_DIR$/webapp/public/stylesheets/main.css" />
       </list>
     </option>
   </component>
@@ -1219,30 +1228,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/webapp/app/models/booking_handler/agoda_booking_handler.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="114" column="9" selection-start-line="114" selection-start-column="9" selection-end-line="114" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webapp/app/models/room_type_fetcher/room_type_fetcher.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.25123152">
-          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webapp/app/models/room_type_fetcher/ctrip_room_type_fetcher.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="96" column="74" selection-start-line="96" selection-start-column="74" selection-end-line="96" selection-end-column="74" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/webapp/app/helpers/channels_helper.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1627,8 +1612,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/webapp/app/controllers/room_type_master_rate_channel_mappings_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.085995086">
+        <state vertical-scroll-proportion="0.0">
           <caret line="101" column="63" selection-start-line="101" selection-start-column="63" selection-end-line="101" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webapp/public/assets/main-datauri.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="904" column="8" selection-start-line="904" selection-start-column="8" selection-end-line="904" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webapp/public/assets/main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="904" column="8" selection-start-line="904" selection-start-column="8" selection-end-line="904" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webapp/public/stylesheets/main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4152334">
+          <caret line="904" column="8" selection-start-line="904" selection-start-column="8" selection-end-line="904" selection-end-column="8" />
           <folding />
         </state>
       </provider>

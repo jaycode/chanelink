@@ -902,7 +902,7 @@ footer .plc .left nav a:hover, footer .plc .right nav a:hover {
 
 #setPoolInventory .dateTableRow {
     overflow: hidden;
-    height: 25px;
+    min-height: 25px;
     margin-top: 5px;
 }
 
