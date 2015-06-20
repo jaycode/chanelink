@@ -122,6 +122,7 @@ class RoomTypeChannelMappingsController < ApplicationController
     @room_type_channel_mapping = RoomTypeChannelMapping.find(params[:id])
     @channel = @room_type_channel_mapping.channel
     @room_type = RoomType.find(@room_type_channel_mapping.room_type_id)
+    @rate_type = RateType.find(@room_type_channel_mapping.rate_type_id)
 
     # get channel/OTA room types
     get_channel_room_types
@@ -136,7 +137,7 @@ class RoomTypeChannelMappingsController < ApplicationController
 
     all_channel_room_types.each do |crt|
       if crt.id == @room_type_channel_mapping.channel_room_type_id
-        @channel_room_types.insert(0, [@channel.room_type_name(crt), @channel.room_type_id(crt)])
+        @channel_room_types.insert(0, [@channel.room_type_name(crt), @channel.room_and_rate_type_id(crt)])
       end
     end
   end
@@ -173,7 +174,7 @@ class RoomTypeChannelMappingsController < ApplicationController
 
     @channel = @room_type_channel_mapping.channel
     @room_type = RoomType.find(@room_type_channel_mapping.room_type_id)
-    @rate_type = RoomType.find(@room_type_channel_mapping.rate_type_id)
+    @rate_type = RateType.find(@room_type_channel_mapping.rate_type_id)
 
     set_extra_room_type_info(true)
 
