@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="33d08885-ccff-47e8-9e62-7ba051a8d6f6" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/app/views/inventories/_rates_default_textboxes.html.erb" afterPath="$PROJECT_DIR$/webapp/app/views/inventories/_rates_default_textboxes.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/app/views/room_type_channel_mappings/new_wizard_channel_room.html.erb" afterPath="$PROJECT_DIR$/webapp/app/views/room_type_channel_mappings/new_wizard_channel_room.html.erb" />
     </list>
     <ignored path="chanelink.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -34,10 +34,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="_rates_default_textboxes.html.erb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="_rates_default_textboxes.html.erb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/webapp/app/views/inventories/_rates_default_textboxes.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7157895">
+            <state vertical-scroll-proportion="-10.461538">
               <caret line="64" column="81" selection-start-line="64" selection-start-column="81" selection-end-line="64" selection-end-column="81" />
               <folding>
                 <element signature="e#4195#4224#0#HTML" expanded="true" />
@@ -49,8 +49,18 @@
       <file leaf-file-name="edit.html.erb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/webapp/app/views/property_channels/edit.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.692307">
+            <state vertical-scroll-proportion="-54.26923">
               <caret line="83" column="67" selection-start-line="83" selection-start-column="55" selection-end-line="83" selection-end-column="67" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="new_wizard_channel_room.html.erb" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/webapp/app/views/room_type_channel_mappings/new_wizard_channel_room.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.49210528">
+              <caret line="11" column="10" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="10" />
               <folding />
             </state>
           </provider>
@@ -131,7 +141,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/webapp/app/models/rate_type.rb" />
         <option value="$PROJECT_DIR$/webapp/app/controllers/rate_types_controller.rb" />
         <option value="$PROJECT_DIR$/webapp/db/migrate/20150611192857_multi_rate_stuff.rb" />
         <option value="$PROJECT_DIR$/webapp/app/models/inventory_handler/inventory_xml.rb" />
@@ -182,6 +191,7 @@
         <option value="$PROJECT_DIR$/webapp/app/views/property_channels/edit.html.erb" />
         <option value="$PROJECT_DIR$/webapp/app/controllers/room_type_channel_mappings_controller.rb" />
         <option value="$PROJECT_DIR$/webapp/app/views/inventories/_rates_default_textboxes.html.erb" />
+        <option value="$PROJECT_DIR$/webapp/app/views/room_type_channel_mappings/new_wizard_channel_room.html.erb" />
       </list>
     </option>
   </component>
@@ -754,7 +764,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="rate_types" />
+              <option name="myItemId" value="room_type_channel_mappings" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -780,7 +790,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="property_channels" />
+              <option name="myItemId" value="rate_types" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1168,13 +1178,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/webapp/app/models/channel_asynchronous_handler/ctrip_channel_asynchronous_handler.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="52" column="0" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/webapp/spec/models/channels/ctrip/ctrip_get_inventory_spec.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1560,21 +1563,29 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/webapp/app/views/inventories/_rates_default_textboxes.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.461538">
+          <caret line="64" column="81" selection-start-line="64" selection-start-column="81" selection-end-line="64" selection-end-column="81" />
+          <folding>
+            <element signature="e#4195#4224#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/webapp/app/views/property_channels/edit.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.692307">
+        <state vertical-scroll-proportion="-54.26923">
           <caret line="83" column="67" selection-start-line="83" selection-start-column="55" selection-end-line="83" selection-end-column="67" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webapp/app/views/inventories/_rates_default_textboxes.html.erb">
+    <entry file="file://$PROJECT_DIR$/webapp/app/views/room_type_channel_mappings/new_wizard_channel_room.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7157895">
-          <caret line="64" column="81" selection-start-line="64" selection-start-column="81" selection-end-line="64" selection-end-column="81" />
-          <folding>
-            <element signature="e#4195#4224#0#HTML" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.49210528">
+          <caret line="11" column="10" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="10" />
+          <folding />
         </state>
       </provider>
     </entry>

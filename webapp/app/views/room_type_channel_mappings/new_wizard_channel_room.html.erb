@@ -8,7 +8,7 @@
       <%= f.hidden_field :channel_id, :value => @room_type_channel_mapping.channel.id %>
       <p>
         <label><%= t('room_type_channel_mappings.new.label.chanelink_room') %></label>
-        <%= @room_type_channel_mapping.room_type.name %>
+        <%= @room_type_channel_mapping.room_type.name %> (<%= @room_type_channel_mapping.rate_type.name %>)
       </p>
       <p>
         <label><%= t('room_type_channel_mappings.new.label.channel_room_label', :channel => @channel.name) %></label>
