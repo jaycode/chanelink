@@ -21,15 +21,22 @@ If emails are no good, update database directly from SQL client.
 
 **Protocol 2-2:**
 *Need to update seed data?*
+
 The seed data (`config/seeds.sql`) can be reproduced easily by exporting sql from any sql client.
 
 **Protocol 2-3:**
 *Importing data to staging or production*
+
 1. Export all the INSERTS (no need for DROPS and CREATE TABLES) into a file to back them up first.
 2. Truncate all tables.
 3. Import data.
 
 This process takes 5 - 10 minutes.
+
+**Protocol 2-4:**
+*Updating site styles*
+
+Run `jammit` locally before pushing the update to update css files.
 
 ## Protocol 3X
 *Error Handling*
