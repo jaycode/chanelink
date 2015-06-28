@@ -110,20 +110,20 @@ class RoomType < ActiveRecord::Base
   end
 
   # get inventory considering into account whether this room is linked or not
-  def calculated_inventory(date, pool, flash, rate_type)
+  def calculated_inventory(date, pool, flash)
     result = 0
     if self.is_inventory_linked?
       linked = linked_room_type
-      inv = Inventory.find_by_date_and_property_id_and_pool_id_and_room_type_id_and_rate_type_id(
-        date, self.property.id, pool.id, linked.id, rate_type.id)
+      inv = Inventory.find_by_date_and_property_id_and_pool_id_and_room_type_id(
+        date, self.property.id, pool.id, linked.id)
       result = inv.total_rooms unless inv.blank?
     else
       # if flash inventory exist, means previous save was failed
-      if flash[:inventory] and flash[:inventory][self.id.to_s] and flash[:inventory][self.id.to_s][rate_type.id.to_s]
-        result = flash[:inventory][self.id.to_s][rate_type.id.to_s][DateUtils.date_to_key(date)]
+      if flash[:inventory] and flash[:inventory][self.id.to_s]
+        result = flash[:inventory][self.id.to_s][DateUtils.date_to_key(date)]
       else
-        inv = Inventory.find_by_date_and_property_id_and_pool_id_and_room_type_id_and_rate_type_id(
-          date, self.property.id, pool.id, self.id, rate_type.id)
+        inv = Inventory.find_by_date_and_property_id_and_pool_id_and_room_type_id(
+          date, self.property.id, pool.id, self.id)
         result = inv.total_rooms unless inv.blank?
       end
     end

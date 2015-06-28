@@ -18,87 +18,98 @@ class Connector
   end
 
   # Get inventories from channel server
-  def get_inventories(room_type, date_start, date_end, rate_type)
+  def get_inventories(room_type, date_start, date_end)
     channel = channel_class.first
     channel.inventory_handler.get_inventories(
       @property,
       room_type,
       date_start,
-      date_end,
-      rate_type)
+      date_end)
+  end
+
+  def get_rates(room_type, rate_type, date_start, date_end)
+    channel = channel_class.first
+    # Todo: Maybe use only rate_handler instead of having
+    #       master_rate_handler and channel_rate_handler?
+    channel.master_rate_handler.get_rates(
+      @property,
+      room_type,
+      rate_type,
+      date_start,
+      date_end)
   end
 
   def get_bookings(days)
-    channel_class.booking_handler.retrieve(days)
+    channel_class.first.booking_handler.get_bookings(@property, days)
   end
 
-  def update_inventories(room_type, pool, total_rooms, date_start, date_end, rate_type = nil)
-    if rate_type.nil?
-      rate_type = RateType.where('account_id IS NULL').first
-    end
+  def update_inventories(room_type, pool, total_rooms, date_start, date_end)
     channel = channel_class.first
-    # Code from inventories_controller
+
+    change_set = InventoryChangeSet.quick_update_inventories(@property, room_type, pool.id, total_rooms, date_start, date_end)
+
+    unless change_set.blank?
+      channel.inventory_handler.create_job(change_set, false)
+    end
+  end
+
+  def update_rates(room_type, rate_type, pool, amount, date_start, date_end)
+    channel = channel_class.first
     logs = Array.new
 
-    # First create or update all required inventories.
-    #START=============================================
+    # ChangeSet is like the wrapper of a set of changes.
+    change_set = MasterRateChangeSet.create
+
+    # This is similar with master_rates_controller's handle_amount.
     date_start.upto(date_end) do |date|
+      existing_rate = MasterRate.find_by_date_and_property_id_and_pool_id_and_room_type_id_and_rate_type_id(
+        date, property.id, pool.id, room_type.id, rate_type.id)
 
-      existing_inv = Inventory.find_by_date_and_property_id_and_pool_id_and_room_type_id_and_rate_type_id(
-        date, @property.id, pool.id, room_type.id, rate_type.id)
-
-      # create new inventory object
-      if existing_inv.blank?
-        if total_rooms.blank? or total_rooms == 0
+      # no existing, create new master rate object
+      if existing_rate.blank?
+        if amount.blank? or amount == 0
           # do nothing
-        elsif total_rooms.to_i > 0
-          inventory               = Inventory.new
-          inventory.date          = date
-          inventory.total_rooms   = total_rooms
-          inventory.room_type_id  = room_type.id
-          inventory.property      = @property
-          inventory.pool_id       = pool.id
-          inventory.rate_type_id  = rate_type.id
+        elsif amount.to_f > 0
+          rate = MasterRate.new
+          rate.date = date
+          rate.amount = amount
+          rate.room_type_id = room_type.id
+          rate.rate_type_id = rate_type.id
+          rate.property = property
+          rate.pool_id = pool.id
 
-          inventory.save
-
-          logs << MemberSetInventoryLog.create(:inventory_id => inventory.id, :total_rooms => inventory.total_rooms)
+          rate.save
+          logs << MasterRateLog.create(:master_rate_id => rate.id, :amount => rate.amount)
         end
       else
-        # if existing exist then do update if value is not 0
-        if total_rooms.to_i >= 0 and (total_rooms.to_i != existing_inv.total_rooms.to_i)
-          existing_inv.update_attribute(:total_rooms, total_rooms)
-          logs << MemberSetInventoryLog.create(:inventory_id => existing_inv.id, :total_rooms => existing_inv.total_rooms)
+        # have existing? then just do update
+        if amount.to_f >= 0 and (amount.to_f != existing_rate.amount.to_f)
+          existing_rate.update_attribute(:amount, amount)
+          logs << MasterRateLog.create(:master_rate_id => existing_rate.id, :amount => existing_rate.amount)
         end
       end
     end
-    #END===============================================
 
-    # Then create InventoryChangeSet to 'wrap' those updates/creation of inventories
-    #START=============================================
-    unless logs.blank?
-      change_set = InventoryChangeSet.create
-      logs.each do |log|
-        log.update_attribute(:change_set_id, change_set.id)
-      end
+    # Could have been prettier but for now I want to use the exact same functions
+    # as used in the app. Below code are from MasterRateChangeSet model
+    logs.each do |log|
+      log.update_attribute(:change_set_id, change_set.id)
     end
-    #END===============================================
 
-    # Then send the xml. In inventories controller, this creates a delayed job,
-    # but in here we directly run the job.
-    #START=============================================
+    # This is the only thing we change to make it specific to a channel:
 
-    # # determine xml channel job that want to be created
+    #--------------------------------------------------------------------------------
+    # determine xml channel job that want to be created
     # property_channels = PropertyChannel.find_all_by_pool_id(pool.id)
 
-    # # go through each channel inventory handler and ask them to create push xml job
+    # go through each channel inventory handler and ask them to create push xml job
     # property_channels.each do |pc|
     #   channel = pc.channel
-    #   channel.inventory_handler.create_job(change_set) unless pc.disabled?
+    #   channel.master_rate_handler.create_job(change_set) unless pc.disabled?
     # end
+    #--------------------------------------------------------------------------------
 
     # Change to..
-    channel.inventory_handler.create_job(change_set, false)
-    #END===============================================
+    channel.master_rate_handler.create_job(change_set, false)
   end
 end

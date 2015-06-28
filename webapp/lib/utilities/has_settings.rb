@@ -60,7 +60,7 @@ module HasSettings
     if params.class == Hash or params.class == ActiveSupport::HashWithIndifferentAccess
       params.each do |k, v|
         if !defined?(settings_json[k.to_s]) or settings_json[k.to_s].blank?
-          settings_json[k.to_s] = v
+          settings_json[k.to_s] = v.to_s
         end
       end
     end

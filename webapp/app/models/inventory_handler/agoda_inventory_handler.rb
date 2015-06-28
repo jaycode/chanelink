@@ -23,36 +23,43 @@ class AgodaInventoryHandler < InventoryHandler
 
       return if room_type_ids.blank?
 
-      builder = Nokogiri::XML::Builder.new do |xml|
-        xml.SetHotelInventoryRequest('xmlns' => AgodaChannel::XMLNS) {
-          xml.Authentication(:APIKey => AgodaChannel::API_KEY, :HotelID => property.agoda_hotel_id)
-          xml.HotelInventoryList {
-            change_set.logs.each do |log|
-              inv = log.inventory
-              room_type = inv.room_type
-              channel_room_type_map = RoomTypeChannelMapping.find_by_room_type_id_and_channel_id(room_type.id, channel.id)
+      # Somehow when we set everything inside one request, it doesn't work, so we have two requests, one
+      # for each room type.
+      change_set.logs.each do |log|
+        inv = log.inventory
+        room_type = inv.room_type
+        channel_room_type_maps = RoomTypeChannelMapping.all(
+          :conditions => {
+            :room_type_id => room_type.id,
+            :channel_id => channel.id
+          })
+        channel_room_type_maps.each do |channel_room_type_map|
 
-              if !channel_room_type_map.blank? and room_type_ids.include?(room_type.id)
-                create_hotel_inventory_xml(xml, channel_room_type_map.ota_room_type_id, inv.date, log.total_rooms, channel_room_type_map, property_channel)
-              end
+          builder = Nokogiri::XML::Builder.new do |xml|
+            xml.SetHotelInventoryRequest('xmlns' => AgodaChannel::XMLNS) {
+              xml.Authentication(:APIKey => AgodaChannel::API_KEY, :HotelID => property.agoda_hotel_id)
+              xml.HotelInventoryList {
+                if !channel_room_type_map.blank? and room_type_ids.include?(room_type.id)
+                  create_hotel_inventory_xml(xml, channel_room_type_map.ota_room_type_id, inv.date, log.total_rooms, channel_room_type_map, property_channel)
+                end
 
-              # now send to linked room type
-              if room_type.is_inventory_feeder?
-                room_type.consumer_room_types.each do |consumer_room_type|
-                  channel_room_type_map = RoomTypeChannelMapping.find_by_room_type_id_and_channel_id(consumer_room_type.id, channel.id)
+                # now send to linked room type
+                if room_type.is_inventory_feeder?
+                  room_type.consumer_room_types.each do |consumer_room_type|
+                    linked_channel_room_type_map = RoomTypeChannelMapping.find_by_room_type_id_and_channel_id(consumer_room_type.id, channel.id)
 
-                  if !channel_room_type_map.blank?
-                    create_hotel_inventory_xml(xml, channel_room_type_map.ota_room_type_id, inv.date, log.total_rooms, channel_room_type_map, property_channel)
+                    unless linked_channel_room_type_map.blank?
+                      create_hotel_inventory_xml(xml, channel_room_type_map.ota_room_type_id, inv.date, log.total_rooms, linked_channel_room_type_maps, property_channel)
+                    end
                   end
                 end
-              end
-            end
-          }
-        }
+              }
+            }
+          end
+          request_xml = builder.to_xml
+          AgodaChannel.post_xml_change_set_channel(request_xml, change_set_channel)
+        end
       end
-
-      request_xml = builder.to_xml
-      AgodaChannel.post_xml_change_set_channel(request_xml, change_set_channel)
     end
   end
 
@@ -64,9 +71,9 @@ class AgodaInventoryHandler < InventoryHandler
     date.strftime('%F')
   end
 
-  def get_inventories(property, room_type, date_start, date_end, rate_type)
+  def get_inventories(property, room_type, date_start, date_end)
     inventories = Array.new
-    get_inventories_xml(property, room_type, date_start, date_end, rate_type) do |xml_doc|
+    get_inventories_xml(property, room_type, date_start, date_end) do |xml_doc|
       # Each inventory_xml is allotments available at given date that looks as follows:
       #       <HotelInventory>
       #         <RoomType RoomTypeID="461004" RatePlanID="1" />
@@ -108,14 +115,13 @@ class AgodaInventoryHandler < InventoryHandler
     inventories
   end
 
-  def get_inventories_xml(property, room_type, date_start, date_end, rate_type, &block)
+  def get_inventories_xml(property, room_type, date_start, date_end, &block)
     channel = AgodaChannel.first
 
     # Need to get ota room type and rate type:
     room_type_channel_mapping = RoomTypeChannelMapping.first(
       :conditions => {
         :room_type_id => room_type.id,
-        :rate_type_id => rate_type.id,
         :channel_id => channel.id
       }
     )
@@ -170,18 +176,15 @@ class AgodaInventoryHandler < InventoryHandler
   # helper to build XML push
   def create_hotel_inventory_xml(xml, channel_room_type_id, date, rooms, rtcm, property_channel)
     xml.HotelInventory {
-      xml.RoomType(:RoomTypeID => channel_room_type_id, :RatePlanID => AgodaChannel::DEFAULT_RATE_PLAN_ID)
+      xml.RoomType(:RoomTypeID => channel_room_type_id, :RatePlanID => rtcm.ota_rate_type_id)
       xml.DateRange(:Type => "Stay", :Start => date_to_key(date), :End => date_to_key(date))
 
       rate_found = get_rate(rtcm, date, property_channel)
-      puts "rate #{rate_found}"
 
       # agoda demands rate to be pushed with inventory
       if !rtcm.agoda_extra_bed_rate.blank? or rate_found > 0
-        puts "rate #{rate_found}"
         xml.InventoryRate(:Currency => AgodaChannel.get_currency(property_channel)) {
           if rate_found > 0
-            puts "rate #{rate_found}"
             xml.SingleRate AgodaChannel.calculate_single_rate(rtcm, rate_found) * channel.rate_multiplier(property_channel.property) * channel.currency_converter(property_channel.property)
             xml.DoubleRate AgodaChannel.calculate_double_rate(rtcm, rate_found) * channel.rate_multiplier(property_channel.property) * channel.currency_converter(property_channel.property) unless rtcm.agoda_double_rate_multiplier.blank?
             xml.FullRate AgodaChannel.calculate_full_rate(rtcm, rate_found) * channel.rate_multiplier(property_channel.property) * channel.currency_converter(property_channel.property) unless rtcm.agoda_full_rate_multiplier.blank?
@@ -208,14 +211,11 @@ class AgodaInventoryHandler < InventoryHandler
 
       master_rate = MasterRate.find_by_date_and_property_id_and_pool_id_and_room_type_id(date, master_rate_map.room_type.property.id, master_rate_map.pool_id, master_rate_map.room_type_id)
       result = master_rate_channel_mapping.apply_value(master_rate.amount) if !master_rate.blank?
-      puts "master rate #{master_rate.amount}" if !master_rate.blank?
     # if not using master rate
     else
       channel_rate = ChannelRate.find_by_date_and_property_id_and_pool_id_and_room_type_id_and_channel_id(date, property_channel.property_id, property_channel.pool_id, rtcm.room_type_id, channel.id)
       result = channel_rate.amount if !channel_rate.blank?
-      puts "channel rate #{channel_rate.amount}" if !channel_rate.blank?
     end
-    puts "result #{result}"
     result
   end
 

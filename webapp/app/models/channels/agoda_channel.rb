@@ -76,7 +76,9 @@ class AgodaChannel < Channel
   def self.post_xml(request_xml)
     uri = URI.parse(APP_CONFIG[:agoda_endpoint])
     https = Net::HTTP.new(uri.host,uri.port)
-    https.use_ssl = true if Rails.env.production?
+    # Using ssl even in development and test so Agoda may work still.
+    # https.use_ssl = true if Rails.env.production?
+    https.use_ssl = true
     req = Net::HTTP::Post.new(uri.path)
     req.body = request_xml
     res = https.request(req)

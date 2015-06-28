@@ -7,7 +7,7 @@ class RoomTypeChannelMapping < ActiveRecord::Base
   belongs_to :rate_type
   belongs_to :channel
 
-  default_scope lambda {{ :conditions => ["deleted = ?", false] }}
+  default_scope lambda {{ :conditions => ["`room_type_channel_mappings`.deleted = ?", false] }}
   scope :room_type_ids, lambda{ |room_type_ids| {:conditions => ["room_type_id IN (?)", room_type_ids]}}
   scope :rate_type_ids, lambda{ |rate_type_ids| {:conditions => ["rate_type_id IN (?)", rate_type_ids]}}
   scope :channel_ids, lambda{ |channel_ids| {:conditions => ["channel_id IN (?)", channel_ids]}}

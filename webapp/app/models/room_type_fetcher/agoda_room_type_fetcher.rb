@@ -18,16 +18,15 @@ class AgodaRoomTypeFetcher < RoomTypeFetcher
             room_type.to_s,
             rate_type.content)
           if exclude_mapped_rooms
-              if RoomTypeChannelMapping.first(
-                :conditions => {
-                  :ota_room_type_id => room_type['RoomTypeID'],
-                  :ota_rate_type_id => rate_type.id,
-                  :channel_id => AgodaChannel.first.id
-                }).blank?
-                room_types << rt
-              end
+            if RoomTypeChannelMapping.first(
+              :conditions => {
+                :ota_room_type_id => room_type['RoomTypeID'],
+                :channel_id => AgodaChannel.first.id
+              }).blank?
+              include_if_not_exists room_types, rt
+            end
           else
-            room_types << rt
+            include_if_not_exists room_types, rt
           end
         end
       end
@@ -54,6 +53,13 @@ class AgodaRoomTypeFetcher < RoomTypeFetcher
       xml.GetHotelRoomTypesRequest('xmlns' => AgodaChannel::XMLNS) {
         xml.Authentication(:APIKey => AgodaChannel::API_KEY, :HotelID => property.agoda_hotel_id)
       }
+    end
+  end
+  private
+  def include_if_not_exists(room_types, rt)
+    collected = room_types.count {|r| r.id.to_s == rt.id.to_s}
+    if collected == 0
+      room_types << rt
     end
   end
 end

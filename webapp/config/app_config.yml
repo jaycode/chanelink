@@ -9,7 +9,8 @@ all:
 development:
   noreply_email: 'application@chanelink.com'
 #  noreply_email: 'noreply@chanelink.com'
-  agoda_endpoint: 'http://sandbox.xml-ycs.agoda.com/xmlservice.aspx'
+#  agoda_endpoint: 'http://sandbox.xml-ycs.agoda.com/xmlservice.aspx'
+  agoda_endpoint: 'https://xml-ycs.agoda.com/xmlservice.aspx'
   expedia_ar_endpoint: 'https://simulator.expediaquickconnect.com/connect/ar'
   expedia_br_endpoint: 'https://simulator.expediaquickconnect.com/connect/br'
   expedia_bc_endpoint: 'https://simulator.expediaquickconnect.com/connect/bc'
@@ -35,7 +36,8 @@ development:
 staging:
   # noreply_email: 'noreply@chanelink.com'
   noreply_email: 'application@chanelink.com'
-  agoda_endpoint: 'http://sandbox.xml-ycs.agoda.com/xmlservice.aspx'
+#  agoda_endpoint: 'http://sandbox.xml-ycs.agoda.com/xmlservice.aspx'
+  agoda_endpoint: 'https://xml-ycs.agoda.com/xmlservice.aspx'
   expedia_ar_endpoint: 'https://simulator.expediaquickconnect.com/connect/ar'
   expedia_br_endpoint: 'https://simulator.expediaquickconnect.com/connect/br'
   expedia_bc_endpoint: 'https://simulator.expediaquickconnect.com/connect/bc'
@@ -97,7 +99,8 @@ staging2:
 
 test:
   noreply_email: 'application@chanelink.com'
-  agoda_endpoint: 'http://sandbox.xml-ycs.agoda.com/xmlservice.aspx'
+#  agoda_endpoint: 'http://sandbox.xml-ycs.agoda.com/xmlservice.aspx'
+  agoda_endpoint: 'https://xml-ycs.agoda.com/xmlservice.aspx'
   expedia_ar_endpoint: 'https://simulator.expediaquickconnect.com/connect/ar'
   expedia_br_endpoint: 'https://simulator.expediaquickconnect.com/connect/br'
   expedia_bc_endpoint: 'https://simulator.expediaquickconnect.com/connect/bc'

@@ -1,4 +1,8 @@
 module ChannelsHelper
+  def logs_rate_update_failure(channel_name, request_xml, xml_doc, property, property_channel, endpoint)
+    logs_failure('Updating rates failed', channel_name, request_xml, xml_doc, property, property_channel, endpoint)
+  end
+
   def logs_inventory_get_failure(channel_name, request_xml, xml_doc, property, property_channel, endpoint)
     logs_failure('Fetching inventories failed', channel_name, request_xml, xml_doc, property, property_channel, endpoint)
   end

@@ -18,15 +18,15 @@ describe "Agoda update inventory spec", :type => :model do
     InventoryLog.destroy_all
 
     # Set up availabilities in channels to 5 each.
-    updated_connector.update_inventories room_type, pool, 5, date_start, date_end, rate_type
+    updated_connector.update_inventories room_type, pool, 5, date_start, date_end
 
-    inventories = updated_connector.get_inventories room_type, date_start, date_end, rate_type
+    inventories = updated_connector.get_inventories room_type, date_start, date_end
     expect(inventories[0].total_rooms).to eq(5)
 
     # Set up availabilities in channels to 4 each.
-    updated_connector.update_inventories room_type, pool, 4, date_start, date_end, rate_type
+    updated_connector.update_inventories room_type, pool, 4, date_start, date_end
 
-    inventories = updated_connector.get_inventories room_type, date_start, date_end, rate_type
+    inventories = updated_connector.get_inventories room_type, date_start, date_end
     expect(inventories[0].total_rooms).to eq(4)
   end
 

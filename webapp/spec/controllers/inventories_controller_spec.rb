@@ -47,17 +47,17 @@ describe "InventoriesController", :type => :controller do
     rate_type = rate_types(:default)
     today = DateTime.now.beginning_of_day.to_date.to_s
 
-    set_inventory_to(10, pool, room_type, rate_type, today)
+    set_inventory_to(10, pool, room_type, today)
     # REMEMBER KIDS!:
     # It's never the cache issue. When your html doesn't show what you expected, it is wrong. Simple as that.
     # Rails.cache.clear
     # ActiveRecord::Base.connection.query_cache.clear
-    set_inventory_to(12, pool, room_type, rate_type, today)
+    set_inventory_to(12, pool, room_type, today)
   end
 
-  def set_inventory_to(rooms, pool, room_type, rate_type, date)
+  def set_inventory_to(rooms, pool, room_type, date)
     visit "/inventories?pool_id=#{pool.id}"
-    text_finder = "#inventories-form input[name=\"[#{room_type.id}][#{rate_type.id}][#{date}]\"]"
+    text_finder = "#inventories-form input[name=\"[#{room_type.id}][#{date}]\"]"
     inventory_input = find(:css, text_finder)
     inventory_input.set(rooms)
     button_finder = "#inventories-form input[name=\"commit\"]"
@@ -67,8 +67,7 @@ describe "InventoriesController", :type => :controller do
       :conditions => {
         :date => date,
         :pool_id => pool.id,
-        :room_type_id => room_type.id,
-        :rate_type_id => rate_type.id
+        :room_type_id => room_type.id
       }
     )
     expect(inventory.total_rooms).to eq(rooms)

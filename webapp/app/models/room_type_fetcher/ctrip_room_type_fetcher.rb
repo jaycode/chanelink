@@ -67,11 +67,19 @@ class CtripRoomTypeFetcher < RoomTypeFetcher
               xml.RatePlan {
                 xml.DateRange(:End => end_date, :Start => start_date)
                 xml.RatePlanCandidates {
-                  xml.RatePlanCandidate(:AvailRatesOnlyInd => 'false', :RatePlanCode => ota_room_type_id) {
-                    xml.HotelRefs {
-                      xml.HotelRef(:HotelCode => property.settings(:ctrip_hotel_id))
+                  if ota_room_type_id.blank?
+                    xml.RatePlanCandidate(:AvailRatesOnlyInd => 'false') {
+                      xml.HotelRefs {
+                        xml.HotelRef(:HotelCode => property.settings(:ctrip_hotel_id))
+                      }
                     }
-                  }
+                  else
+                    xml.RatePlanCandidate(:AvailRatesOnlyInd => 'false', :RatePlanCode => ota_room_type_id) {
+                      xml.HotelRefs {
+                        xml.HotelRef(:HotelCode => property.settings(:ctrip_hotel_id))
+                      }
+                    }
+                  end
                 }
               }
             }

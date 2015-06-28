@@ -67,7 +67,7 @@ class AgodaMasterRateHandler < MasterRateHandler
     end
   end
 
-  def create_job(change_set, delay = true)
+  def create_job(change_set, delayed = true)
    # all room types id in this change set
    room_type_ids = change_set.room_type_ids
    pool = change_set.pool

@@ -25,31 +25,16 @@ class CtripMasterRateHandler < MasterRateHandler
 
     return if room_type_ids.blank?
 
-    logger = Logger.new("#{Rails.root}/log/custom.log")
-    
     prepare_rates_update_xml(room_type_ids, change_set, property, pool) do |rates_sent, builder|
       if rates_sent
         request_xml = builder.to_xml
         response = CtripChannel.post_xml_change_set_channel(request_xml, change_set_channel, APP_CONFIG[:ctrip_rates_update_endpoint])
+        response_xml  = response.gsub(/xmlns=\"([^\"]*)\"/, "")
+        xml_doc       = Nokogiri::XML(response_xml)
+        unique_id     = xml_doc.xpath("//UniqueID")
+        return {:unique_id => unique_id.first.attr('ID'), :type => unique_id.first.attr('Type')}
       else
-        # Todo: logs the error here
-        pi_logger = Logger.new("#{Rails.root}/log/api_errors.log")
-        api_logger.error("[#{Time.now}] Fetching room types failed.\n
-PropertyChannel ID: #{property_channel.id}
-Channel: #{CtripChannel.first.name}
-Property: #{property.id} - #{property.name}
-SOAP XML sent to #{APP_CONFIG[:ctrip_rates_get_endpoint]}\n
-xml sent:\n#{request_xml}\n
-xml retrieved:\n#{xml_doc.to_xhtml(indent: 3)}")
-
-        raise Exception, I18n.t('activemodel.errors.models.room_type_fetcher.fetch_failed', {
-          :channel => CtripChannel.name,
-          :contact_us_link => ActionController::Base.helpers.link_to(I18n.t('activemodel.errors.models.room_type_fetcher.contact_us'),
-            "mailto:#{APP_CONFIG[:support_email]}?Subject=#{I18n.t('activemodel.errors.models.room_type_fetcher.email_subject', :property_id => property.id)}",
-            {
-              :target => '_blank'
-          })
-        })
+        logs_rate_update_failure CtripChannel.first.name, property, property_channel, APP_CONFIG[:ctrip_inventories_update_endpoint]
       end
     end
 
@@ -113,13 +98,15 @@ xml retrieved:\n#{xml_doc.to_xhtml(indent: 3)}")
   # This method creates several change_set_channels,
   # one for each set of room type, change set, and channel.
   def create_job(change_set, delay = true)
+    result = {}
     create_change_set_channel(change_set) do |cs|
       if delay
-        cs.delay.run
+        result = cs.delay.run
       else
-        cs.run
+        result = cs.run
       end
     end
+    result
   end
 
   # Create a single master rate change set channel for given change set.
@@ -132,7 +119,9 @@ xml retrieved:\n#{xml_doc.to_xhtml(indent: 3)}")
       # check channel mapping for room type exist
       # and check at least one master rate mapping exist
       # channel_mapping = RoomTypeChannelMapping.find_by_room_type_id_and_channel_id(rt_id, self.channel.id)
-      master_rate_mapping = RoomTypeMasterRateChannelMapping.pool_id(pool.id).master_room_type_id(rt_id).find_by_channel_id(self.channel.id)
+      master_rate_mapping = RoomTypeMasterRateChannelMapping.pool_id(pool.id).
+        master_room_type_id(rt_id).
+        find_by_channel_id(self.channel.id)
 
       unless master_rate_mapping.blank?
         cs = MasterRateChangeSetChannel.create(

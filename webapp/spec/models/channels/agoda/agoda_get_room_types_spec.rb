@@ -64,17 +64,14 @@ describe "Agoda get room types spec", :type => :model do
     channel_rooms = AgodaConnector.new(property).get_room_types(false).count
     channel_ex_mapped_rooms = AgodaConnector.new(property).get_room_types(true).count
     property.room_types.each do |rt|
-      property.account.rate_types.each do |acc_rate_type|
-        mapping = RoomTypeChannelMapping.first(
-          :conditions => ['room_type_id = ? AND ota_room_type_id IS NOT NULL AND rate_type_id = ? '+
-                            'AND ota_rate_type_id IS NOT NULL',
-                          rt.id, acc_rate_type.id]
-        )
-        if mapping.blank?
-          rooms << "#{rt.name} (#{acc_rate_type.name})"
-        else
-          mapped_rooms << "#{rt.name} (#{acc_rate_type.name})"
-        end
+      mapping = RoomTypeChannelMapping.first(
+        :conditions => ['room_type_id = ? AND ota_room_type_id IS NOT NULL',
+                        rt.id]
+      )
+      if mapping.blank?
+        rooms << "#{rt.name}"
+      else
+        mapped_rooms << "#{rt.name}"
       end
     end
     puts "rooms: #{rooms.inspect}"

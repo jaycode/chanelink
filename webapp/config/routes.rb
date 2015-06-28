@@ -261,11 +261,17 @@ Chanelinkweb::Application.routes.draw do
     match '/setup' => "setup#index", :as => "setup"
   end
 
-  wash_out :api
   namespace :api do
     resources :json do
       collection do
         get 'index'
+      end
+    end
+    namespace :soap do
+      resources :ctrip do
+        collection do
+          post 'index'
+        end
       end
     end
   end

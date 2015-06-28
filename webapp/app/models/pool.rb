@@ -7,8 +7,9 @@ class Pool < ActiveRecord::Base
   has_many :channels, :class_name => 'PropertyChannel', :foreign_key => 'pool_id'
   has_many :master_rate_mappings, :class_name => 'RoomTypeMasterRateMapping', :foreign_key => 'pool_id'
   has_many :inventories
+  has_many :property_channels
 
-  default_scope lambda {{ :conditions => ["deleted = ?", false] }}
+  default_scope lambda {{ :conditions => ["`pools`.deleted = ?", false] }}
 
   unscope :property
 

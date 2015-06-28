@@ -5,15 +5,6 @@ class AgodaBookingHandler < BookingHandler
   include ChannelsHelper
 
   # days: How many days in the past?
-  def get_bookings(property, days)
-    bookings = Array.new
-    get_bookings_xml(property, days) do |xml_doc|
-      bookings = parse_booking_details_and_store(xml_doc, property)
-    end
-    bookings
-  end
-
-  # days: How many days in the past?
   def get_bookings_xml(property, days, &block)
     booking_ids = get_booking_ids(property, days)
     builder = Nokogiri::XML::Builder.new do |xml|
@@ -33,7 +24,7 @@ class AgodaBookingHandler < BookingHandler
 
     xml_doc  = Nokogiri::XML(response_xml)
     begin
-      success = xml_doc.xpath('//StatusResponse').attr('status').value
+      success = xml_doc.xpath('//agoda:StatusResponse', 'agoda' => AgodaChannel::XMLNS).attr('status').value
       # 204 is when no inventory returned.
       if success == '200' or success == '204'
         block.call xml_doc
@@ -77,7 +68,7 @@ class AgodaBookingHandler < BookingHandler
 
     xml_doc  = Nokogiri::XML(response_xml)
     begin
-      success = xml_doc.xpath('//StatusResponse').attr('status').value
+      success = xml_doc.xpath('//agoda:StatusResponse', 'agoda' => AgodaChannel::XMLNS).attr('status').value
       # 204 is when no inventory returned.
       if success == '200' or success == '204'
         block.call xml_doc
@@ -91,9 +82,10 @@ class AgodaBookingHandler < BookingHandler
     end
   end
 
-  private
+  protected
   # store into our own booking object
   def parse_booking_details_and_store(response, property)
+    new_bookings = []
     bookings_data = response.xpath("//agoda:BookingDetailData", 'agoda' => AgodaChannel::XMLNS)
     bookings_data.each do |booking_data|
       puts booking_data
@@ -125,8 +117,13 @@ class AgodaBookingHandler < BookingHandler
 
       new_booking.agoda_booking_id = booking_data.xpath('./agoda:BookingID', 'agoda' => AgodaChannel::XMLNS).text
 
-      new_booking.save
+      if new_booking.save
+        new_bookings << new_booking
+      else
+        new_bookings << AgodaBooking.find_by_agoda_booking_id(new_booking.agoda_booking_id)
+      end
     end
+    new_bookings
   end
 
   def channel

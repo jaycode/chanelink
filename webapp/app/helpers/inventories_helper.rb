@@ -1,13 +1,13 @@
 module InventoriesHelper
 
   # generate inventory field name
-  def generate_original_inventory_field_value(date, room_type, rate_type)
-    "original#{generate_inventory_field_name(date, room_type, rate_type)}"
+  def generate_original_inventory_field_value(date, room_type)
+    "original#{generate_inventory_field_name(date, room_type)}"
   end
 
   # generate inventory field name
-  def generate_inventory_field_name(date, room_type, rate_type)
-    "[#{room_type.id}][#{rate_type.id}][#{date.strftime('%F')}]"
+  def generate_inventory_field_name(date, room_type)
+    "[#{room_type.id}][#{date.strftime('%F')}]"
   end
 
   # generate rates field name
@@ -224,6 +224,70 @@ module InventoriesHelper
           return false;
         });
       });"
+  end
+
+  def copy_across_inventories_js
+    javascript_tag "$(function() {
+  $(\"\.copyAcrossInventories\" ).click(function(){
+
+    form = $(this).closest('form');
+    last_selected = form.data('lastSelected');
+
+    if (last_selected !== undefined) {
+      name = last_selected.attr('name');
+      splitted = name.split(']')
+
+      if (splitted.length > 2) {
+        rt_name = splitted[0] + ']';
+        min_stay = splitted[2] + ']';
+
+        value_to_copy = last_selected.val();
+
+        form.find(\"input[name^='\" + rt_name + \"']\" + \"[name$='\" + min_stay + \"']\").each(function() {
+          if (!$(this).is(':disabled')) {
+            $(this).val(value_to_copy);
+          }
+        });
+      } else {
+        rt_name = splitted[0] + ']';
+
+        value_to_copy = last_selected.val();
+
+        form.find(\"input[name^='\" + rt_name + \"']\").each(function() {
+          if (!$(this).is(':disabled')) {
+            $(this).val(value_to_copy);
+          }
+        });
+      }
+    }
+    return false;
+  });
+});"
+  end
+
+  def copy_up_down_inventories_js
+    javascript_tag "$(function() {
+
+    $(\"\.copyUpdownInventories\" ).click(function(){
+
+      form = $(this).closest('form');
+      last_selected = form.data('lastSelected');
+
+      if (last_selected !== undefined) {
+        name = last_selected.attr('name');
+        date_name = name.split(']')[1] + ']';
+
+        value_to_copy = last_selected.val();
+
+        form.find(\"input[name$='\" + date_name + \"']\").each(function() {
+          if (!$(this).is(':disabled')) {
+            $(this).val(value_to_copy);
+          }
+        });
+      }
+      return false;
+    });
+  });"
   end
 
   def determine_master_rate_amount(date, room_type, rate_type, pool_id, flash)
