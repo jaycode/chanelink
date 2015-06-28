@@ -67,3 +67,8 @@ First, find out where the memory leak happens:
 
 1. It is usually caused by `delayed_job`, so clean that process: `kill -9 [PID]`.
 2. Restart NGINX: `service nginx restart`
+
+**Protocol 3-2:**
+*Delayed Job cannot be killed even with kill -9*
+
+When you do `ps aux` some processes are `defunct`. To cure this, do a `docker restart dockerid`

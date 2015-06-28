@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="33d08885-ccff-47e8-9e62-7ba051a8d6f6" name="Default" comment="">
-      <change type="DELETED" beforePath="C:\Users\Jay\Docker\chanelink\webapp\app\controllers\api_controller.rb" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Jay\Docker\chanelink\webapp\app\controllers\api_controller.rb.bak" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/app/controllers/inventories_controller.rb" afterPath="$PROJECT_DIR$/webapp/app/controllers/inventories_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protocols.md" afterPath="$PROJECT_DIR$/protocols.md" />
     </list>
     <ignored path="chanelink.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -31,16 +31,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ctrip_test_xmls.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/webapp/spec/helpers/ctrip_test_xmls.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="45" column="5" selection-start-line="45" selection-start-column="5" selection-end-line="45" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="ctrip_reservation_case_5_spec.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/ctrip_reservation_case_5_spec.rb">
           <provider selected="true" editor-type-id="text-editor">
@@ -51,51 +41,100 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ctrip_reservation_case_6_spec.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/ctrip_reservation_case_6_spec.rb">
+      <file leaf-file-name="test_case-1.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/webapp/tmp/test_case-1.txt">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="43" column="33" selection-start-line="43" selection-start-column="33" selection-end-line="43" selection-end-column="33" />
+              <caret line="0" column="6" selection-start-line="0" selection-start-column="6" selection-end-line="0" selection-end-column="44" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="20150628180609_ota_booking_id.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/webapp/db/migrate/20150628180609_ota_booking_id.rb">
+      <file leaf-file-name="inventories_controller.rb" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/webapp/app/controllers/inventories_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="9" selection-start-line="0" selection-start-column="9" selection-end-line="0" selection-end-column="9" />
+            <state vertical-scroll-proportion="0.52369666">
+              <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="readme.md" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/readme.md">
+      <file leaf-file-name="test_case-2.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/webapp/tmp/test_case-2.txt">
+          <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
+            <state />
+          </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8442623">
-              <caret line="95" column="7" selection-start-line="95" selection-start-column="7" selection-end-line="95" selection-end-column="7" />
+            <state vertical-scroll-proportion="-0.0">
+              <caret line="0" column="30" selection-start-line="0" selection-start-column="30" selection-end-line="0" selection-end-column="30" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ctrip_reservation_case_2_spec.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/ctrip_reservation_case_2_spec.rb">
+      <file leaf-file-name="test_case-3.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/webapp/tmp/test_case-3.txt">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="41" selection-end-column="7" />
+              <caret line="0" column="30" selection-start-line="0" selection-start-column="30" selection-end-line="0" selection-end-column="30" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="case2_request_900066320.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/xmls/case2_request_900066320.rb">
+      <file leaf-file-name="test_case-4.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/webapp/tmp/test_case-4.txt">
+          <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.0">
+              <caret line="0" column="30" selection-start-line="0" selection-start-column="30" selection-end-line="0" selection-end-column="30" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test_case-5.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/webapp/tmp/test_case-5.txt">
+          <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.0">
+              <caret line="0" column="30" selection-start-line="0" selection-start-column="30" selection-end-line="0" selection-end-column="30" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ctrip_booking_handler.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/webapp/app/models/booking_handler/ctrip_booking_handler.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="30" column="92" selection-start-line="30" selection-start-column="20" selection-end-line="30" selection-end-column="92" />
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="expedia_booking_handler.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/webapp/app/models/booking_handler/expedia_booking_handler.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="protocols.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/protocols.md">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-45.962963">
+              <caret line="73" column="94" selection-start-line="73" selection-start-column="94" selection-end-line="73" selection-end-column="94" />
               <folding />
             </state>
           </provider>
@@ -116,12 +155,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/webapp/spec/features/channels/ctrip/ctrip_inventories_spec.rb" />
-        <option value="$PROJECT_DIR$/webapp/spec/models/channels/agoda/agoda_get_inventory_spec.rb" />
-        <option value="$PROJECT_DIR$/webapp/app/models/inventory_handler/agoda_inventory_handler.rb" />
-        <option value="$PROJECT_DIR$/webapp/app/models/room_type_fetcher/ctrip_room_type_fetcher.rb" />
-        <option value="$PROJECT_DIR$/webapp/spec/models/channels/ctrip/ctrip_get_inventory_spec.rb" />
-        <option value="$PROJECT_DIR$/webapp/app/helpers/channels_helper.rb" />
         <option value="$PROJECT_DIR$/webapp/app/models/master_rate_handler/ctrip_master_rate_handler.rb" />
         <option value="$PROJECT_DIR$/webapp/spec/models/channels/ctrip/ctrip_update_rates_spec.rb" />
         <option value="$PROJECT_DIR$/webapp/spec/models/channels/agoda/agoda_update_rates_spec.rb" />
@@ -131,7 +164,6 @@
         <option value="$PROJECT_DIR$/webapp/app/models/channels/agoda_channel.rb" />
         <option value="$PROJECT_DIR$/webapp/app/models/booking_handler/agoda_booking_handler.rb" />
         <option value="$PROJECT_DIR$/webapp/spec/models/channels/agoda/agoda_booking_handler_spec.rb" />
-        <option value="$PROJECT_DIR$/webapp/app/controllers/inventories_controller.rb" />
         <option value="$PROJECT_DIR$/webapp/spec/connectors/connector.rb" />
         <option value="$PROJECT_DIR$/webapp/app/models/master_rate_handler/agoda_master_rate_handler.rb" />
         <option value="$PROJECT_DIR$/webapp/config/app_config.yml" />
@@ -167,6 +199,13 @@
         <option value="$PROJECT_DIR$/webapp/spec/helpers/ctrip_test_xmls.rb" />
         <option value="$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/ctrip_reservation_case_6_spec.rb" />
         <option value="$PROJECT_DIR$/webapp/db/migrate/20150628180609_ota_booking_id.rb" />
+        <option value="$PROJECT_DIR$/protocols.md" />
+        <option value="$PROJECT_DIR$/webapp/tmp/test_case-2.txt" />
+        <option value="$PROJECT_DIR$/webapp/tmp/test_case-3.txt" />
+        <option value="$PROJECT_DIR$/webapp/tmp/test_case-4.txt" />
+        <option value="$PROJECT_DIR$/webapp/tmp/test_case-5.txt" />
+        <option value="$PROJECT_DIR$/webapp/tmp/test_case-1.txt" />
+        <option value="$PROJECT_DIR$/webapp/app/controllers/inventories_controller.rb" />
       </list>
     </option>
   </component>
@@ -1104,7 +1143,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="room_type_fetcher" />
+              <option name="myItemId" value="utilities" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1130,7 +1169,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="change_sets" />
+              <option name="myItemId" value="booking_handler" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1466,7 +1505,7 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977098" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27862597" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27862597" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -1498,46 +1537,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/webapp/config/routes.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.57760817">
-          <caret line="265" column="19" selection-start-line="265" selection-start-column="19" selection-end-line="265" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webapp/test/fixtures/property_channels.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="13" column="25" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webapp/app/models/room_type_fetcher/agoda_room_type_fetcher.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="23" column="49" selection-start-line="23" selection-start-column="44" selection-end-line="23" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webapp/app/models/inventory_handler/agoda_inventory_handler.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="4.3754096">
-          <caret line="157" column="14" selection-start-line="157" selection-start-column="14" selection-end-line="157" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webapp/app/controllers/properties_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/webapp/app/controllers/admin/properties_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-1.6475409">
@@ -1590,14 +1589,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="11" column="51" selection-start-line="11" selection-start-column="51" selection-end-line="11" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webapp/app/controllers/inventories_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="33" selection-end-column="9" />
           <folding />
         </state>
       </provider>
@@ -1778,28 +1769,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webapp/tmp/test_case-1.txt">
-      <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webapp/tmp/test_case-2.txt">
-      <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.875318">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/ctrip_reservation_case_4_spec.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1872,14 +1841,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/ctrip_reservation_case_5_spec.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="11" column="37" selection-start-line="11" selection-start-column="37" selection-end-line="11" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/ctrip_reservation_case_6_spec.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1898,8 +1859,100 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/readme.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8442623">
-          <caret line="95" column="7" selection-start-line="95" selection-start-column="7" selection-end-line="95" selection-end-column="7" />
+        <state vertical-scroll-proportion="-2.1785715">
+          <caret line="150" column="42" selection-start-line="150" selection-start-column="40" selection-end-line="150" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protocols.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-45.962963">
+          <caret line="73" column="94" selection-start-line="73" selection-start-column="94" selection-end-line="73" selection-end-column="94" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/ctrip_reservation_case_5_spec.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="11" column="37" selection-start-line="11" selection-start-column="37" selection-end-line="11" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webapp/app/models/booking_handler/ctrip_booking_handler.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webapp/app/models/booking_handler/expedia_booking_handler.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webapp/tmp/test_case-2.txt">
+      <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="30" selection-start-line="0" selection-start-column="30" selection-end-line="0" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webapp/tmp/test_case-3.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="30" selection-start-line="0" selection-start-column="30" selection-end-line="0" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webapp/tmp/test_case-4.txt">
+      <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="30" selection-start-line="0" selection-start-column="30" selection-end-line="0" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webapp/tmp/test_case-5.txt">
+      <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="30" selection-start-line="0" selection-start-column="30" selection-end-line="0" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webapp/tmp/test_case-1.txt">
+      <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="6" selection-start-line="0" selection-start-column="6" selection-end-line="0" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webapp/app/controllers/inventories_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.52369666">
+          <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
           <folding />
         </state>
       </provider>

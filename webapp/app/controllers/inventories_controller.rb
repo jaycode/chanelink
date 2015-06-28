@@ -25,7 +25,7 @@ class InventoriesController < ApplicationController
 
     if change_set
       # determine xml channel job that want to be created
-      property_channels = PropertyChannel.find_all_by_pool_id(pool_id)
+      property_channels = PropertyChannel.find_all_by_pool_id(params[:pool_id])
 
       # go through each channel inventory handler and ask them to create push xml job
       property_channels.each do |pc|
