@@ -56,5 +56,10 @@ describe 'Ctrip Reservation Case 6 Spec', :type => :request do
       saved_inventory = Inventory.find(inventory_id)
       expect(saved_inventory.total_rooms).to eq(30)
     end
+
+    create_log("test_case-5.txt",
+               "https://dashboard.chanelink.com#{path}",
+               xmls.cancellation_request_900066320,
+               response.body)
   end
 end

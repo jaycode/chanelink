@@ -60,7 +60,10 @@ describe 'Ctrip Reservation Case 7 Spec', :type => :request do
     saved_inventory = Inventory.find(inventory.id)
     expect(saved_inventory.total_rooms).to eq(30)
 
-
+    create_log("test_case-7a.txt",
+               "https://dashboard.chanelink.com#{path}",
+               xmls.cancellation_request_900066342,
+               response.body)
     # Now modify
     post(path,
          xmls.creation_request_900066345(start_date, rtcm),
@@ -77,5 +80,10 @@ describe 'Ctrip Reservation Case 7 Spec', :type => :request do
     # See if inventories reverted properly.
     saved_inventory = Inventory.find(inventory.id)
     expect(saved_inventory.total_rooms).to eq(29)
+
+    create_log("test_case-7b.txt",
+               "https://dashboard.chanelink.com#{path}",
+               xmls.creation_request_900066345(start_date, rtcm),
+               response.body)
   end
 end

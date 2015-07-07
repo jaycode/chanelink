@@ -92,7 +92,7 @@ def case9_request_900066367(date, rtcm)
             </TPA_Extensions>
             <HotelReservationIDs>
               <HotelReservationID ResID_Type="501" ResID_Value="900066367" />
-              <HotelReservationID ResID_Value="56950d8c0e31889292bcd8e745c7c4c7" ResID_Type="507""/>
+              <HotelReservationID ResID_Value="56950d8c0e31889292bcd8e745c7c4c7" ResID_Type="507"/>
            </HotelReservationIDs>
           </ResGlobalInfo>
         </HotelReservation>

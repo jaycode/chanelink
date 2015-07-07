@@ -26,11 +26,24 @@ describe 'Ctrip Reservation Case 10 Spec', :type => :request do
 
     path = "/api/soap/ctrip"
     post(path,
-         xmls.request_900066249(start_date, rtcm),
+         xmls.request_900066252(start_date, rtcm),
          {"CONTENT_TYPE" => "text/xml"})
 
-    # See if inventories booked properly.
+    # Expect the response to follow the spec.
+    response_xml = Nokogiri::XML(response.body).xpath(
+      '//ctrip:OTA_CancelRS', 'ctrip' => CtripChannel::XMLNS).children
+    target_xml = Nokogiri::XML(xmls.response_900066252).xpath(
+      '//ctrip:OTA_CancelRS', 'ctrip' => CtripChannel::XMLNS).children
+    # Removes all whitespaces and newlines
+    expect(response_xml.to_xml.gsub(/\s+/, "")).to eq(target_xml.to_xml.gsub(/\s+/, ""))
+
+    # See if inventories reverted properly.
     saved_inventory = Inventory.find(inventory.id)
-    expect(saved_inventory.total_rooms).to eq(29)
+    expect(saved_inventory.total_rooms).to eq(30)
+
+    create_log("test_case-10.txt",
+               "https://dashboard.chanelink.com#{path}",
+               xmls.request_900066252(start_date, rtcm),
+               response.body)
   end
 end

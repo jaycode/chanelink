@@ -2,35 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="33d08885-ccff-47e8-9e62-7ba051a8d6f6" name="Default" comment="">
-      <change type="DELETED" beforePath="C:\Users\Jay\Docker\chanelink\webapp\app\models\booking_handler\ctrip_booking_handler.rb.bak" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/app/models/bookings/booking.rb" afterPath="$PROJECT_DIR$/webapp/app/models/bookings/booking.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/app/models/booking_handler/booking_handler.rb" afterPath="$PROJECT_DIR$/webapp/app/models/booking_handler/booking_handler.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/xmls/case10_request_900066252.rb" afterPath="$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/xmls/case10_request_900066252.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/xmls/case10_response_900066252.rb" afterPath="$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/xmls/case10_response_900066252.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/xmls/case7_cancellation_request_900066342.rb" afterPath="$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/xmls/case7_cancellation_request_900066342.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/xmls/case7_cancellation_response_900066342.rb" afterPath="$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/xmls/case7_cancellation_response_900066342.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/xmls/case7_creation_request_900066342.rb" afterPath="$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/xmls/case7_creation_request_900066342.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/xmls/case7_creation_request_900066345.rb" afterPath="$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/xmls/case7_creation_request_900066345.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/xmls/case7_creation_response_900066342.rb" afterPath="$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/xmls/case7_creation_response_900066342.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/xmls/case7_creation_response_900066345.rb" afterPath="$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/xmls/case7_creation_response_900066345.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/xmls/case8_request_900066249.rb" afterPath="$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/xmls/case8_request_900066249.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/xmls/case9_request_900066367.rb" afterPath="$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/xmls/case9_request_900066367.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/app/models/channel.rb" afterPath="$PROJECT_DIR$/webapp/app/models/channel.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/app/models/bookings/ctrip_booking.rb" afterPath="$PROJECT_DIR$/webapp/app/models/bookings/ctrip_booking.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/app/models/channels/ctrip_channel.rb" afterPath="$PROJECT_DIR$/webapp/app/models/channels/ctrip_channel.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/app/controllers/api/soap/ctrip_controller.rb" afterPath="$PROJECT_DIR$/webapp/app/controllers/api/soap/ctrip_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/ctrip_reservation_case_2_spec.rb" afterPath="$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/ctrip_reservation_case_2_spec.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/ctrip_reservation_case_4_spec.rb" afterPath="$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/ctrip_reservation_case_4_spec.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/ctrip_reservation_case_10_spec.rb" afterPath="$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/ctrip_reservation_case_10_spec.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/ctrip_reservation_case_6_spec.rb" afterPath="$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/ctrip_reservation_case_6_spec.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/spec/helpers/ctrip_test_xmls.rb" afterPath="$PROJECT_DIR$/webapp/spec/helpers/ctrip_test_xmls.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/config/locales/en.yml" afterPath="$PROJECT_DIR$/webapp/config/locales/en.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/app/models/change_sets/inventory_change_set.rb" afterPath="$PROJECT_DIR$/webapp/app/models/change_sets/inventory_change_set.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/app/controllers/property_channels_controller.rb" afterPath="$PROJECT_DIR$/webapp/app/controllers/property_channels_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/app/models/rate_type.rb" afterPath="$PROJECT_DIR$/webapp/app/models/rate_type.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/app/models/room_type.rb" afterPath="$PROJECT_DIR$/webapp/app/models/room_type.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/test/fixtures/room_types.yml" afterPath="$PROJECT_DIR$/webapp/test/fixtures/room_types.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/db/schema.rb" afterPath="$PROJECT_DIR$/webapp/db/schema.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/ctrip_reservation_case_7_spec.rb" afterPath="$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/ctrip_reservation_case_7_spec.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/ctrip_reservation_case_8_spec.rb" afterPath="$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/ctrip_reservation_case_8_spec.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/ctrip_reservation_case_9_spec.rb" afterPath="$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/ctrip_reservation_case_9_spec.rb" />
     </list>
     <ignored path="chanelink.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -58,11 +35,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ctrip_reservation_case_7_spec.rb" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ctrip_reservation_case_7_spec.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/ctrip_reservation_case_7_spec.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="78" column="22" selection-start-line="78" selection-start-column="22" selection-end-line="78" selection-end-column="22" />
+            <state vertical-scroll-proportion="0.5262295">
+              <caret line="64" column="50" selection-start-line="64" selection-start-column="50" selection-end-line="64" selection-end-column="50" />
               <folding />
             </state>
           </provider>
@@ -72,7 +49,7 @@
         <entry file="file://$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/ctrip_reservation_case_8_spec.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="4" column="58" selection-start-line="4" selection-start-column="58" selection-end-line="4" selection-end-column="58" />
+              <caret line="38" column="20" selection-start-line="38" selection-start-column="20" selection-end-line="38" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -82,7 +59,7 @@
         <entry file="file://$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/ctrip_reservation_case_9_spec.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+              <caret line="37" column="20" selection-start-line="37" selection-start-column="20" selection-end-line="37" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -92,7 +69,37 @@
         <entry file="file://$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/ctrip_reservation_case_10_spec.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="8" column="44" selection-start-line="8" selection-start-column="44" selection-end-line="8" selection-end-column="44" />
+              <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="case9_request_900066367.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/xmls/case9_request_900066367.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-14.275862">
+              <caret line="94" column="97" selection-start-line="94" selection-start-column="97" selection-end-line="94" selection-end-column="97" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ctrip_reservation_case_5_spec.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/ctrip_reservation_case_5_spec.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="49" column="0" selection-start-line="49" selection-start-column="0" selection-end-line="52" selection-end-column="29" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ctrip_reservation_case_6_spec.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/ctrip_reservation_case_6_spec.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="61" column="50" selection-start-line="61" selection-start-column="50" selection-end-line="61" selection-end-column="50" />
               <folding />
             </state>
           </provider>
@@ -118,31 +125,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="case10_response_900066252.rb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="case10_response_900066252.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/xmls/case10_response_900066252.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.50163937">
+            <state vertical-scroll-proportion="0.0">
               <caret line="18" column="21" selection-start-line="18" selection-start-column="21" selection-end-line="18" selection-end-column="21" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ctrip_test_xmls.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/webapp/spec/helpers/ctrip_test_xmls.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="104" column="40" selection-start-line="104" selection-start-column="40" selection-end-line="104" selection-end-column="40" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="case7_creation_request_900066345.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/xmls/case7_creation_request_900066345.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="68" column="77" selection-start-line="68" selection-start-column="27" selection-end-line="68" selection-end-column="77" />
               <folding />
             </state>
           </provider>
@@ -201,19 +188,19 @@
         <option value="$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/xmls/case7_creation_response_900066342.rb" />
         <option value="$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/xmls/case7_creation_response_900066345.rb" />
         <option value="$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/xmls/case10_response_900066252.rb" />
-        <option value="$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/ctrip_reservation_case_6_spec.rb" />
         <option value="$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/xmls/case7_creation_request_900066342.rb" />
         <option value="$PROJECT_DIR$/webapp/app/models/booking_handler/booking_handler.rb" />
         <option value="$PROJECT_DIR$/webapp/app/controllers/api/soap/ctrip_controller.rb" />
         <option value="$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/xmls/case7_creation_request_900066345.rb" />
-        <option value="$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/ctrip_reservation_case_7_spec.rb" />
         <option value="$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/xmls/case8_request_900066249.rb" />
         <option value="$PROJECT_DIR$/webapp/spec/helpers/ctrip_test_xmls.rb" />
+        <option value="$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/xmls/case10_request_900066252.rb" />
+        <option value="$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/xmls/case9_request_900066367.rb" />
         <option value="$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/ctrip_reservation_case_9_spec.rb" />
         <option value="$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/ctrip_reservation_case_8_spec.rb" />
         <option value="$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/ctrip_reservation_case_10_spec.rb" />
-        <option value="$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/xmls/case9_request_900066367.rb" />
-        <option value="$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/xmls/case10_request_900066252.rb" />
+        <option value="$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/ctrip_reservation_case_6_spec.rb" />
+        <option value="$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/ctrip_reservation_case_7_spec.rb" />
       </list>
     </option>
   </component>
@@ -1710,14 +1697,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/ctrip_reservation_case_5_spec.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/webapp/app/models/currency_conversion.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1838,14 +1817,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/ctrip_reservation_case_6_spec.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="51" selection-end-column="88" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/xmls/case7_creation_response_900066345.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1870,14 +1841,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/ctrip_reservation_case_7_spec.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="78" column="22" selection-start-line="78" selection-start-column="22" selection-end-line="78" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/xmls/case7_creation_request_900066345.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1890,38 +1853,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="104" column="40" selection-start-line="104" selection-start-column="40" selection-end-line="104" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/ctrip_reservation_case_8_spec.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="4" column="58" selection-start-line="4" selection-start-column="58" selection-end-line="4" selection-end-column="58" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/ctrip_reservation_case_10_spec.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="8" column="44" selection-start-line="8" selection-start-column="44" selection-end-line="8" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/ctrip_reservation_case_9_spec.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/xmls/case9_request_900066367.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.052459016">
-          <caret line="69" column="79" selection-start-line="69" selection-start-column="79" selection-end-line="69" selection-end-column="79" />
           <folding />
         </state>
       </provider>
@@ -1944,8 +1875,64 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/xmls/case10_response_900066252.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.50163937">
+        <state vertical-scroll-proportion="0.0">
           <caret line="18" column="21" selection-start-line="18" selection-start-column="21" selection-end-line="18" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/xmls/case9_request_900066367.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-14.275862">
+          <caret line="94" column="97" selection-start-line="94" selection-start-column="97" selection-end-line="94" selection-end-column="97" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/ctrip_reservation_case_5_spec.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="49" column="0" selection-start-line="49" selection-start-column="0" selection-end-line="52" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/ctrip_reservation_case_8_spec.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="38" column="20" selection-start-line="38" selection-start-column="20" selection-end-line="38" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/ctrip_reservation_case_9_spec.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="37" column="20" selection-start-line="37" selection-start-column="20" selection-end-line="37" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/ctrip_reservation_case_10_spec.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/ctrip_reservation_case_6_spec.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="61" column="50" selection-start-line="61" selection-start-column="50" selection-end-line="61" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webapp/spec/features/channels/ctrip/reservations/ctrip_reservation_case_7_spec.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5262295">
+          <caret line="64" column="50" selection-start-line="64" selection-start-column="50" selection-end-line="64" selection-end-column="50" />
           <folding />
         </state>
       </provider>

@@ -33,5 +33,10 @@ describe 'Ctrip Reservation Case 8 Spec', :type => :request do
     # See if inventories booked properly.
     saved_inventory = Inventory.find(inventory.id)
     expect(saved_inventory.total_rooms).to eq(29)
+
+    create_log("test_case-8.txt",
+               "https://dashboard.chanelink.com#{path}",
+               xmls.request_900066249(start_date, rtcm),
+               response.body)
   end
 end
