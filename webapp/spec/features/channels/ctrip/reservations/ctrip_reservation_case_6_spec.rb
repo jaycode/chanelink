@@ -14,6 +14,8 @@ describe 'Ctrip Reservation Case 6 Spec', :type => :request do
 
     # First setup the inventory needed.
     Inventory.destroy_all
+    Booking.destroy_all
+
     inventory_ids = []
 
     # The last day is omitted.
@@ -40,6 +42,14 @@ describe 'Ctrip Reservation Case 6 Spec', :type => :request do
     post(path,
          xmls.cancellation_request_900066320,
          {"CONTENT_TYPE" => "text/xml"})
+
+    # Expect the response to follow the spec.
+    response_xml = Nokogiri::XML(response.body).xpath(
+      '//ctrip:OTA_CancelRS', 'ctrip' => CtripChannel::XMLNS).children
+    target_xml = Nokogiri::XML(xmls.cancellation_response_900066320).xpath(
+      '//ctrip:OTA_CancelRS', 'ctrip' => CtripChannel::XMLNS).children
+    # Removes all whitespaces and newlines
+    expect(response_xml.to_xml.gsub(/\s+/, "")).to eq(target_xml.to_xml.gsub(/\s+/, ""))
 
     # See if inventories reverted properly.
     inventory_ids.each do |inventory_id|

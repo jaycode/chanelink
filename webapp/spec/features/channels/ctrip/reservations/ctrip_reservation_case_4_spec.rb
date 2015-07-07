@@ -3,11 +3,15 @@ require 'helpers/ctrip_test_xmls'
 require 'helpers/ctrip_reservation_helper'
 
 describe 'Ctrip Reservation Case 4 Spec', :type => :request do
-  # include RSpec::Rails::ControllerExampleGroup
   include IntegrationTestHelper
   include Capybara::DSL
 
   scenario "Online Creation:2 days+1 room+Prepay+2 guests +selected Items(try to arrange double bed & try to arrange non-smoking room)+ free text(text is \"Test Reservation\")" do
+    # In this scenario we try to rent a room that is connected to another room
+    # i.e. Superior Room w/ Double Bed that connects to Superior Room
+    # BUT
+    # There is no way to currently find out how to get list of available options, so let's skip this.
+
     xmls = CtripTestXmls.new
     start_date = Date.today + 1.weeks
     rtcm = room_type_channel_mappings(:superior_ctrip_room_a)

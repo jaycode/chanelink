@@ -1,6 +1,7 @@
 class RateType < ActiveRecord::Base
   belongs_to :account
   has_many :room_type_channel_mappings
+  default_scope lambda {{ :conditions => ["`rate_types`.deleted = ?", false] }}
 
   # clean up all links that was made to this rate type
   def clean_up

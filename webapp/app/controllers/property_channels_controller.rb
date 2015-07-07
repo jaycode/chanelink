@@ -176,10 +176,17 @@ class PropertyChannelsController < ApplicationController
 
     @property_channel.pool = current_property.pools.first if current_property.single_pool?
 
+    @channel = @property_channel.channel
+
+    if session[:currency_conversion_params][:to_currency_id].blank? and !@channel.blank?
+      currency = Currency.find_by_code(@channel.class::DEFAULT_CURRENCY_CODE)
+      unless currency.blank?
+        session[:currency_conversion_params][:to_currency_id] = currency.id
+      end
+    end
     @currency_conversion = CurrencyConversion.new(session[:currency_conversion_params])
     @currency_conversion.property_channel = @property_channel
     
-    @channel = @property_channel.channel
   end
 
   # create channel disabled alert for all the members

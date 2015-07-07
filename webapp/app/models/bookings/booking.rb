@@ -1,5 +1,8 @@
 # super class for all channel/OTA bookings
 class Booking < ActiveRecord::Base
+  STATUS_BOOK = 'BOOK'
+  STATUS_CANCEL = 'CANCEL'
+  STATUS_MODIFY = 'MODIFY'
 
   extend Unscoped
   
@@ -26,16 +29,6 @@ class Booking < ActiveRecord::Base
   # calculate length of stay in days
   def length_of_stay
     (self.date_end.to_date - self.date_start.to_date).to_i - 1
-  end
-  
-  def channel_booking_id
-    if self.channel == AgodaChannel.first
-      self.agoda_booking_id
-    elsif self.channel == ExpediaChannel.first
-      self.expedia_booking_id
-    elsif self.channel == BookingcomChannel.first
-      self.bookingcom_booking_id
-    end
   end
 
   def generate_uuid

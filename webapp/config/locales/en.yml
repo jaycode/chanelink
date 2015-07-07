@@ -2,6 +2,10 @@
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  api:
+    error_unknown: Invalid request.
+    error_id_empty: Hotel ID cannot be blank.
+    error_booking_not_found: Booking with that Unique ID not found.
   default_page_title: 'Hotel Channel Manager'
 
   general:

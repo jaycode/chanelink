@@ -23,6 +23,8 @@ class CtripChannel < Channel
     '16' => 'Pay at hotel'
   }
 
+  DEFAULT_CURRENCY_CODE = 'SGD'
+
   # These will be passed to Property's settings. The reason we put them here is
   # so it is easier if later the OTA should decide to make a setting dynamic, e.g.
   # what if Ctrip company code can be set differently per each user?

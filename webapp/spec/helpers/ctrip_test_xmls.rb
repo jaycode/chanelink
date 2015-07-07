@@ -68,4 +68,45 @@ class CtripTestXmls
   def creation_response_900066366
     case5_response_900066366
   end
+
+  def creation_request_900066342(date, rtcm)
+    case7_creation_request_900066342(date, rtcm)
+  end
+
+  def creation_request_900066345(date, rtcm)
+    case7_creation_request_900066345(date, rtcm)
+  end
+
+  def cancellation_request_900066342
+    case7_cancellation_request_900066342
+  end
+
+  def cancellation_response_900066342
+    case7_cancellation_response_900066342
+  end
+
+  def creation_response_900066342
+    case7_creation_response_900066342
+  end
+
+  def creation_response_900066345
+    case7_creation_response_900066345
+  end
+
+  def request_900066249(date, rtcm)
+    case8_request_900066249(date, rtcm)
+  end
+
+  def request_900066367(date, rtcm)
+    case9_request_900066367(date, rtcm)
+  end
+
+  def request_900066252(date, rtcm)
+    case10_request_900066252(date, rtcm)
+  end
+
+  def response_900066252
+    case10_response_900066252
+  end
+
 end

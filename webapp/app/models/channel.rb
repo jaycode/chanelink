@@ -1,5 +1,7 @@
 # class representing a channel
 class Channel < ActiveRecord::Base
+  DEFAULT_CURRENCY_CODE = 'IDR'
+
   validates_uniqueness_of :name
   validates_uniqueness_of :type
 
@@ -73,7 +75,7 @@ class Channel < ActiveRecord::Base
     result
   end
 
-  # get currency oonverter for given property on this channel
+  # get currency converter for given property on this channel
   def currency_converter(property)
     result = 1.0
     pc = PropertyChannel.find_by_property_id_and_channel_id(property.id, self.id)

@@ -9,6 +9,11 @@ deluxe:
   rack_rate: 100000
   property: big_hotel_1
 
+superior_double_bed:
+  name: Superior w/ Double Bed
+  rack_rate: 200000
+  property: big_hotel_1
+
 # For testing room_type_channel_mapping creation
 unassigned:
   name: Unassigned

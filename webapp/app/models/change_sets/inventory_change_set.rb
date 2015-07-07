@@ -31,12 +31,13 @@ class InventoryChangeSet < ChangeSet
           existing_inv = Inventory.find_by_date_and_property_id_and_pool_id_and_room_type_id(
             date_inv[0], current_property.id, pool_id, rt.id)
 
+          send_alert = false
           if total_rooms.class == String
             operator = total_rooms[0,1]
             if operator == '-' and !existing_inv.blank?
               total_rooms = existing_inv.total_rooms - total_rooms[1..-1].to_i
               if total_rooms < 0
-                raise "Rooms not available (#{existing_inv.total_rooms} rooms left)"
+                send_alert = true
               end
             elsif operator == '+' and !existing_inv.blank?
               total_rooms = existing_inv.total_rooms + total_rooms[1..-1].to_i
@@ -44,6 +45,7 @@ class InventoryChangeSet < ChangeSet
               total_rooms = existing_inv.total_rooms + total_rooms[1..-1].to_i
             elsif operator == '-' and existing_inv.blank?
               total_rooms = 0
+              send_alert = true
             end
           end
 
@@ -60,7 +62,7 @@ class InventoryChangeSet < ChangeSet
               inventory.pool_id = pool_id
 
               inventory.save
-
+              existing_inv = inventory
               logs << MemberSetInventoryLog.create(:inventory_id => inventory.id, :total_rooms => inventory.total_rooms)
             end
           else
@@ -69,6 +71,10 @@ class InventoryChangeSet < ChangeSet
               existing_inv.update_attribute(:total_rooms, total_rooms)
               logs << MemberSetInventoryLog.create(:inventory_id => existing_inv.id, :total_rooms => existing_inv.total_rooms)
             end
+          end
+
+          if send_alert and !existing_inv.blank?
+            ZeroInventoryAlert.create_for_property(existing_inv, current_property)
           end
         end
       end
@@ -84,32 +90,13 @@ class InventoryChangeSet < ChangeSet
     change_set
   end
 
-  def self.create_job(logs, pool_id)
-    change_set = InventoryChangeSet.create
-    logs.each do |log|
-      log.update_attribute(:change_set_id, change_set.id)
-    end
-  end
-
-  # to be used for inventory change caused by booking
-  def self.create_job_for_booking(logs, pool, channel_booking_source)
+  def self.create_job(logs, &block)
     unless logs.blank?
       change_set = InventoryChangeSet.create
       logs.each do |log|
         log.update_attribute(:change_set_id, change_set.id)
       end
-
-      # determine xml channel job that want to be created
-      property_channels = PropertyChannel.find_all_by_pool_id(pool.id)
-
-      # go through each channel inventory handler and ask them to create push xml job
-      # don't do it for channel where this booking is coming from
-      property_channels.each do |pc|
-        channel = pc.channel
-        if channel != channel_booking_source
-          channel.inventory_handler.create_job(change_set)
-        end
-      end
+      block.call
     end
   end
 

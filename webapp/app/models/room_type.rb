@@ -8,7 +8,7 @@ class RoomType < ActiveRecord::Base
 
   unscope :property
 
-  default_scope lambda {{ :conditions => ["deleted = ?", false] }}
+  default_scope lambda {{ :conditions => ["`room_types`.deleted = ?", false] }}
 
   NAME_MINIMUM_LENGTH = 3
   NAME_MAXIMUM_LENGTH = 100
